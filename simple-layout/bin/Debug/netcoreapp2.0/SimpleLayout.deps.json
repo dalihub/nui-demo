@@ -1,0 +1,91 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "SimpleLayout/1.0.0": {
+        "dependencies": {
+          "Tizen.NUI": "5.0.0-preview1"
+        },
+        "runtime": {
+          "SimpleLayout.dll": {}
+        }
+      },
+      "Tizen/5.0.0-preview1": {
+        "dependencies": {
+          "Tizen.Log": "5.0.0-preview1"
+        },
+        "runtime": {
+          "Tizen.dll": {}
+        }
+      },
+      "Tizen.Applications.Common/5.0.0-preview1": {
+        "dependencies": {
+          "Tizen": "5.0.0-preview1",
+          "Tizen.Log": "5.0.0-preview1"
+        },
+        "runtime": {
+          "Tizen.Applications.Common.dll": {}
+        }
+      },
+      "Tizen.Log/5.0.0-preview1": {
+        "runtime": {
+          "Tizen.Log.dll": {}
+        }
+      },
+      "Tizen.NUI/5.0.0-preview1": {
+        "dependencies": {
+          "Tizen.Applications.Common": "5.0.0-preview1",
+          "Tizen.System.SystemSettings": "5.0.0-preview1"
+        },
+        "runtime": {
+          "Tizen.NUI.dll": {}
+        }
+      },
+      "Tizen.System.SystemSettings/5.0.0-preview1": {
+        "dependencies": {
+          "Tizen": "5.0.0-preview1",
+          "Tizen.Log": "5.0.0-preview1"
+        },
+        "runtime": {
+          "Tizen.System.SystemSettings.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SimpleLayout/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tizen/5.0.0-preview1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tizen.Applications.Common/5.0.0-preview1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tizen.Log/5.0.0-preview1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tizen.NUI/5.0.0-preview1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tizen.System.SystemSettings/5.0.0-preview1": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

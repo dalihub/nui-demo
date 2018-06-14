@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <DefineConstants>DOT_NET_CORE</DefineConstants>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DefineConstants>$(DefineConstants);DEBUG_ON</DefineConstants>
+  </PropertyGroup>
+</Project>

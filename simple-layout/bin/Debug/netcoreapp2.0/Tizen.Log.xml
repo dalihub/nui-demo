@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tizen.Log</name>
+    </assembly>
+    <members>
+        <member name="T:Tizen.Log">
+            <summary>
+            Provides methods to print log messages to the Tizen logging system.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Log.Verbose(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the VERBOSE priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.Log.Debug(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the DEBUG priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.Log.Info(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the INFO priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.Log.Warn(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the WARNING priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.Log.Error(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the ERROR priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.Log.Fatal(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the FATAL priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="T:Tizen.InternalLog">
+            <summary>
+            Provides methods to print log messages to the Tizen logging system.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.InternalLog.Verbose(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the VERBOSE priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.InternalLog.Debug(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the DEBUG priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.InternalLog.Info(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the INFO priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.InternalLog.Warn(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the WARNING priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.InternalLog.Error(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the ERROR priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.InternalLog.Fatal(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the FATAL priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="T:Tizen.SecureLog">
+            <summary>
+            Provides methods to print log messages to the Tizen logging system.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.SecureLog.Verbose(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the VERBOSE priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.SecureLog.Debug(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the DEBUG priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.SecureLog.Info(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the INFO priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.SecureLog.Warn(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the WARNING priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.SecureLog.Error(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the ERROR priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+        <member name="M:Tizen.SecureLog.Fatal(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Prints a log message with the FATAL priority.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+            <param name="tag">The tag name of the log message.</param>
+            <param name="message">The log message to print.</param>
+            <param name="file">The source file path of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="func">The function name of the caller function. This argument will be set automatically by the compiler.</param>
+            <param name="line">The line number of the calling position. This argument will be set automatically by the compiler.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/SERILOCAL/m.umar/.dotnet/store/|arch|/|tfm|",
+      "/home/SERILOCAL/m.umar/.nuget/packages",
+      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+    ]
+  }
+}

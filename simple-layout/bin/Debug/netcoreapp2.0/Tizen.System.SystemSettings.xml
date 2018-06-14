@@ -1,0 +1,1846 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tizen.System.SystemSettings</name>
+    </assembly>
+    <members>
+        <member name="T:Tizen.System.SystemSettings">
+            <summary>
+            The System Settings API provides APIs for sharing the configuration over a system.
+            </summary>
+            <remarks>
+            The System Settings API provides functions for getting the system configuration related to user preferences.
+            The main features of the System Settings API include accessing system-wide configurations, such as ringtones, wallpapers, and so on.
+            </remarks>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.IncomingCallRingtone">
+            <summary>
+            The file path of the current ringtone.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.WallpaperHomeScreen">
+            <summary>
+            The file path of the current home-screen wallpaper.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.home_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.WallpaperLockScreen">
+            <summary>
+            The file path of the current lock-screen wallpaper.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.FontSize">
+            <summary>
+            The current system font size.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.FontType">
+            <summary>
+            The current system font type.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.MotionActivationEnabled">
+            <summary>
+            Indicates whether the motion service is activated.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.EmailAlertRingtone">
+            <summary>
+            The file path of the current email alert ringtone.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.notification_email</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.UsbDebuggingEnabled">
+            <summary>
+            Indicates whether the USB debugging is enabled.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.Data3GNetworkEnabled">
+            <summary>
+            Indicates whether the 3G data network is enabled.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.LockScreenApp">
+            <summary>
+            Indicates the lock-screen application package name.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.DefaultFontType">
+            <summary>
+            The current system default font type (only supports Get).
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.LocaleCountry">
+            <summary>
+            Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+            The country setting is in the ISO 639-2 format,
+            and the region setting is in the ISO 3166-1 alpha-2 format.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.LocaleLanguage">
+            <summary>
+            Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+            The language setting is in the ISO 639-2 format,
+            and the region setting is in the ISO 3166-1 alpha-2 format.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.LocaleTimeFormat24HourEnabled">
+            <summary>
+            Indicates whether the 24-hour clock is used.
+            If the value is false, the 12-hour clock is used.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.LocaleTimeZone">
+            <summary>
+            Indicates the current time zone, for example, Pacific/Tahiti.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.Time">
+            <summary>
+            Once the system changes time, this event occurs to notify the time change.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.SoundLockEnabled">
+            <summary>
+            Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.SoundSilentModeEnabled">
+            <summary>
+            Indicates whether the device is in the silent mode.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.SoundTouchEnabled">
+            <summary>
+            Indicates whether the screen touch sound is enabled on the device.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.DisplayScreenRotationAutoEnabled">
+            <summary>
+            Indicates whether the rotation control is automatic.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.DeviceName">
+            <summary>
+            Indicates the device name.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.MotionEnabled">
+            <summary>
+            Indicates whether the device user has enabled the motion feature.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.NetworkWifiNotificationEnabled">
+            <summary>
+            Indicates whether Wi-Fi related notifications are enabled on the device.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.wifi</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.NetworkFlightModeEnabled">
+            <summary>
+            Indicates whether the device is in the flight mode.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.ScreenBacklightTime">
+            <summary>
+            Indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.SoundNotification">
+            <summary>
+            Indicates the file path of the current notification tone set by the user.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.SoundNotificationRepetitionPeriod">
+            <summary>
+            Indicates the time period for notification repetitions.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.LockState">
+            <summary>
+            Indicates the current lock state.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.AdsId">
+            <summary>
+            The current system ADS ID.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.UltraDataSave">
+            <summary>
+            Indicates the time period for notification repetitions.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.telephony</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.AccessibilityTtsEnabled">
+            <summary>
+            Indicates whether the accessibility TTS is enabled on the device.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.Vibration">
+            <summary>
+            Indicates whether the vibration is enabled on the device.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.AutomaticTimeUpdate">
+            <summary>
+            Indicates whether the automatic time update is enabled on the device.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SystemSettings.DeveloperOptionState">
+            <summary>
+            Indicates whether the developer option state is enabled on the device.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.IncomingCallRingtoneChanged">
+            <summary>
+            The IncomingCallRingtoneChanged event is triggered when the file path of the incoming ringtone is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.WallpaperHomeScreenChanged">
+            <summary>
+            THe WallpaperHomeScreenChanged event is triggered when the file path of the current home screen wallpaper is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.home_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.WallpaperLockScreenChanged">
+            <summary>
+            The WallpaperLockScreenChanged event is triggered when the file path of the current lock screen wallpaper is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.FontSizeChanged">
+            <summary>
+            The FontSizeChanged event is triggered when the current system font size is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.FontTypeChanged">
+            <summary>
+            The FontTypeChanged event is triggered when the current system font type is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.MotionActivationSettingChanged">
+            <summary>
+            The MotionActivationChanged event is triggered when the motion service status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.EmailAlertRingtoneChanged">
+            <summary>
+            The EmailAlertRingtoneChanged event is triggered when the file path of the current email alert ringtone is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.notification_email</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.UsbDebuggingSettingChanged">
+            <summary>
+            The UsbDebuggingSettingChangedEventArgs event is triggered when the USB debugging status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.Data3GNetworkSettingChanged">
+            <summary>
+            The Data3GNetworkSettingChanged event is triggered when the 3G data network status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.LockScreenAppChanged">
+            <summary>
+            The LockScreenAppChanged event is triggered when the lockscreen application package name is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.LocaleCountryChanged">
+            <summary>
+            The LocaleCountryChanged event is triggered when the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.LocaleLanguageChanged">
+            <summary>
+            The LocaleLanguageChanged event is triggered when the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax, is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.LocaleTimeFormat24HourSettingChanged">
+            <summary>
+            The LocaleTimeFormat24HourChanged event is triggered when the time format is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.LocaleTimeZoneChanged">
+            <summary>
+            The LocaleTimeZoneChanged event is triggered when the current time zone is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.TimeChanged">
+            <summary>
+            The TimeChanged event is triggered when the system time is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.SoundLockSettingChanged">
+            <summary>
+            The SoundLockChanged event is triggered when the screen lock sound enabled status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.SoundSilentModeSettingChanged">
+            <summary>
+            The SoundSilentModeChanged event is triggered when the silent mode status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.SoundTouchSettingChanged">
+            <summary>
+            THe SoundTouchChanged event is triggered when the screen touch sound enabled status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.DisplayScreenRotationAutoSettingChanged">
+            <summary>
+            The DisplayScreenRotationAutoChanged event is triggered when the automatic rotation control status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.DeviceNameChanged">
+            <summary>
+            The DeviceNameChanged event is triggered when the device name is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.MotionSettingChanged">
+            <summary>
+            The MotionSettingChanged event is triggered when the motion feature enabled status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.NetworkWifiNotificationSettingChanged">
+            <summary>
+            The NetworkWifiNotificationChanged event is triggered when the WiFi-related notifications enabled status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.wifi</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.NetworkFlightModeSettingChanged">
+            <summary>
+            The NetworkFlightModeChanged event is triggered when the flight mode status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.ScreenBacklightTimeChanged">
+            <summary>
+            THe ScreenBacklightTimeChanged event is triggered when the backlight time is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.SoundNotificationChanged">
+            <summary>
+            The SoundNotificationChanged event is triggered when the file path of the current notification tone set by the user is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.SoundNotificationRepetitionPeriodChanged">
+            <summary>
+            The SoundNotificationRepetitionPeriodChanged event is triggered when the time period for notification repetitions is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.LockStateChanged">
+            <summary>
+            The LockStateChanged event is triggered when the current lock state is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.AdsIdChanged">
+            <summary>
+            The AdsIdChanged event is triggered when the current ADS ID state is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.UltraDataSaveChanged">
+            <summary>
+            The UltraDataSaveChanged event is triggered when the current Ultra Data Save state is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.telephony</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.UltraDataSavePackageListChanged">
+            <summary>
+            The UltraDataSavePackageListChanged event is triggered when the current ADS ID state is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.telephony</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.AccessibilityTtsSettingChanged">
+            <summary>
+            THe AccessibilityTtsChanged event is triggered when the screen touch sound enabled status is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.VibrationChanged">
+            <summary>
+            The VibrationChanged event is triggered when the vibration value is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.AutomaticTimeUpdateChanged">
+            <summary>
+            The AutomaticTimeUpdateChanged event is triggered when the automaticTimeUpdate value is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="E:Tizen.System.SystemSettings.DeveloperOptionStateChanged">
+            <summary>
+            The DeveloperOptionStateChanged event is triggered when the developerOptionState value is changed.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.SystemSettingsKeys">
+            <summary>
+            Enumeration for all the available system settings.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.IncomingCallRingtone">
+            <summary>
+            GET (string) The file path of the current ringtone.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.WallpaperHomeScreen">
+            <summary>
+            GET (string) The file path of the current home-screen wallpaper.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.WallpaperLockScreen">
+            <summary>
+            GET (string) The file path of the current lock-screen wallpaper.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.FontSize">
+            <summary>
+            GET (int) The current system font size.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.FontType">
+            <summary>
+            GET (string) The current system font type.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.MotionActivationEnabled">
+            <summary>
+            GET (bool) Indicates whether the motion service is activated.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.EmailAlertRingtone">
+            <summary>
+            GET (string) The file path of the current email alert ringtone.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.UsbDebuggingEnabled">
+            <summary>
+            GET (bool) Indicates whether the USB debugging is enabled.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.Data3GNetworkEnabled">
+            <summary>
+            GET (bool) Indicates whether the 3G-data network is enabled.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.LockScreenApp">
+            <summary>
+            GET (string) Indicates the lock-screen application package name.
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.DefaultFontType">
+            <summary>
+            GET (string) The current system default font type (only supports Get).
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.LocaleCountry">
+            <summary>
+            GET (string) Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+            The country setting is in the ISO 639-2 format,
+            and the region setting is in the ISO 3166-1 alpha-2 format.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.LocaleLanguage">
+            <summary>
+            GET (string) Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+            The language setting is in the ISO 639-2 format,
+            and the region setting is in the ISO 3166-1 alpha-2 format.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.LocaleTimeFormat24HourEnabled">
+            <summary>
+            GET (bool) Indicates whether the 24-hour clock is used.
+            If the value is false, the 12-hour clock is used.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.LocaleTimeZone">
+            <summary>
+            GET (string) Indicates the current time zone, for example, Pacific/Tahiti.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.Time">
+            <summary>
+            GET (int) Once system changes the time, this event occurs to notify the time change.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.SoundLockEnabled">
+            <summary>
+            GET (bool) Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.SoundSilentModeEnabled">
+            <summary>
+            GET (bool) Indicates whether the device is in the silent mode.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.SoundTouchEnabled">
+            <summary>
+            GET (bool) Indicates whether the screen touch sound is enabled on the device.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.DisplayScreenRotationAutoEnabled">
+            <summary>
+            GET (bool) Indicates whether the rotation control is automatic.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.DeviceName">
+            <summary>
+            GET (string) Indicates the device name.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.MotionEnabled">
+            <summary>
+            GET (bool) Indicates whether the device user has the enabled motion feature.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.NetworkWifiNotificationEnabled">
+            <summary>
+            GET (bool) Indicates whether WiFi-related notifications are enabled on the device.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.NetworkFlightModeEnabled">
+            <summary>
+            GET (bool) Indicates whether the device is in the flight mode.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.ScreenBacklightTime">
+            <summary>
+            GET (int) Indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.SoundNotification">
+            <summary>
+            GET (string) Indicates the file path of the current notification tone set by the user.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.SoundNotificationRepetitionPeriod">
+            <summary>
+            GET (int) Indicates the time period for notification repetitions.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.LockState">
+            <summary>
+            GET (int) Indicates the current lock state.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.AdsId">
+            <summary>
+            GET (string) Indicates the ADS ID for each device.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.UltraDataSave">
+            <summary>
+            GET (int) Indicates the Ultra Data Save status, one of the #SystemSettingsUdsState values.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.UltraDataSavePackageList">
+            <summary>
+            GET (string) Indicates the Ultra Data Save Package List. Since 4.0, the list is a string containing whitelisted package names separated with semicolons (;).
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.AccessibilityTtsEnabled">
+            <summary>
+            GET (bool) Indicates whether the accessibility TTS is enabled on the device.
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.Vibration">
+            <summary>
+            GET (bool) Indicates whether the Vibration is enabled on the device.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.AutomaticTimeUpdate">
+            <summary>
+            GET (bool) Indicates whether the AutomaticTimeUpdate is enabled on the device.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsKeys.DeveloperOptionState">
+            <summary>
+            GET (bool) Indicates whether the Developer Option State is enabled on the device.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.SystemSettingsIdleLockState">
+            <summary>
+            Enumeration for the Idle Lock State.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsIdleLockState.Unlock">
+            <summary>
+            The device is unlocked.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsIdleLockState.Lock">
+            <summary>
+            The device is locked.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsIdleLockState.LaunchingLock">
+            <summary>
+            The device is being locked.
+            </summary>
+        </member>
+        <member name="T:Tizen.System.SystemSettingsFontSize">
+            <summary>
+            Enumeration for the font size.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsFontSize.Small">
+            <summary>
+            A small size.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsFontSize.Normal">
+            <summary>
+            A normal size.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsFontSize.Large">
+            <summary>
+            A large size.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsFontSize.Huge">
+            <summary>
+            A huge size.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsFontSize.Giant">
+            <summary>
+            A giant size.
+            </summary>
+        </member>
+        <member name="T:Tizen.System.SystemSettingsUdsState">
+            <summary>
+            Enumeration for the ultra data save.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsUdsState.UdsOff">
+            <summary>
+            UDS Off.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsUdsState.UdsOn">
+            <summary>
+            UDS On.
+            </summary>
+        </member>
+        <member name="F:Tizen.System.SystemSettingsUdsState.UdsOnWhitelisted">
+            <summary>
+            UDS On and the application is whitelisted.
+            </summary>
+        </member>
+        <member name="T:Tizen.System.IncomingCallRingtoneChangedEventArgs">
+            <summary>
+            EventArgs type for the IncomingCallRingtoneChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.IncomingCallRingtoneChangedEventArgs.Value">
+            <summary>
+            The file path of the current ringtone.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.WallpaperHomeScreenChangedEventArgs">
+            <summary>
+            EventArgs type for the WallpaperHomeScreenChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.home_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.WallpaperHomeScreenChangedEventArgs.Value">
+            <summary>
+            The file path of the current home screen wallpaper.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.WallpaperLockScreenChangedEventArgs">
+            <summary>
+            EventArgs type for the WallpaperLockScreenChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.WallpaperLockScreenChangedEventArgs.Value">
+            <summary>
+            The file path of the current lock screen wallpaper.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.FontSizeChangedEventArgs">
+            <summary>
+            EventArgs type for the FontSizeChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.FontSizeChangedEventArgs.Value">
+            <summary>
+            The current system font size.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.FontTypeChangedEventArgs">
+            <summary>
+            EventArgs type for the FontTypeChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.FontTypeChangedEventArgs.Value">
+            <summary>
+            The current system font type.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.MotionActivationSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the MotionActivationChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.MotionActivationSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the motion service is activated.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.EmailAlertRingtoneChangedEventArgs">
+            <summary>
+            EventArgs type for the EmailAlertRingtoneChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.notification_email</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.EmailAlertRingtoneChangedEventArgs.Value">
+            <summary>
+            The file path of the current email alert ringtone.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.UsbDebuggingSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the UsbDebuggingSettingChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.UsbDebuggingSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the USB debugging is enabled.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.Data3GNetworkSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the Data3GNetworkSettingChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.Data3GNetworkSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the 3G data network is enabled.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.LockScreenAppChangedEventArgs">
+            <summary>
+            EventArgs type for the LockScreenAppChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.lock_screen</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.LockScreenAppChangedEventArgs.Value">
+            <summary>
+            Indicates the lock screen application package name.
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.LocaleCountryChangedEventArgs">
+            <summary>
+            EventArgs type for the LocaleCountryChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.LocaleCountryChangedEventArgs.Value">
+            <summary>
+            Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+            The country setting is in the ISO 639-2 format, and the region setting is in the ISO 3166-1 alpha-2 format.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.LocaleLanguageChangedEventArgs">
+            <summary>
+            EventArgs type for the LocaleLanguageChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.LocaleLanguageChangedEventArgs.Value">
+            <summary>
+            Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+            The language setting is in the ISO 639-2 format and the region setting is in the ISO 3166-1 alpha-2 format.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.LocaleTimeFormat24HourSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the LocaleTimeFormat24HourChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.LocaleTimeFormat24HourSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the 24-hour clock is used. If the value is false, the 12-hour clock is used.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.LocaleTimeZoneChangedEventArgs">
+            <summary>
+            EventArgs type for the LocaleTimeZoneChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.LocaleTimeZoneChangedEventArgs.Value">
+            <summary>
+            Indicates the current time zone.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.TimeChangedEventArgs">
+            <summary>
+            EventArgs type for the TimeChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.TimeChangedEventArgs.Value">
+            <summary>
+            Indicates the current time.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.SoundLockSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the SoundLockChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SoundLockSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.SoundSilentModeSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the SoundSilentModeChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SoundSilentModeSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the device is in the silent mode.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.SoundTouchSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the SoundTouchChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SoundTouchSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the screen touch sound is enabled on the device.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.DisplayScreenRotationAutoSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the DisplayScreenRotationAutoChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.DisplayScreenRotationAutoSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the rotation control is automatic.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.DeviceNameChangedEventArgs">
+            <summary>
+            EventArgs type for the DeviceNameChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.DeviceNameChangedEventArgs.Value">
+            <summary>
+            Indicates the device name.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.MotionSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the MotionSettingChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.MotionSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the device user has enabled the motion feature.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.NetworkWifiNotificationSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the NetworkWifiNotificationChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.wifi</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.NetworkWifiNotificationSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether Wi-Fi-related notifications are enabled on the device.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.NetworkFlightModeSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the NetworkFlightModeChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.NetworkFlightModeSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the device is in the flight mode.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.ScreenBacklightTimeChangedEventArgs">
+            <summary>
+            EventArgs type for the ScreenBacklightTimeChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.ScreenBacklightTimeChangedEventArgs.Value">
+            <summary>
+            Indicates the backlight time (in seconds).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.SoundNotificationChangedEventArgs">
+            <summary>
+            EventArgs type for the SoundNotificationChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SoundNotificationChangedEventArgs.Value">
+            <summary>
+            Indicates the file path of the current notification tone set by the user.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.SoundNotificationRepetitionPeriodChangedEventArgs">
+            <summary>
+            EventArgs type for the SoundNotificationRepetitionPeriodChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.SoundNotificationRepetitionPeriodChangedEventArgs.Value">
+            <summary>
+            Indicates the time period for notification repetitions.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.LockStateChangedEventArgs">
+            <summary>
+            EventArgs type for the LockStateChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/systemsetting.incoming_call</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.LockStateChangedEventArgs.Value">
+            <summary>
+            Indicates the current lock state.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.AdsIdChangedEventArgs">
+            <summary>
+            EventArgs type for the AdsIdChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.AdsIdChangedEventArgs.Value">
+            <summary>
+            Indicates the current lock state.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.UltraDataSaveChangedEventArgs">
+            <summary>
+            EventArgs type for the UltraDataSaveChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.telephony</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.UltraDataSaveChangedEventArgs.Value">
+            <summary>
+            Indicates the current lock state.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.UltraDataSavePackageListChangedEventArgs">
+            <summary>
+            EventArgs type for the UltraDataSavePackageListChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <feature>http://tizen.org/feature/network.telephony</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.UltraDataSavePackageListChangedEventArgs.Value">
+            <summary>
+            Indicates the current lock state.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.AccessibilityTtsSettingChangedEventArgs">
+            <summary>
+            EventArgs type for the AccessibilityTtsChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.AccessibilityTtsSettingChangedEventArgs.Value">
+            <summary>
+            Indicates whether the screen touch sound is enabled on the device.
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.VibrationChangedEventArgs">
+            <summary>
+            EventArgs type for the VibrationChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.VibrationChangedEventArgs.Value">
+            <summary>
+            Indicates whether the vibration is enabled on the device.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.AutomaticTimeUpdateChangedEventArgs">
+            <summary>
+            EventArgs type for the AutomaticTimeUpdateChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.AutomaticTimeUpdateChangedEventArgs.Value">
+            <summary>
+            Indicates whether the updating time automatically is enabled on the device.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="T:Tizen.System.DeveloperOptionStateChangedEventArgs">
+            <summary>
+            EventArgs type for the DeveloperOptionStateChanged event.
+            </summary>
+            <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+            <privlevel>platform</privlevel>
+            <feature>http://tizen.org/feature/systemsetting</feature>
+            <exception cref="T:System.ArgumentException">Invalid Argument</exception>
+            <exception cref="T:System.NotSupportedException">Not Supported feature</exception>
+            <exception cref="T:System.InvalidOperationException">Invalid operation</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="P:Tizen.System.DeveloperOptionStateChangedEventArgs.Value">
+            <summary>
+            Indicates whether developer option state is enabled on the device.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,2879 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tizen.Applications.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Tizen.Applications.CoreBackend.DefaultCoreBackend">
+            <summary>
+            An abstract class to provide default event handlers for apps.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.CoreBackend.DefaultCoreBackend.AppEventType">
+            <summary>
+            Low level event types.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.AppEventType.LowMemory">
+            <summary>
+            The low memory event.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.AppEventType.LowBattery">
+            <summary>
+            The low battery event.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.AppEventType.LanguageChanged">
+            <summary>
+            The system language changed event.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.AppEventType.DeviceOrientationChanged">
+            <summary>
+            The device orientation changed event.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.AppEventType.RegionFormatChanged">
+            <summary>
+            The region format changed event.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.AppEventType.SuspendedStateChanged">
+            <summary>
+            The suspended state changed event of the application.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.LogTag">
+            <summary>
+            Tag string for this class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.DefaultCoreBackend.Handlers">
+            <summary>
+            Data structure for event handlers.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.#ctor">
+            <summary>
+            Constructor of DefaultCoreBackend class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.Finalize">
+            <summary>
+            Finalizer of DefaultCoreBackend class.
+            </summary>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.AddEventHandler(Tizen.Applications.CoreBackend.EventType,System.Action)">
+            <summary>
+            Adds an event handler.
+            </summary>
+            <param name="evType">The type of event.</param>
+            <param name="handler">The handler method without arguments.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.AddEventHandler``1(Tizen.Applications.CoreBackend.EventType,System.Action{``0})">
+            <summary>
+            Adds an event handler.
+            </summary>
+            <typeparam name="TEventArgs">The EventArgs type used in arguments of the handler method.</typeparam>
+            <param name="evType">The type of event.</param>
+            <param name="handler">The handler method with a TEventArgs type argument.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.Run(System.String[])">
+            <summary>
+            Runs the mainloop of the backend.
+            </summary>
+            <param name="args"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.Exit">
+            <summary>
+            Exits the mainloop of the backend.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.Dispose">
+            <summary>
+            Releases all resources.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.Dispose(System.Boolean)">
+            <summary>
+            Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+            </summary>
+            <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.OnLowMemoryNative(System.IntPtr,System.IntPtr)">
+            <summary>
+            Default implementation for the low memory event.
+            </summary>
+            <param name="infoHandle"></param>
+            <param name="data"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.OnLowBatteryNative(System.IntPtr,System.IntPtr)">
+            <summary>
+            Default implementation for the low battery event.
+            </summary>
+            <param name="infoHandle"></param>
+            <param name="data"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.OnLocaleChangedNative(System.IntPtr,System.IntPtr)">
+            <summary>
+            Default implementation for the system language changed event.
+            </summary>
+            <param name="infoHandle"></param>
+            <param name="data"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.OnRegionChangedNative(System.IntPtr,System.IntPtr)">
+            <summary>
+            Default implementation for the region format changed event.
+            </summary>
+            <param name="infoHandle"></param>
+            <param name="data"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.DefaultCoreBackend.OnDeviceOrientationChangedNative(System.IntPtr,System.IntPtr)">
+            <summary>
+            Default implementation for the suspended state changed event.
+            </summary>
+            <param name="infoHandle"></param>
+            <param name="data"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.CoreBackend.EventType">
+            <summary>
+            This class represents the type of event for backends. This class can be converted from the string type.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.PreCreated">
+            <summary>
+            Pre-defined event type "PreCreated".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.Created">
+            <summary>
+            Pre-defined event type "Created".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.Terminated">
+            <summary>
+            Pre-defined event type "Terminated".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.AppControlReceived">
+            <summary>
+            Pre-defined event type "AppControlReceived".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.Resumed">
+            <summary>
+            Pre-defined event type "Resumed".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.Paused">
+            <summary>
+            Pre-defined event type "Paused".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.LowMemory">
+            <summary>
+            Pre-defined event type "LowMemory".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.LowBattery">
+            <summary>
+            Pre-defined event type "LowBattery".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.LocaleChanged">
+            <summary>
+            Pre-defined event type "LocaleChanged".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.RegionFormatChanged">
+            <summary>
+            Pre-defined event type "RegionFormatChanged".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.CoreBackend.EventType.DeviceOrientationChanged">
+            <summary>
+            Pre-defined event type "DeviceOrientationChanged".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.EventType.#ctor(System.String)">
+            <summary>
+            Initializes the EventType class.
+            </summary>
+            <param name="name">The name of event type.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.EventType.ToString">
+            <summary>
+            Returns the name of event type.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.EventType.GetHashCode">
+            <summary>
+            Returns the hash code for event type string.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.EventType.Equals(System.Object)">
+            <summary>
+            Determines whether this instance and a specified object.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.EventType.op_Implicit(System.String)~Tizen.Applications.CoreBackend.EventType">
+            <summary>
+            Converts a string to EventType instance.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.CoreBackend.ICoreBackend">
+            <summary>
+            An interface that represents the backend lifecycles.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.ICoreBackend.AddEventHandler(Tizen.Applications.CoreBackend.EventType,System.Action)">
+            <summary>
+            Adds an event handler.
+            </summary>
+            <param name="evType">The type of event.</param>
+            <param name="handler">The handler method without arguments.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.ICoreBackend.AddEventHandler``1(Tizen.Applications.CoreBackend.EventType,System.Action{``0})">
+            <summary>
+            Adds an event handler.
+            </summary>
+            <typeparam name="TEventArgs">The EventArgs type used in arguments of the handler method.</typeparam>
+            <param name="evType">The type of event.</param>
+            <param name="handler">The handler method with a TEventArgs type argument.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.ICoreBackend.Run(System.String[])">
+            <summary>
+            Runs the mainloop of the backend.
+            </summary>
+            <param name="args"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreBackend.ICoreBackend.Exit">
+            <summary>
+            Exits the mainloop of the backend.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.Exceptions.AppNotFoundException">
+            <summary>
+            The class that represents the exception which will be thrown when the application to run is not found
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Exceptions.AppNotFoundException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">The localized error message string</param>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.Exceptions.LaunchFailedException">
+            <summary>
+            The class that represents the exception which will be thrown when the request failed to launch the application
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Exceptions.LaunchFailedException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">The localized error message string</param>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.Exceptions.LaunchRejectedException">
+            <summary>
+            The class that represents the exception which will be thrown when the launch request is rejected
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Exceptions.LaunchRejectedException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">The localized error message string</param>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.Exceptions.OutOfMemoryException">
+            <summary>
+            The class that represents the exception which will be thrown when the memory is insufficient
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Exceptions.OutOfMemoryException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">The localized error message string</param>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.Exceptions.PermissionDeniedException">
+            <summary>
+            The class that represents the exception which will be thrown when the permission is denied
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Exceptions.PermissionDeniedException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">The localized error message string</param>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.AppControl">
+            <summary>
+            Represents the control message to exchange between applications.
+            </summary>
+            <example>
+            <code>
+            public class AppControlExample : UIApplication
+            {
+                /// ...
+                protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+                {
+                    AppControl appControl = new AppControl();
+                    appControl.ApplicationId = "org.tizen.calculator";
+                    AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) => {
+                        // ...
+                    });
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.#ctor">
+            <summary>
+            Initializes the instance of the AppControl class.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed to create the AppControl handle.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.#ctor(System.Boolean)">
+            <summary>
+            Initializes the instance of the AppControl class with a parameter.
+            </summary>
+            <param name="enableAppStartedResultEvent">The flag value to receive an additional launch result event on the launch request.</param>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed to create the AppControl handle.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.#ctor(Tizen.Applications.SafeAppControlHandle)">
+            <summary>
+            Initializes the instance of the AppControl class with the SafeAppControlHandle.
+            </summary>
+            <param name="handle"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.SafeAppControlHandle">
+            <summary>
+            Gets the SafeAppControlHandle instance.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.Operation">
+            <summary>
+            Gets and sets the operation to be performed.
+            </summary>
+            <value>
+            The operation is the mandatory information for the launch request. If the operation is not specified,
+            AppControlOperations.Default is used for the launch request. If the operation is AppControlOperations.Default,
+            the package information is mandatory to explicitly launch the application.
+            (if the operation is null for setter, it clears the previous value.)
+            </value>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.Operation = AppControlOperations.Default;
+            Log.Debug(LogTag, "Operation: " + appControl.Operation);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.Mime">
+            <summary>
+            Gets and sets the explicit MIME type of the data.
+            </summary>
+            <value>
+            (if the mime is null for setter, it clears the previous value.)
+            </value>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.Mime = "image/jpg";
+            Log.Debug(LogTag, "Mime: " + appControl.Mime);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.Uri">
+            <summary>
+            Gets and sets the URI of the data.
+            </summary>
+            <value>
+            Since Tizen 2.4, if the parameter 'uri' is started with 'file://' and
+            it is a regular file in this application's data path, which can be obtained
+            by property DataPath in ApplicationInfo class,
+            it will be shared to the callee application.
+            Framework will grant a temporary permission to the callee application for this file and
+            revoke it when the callee application is terminated.
+            The callee application can just read it.
+            (if the uri is null for setter, it clears the previous value.)
+            </value>
+            <example>
+            <code>
+            public class AppControlExample : UIApplication
+            {
+                ...
+                protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+                {
+                    ...
+                    AppControl appControl = new AppControl();
+                    appContrl.Uri = this.ApplicationInfo.DataPath + "image.jpg";
+                    Log.Debug(LogTag, "Set Uri: " + appControl.Uri);
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.Category">
+            <summary>
+            Gets and sets the explicit category.
+            </summary>
+            <value>
+            (if the category is null for setter, it clears the previous value.)
+            </value>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.ApplicationId">
+            <summary>
+            Gets and sets the application ID to explicitly launch.
+            </summary>
+            <value>
+            (if the application ID is null for setter, it clears the previous value.)
+            </value>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.ApplicationId = "org.tizen.calculator";
+            Log.Debug(LogTag, "ApplicationId: " + appControl.ApplicationId);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.LaunchMode">
+            <summary>
+            Gets and sets the launch mode of the application.
+            </summary>
+            <value>
+            Although, LaunchMode were set as AppControlLaunchMode.Group, the
+            callee application would be launched as a single mode
+            if the manifest file of callee application defined the launch mode as "single".
+            This property can just set the preference of the caller application to launch an application.
+            Sub-applications, which were launched as a group mode always have own process.
+            Since Tizen 3.0, if launch mode is not set in the caller application control,
+            this property returns the AppControlLaunchMode.Single launch mode.
+            </value>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.LaunchMode = AppControlLaunchMode.Group;
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControl.ExtraData">
+            <summary>
+            Gets the collection of the extra data.
+            </summary>
+            <value>
+            Extra data for communication between AppControls.
+            </value>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.ExtraData.Add("key", "value");
+            ...
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.GetMatchedApplicationIds(Tizen.Applications.AppControl)">
+            <summary>
+            Retrieves all applications that can be launched to handle the given app_control request.
+            </summary>
+            <param name="control">The AppControl.</param>
+            <returns>ApplicationIds.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of an invalid parameter.</exception>
+            <example>
+            <code>
+            IEnumerable&lt;string&gt; applicationIds = AppControl.GetMatchedApplicationIds(control);
+            if (applicationIds != null)
+            {
+                foreach (string id in applicationIds)
+                {
+                    // ...
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl)">
+            <summary>
+            Sends the launch request.
+            </summary>
+            <remarks>
+            The operation is mandatory information for the launch request.
+            If the operation is not specified, AppControlOperations.Default is used by default.
+            If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
+            Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
+            Also, implicit launch requests are NOT delivered to service applications since 2.4.
+            To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
+            </remarks>
+            <param name="launchRequest">The AppControl.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when failed because of a null argument.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+            <exception cref="T:System.TimeoutException">Thrown when failed because of timeout.</exception>
+            <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.ApplicationId = "org.tizen.calculator";
+            AppControl.SendLaunchRequest(appControl);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyCallback)">
+            <summary>
+            Sends the launch request.
+            </summary>
+            <remarks>
+            The operation is mandatory information for the launch request.
+            If the operation is not specified, AppControlOperations.Default is used by default.
+            If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
+            Since Tizen 2.4, the launch request of the service application over out of packages is restricted by the platform.
+            Also, implicit launch requests are NOT delivered to service applications since 2.4.
+            To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
+            </remarks>
+            <param name="launchRequest">The AppControl.</param>
+            <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
+            <exception cref="T:System.ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+            <exception cref="T:Tizen.Applications.Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+            <exception cref="T:Tizen.Applications.Exceptions.LaunchFailedException">Thrown when the request failed to launch the application.</exception>
+            <exception cref="T:Tizen.Applications.Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
+            <exception cref="T:Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+            <exception cref="T:Tizen.Applications.Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+            <exception cref="T:System.TimeoutException">Thrown when failed because of timeout.</exception>
+            <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.ApplicationId = "org.tizen.calculator";
+            AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) => {
+                // ...
+            });
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.SendTerminateRequest(Tizen.Applications.AppControl)">
+            <summary>
+            Sends the terminate request to the application that is launched by AppControl.
+            </summary>
+            <remarks>
+            You are not allowed to terminate other general applications using this API.
+            This API can be used to terminate sub-applications, which were launched as a group mode by the caller application.
+            Once the callee application is being terminated by this API,
+            other applications, which were launched by the callee application as a group mode will be terminated as well.
+            </remarks>
+            <param name="terminateRequest">The AppControl.</param>
+            <exception cref="T:System.ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+            <exception cref="T:System.TimeoutException">Thrown when failed because of timeout.</exception>
+            <example>
+            <code>
+            AppControl terminateRequest = new AppControl();
+            terminateRequest.ApplicationId = "org.tizen.calculator";
+            AppControl.SendTerminateRequest(terminateRequest);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.AppControl.ExtraDataCollection">
+            <summary>
+            Class for extra data.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.Add(System.String,System.String)">
+            <summary>
+            Adds extra data.
+            </summary>
+            <remarks>
+            The function replaces any existing value for the given key.
+            </remarks>
+            <param name="key">The name of the extra data.</param>
+            <param name="value">The value associated with the given key.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when a key or a value is a zero-length string.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the application tries to use the same key with the system-defined key.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.ExtraData.Add("myKey", "myValue");
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.Add(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds extra data.
+            </summary>
+            <remarks>
+            The function replaces any existing value for the given key.
+            </remarks>
+            <param name="key">The name of the extra data.</param>
+            <param name="value">The value associated with the given key.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when key or value is a zero-length string.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the application tries to use the same key with the system-defined key.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            string[] myValues = new string[] { "first", "second", "third" };
+            appControl.ExtraData.Add("myKey", myValues);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.Get``1(System.String)">
+            <summary>
+            Gets the extra data.
+            </summary>
+            <typeparam name="T">Only string and IEnumerable&lt;string&gt;</typeparam>
+            <param name="key">The name of extra data.</param>
+            <returns>The value associated with the given key.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the key is not found.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the key is rejected.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            string myValue = appControl.ExtraData.Get&lt;string&gt;("myKey");
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.Get(System.String)">
+            <summary>
+            Gets the extra data.
+            </summary>
+            <param name="key">The name of extra data.</param>
+            <returns>The value associated with the given key.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the key is not found.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the key is rejected.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            string myValue = appControl.ExtraData.Get("myKey") as string;
+            if (myValue != null)
+            {
+                // ...
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.GetKeys">
+            <summary>
+            Gets all keys in extra data.
+            </summary>
+            <returns>The keys in the AppControl.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when the key is an invalid parameter.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            IEnumerable&lt;string&gt; keys = appControl.GetKeys();
+            if (keys != null)
+            {
+                foreach (string key in keys)
+                {
+                    // ...
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.TryGet(System.String,System.String@)">
+            <summary>
+            Tries getting the extra data.
+            </summary>
+            <param name="key">The name of extra data.</param>
+            <param name="value">The value associated with the given key.</param>
+            <returns>The result whether getting the value is done.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the key is not found.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the key is rejected.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            string myValue = string.Empty;
+            bool result = appControl.ExtraData.TryGet("myKey", out myValue);
+            if (result != null)
+            {
+                // ...
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.TryGet(System.String,System.Collections.Generic.IEnumerable{System.String}@)">
+            <summary>
+            Tries getting the extra data.
+            </summary>
+            <param name="key">The name of extra data.</param>
+            <param name="value">The value associated with the given key.</param>
+            <returns>The result whether getting the value is done.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the key is an invalid parameter.</exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the key is not found.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the key is rejected.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            IEnumerable&lt;string&gt; myValue = null;
+            bool result = appControl.ExtraData.TryGet("myKey", out myValue);
+            if (result)
+            {
+                foreach (string value in myValue)
+                {
+                    // ...
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.Remove(System.String)">
+            <summary>
+            Removes the extra data.
+            </summary>
+            <param name="key">The name of the extra data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the key is a zero-length string.</exception>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">Thrown when the key is not found.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the key is rejected.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            appControl.ExtraData.Remove("myKey");
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.Count">
+            <summary>
+            Counts keys in the extra data.
+            </summary>
+            <returns>The number of counting keys.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when the key is an invalid parameter.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            int numberOfKeys = appControl.ExtraData.Count();
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControl.ExtraDataCollection.IsCollection(System.String)">
+            <summary>
+            Checks whether the extra data associated with the given key is of the collection data type.
+            </summary>
+            <param name="key">The name of the extra data.</param>
+            <returns>If true, the extra data is of the array data type, otherwise false.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the key is a zero-length string.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed to check the key.</exception>
+            <example>
+            <code>
+            AppControl appControl = new AppControl();
+            bool result = appControl.ExtraData.IsCollection("myKey");
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.AppControlData">
+            <summary>
+            Data of the AppControl.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Subject">
+            <summary>
+            Subject.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.To">
+            <summary>
+            Recipients.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Cc">
+            <summary>
+            E-mail addresses that should be carbon copied.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Bcc">
+            <summary>
+            E-mail addresses that should be blind carbon copied.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Text">
+            <summary>
+            Text.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Title">
+            <summary>
+            Title.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Selected">
+            <summary>
+            Selected items.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Path">
+            <summary>
+            Paths of items.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.SectionMode">
+            <summary>
+            Selection mode ("single" or "multiple").
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.AllDay">
+            <summary>
+            All-day mode of the event ("true" or "false").
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.StartTime">
+            <summary>
+            Start time of the event (format: YYYY-MM-DD HH:MM:SS).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Endtime">
+            <summary>
+            End time of the event (format: YYYY-MM-DD HH:MM:SS).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Email">
+            <summary>
+            E-mail addressed.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Phone">
+            <summary>
+            Phone numbers.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Url">
+            <summary>
+            URLs.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Ids">
+            <summary>
+            IDs.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Type">
+            <summary>
+            Type.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.TotalCount">
+            <summary>
+            Total count.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.TotalSize">
+            <summary>
+            Total size (unit : bytes).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Name">
+            <summary>
+            Name.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.Location">
+            <summary>
+            Location.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.InputType">
+            <summary>
+            Select the type of input method.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.InputDefaultText">
+            <summary>
+            Send the pre inputted text, such as "http://" in web.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.InputGuideText">
+            <summary>
+            Send guide text to show to the user, such as "Input user name".
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlData.InputPredictionHint">
+            <summary>
+            Send text to receive answer result from smart reply.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.AppControlLaunchMode">
+            <summary>
+            Enumeration for the application control launch mode.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlLaunchMode.Single">
+            <summary>
+            Prefer to launch an application as a single mode.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.AppControlLaunchMode.Group">
+            <summary>
+            Prefer to launch an application as a group mode.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.AppControlOperations">
+            <summary>
+            Operations of the AppControl.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Main">
+            <summary>
+            An explicit launch for a homescreen application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Default">
+            <summary>
+            An explicit launch for an application that excludes a homescreen application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Edit">
+            <summary>
+            Provides an editable access to the given data.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.View">
+            <summary>
+            Displays the data.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Pick">
+            <summary>
+            Picks items.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.CreateContent">
+            <summary>
+            Creates contents.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Call">
+            <summary>
+            Performs a call to someone.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Send">
+            <summary>
+            Delivers some data to someone else.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.SendText">
+            <summary>
+            Delivers text data to someone else.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Share">
+            <summary>
+            Shares an item with someone else.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.MultiShare">
+            <summary>
+            Shares multiple items with someone else.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.ShareText">
+            <summary>
+            Shares text data with someone else.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Dial">
+            <summary>
+            Dials a number. This shows an UI with the number to be dialed, allowing the user to explicitly initiate the call.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Search">
+            <summary>
+            Performs a search.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Download">
+            <summary>
+            Downloads items.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Print">
+            <summary>
+            Prints contents.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Compose">
+            <summary>
+            Composes a message.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.LaunchOnEvent">
+            <summary>
+            Can be launched by interested System-Event.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Add">
+            <summary>
+            Adds an item.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.ImageCapture">
+            <summary>
+            Captures images by camera applications.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.VideoCapture">
+            <summary>
+            Captures videos by camera applications.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.Setting">
+            <summary>
+            Shows system settings.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.SettingBluetoothEnable">
+            <summary>
+            Shows settings to enable Bluetooth.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.SettingBluetoothVisibility">
+            <summary>
+            Shows settings to configure the Bluetooth visibility.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.SettingLocation">
+            <summary>
+            Shows settings to allow configuration of current location sources.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.SettingNfc">
+            <summary>
+            Shows NFC settings.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlOperations.SettingWifi">
+            <summary>
+            Shows settings to allow configuration of Wi-Fi.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.AppControlReceivedEventArgs">
+            <summary>
+            Arguments for the event that raised when the application receives the AppControl.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.AppControlReceivedEventArgs.#ctor(Tizen.Applications.ReceivedAppControl)">
+            <summary>
+            Initializes the AppControlReceivedEventArgs class.
+            </summary>
+            <param name="appControl"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.AppControlReceivedEventArgs.ReceivedAppControl">
+            <summary>
+            The received AppControl.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.AppControlReplyCallback">
+            <summary>
+            Reply callback for the launch request
+            </summary>
+            <param name="launchRequest">The AppControl of the launch request that has been sent</param>
+            <param name="replyRequest">The AppControl in which the results of the callee are contained</param>
+            <param name="result">The result of the launch request</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.AppControlReplyResult">
+            <summary>
+            Enumeration for the application control result.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.AppControlReplyResult.AppStarted">
+            <summary>
+            The callee application launched actually.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.AppControlReplyResult.Succeeded">
+            <summary>
+            The operation succeeded.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.AppControlReplyResult.Failed">
+            <summary>
+            The operation failed by the callee.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.AppControlReplyResult.Canceled">
+            <summary>
+            The operation canceled by the platform.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.Application">
+            <summary>
+            The class that represents a Tizen application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.Application.Current">
+            <summary>
+            Gets the instance of the current application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.Application.DirectoryInfo">
+            <summary>
+            Gets the class representing directory information of the current application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.Application.ApplicationInfo">
+            <summary>
+            Gets the class representing information of the current application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Application.Run(System.String[])">
+            <summary>
+            Runs the application's main loop.
+            </summary>
+            <param name="args">Arguments from commandline.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Application.Exit">
+            <summary>
+            Exits the main loop of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Application.Dispose(System.Boolean)">
+            <summary>
+            Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+            </summary>
+            <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Application.Finalize">
+            <summary>
+            Finalizer of the application class.
+            </summary>
+        </member>
+        <member name="M:Tizen.Applications.Application.Dispose">
+            <summary>
+            Releases all resources used by the application class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationDisabledEventArgs">
+            <summary>
+            Arguments for the event raised when the application is disabled.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationDisabledEventArgs.ApplicationId">
+            <summary>
+            The ID of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationDisabledEventArgs.EventState">
+            <summary>
+            The event state of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationEnabledEventArgs">
+            <summary>
+            Arguments for the event raised when the application is enabled.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationEnabledEventArgs.ApplicationId">
+            <summary>
+            The ID of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationEnabledEventArgs.EventState">
+            <summary>
+            The event state of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationEventState">
+            <summary>
+            Enumeration for the application event state.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationEventState.Started">
+            <summary>
+            Processing started.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationEventState.Completed">
+            <summary>
+            Processing completed.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationEventState.Failed">
+            <summary>
+            Processing failed.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationInfo">
+            <summary>
+            This class provides methods and properties to get information of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationInfo.#ctor(System.String)">
+            <summary>
+            A constructor of ApplicationInfo that takes the application ID.
+            </summary>
+            <param name="applicationId">Application ID.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationInfo.Finalize">
+            <summary>
+            Destructor of the class.
+            </summary>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.ApplicationId">
+            <summary>
+            Gets the application ID.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.PackageId">
+            <summary>
+            Gets the package ID of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.Label">
+            <summary>
+            Gets the label of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.ExecutablePath">
+            <summary>
+            Gets the executable path of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.IconPath">
+            <summary>
+            Gets the absolute path to the icon image.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.ApplicationType">
+            <summary>
+            Gets the application type name.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.Metadata">
+            <summary>
+            Gets the application's metadata.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.IsNoDisplay">
+            <summary>
+            Checks whether the application information is nodisplay. If the application icon is not displayed on the menu screen, true; otherwise, false.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.IsOnBoot">
+            <summary>
+            Checks whether the application is launched on booting time. If the application automatically starts on boot, true; otherwise, false.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.IsPreload">
+            <summary>
+            Checks whether the application is preloaded. If the application is preloaded, true; otherwise, false.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.SharedDataPath">
+            <summary>
+            Gets the shared data path.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.SharedResourcePath">
+            <summary>
+            Gets the shared resource path.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.SharedTrustedPath">
+            <summary>
+            Gets the shared trust path.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfo.ExternalSharedDataPath">
+            <summary>
+            Gets the external shared data path.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationInfo.GetLocalizedLabel(System.String)">
+            <summary>
+            Gets the localized label of the application for the given locale.
+            </summary>
+            <param name="locale">Locale.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationInfo.Dispose">
+            <summary>
+            Releases all resources used by the ApplicationInfo class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationInfoFilter">
+            <summary>
+            This class is a parameter of the GetInstalledApplicationsAsync method.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationInfoFilter.#ctor">
+            <summary>
+            A constructor of ApplicationInfoFilter class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationInfoFilter.Values">
+            <summary>
+            This class is a possible value to use in the InstalledApplicationFilter.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Values.InstalledInternal">
+            <summary>
+            A pre-defined value string for InstalledStorage key. This value means that the application is installed at internal storage.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Values.InstalledExternal">
+            <summary>
+            A pre-defined value string for InstalledStorage key. This value means that the application is installed at external storage.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Values.InstalledExtended">
+            <summary>
+            A pre-defined value string for InstalledStorage key. This value means that the application is installed at extended storage.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationInfoFilter.Keys">
+            <summary>
+            This class is a possible key to use in the InstalledApplicationFilter.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Keys.Id">
+            <summary>
+            A key to filter by application id.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Keys.Type">
+            <summary>
+            A key to filter by application type.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Keys.Category">
+            <summary>
+            A key to filter by application category.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Keys.InstalledStorage">
+            <summary>
+            A key to filter by installed storage.
+            </summary>
+            <since_tizen> 5 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Keys.NoDisplay">
+            <summary>
+            A key to filter by nodisplay attribute.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationInfoFilter.Keys.TaskManage">
+            <summary>
+            A key to filter by taskmanage attribute.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationInfoFilter.Filter">
+            <summary>
+            A dictionary to store keys and values of filter.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationInfoMetadataFilter">
+            <summary>
+            This class is a parameter of the GetInstalledApplicationsAsync method.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationLaunchedEventArgs">
+            <summary>
+            Arguments for the event raised when the application is launched.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationLaunchedEventArgs.ApplicationRunningContext">
+            <summary>
+            The information of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationManager">
+            <summary>
+            This class has the methods and events of the ApplicationManager.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.ApplicationManager.ApplicationEnabled">
+            <summary>
+            Occurs whenever the installed application is enabled.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.ApplicationManager.ApplicationDisabled">
+            <summary>
+            Occurs whenever the installed application is disabled.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.ApplicationManager.ApplicationLaunched">
+            <summary>
+            Occurs whenever the installed applications get launched.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.ApplicationManager.ApplicationTerminated">
+            <summary>
+            Occurs whenever the installed applications get terminated.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync">
+            <summary>
+            Gets the information of the installed applications asynchronously.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync(Tizen.Applications.ApplicationInfoFilter)">
+            <summary>
+            Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
+            </summary>
+            <param name="filter">Key-value pairs for filtering.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.GetInstalledApplicationsAsync(Tizen.Applications.ApplicationInfoMetadataFilter)">
+            <summary>
+            Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
+            </summary>
+            <param name="filter">Key-value pairs for filtering.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.GetRunningApplicationsAsync">
+            <summary>
+            Gets the information of the running applications asynchronously.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.GetAllRunningApplicationsAsync">
+            <summary>
+            Gets the information of the running applications including subapp asynchronously.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.GetInstalledApplication(System.String)">
+            <summary>
+            Gets the information of the specified application with the application ID.
+            </summary>
+            <param name="applicationId">Application ID.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.IsRunning(System.String)">
+            <summary>
+            Returns if the specified application is running or not.
+            </summary>
+            <param name="applicationId">The application ID.</param>
+            <returns>Returns true if the given application is running, otherwise false.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the given parameter is invalid.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationManager.GetRecentApplications">
+            <summary>
+            Gets the information of the recent applications.
+            </summary>
+            <returns>Returns a dictionary containing all the recent application info.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationRunningContext">
+            <summary>
+            This class provides methods and properties to get information of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationRunningContext.#ctor(System.String)">
+            <summary>
+            A constructor of ApplicationRunningContext that takes the application ID.
+            </summary>
+            <param name="applicationId">Application ID.</param>
+            <exception cref="T:System.ArgumentException">Thrown when failed because of an invalid argument.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of the "application not exist" error or the system error.</exception>
+            <exception cref="T:System.OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationRunningContext.#ctor(System.String,System.String)">
+            <summary>
+            A constructor of ApplicationRunningContext that takes the application id.
+            </summary>
+            <param name="applicationId">application id.</param>
+            <param name="instanceId">instance id.</param>
+            <exception cref="T:System.ArgumentException">Thrown when failed of invalid argument.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of application not exist error or system error.</exception>
+            <exception cref="T:System.OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationRunningContext.Finalize">
+            <summary>
+            Destructor of the class.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationRunningContext.AppState">
+            <summary>
+            Enumeration for the application state.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationRunningContext.AppState.Undefined">
+            <summary>
+            The undefined state.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationRunningContext.AppState.Foreground">
+            <summary>
+            The UI application is running in the foreground.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationRunningContext.AppState.Background">
+            <summary>
+            The UI application is running in the background.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationRunningContext.AppState.Service">
+            <summary>
+            The service application is running.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationRunningContext.AppState.Terminated">
+            <summary>
+            The application is terminated.
+            </summary>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationRunningContext.ApplicationId">
+            <summary>
+            Gets the application ID.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationRunningContext.PackageId">
+            <summary>
+            Gets the package ID of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationRunningContext.ProcessId">
+            <summary>
+            Gets the application's process ID.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationRunningContext.State">
+            <summary>
+            Gets the state of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationRunningContext.IsSubApp">
+            <summary>
+            Gets whether the application is sub application of the application group.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationRunningContext.Terminate">
+            <summary>
+            Terminates the application.
+            </summary>
+            <exception cref="T:System.ArgumentException">Thrown when failed of invalid argument.</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of system error.</exception>
+            <privilege>http://tizen.org/privilege/appmanager.kill</privilege>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationRunningContext.Resume">
+            <summary>
+            Resumes the running application.
+            </summary>
+            <exception cref="T:System.ArgumentException">Thrown when failed of invalid argument.</exception>
+            <exception cref="T:System.UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when failed because of system error.</exception>
+            <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ApplicationRunningContext.Dispose">
+            <summary>
+            Releases all resources used by the ApplicationRunningContext class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationTerminatedEventArgs">
+            <summary>
+            Arguments for the event raised when the application is terminated.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ApplicationTerminatedEventArgs.ApplicationRunningContext">
+            <summary>
+            The information of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ApplicationType">
+            <summary>
+            Enumeration for the applications type.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationType.All">
+            <summary>
+            All applications.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationType.Ui">
+            <summary>
+            UI applications.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ApplicationType.Service">
+            <summary>
+            Service applications.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.Bundle">
+            <summary>
+            A bundle object represents a bundle.
+            A bundle holds items (key-value pairs) and can be used with other Tizen APIs.
+            Keys can be used to access values.
+            This class is accessed by using a constructor to create a new instance of this object.
+            A bundle instance is not guaranteed to be thread safe if the instance is modified by multiple threads.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.#ctor">
+            <summary>
+            The bundle constructor.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown when out of memory.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.#ctor(Tizen.Applications.SafeBundleHandle)">
+            <summary>
+            The bundle constructor.
+            </summary>
+            <param name="handle">The SafeBundleHandle instance.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the handle is null or invalid.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.Bundle.Count">
+            <summary>
+            The number of items in a bundle object.
+            </summary>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            bundle.AddItem("string", "a_string");
+            Console.WriteLine("There are {0} items in the bundle", bundle.Count);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.Bundle.Keys">
+            <summary>
+            The keys in a bundle object.
+            </summary>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            bundle.AddItem("string1", "a_string1");
+            bundle.AddItem("string2", "a_string2");
+            bundle.AddItem("string3", "a_string3");
+            Console.WriteLine("The bundle contains the following keys:");
+            foreach(string key in bundle.Keys)
+            {
+                Console.WriteLine(key);
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.Bundle.SafeBundleHandle">
+            <summary>
+            Gets the SafeBundleHandle instance.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.Dispose">
+            <summary>
+            Releases any unmanaged resources used by this object.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.Contains(System.String)">
+            <summary>
+            Checks whether the bundle contains an item with a specified key.
+            </summary>
+            <param name="key">The key to check for.</param>
+            <returns>true if the bundle contains the key, false otherwise.</returns>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            bundle.AddItem("string", "a_string");
+            if (bundle.Contains("string"))
+            {
+                string aValue = bundle.GetItem&lt;string&gt;("string");
+                Console.WriteLine(aValue);
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.AddItem(System.String,System.Byte[])">
+            <summary>
+            Adds an item into the bundle.
+            </summary>
+            <param name="key">The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</param>
+            <param name="value">The value of the item.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when a value is null.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            bundle.AddItem("byte_array", byteArray);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.AddItem(System.String,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Adds an item into the bundle.
+            </summary>
+            <param name="key">The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</param>
+            <param name="value">The value of the item.</param>
+            <param name="offset">The zero-based byte offset in value from which to add to the bundle.</param>
+            <param name="count">The maximum number of bytes to add to the bundle starting with offset.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the offset or count is out of range.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when a value is null.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            bundle.AddItem("byte_array", byteArray, 2, 3);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.AddItem(System.String,System.String)">
+            <summary>
+            Adds an item into the bundle.
+            </summary>
+            <param name="key">The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</param>
+            <param name="value">The value of the item.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            bundle.AddItem("string", "a_string");
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.AddItem(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds an item into the bundle.
+            </summary>
+            <param name="key">The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</param>
+            <param name="value">The value of the item.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the key already exists or when there is an invalid parameter.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            string[] stringArray = { "a", "b", "c" };
+            bundle.AddItem("string_array", stringArray);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.GetItem(System.String)">
+            <summary>
+            Gets the value of a bundle item with a specified key.
+            </summary>
+            <param name="key">The key of the bundle item whose value is desired.</param>
+            <returns>The value of the bundle item.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            bundle.AddItem("string", "a_string");
+            if (bundle.Contains("string"))
+            {
+                object aValue = bundle.GetItem("string");
+                if (bundle.Is&lt;string&gt;("string");)
+                {
+                    string aString = (string)aValue;
+                    Console.WriteLine(aString);
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.GetItem``1(System.String)">
+            <summary>
+            Gets the value of a bundle item with a specified key.
+            Note that this is a generic method.
+            </summary>
+            <typeparam name="T">The generic type to return.</typeparam>
+            <param name="key">The key of the bundle item whose value is desired.</param>
+            <returns>The value of the bundle item if it is of the specified generic type.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
+            <exception cref="T:System.InvalidCastException">Thrown when the value of the bundle item cannot be converted to the specified generic type.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            string[] stringArray = { "a", "b", "c" };
+            bundle.AddItem("string_array", stringArray);
+            if (bundle.Is&lt;string&gt;("string_array"))
+            {
+                Console.WriteLine("It is a string");
+                Console.WriteLine(bundle.GetItem&lt;string&gt;("string_array"));
+            }
+            else if (bundle.Is&lt;string[]&gt;("string_array"))
+            {
+                Console.WriteLine("It is a string[]");
+                string[] anArray = bundle.GetItem&lt;string[]&gt;("string_array");
+                foreach (string value in anArray)
+                {
+                    Console.WriteLine(value);
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.TryGetItem(System.String,System.Byte[]@)">
+            <summary>
+            Gets the value of a bundle item with a specified key.
+            </summary>
+            <param name="key">The key of the bundle item whose value is desired.</param>
+            <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
+            <returns>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            byte[] byteArray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            bundle.AddItem("byte_array", byteArray);
+            byte[] aByteArray;
+            if (bundle.TryGetItem("byte_array", out aByteArray))
+            {
+                Console.WriteLine("First item in the byte array: {0}", aByteArray[0]);
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.TryGetItem(System.String,System.String@)">
+            <summary>
+            Gets the value of a bundle item with a specified key.
+            </summary>
+            <param name="key">The key of the bundle item whose value is desired.</param>
+            <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
+            <returns>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            bundle.AddItem("string", "a_string");
+            string aString;
+            if (bundle.TryGetItem("string", out aString))
+            {
+                Console.WriteLine(aString);
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.TryGetItem(System.String,System.Collections.Generic.IEnumerable{System.String}@)">
+            <summary>
+            Gets the value of a bundle item with a specified key.
+            </summary>
+            <param name="key">The key of the bundle item whose value is desired.</param>
+            <param name="value">The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</param>
+            <returns>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            string[] stringArray = { "a", "b", "c" };
+            bundle.AddItem("string_array", stringArray);
+            System.Collections.Generic.IEnumerable&lt;string&gt; aStringEnumerable;
+            if (bundle.TryGetItem("string", out aStringEnumerable))
+            {
+                foreach (string value in aStringEnumerable)
+                {
+                    Console.WriteLine(value);
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.Is``1(System.String)">
+            <summary>
+            Checks whether an item is of a specific type.
+            </summary>
+            <typeparam name="T">The generic type to check for.</typeparam>
+            <param name="key">The key whose type wants to be checked.</param>
+            <returns>true if the item is of the specified type, false otherwise.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            string[] stringArray = { "a", "b", "c" };
+            bundle.AddItem("string_array", stringArray);
+            if (bundle.Is&lt;string[]&gt;("string_array"))
+            {
+                Console.WriteLine("It is a string[]");
+                string[] anArray = bundle.GetItem&lt;string[]&gt;("string_array");
+                foreach (string value in anArray)
+                {
+                    Console.WriteLine(value);
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.RemoveItem(System.String)">
+            <summary>
+            Removes a bundle item with a specific key from a Bundle.
+            </summary>
+            <param name="key">The key of the item to delete.</param>
+            <returns>true if the item is successfully found and removed, false otherwise (even if the item is not found).</returns>
+            <exception cref="T:System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            bundle.AddItem("string", "a_string");
+            if (bundle.Contains("string"))
+            {
+                if (bundle.RemoveItem("string"))
+                {
+                    Console.WriteLine("Removed");
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.Decode(System.String)">
+            <summary>
+            Decodes an encoded bundle data.
+            </summary>
+            <param name="bundleRaw">The encoded bundle data. bundleRaw should be the returned value of Tizen.Applications.Bundle.Encode, otherwise this method will not succeed.</param>
+            <returns>Decoded Bundle object.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when there is an invalid parameter.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            string bundleRaw = bundle.Encode();
+            Bundle data = bundle.Decode(bundleRaw);
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.Encode">
+            <summary>
+            Encodes bundle to string.
+            </summary>
+            <returns>Encoded bundle data in string.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
+            <example>
+            <code>
+            Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
+            string bundleRaw = bundle.Encode();
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.Dispose(System.Boolean)">
+            <summary>
+            Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+            </summary>
+            <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.Bundle.Finalize">
+            <summary>
+            Destructor of the bundle class.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.CoreApplication">
+            <summary>
+            This class represents an application controlled lifecycles by the backend system.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.#ctor(Tizen.Applications.CoreBackend.ICoreBackend)">
+            <summary>
+            Initializes the CoreApplication class.
+            </summary>
+            <param name="backend">The backend instance implementing ICoreBacked interface.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.Created">
+            <summary>
+            Occurs when the application is launched.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.Terminated">
+            <summary>
+            Occurs when the application is about to shutdown.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.AppControlReceived">
+            <summary>
+            Occurs whenever the application receives the appcontrol message.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.LowMemory">
+            <summary>
+            Occurs when the system memory is low.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.LowBattery">
+            <summary>
+            Occurs when the system battery is low.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.LocaleChanged">
+            <summary>
+            Occurs when the system language is chagned.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.RegionFormatChanged">
+            <summary>
+            Occurs when the region format is changed.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="E:Tizen.Applications.CoreApplication.DeviceOrientationChanged">
+            <summary>
+            Occurs when the device orientation is changed.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.CoreApplication.Backend">
+            <summary>
+            The backend instance.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.Run(System.String[])">
+            <summary>
+            Runs the application's main loop.
+            </summary>
+            <param name="args">Arguments from commandline.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.Exit">
+            <summary>
+            Exits the main loop of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnCreate">
+            <summary>
+            Overrides this method if want to handle behavior when the application is launched.
+            If base.OnCreated() is not called, the event 'Created' will not be emitted.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnTerminate">
+            <summary>
+            Overrides this method if want to handle behavior when the application is terminated.
+            If base.OnTerminate() is not called, the event 'Terminated' will not be emitted.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnAppControlReceived(Tizen.Applications.AppControlReceivedEventArgs)">
+            <summary>
+            Overrides this method if want to handle behavior when the application receives the appcontrol message.
+            If base.OnAppControlReceived() is not called, the event 'AppControlReceived' will not be emitted.
+            </summary>
+            <param name="e"></param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnLowMemory(Tizen.Applications.LowMemoryEventArgs)">
+            <summary>
+            Overrides this method if want to handle behavior when the system memory is low.
+            If base.OnLowMemory() is not called, the event 'LowMemory' will not be emitted.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnLowBattery(Tizen.Applications.LowBatteryEventArgs)">
+            <summary>
+            Overrides this method if want to handle behavior when the system battery is low.
+            If base.OnLowBattery() is not called, the event 'LowBattery' will not be emitted.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnLocaleChanged(Tizen.Applications.LocaleChangedEventArgs)">
+            <summary>
+            Overrides this method if want to handle behavior when the system language is changed.
+            If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnRegionFormatChanged(Tizen.Applications.RegionFormatChangedEventArgs)">
+            <summary>
+            Overrides this method if want to handle behavior when the region format is changed.
+            If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.OnDeviceOrientationChanged(Tizen.Applications.DeviceOrientationEventArgs)">
+            <summary>
+            Overrides this method if want to handle behavior when the device orientation is changed.
+            If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.CoreApplication.Dispose(System.Boolean)">
+            <summary>
+            Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+            </summary>
+            <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.DeviceOrientation">
+            <summary>
+            Enumeration for the device orientation.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.DeviceOrientation.Orientation_0">
+            <summary>
+            The device orientation is 0.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.DeviceOrientation.Orientation_90">
+            <summary>
+            The device orientation is 90.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.DeviceOrientation.Orientation_180">
+            <summary>
+            The device orientation is 180.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.DeviceOrientation.Orientation_270">
+            <summary>
+            The device orientation is 270.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.DeviceOrientationEventArgs">
+            <summary>
+            The class for event arguments of the DeviceOrientationChanged.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.DeviceOrientationEventArgs.#ctor(Tizen.Applications.DeviceOrientation)">
+            <summary>
+            Initializes the DeviceOrientationEventArgs class.
+            </summary>
+            <param name="orientation">The information of the DeviceOrientation</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DeviceOrientationEventArgs.DeviceOrientation">
+            <summary>
+            The received DeviceOrientation.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.DirectoryInfo">
+            <summary>
+            Represents directory information of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.Data">
+            <summary>
+            Gets the absolute path to the application's data directory, which is used to store private data of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.Cache">
+            <summary>
+            Gets the absolute path to the application's cache directory, which is used to store temporary data of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.Resource">
+            <summary>
+            Gets the absolute path to the application resource directory. The resource files are delivered with the application package.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.SharedData">
+            <summary>
+            Gets the absolute path to the application's shared data directory, which is used to share data with other applications.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.SharedResource">
+            <summary>
+            Gets the absolute path to the application's shared resource directory, which is used to share resources with other applications.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.SharedTrusted">
+            <summary>
+            Gets the absolute path to the application's shared trusted directory, which is used to share data with a family of trusted applications.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.ExternalData">
+            <summary>
+            Gets the absolute path to the application's external data directory, which is used to store data of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.ExternalCache">
+            <summary>
+            Gets the absolute path to the application's external cache directory, which is used to store temporary data of the application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.ExternalSharedData">
+            <summary>
+            Gets the absolute path to the application's external shared data directory, which is used to share data with other applications.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.DirectoryInfo.ExpansionPackageResource">
+            <summary>
+            Gets the absolute path to the application's TEP(Tizen Expansion Package) directory. The resource files are delivered with the expansion package.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.LocaleChangedEventArgs">
+            <summary>
+            The class for the argument of the LocaleChanged EventHandler
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.LocaleChangedEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes LocaleChangedEventArgs class
+            </summary>
+            <param name="locale">The information of the Locale</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.LocaleChangedEventArgs.Locale">
+            <summary>
+            The property to get the intformation of the Locale
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.LowBatteryEventArgs">
+            <summary>
+            The class for the argument of the LowBattery EventHandler
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.LowBatteryEventArgs.#ctor(Tizen.Applications.LowBatteryStatus)">
+            <summary>
+            Initializes LowBatteryEventArgs class
+            </summary>
+            <param name="status">The information of the LowBatteryEventArgs</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.LowBatteryEventArgs.LowBatteryStatus">
+            <summary>
+            The property to get the intformation of the LowBatteryStatus
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.LowBatteryStatus">
+            <summary>
+            Enumeration for the low battery status.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.LowBatteryStatus.None">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Tizen.Applications.LowBatteryStatus.PowerOff">
+            <summary>
+            The battery status is under 1%.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.LowBatteryStatus.CriticalLow">
+            <summary>
+            The battery status is under 5%.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.LowMemoryEventArgs">
+            <summary>
+            The class for the argument of the LowMemory EventHandler
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.LowMemoryEventArgs.#ctor(Tizen.Applications.LowMemoryStatus)">
+            <summary>
+            Initializes LowMemoryEventArgs class
+            </summary>
+            <param name="status">The information of the LowMemoryStatus</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.LowMemoryEventArgs.LowMemoryStatus">
+            <summary>
+            The property to get the intformation of the LowMemoryStatus
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.LowMemoryStatus">
+            <summary>
+            Enumeration for the low memory status.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.LowMemoryStatus.None">
+            <summary>
+            Not initialized status.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.LowMemoryStatus.Normal">
+            <summary>
+            Normal status.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.LowMemoryStatus.SoftWarning">
+            <summary>
+            Soft warning status.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.LowMemoryStatus.HardWarning">
+            <summary>
+            Hard warning status.
+            </summary>
+        </member>
+        <member name="T:Tizen.Applications.ReceivedAppControl">
+            <summary>
+            Represents the received AppControl.
+            </summary>
+            <example>
+            <code>
+            public class ReceivedAppControlExample : UIApplication
+            {
+                // ...
+                protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+                {
+                    ReceivedAppControl control = e.ReceivedAppControl;
+                    if (control.Operation == AppControlOperations.Pick)
+                    {
+                        Log.Debug(LogTag, "Received AppControl is Pick");
+                    }
+                    if (control.IsReplyRequest)
+                    {
+                        AppControl replyRequest = new AppControl();
+                        replyRequest.ExtraData.Add("myKey", "I'm replying");
+                        control.ReplyToLaunchRequest(replyRequest, AppControlReplyResult.Succeeded);
+                    }
+                }
+            }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ReceivedAppControl.#ctor(Tizen.Applications.SafeAppControlHandle)">
+            <summary>
+            Initializes a ReceivedAppControl class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ReceivedAppControl.CallerApplicationId">
+            <summary>
+            Gets the application ID of the caller from the launch request.
+            </summary>
+            <value>
+            The application ID of the caller.
+            </value>
+            <example>
+            <code>
+                protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+                {
+                    ReceivedAppControl control = e.ReceivedAppControl;
+                    string caller = control.CallerApplicationId;
+                }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.ReceivedAppControl.IsReplyRequest">
+            <summary>
+            Checks whether the caller is requesting a reply from the launch request.
+            </summary>
+            <value>
+            If true, this ReceivedAppControl is requested by the caller, otherwise false
+            </value>
+            <example>
+            <code>
+                protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+                {
+                    ReceivedAppControl control = e.ReceivedAppControl;
+                    bool isReply = control.IsReplyRequest;
+                }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ReceivedAppControl.ReplyToLaunchRequest(Tizen.Applications.AppControl,Tizen.Applications.AppControlReplyResult)">
+            <summary>
+            Replies to the launch request sent by the caller.
+            If the caller application sends the launch request to receive the result, the callee application can return the result back to the caller.
+            </summary>
+            <param name="replyRequest">The AppControl in which the results of the callee are contained.</param>
+            <param name="result">The result code of the launch request.</param>
+            <example>
+            <code>
+                protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+                {
+                    ReceivedAppControl control = e.ReceivedAppControl;
+                    if (control.IsReplyRequest)
+                    {
+                        AppControl replyRequest = new AppControl();
+                        replyRequest.ExtraData.Add("myKey", "I'm replying");
+                        control.ReplyToLaunchRequest(replyRequest, AppControlReplyResult.Succeeded);
+                    }
+                }
+            </code>
+            </example>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.RecentApplicationControl">
+            <summary>
+            This class provides methods and properties to get information of the recent application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.RecentApplicationControl.Delete">
+            <summary>
+            Deletes the application from the recent application list.
+            </summary>
+            <privlevel>platform</privlevel>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.RecentApplicationControl.DeleteAll">
+            <summary>
+            Deletes all recent applications from the recent application list.
+            </summary>
+            <privlevel>platform</privlevel>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.RecentApplicationInfo">
+            <summary>
+            This class provides methods and properties to get information of the recent application.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.RecentApplicationInfo.InstanceId">
+            <summary>
+            Gets the instance ID.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.RecentApplicationInfo.InstanceName">
+            <summary>
+            Gets the instance name.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.RecentApplicationInfo.Arg">
+            <summary>
+            Gets the arguements.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.RecentApplicationInfo.Uri">
+            <summary>
+            Gets the URI.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.RecentApplicationInfo.LaunchTime">
+            <summary>
+            Gets the launchTime.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.RecentApplicationInfo.Controller">
+            <summary>
+            Gets the recent application controller.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.RegionFormatChangedEventArgs">
+            <summary>
+            The class for the argument of the RegionFormatChanged EventHandler
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.RegionFormatChangedEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes RegionFormatChangedEventArgs class
+            </summary>
+            <param name="region">The information of the Region</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.RegionFormatChangedEventArgs.Region">
+            <summary>
+            The property to get the intformation of the Region
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ResourceManager">
+            <summary>
+            The class for getting the resource path.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.ResourceManager.Category">
+            <summary>
+            Enumeration for the resource category.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Applications.ResourceManager.Category.Image">
+            <summary>
+            Image format.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ResourceManager.Category.Layout">
+            <summary>
+            Layout format.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ResourceManager.Category.Sound">
+            <summary>
+            Sound format.
+            </summary>
+        </member>
+        <member name="F:Tizen.Applications.ResourceManager.Category.Binary">
+            <summary>
+            Binary format.
+            </summary>
+        </member>
+        <member name="M:Tizen.Applications.ResourceManager.GetPath(Tizen.Applications.ResourceManager.Category,System.String)">
+            <summary>
+            Converts resource ID to the path name.
+            </summary>
+            <param name="category">Category to search.</param>
+            <param name="id">ID to search.</param>
+            <returns>Found resource path.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown in case of failed conditions.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.ResourceManager.TryGetPath(Tizen.Applications.ResourceManager.Category,System.String)">
+            <summary>
+            Converts resource ID to the path name.
+            </summary>
+            <param name="category">Category to search.</param>
+            <param name="id">ID to search.</param>
+            <returns>Found resource path or null when the resource doesn't exist.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown in case of failed conditions.</exception>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Applications.SafeAppControlHandle">
+            <summary>
+            Represents a wrapper class for an unmanaged AppControl handle.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.SafeAppControlHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeAppControlHandle class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.SafeAppControlHandle.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+            Initializes a new instance of the SafeAppControlHandle class.
+            </summary>
+            <param name="existingHandle">An IntPtr object that represents the pre-existing handle to use.</param>
+            <param name="ownsHandle">true to reliably release the handle during the finalization phase; false to prevent reliable release.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.SafeAppControlHandle.IsInvalid">
+            <summary>
+            Gets a value that indicates whether the handle is invalid.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.SafeAppControlHandle.ReleaseHandle">
+            <summary>
+            When overridden in a derived class, executes the code required to free the handle.
+            </summary>
+            <returns>true if the handle is released successfully.</returns>
+        </member>
+        <member name="T:Tizen.Applications.SafeBundleHandle">
+            <summary>
+            Represents a wrapper class for an unmanaged bundle handle.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.SafeBundleHandle.#ctor">
+            <summary>
+            Initializes a new instance of the SafeBundleHandle class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.SafeBundleHandle.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+            Initializes a new instance of the SafeBundleHandle class.
+            </summary>
+            <param name="existingHandle">An IntPtr object that represents the pre-existing handle to use.</param>
+            <param name="ownsHandle">true to reliably release the handle during the finalization phase; false to prevent reliable release.</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Applications.SafeBundleHandle.IsInvalid">
+            <summary>
+            Gets a value that indicates whether the handle is invalid.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.SafeBundleHandle.ReleaseHandle">
+            <summary>
+            When overridden in a derived class, executes the code required to free the handle.
+            </summary>
+            <returns>true if the handle is released successfully.</returns>
+        </member>
+        <member name="T:Tizen.Applications.TizenSynchronizationContext">
+            <summary>
+            Provides a synchronization context for the Tizen application model.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.TizenSynchronizationContext.#ctor">
+            <summary>
+            Initializes a new instance of the TizenSynchronizationContext class.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.TizenSynchronizationContext.Initialize">
+            <summary>
+            Initilizes a new TizenSynchronizationContext and install into the current thread.
+            </summary>
+            <remarks>
+            It is equivalent.
+            <code>
+            SetSynchronizationContext(new TizenSynchronizationContext());
+            </code>
+            </remarks>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.TizenSynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)">
+            <summary>
+            Dispatches an asynchronous message to a Tizen main loop.
+            </summary>
+            <param name="d"><see cref="T:System.Threading.SendOrPostCallback"/>The SendOrPostCallback delegate to call.</param>
+            <param name="state"><see cref="T:System.Object"/>The object passed to the delegate.</param>
+            <remarks>
+            The post method starts an asynchronous request to post a message.</remarks>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Applications.TizenSynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)">
+            <summary>
+            Dispatches a synchronous message to a Tizen main loop.
+            </summary>
+            <param name="d"><see cref="T:System.Threading.SendOrPostCallback"/>The SendOrPostCallback delegate to call.</param>
+            <param name="state"><see cref="T:System.Object"/>The object passed to the delegate.</param>
+            <remarks>
+            The send method starts a synchronous request to send a message.</remarks>
+            <since_tizen> 3 </since_tizen>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,792 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tizen</name>
+    </assembly>
+    <members>
+        <member name="T:Tizen.Common.Color">
+            <summary>
+            Structure that represents a color as RGBA.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Empty">
+            <summary>
+            Empty color instance. All components are 0.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Transparent">
+            <summary>
+            Transparent color instance. All components are 0.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Aqua">
+            <summary>
+            Aqua color instance. Its RGB value is (0, 255, 255).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Black">
+            <summary>
+            Black color instance. Its RGB value is (0, 0, 0).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Blue">
+            <summary>
+            Blue color instance. Its RGB value is (0, 0, 255).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Fuchsia">
+            <summary>
+            Fuchsia color instance. Its RGB value is (255, 0, 255).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Gray">
+            <summary>
+            Gray color instance. Its RGB value is (128, 128, 128).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Green">
+            <summary>
+            Green color instance. Its RGB value is (0, 128, 0).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Lime">
+            <summary>
+            Lime color instance. Its RGB value is (0, 255, 0).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Maroon">
+            <summary>
+            Maroon color instance. Its RGB value is (128, 0, 0).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Navy">
+            <summary>
+            Navy color instance. Its RGB value is (0, 0, 128).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Olive">
+            <summary>
+            Olive color instance. Its RGB value is (128, 128, 0).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Purple">
+            <summary>
+            Purple color instance. Its RGB value is (128, 0, 128).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Pink">
+            <summary>
+            Pink color instance. Its RGB value is (255, 102, 255).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Red">
+            <summary>
+            Red color instance. Its RGB value is (255, 0, 0).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Silver">
+            <summary>
+            Silver color instance. Its RGB value is (192, 192, 192).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Teal">
+            <summary>
+            Teal color instance. Its RGB value is (0, 128, 128).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.White">
+            <summary>
+            White color instance. Its RGB value is (255, 255, 255).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Common.Color.Yellow">
+            <summary>
+            Yellow color instance. Its RGB value is (255, 255, 0).
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initiates the new color with R,G,B,A components.
+            </summary>
+            <param name="r">Red (0 ~ 255).</param>
+            <param name="g">Green (0 ~ 255).</param>
+            <param name="b">Blue (0 ~ 255).</param>
+            <param name="a">Alpha (0 ~ 255).</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initiates the new color with R,G,B components. The Alpha value will be 255 as default.
+            </summary>
+            <param name="r">Red (0 ~ 255).</param>
+            <param name="g">Green (0 ~ 255).</param>
+            <param name="b">Blue (0 ~ 255).</param>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Common.Color.R">
+            <summary>
+            Gets the Red component of the color.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Common.Color.G">
+            <summary>
+            Gets the Green component of the color.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Common.Color.B">
+            <summary>
+            Gets the Blue component of the color.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="P:Tizen.Common.Color.A">
+            <summary>
+            Gets the Alpha component of the color.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.op_Equality(Tizen.Common.Color,Tizen.Common.Color)">
+            <summary>
+            Returns a boolean indicating whether the two given colors are equal.
+            </summary>
+            <param name="color1">The first color to compare.</param>
+            <param name="color2">The second color to compare.</param>
+            <returns>True if the colors are equal; False otherwise.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.op_Inequality(Tizen.Common.Color,Tizen.Common.Color)">
+            <summary>
+            Returns a boolean indicating whether the two given colors are not equal.
+            </summary>
+            <param name="color1">The first color to compare.</param>
+            <param name="color2">The second color to compare.</param>
+            <returns>True if the colors are not equal; False if they are equal.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.FromRgb(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns a new RGB color instance.
+            </summary>
+            <param name="r">The Red component of the color.</param>
+            <param name="g">The Green component of the color.</param>
+            <param name="b">The Blue component of the color.</param>
+            <returns></returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.FromRgba(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns a new RGBA color instance.
+            </summary>
+            <param name="r">The Red component of the color.</param>
+            <param name="g">The Green component of the color.</param>
+            <param name="b">The Blue component of the color.</param>
+            <param name="a">The Alpha component of the color.</param>
+            <returns>The RGBA color instance.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.FromHex(System.String)">
+            <summary>
+            Returns a new RGB color instance with the requested Red, Green, and Blue channels. The Alpha channel is set if hex contains one.
+            </summary>
+            <param name="hex">A string that contains the hexadecimal RGB(A) color representation.</param>
+            <returns>The RGBA color instance.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.GetRgba">
+            <summary>
+            Gets the 32-bits RGBA value of the color.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.GetArgb">
+            <summary>
+            Gets the 32-bits ARGB value of the color.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.ToHex">
+            <summary>
+            Returns a string representation in Hex (For example: \#FFFFFFFF in RGBA order).
+            </summary>
+            <returns>The string representation in Hex.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.Equals(Tizen.Common.Color)">
+            <summary>
+            Returns a boolean indicating whether the given color is equal to this Color instance.
+            </summary>
+            <param name="other">The color to compare this instance to.</param>
+            <returns>True if the other color is equal to this instance; False otherwise.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.Equals(System.Object)">
+            <summary>
+            Returns a boolean indicating whether the given object is equal to this Color instance.
+            </summary>
+            <param name="obj">The object to compare against.</param>
+            <returns>True if the object is equal to this color; False otherwise.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.ToString">
+            <summary>
+            Returns a string representation of the color.
+            </summary>
+            <returns>The string representation.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Common.Color.GetHashCode">
+            <summary>
+            Returns the hash code for this instance.
+            </summary>
+            <returns>The hash code.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="T:Tizen.Common.DotnetUtil">
+            <summary>
+            The DotnetUtil class provides the .NET API version.
+            </summary>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="P:Tizen.Common.DotnetUtil.TizenAPIVersion">
+            <summary>
+            Gets the version of Tizen .NET API.
+            </summary>
+            <returns>The Tizen .NET API version.</returns>
+            <since_tizen> 4 </since_tizen>
+        </member>
+        <member name="T:Tizen.Internals.Errors.ErrorCode">
+            <summary>
+            Error codes used inside Tizen .NET API implementation.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.None">
+            <summary>
+            Successful.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NotPermitted">
+            <summary>
+            Operation not permitted.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoSuchFile">
+            <summary>
+            No such file or directory.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoSuchProcess">
+            <summary>
+            No such process.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.InterruptedSysCall">
+            <summary>
+            Interrupted system call.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.IoError">
+            <summary>
+            I/O error.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoSuchDevice">
+            <summary>
+            No such device or address.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ArgumentListTooLong">
+            <summary>
+            Argument list too long.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ExecFormatError">
+            <summary>
+            Executable format error.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.BadFileNumber">
+            <summary>
+            Bad file number.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TryAgain">
+            <summary>
+            Try again.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.OutOfMemory">
+            <summary>
+            Out of memory.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.PermissionDenied">
+            <summary>
+            Permission denied.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.BadAddress">
+            <summary>
+            Bad address.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.BlockDeviceRequired">
+            <summary>
+            Block device required.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ResourceBusy">
+            <summary>
+            Device or resource busy.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.FileExists">
+            <summary>
+            File exists.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.CrossDeviceLink">
+            <summary>
+            Cross-device link.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NotaDirectory">
+            <summary>
+            Not a directory.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.IsADirectory">
+            <summary>
+            Is a directory.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.InvalidParameter">
+            <summary>
+            Invalid function parameter.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.FileTableOverflow">
+            <summary>
+            File table overflow.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TooManyOpenFiles">
+            <summary>
+            Too many open files.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TooNotaTerminal">
+            <summary>
+            Not a terminal.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TooTextFileBusy">
+            <summary>
+            Too text file busy.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.FileTooLarge">
+            <summary>
+            File too large.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.FileNoSpaceOnDevice">
+            <summary>
+            No space left on device.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.IllegalSeek">
+            <summary>
+            Illegal seek.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ReadOnlyFilesystem">
+            <summary>
+            Read-only file system.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoData">
+            <summary>
+            No data available.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TooManyLinks">
+            <summary>
+            Too many links.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.BrokenPipe">
+            <summary>
+            Broken pipe.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ArgumentOutOfDomain">
+            <summary>
+            Math argument out of domain of the function.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ResultOutOfRange">
+            <summary>
+            Math result not representable.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.WouldCauseDeadlock">
+            <summary>
+            Resource deadlock would occur.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.FileNameTooLong">
+            <summary>
+            File name too long.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.FileNoLocksAvailable">
+            <summary>
+            No record locks available.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.InvalidOperation">
+            <summary>
+            Function not implemented.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.DirNotEmpty">
+            <summary>
+            Directory not empty.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TooManySymbolicLinks">
+            <summary>
+            Too many symbolic links encountered.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.WouldBlock">
+            <summary>
+            Operation would block.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.CorruptedSharedLib">
+            <summary>
+            Accessing a corrupted shared library.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.LibSectionCorrupted">
+            <summary>
+            .lib section in a.out corrupted.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.LinkTooManySharedLib">
+            <summary>
+            Attempting to link in too many shared libraries.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.SharedLibExec">
+            <summary>
+            Cannot execute a shared library directly.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.IllegalByteSeq">
+            <summary>
+            Illegal byte sequence.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.SystemCallRestart">
+            <summary>
+            Interrupted system call should be restarted.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.StreamsPipe">
+            <summary>
+            Streams pipe error.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TooManyUsers">
+            <summary>
+            Too many users.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NonSocket">
+            <summary>
+            Socket operation on non-socket.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoDestAddress">
+            <summary>
+            Destination address required.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.MsgTooLong">
+            <summary>
+            Message too long.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ProtocolWrongType">
+            <summary>
+            Protocol wrong type for socket.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ProtocolNotAvaliable">
+            <summary>
+            Protocol not available.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ProtocolNotSupported">
+            <summary>
+            Protocol not supported.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.SocketTypeNotSupported">
+            <summary>
+            Socket type not supported.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.EndpointOperatinNotSupported">
+            <summary>
+            Operation not supported on the transport endpoint.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ProtocolFamilyNotSupported">
+            <summary>
+            Protocol family not supported.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.AddressFamilyNotSupported">
+            <summary>
+            Address family not supported by protocol.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.AddresInUse">
+            <summary>
+            Address already in use.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.CannotAssignAddress">
+            <summary>
+            Cannot assign requested address.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.Networkdown">
+            <summary>
+            Network down.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NetworkUnreachable">
+            <summary>
+            Network unreachable.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NetworkReset">
+            <summary>
+            Network dropped the connection because of the reset.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ConnectionAborted">
+            <summary>
+            Software caused the connection to abort.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ConnectionResetByPeer">
+            <summary>
+            Connection reset by the peer.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.BufferSpace">
+            <summary>
+            No buffer space available.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.EndpointConnected">
+            <summary>
+            Transport endpoint already connected.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.EndpointNotConnected">
+            <summary>
+            Transport endpoint not connected.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.EndpointShutdown">
+            <summary>
+            Cannot send after the transport endpoint shutdown.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TooManyReferences">
+            <summary>
+            Too many references: cannot splice.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ConnectionTimeout">
+            <summary>
+            Connection timed out.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.ConnectionRefused">
+            <summary>
+            Connection refused.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.Hostdown">
+            <summary>
+            Host down.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoRouteToHost">
+            <summary>
+            No route to host.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.AlreadyInProgress">
+            <summary>
+            Operation already in progress.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NowInProgress">
+            <summary>
+            Operation now in progress.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.StaleNfsFileHandle">
+            <summary>
+            Stale NFS file handle.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.StructureUnclean">
+            <summary>
+            Structure needs cleaning.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NotXenixNamedTypeFile">
+            <summary>
+            Not a XENIX named type file.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoXenixSemaphoresAvailable">
+            <summary>
+            No XENIX semaphores available.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.IsNamedTypeFile">
+            <summary>
+            Is a named type file.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.RemoteIo">
+            <summary>
+            Remote I/O error.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.QuotaExceeded">
+            <summary>
+            Quota exceeded.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NoMedium">
+            <summary>
+            No medium found.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.WrongMediumType">
+            <summary>
+            Wrong medium type.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.Canceled">
+            <summary>
+            Operation Canceled.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.KeyNotAvailable">
+            <summary>
+            Required key not available.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.KeyExpired">
+            <summary>
+            Key has expired.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.KeyRevoked">
+            <summary>
+            Key has been revoked.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.KeyRejected">
+            <summary>
+            Key was rejected by the service.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.OwnerDead">
+            <summary>
+            Owner died (for robust mutexes).
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.Unknown">
+            <summary>
+            Unknown error.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.TimedOut">
+            <summary>
+            Timed out.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.NotSupported">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.UserNotConsented">
+            <summary>
+            Not consented.
+            </summary>
+        </member>
+        <member name="F:Tizen.Internals.Errors.ErrorCode.EndofCollection">
+            <summary>
+            The end of collection.
+            </summary>
+        </member>
+        <member name="T:Tizen.Internals.Errors.ErrorFacts">
+            <summary>
+            Provides functions that return the additional information about <see cref="T:Tizen.Internals.Errors.ErrorCode"/>.
+            </summary>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Internals.Errors.ErrorFacts.GetLastResult">
+            <summary>
+            Gets the last error code in the thread.
+            </summary>
+            <returns>One of <see cref="T:Tizen.Internals.Errors.ErrorCode"/>.</returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+        <member name="M:Tizen.Internals.Errors.ErrorFacts.GetErrorMessage(System.Int32)">
+            <summary>
+            Gets the message for the given error code.
+            </summary>
+            <param name="errorCode">One of <see cref="T:Tizen.Internals.Errors.ErrorCode"/>.</param>
+            <returns></returns>
+            <since_tizen> 3 </since_tizen>
+        </member>
+    </members>
+</doc>
