@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dd1b405_e52f53f1",
+        "filename": "simple-layout/CustomLayout.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1007416
+      },
+      "writtenOn": "2018-06-14T18:57:36Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "d5bc9007ba0ba7a6f1e6a156763493f7f0e5729a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f4052c0_d3d41675",
+        "filename": "simple-layout/SimpleLayout.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1007416
+      },
+      "writtenOn": "2018-06-14T18:57:36Z",
+      "side": 1,
+      "message": "You don\u0027t need this!",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "d5bc9007ba0ba7a6f1e6a156763493f7f0e5729a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
