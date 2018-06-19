@@ -9,7 +9,14 @@ namespace SimpleLayout
         protected override void OnMeasure( LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec )
         {
             var accumulatedWidth = new LayoutLength( 0 );
-            var maxHeight = new LayoutLength( 0 );
+            var maxHeight = 0;
+            var measuredWidth = new LayoutLength( 0 );
+            LayoutLength measuredHeight = new LayoutLength( 0) ;
+            LayoutMeasureSpec.ModeType widthMode = widthMeasureSpec.Mode;
+            LayoutMeasureSpec.ModeType heightMode = heightMeasureSpec.Mode;
+
+            bool isWidthExact = (widthMode == LayoutMeasureSpec.ModeType.EXACTLY);
+            bool isHeightExact = (heightMode == LayoutMeasureSpec.ModeType.EXACTLY);
 
             // In this layout we will:
             //  Measuring the layout with the children in a horizontal configuration, one after another
@@ -23,12 +30,25 @@ namespace SimpleLayout
                 {
                     MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
                     accumulatedWidth += childLayout.MeasuredWidth;
-                    maxHeight.Value = System.Math.Max( childLayout.MeasuredHeight.Value, maxHeight.Value );
+                    maxHeight = System.Math.Max( childLayout.MeasuredHeight.Value, maxHeight );
                 }
             }
 
+            measuredHeight.Value = maxHeight ;
+            measuredWidth = accumulatedWidth;
+
+            if( isWidthExact )
+            {
+                measuredWidth = new LayoutLength( widthMeasureSpec.Size );
+            }
+
+            if( isHeightExact )
+            {
+                measuredHeight = new LayoutLength( heightMeasureSpec.Size );
+            }
+
             // Finally, call this method to set the dimensions we would like
-            SetMeasuredDimensions( new MeasuredSize( accumulatedWidth ), new MeasuredSize( maxHeight ) );
+            SetMeasuredDimensions( new MeasuredSize( measuredWidth ), new MeasuredSize( measuredHeight ) );
         }
 
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
