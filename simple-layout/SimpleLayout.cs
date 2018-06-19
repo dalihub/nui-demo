@@ -34,14 +34,17 @@ namespace SimpleLayout
 
             // Create a new view
             View view = new View();
+            view.Name = "CustomLayoutView";
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            window.Add( view);
-
             // Set our Custom Layout on the view
             var layout = new CustomLayout();
             view.Layout = layout;
+            view.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-1) );
+            view.SetProperty( LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(-1) );
+            view.BackgroundColor = Color.Blue;
+            window.Add( view);
 
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
