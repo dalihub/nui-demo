@@ -32,21 +32,28 @@ namespace SimpleLayout
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
-            // Create a new view
-            View view = new View();
-            view.ParentOrigin = ParentOrigin.Center;
-            view.PivotPoint = PivotPoint.Center;
-            view.PositionUsesPivotPoint = true;
-            window.Add( view);
+            //Layer layer = new Layer();
 
+            //window.AddLayer(layer);
+
+            // Create a new view
+            View customLayoutView = new View();
+            customLayoutView.Name = "CustomLayoutView";
+            customLayoutView.ParentOrigin = ParentOrigin.Center;
+            customLayoutView.PivotPoint = PivotPoint.Center;
+            customLayoutView.PositionUsesPivotPoint = true;
             // Set our Custom Layout on the view
             var layout = new CustomLayout();
-            view.Layout = layout;
+            customLayoutView.Layout = layout;
+            customLayoutView.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-2) );  // -2 WRAP_CONTENT
+            customLayoutView.SetProperty( LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(350) );
+            customLayoutView.BackgroundColor = Color.Blue;
+            window.Add( customLayoutView );
 
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
             {
-                view.Add( CreateChildImageView( image, new Size2D( 100, 100 ) ) );
+                customLayoutView.Add( CreateChildImageView( image, new Size2D( 100, 100 ) ) );
             }
         }
 

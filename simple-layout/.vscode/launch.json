@@ -18,7 +18,8 @@
        "env": {
          "DALI_WINDOW_WIDTH": "480",
          "DALI_WINDOW_HEIGHT": "800",
-         "LD_LIBRARY_PATH": "${workspaceRoot}/../../dali-env/opt/lib"
+         "LD_LIBRARY_PATH": "${workspaceRoot}/../../dali-env/opt/lib",
+         "LOG_LAYOUT": "3,t"
        },
 
        "stopAtEntry": false,
