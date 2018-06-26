@@ -20,6 +20,9 @@ namespace SimpleLayout
 
     class SimpleLayout : NUIApplication
     {
+        private Layer _layer;
+        private Layer _layer2;
+
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -32,9 +35,9 @@ namespace SimpleLayout
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
-            //Layer layer = new Layer();
 
-            //window.AddLayer(layer);
+            _layer = new Layer();
+            window.AddLayer(_layer);
 
             // Create a new view
             View customLayoutView = new View();
@@ -42,19 +45,38 @@ namespace SimpleLayout
             customLayoutView.ParentOrigin = ParentOrigin.Center;
             customLayoutView.PivotPoint = PivotPoint.Center;
             customLayoutView.PositionUsesPivotPoint = true;
+
             // Set our Custom Layout on the view
-            var layout = new CustomLayout();
+            CustomLayout layout = new CustomLayout();
             customLayoutView.Layout = layout;
+            _layer.Add( customLayoutView );
+
             customLayoutView.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-2) );  // -2 WRAP_CONTENT
             customLayoutView.SetProperty( LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(350) );
             customLayoutView.BackgroundColor = Color.Blue;
-            window.Add( customLayoutView );
 
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
             {
                 customLayoutView.Add( CreateChildImageView( image, new Size2D( 100, 100 ) ) );
             }
+
+            View testView = new View();
+            CustomLayout layout2 = new CustomLayout();
+            testView.Layout = layout2;
+
+            _layer2 = new Layer();
+            _layer2.Add( testView );
+            testView.BackgroundColor = Color.Blue;
+            testView.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-2) );  // -2 WRAP_CONTENT
+            testView.SetProperty( LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(80) );
+            testView.Position2D = new Position2D( 100, 200 );
+            window.AddLayer(_layer2);
+            foreach (String image in TestImages.s_images)
+            {
+                testView.Add( CreateChildImageView( image, new Size2D( 50, 50 ) ) );
+            }
+
         }
 
         /// <summary>
@@ -81,6 +103,7 @@ namespace SimpleLayout
 
         static void Main(string[] args)
         {
+            Console.Write("Stating SimpleLayout");
             SimpleLayout simpleLayout = new SimpleLayout();
             simpleLayout.Run(args);
         }
