@@ -4,7 +4,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace SimpleLayout
 {
-    public class CustomLayout : LayoutGroup
+    internal class CustomLayout : LayoutGroup
     {
         protected override void OnMeasure( LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec )
         {
@@ -15,8 +15,8 @@ namespace SimpleLayout
             LayoutMeasureSpec.ModeType widthMode = widthMeasureSpec.Mode;
             LayoutMeasureSpec.ModeType heightMode = heightMeasureSpec.Mode;
 
-            bool isWidthExact = (widthMode == LayoutMeasureSpec.ModeType.EXACTLY);
-            bool isHeightExact = (heightMode == LayoutMeasureSpec.ModeType.EXACTLY);
+            bool isWidthExact = (widthMode == LayoutMeasureSpec.ModeType.Exactly);
+            bool isHeightExact = (heightMode == LayoutMeasureSpec.ModeType.Exactly);
 
             // In this layout we will:
             //  Measuring the layout with the children in a horizontal configuration, one after another

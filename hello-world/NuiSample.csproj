@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
     <ProjectReference Include="../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
@@ -8,6 +8,12 @@
     <OutputType>Exe</OutputType>
     <DefineConstants>DOT_NET_CORE</DefineConstants>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <DefineConstants>$(DefineConstants);DEBUG_ON</DefineConstants>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../NuiSample.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+  </PropertyGroup>
+
 </Project>
