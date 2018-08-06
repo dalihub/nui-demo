@@ -35,21 +35,37 @@ class HelloWorldExample : NUIApplication
         Window window = Window.Instance;
         window.BackgroundColor = Color.White;
 
-        // Create a simple TextLabel
-        TextLabel title = new TextLabel("Hello World");
+            View clipView = new View();
+             clipView.Size2D = new Size2D(300, 300);
+             clipView.Position2D = new Position2D(300, 300);
+            //test!
+             //clipView.BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 0.2f);//  >>>>> if this is removed, clipping is not working!
+             clipView.ClippingMode = ClippingModeType.ClipToBoundingBox;
 
-        // Ensure TextLabel matches its parent's size (i.e. Window size)
-        // By default, a TextLabel's natural size is the size of the text within it
-        title.LayoutWidthSpecification = ChildLayoutData.MatchParent;
-        title.LayoutHeightSpecification = ChildLayoutData.MatchParent;
 
-        // By default, text is aligned to the top-left within the TextLabel
-        // Align it to the center of the TextLabel
-        title.HorizontalAlignment = HorizontalAlignment.Center;
-        title.VerticalAlignment = VerticalAlignment.Center;
+             TextLabel title = new TextLabel("Hello World");
+             title.ClippingMode = ClippingModeType.ClipToBoundingBox;
+             title.TextColor = Color.Yellow;
+             title.Size2D = new Size2D(600, 600);
+             title.PointSize = 100;
 
-        // Add the text to the window
-        window.Add(title);
+
+             TextLabel title2 = new TextLabel("Hello again");
+             title2.TextColor = Color.Green;
+             title2.Position2D = new Position2D(30, 30);
+             title2.Size2D = new Size2D(600, 600);
+             title2.PointSize = 100;
+             title.Add(title2);
+
+            // By default, text is aligned to the top-left within the TextLabel
+             // Align it to the center of the TextLabel
+             title.HorizontalAlignment = HorizontalAlignment.Center;
+             title.VerticalAlignment = VerticalAlignment.Center;
+
+            clipView.Add(title);
+             window.Add(clipView);
+             return;
+
     }
 
     /// <summary>
