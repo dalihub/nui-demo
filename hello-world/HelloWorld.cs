@@ -41,7 +41,18 @@ class HelloWorldExample : NUIApplication
         // Ensure TextLabel matches its parent's size (i.e. Window size)
         // By default, a TextLabel's natural size is the size of the text within it
         title.LayoutWidthSpecification = ChildLayoutData.MatchParent;
-        title.LayoutHeightSpecification = ChildLayoutData.MatchParent;
+        //title.LayoutHeightSpecification = ChildLayoutData.MatchParent;
+        title.BackgroundColor = Color.Red;
+        title.ClippingMode = ClippingModeType.ClipToBoundingBox;
+
+        TextLabel title2 = new TextLabel( "Hello again" );
+        title2.PivotPoint = PivotPoint.TopCenter;
+        title2.ParentOrigin = ParentOrigin.BottomCenter;
+        title2.PositionUsesPivotPoint = true;
+        title2.BackgroundColor = Color.Yellow;
+        title2.PositionY = -10;
+        title2.PositionX = 30;
+        title.Add( title2 );
 
         // By default, text is aligned to the top-left within the TextLabel
         // Align it to the center of the TextLabel
