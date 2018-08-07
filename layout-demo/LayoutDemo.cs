@@ -37,11 +37,11 @@ namespace LayoutDemo
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
+            layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new FlexExample());
-            // TODO: Add Absolute example
 
             layoutingExamples[0].Create();
             layoutIndex = 0;
