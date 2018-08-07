@@ -41,7 +41,7 @@ namespace LayoutDemo
             layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new FlexExample());
-            // TODO: Add Absolute example
+            layoutingExamples.Add(new NoLayoutExample());
 
             layoutingExamples[0].Create();
             layoutIndex = 0;
