@@ -72,11 +72,15 @@ namespace LayoutDemo
         public override void Remove()
         {
             Window window = Window.Instance;
-            window.Remove(helpImageView);
+            if(helpImageView )
+            {
+                window.Remove(helpImageView);
+                helpImageView = null;
+            }
             helpShowing = false;
             window.Remove(helpButton);
             window.Remove(view);
-
+            helpButton = null;
             view = null;
         }
 
