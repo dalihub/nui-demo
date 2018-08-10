@@ -42,11 +42,13 @@ namespace LayoutDemo
             layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new NoLayoutExample());
+            layoutingExamples.Add(new FlexContainerExample());
 
             layoutingExamples[0].Create();
             layoutIndex = 0;
 
             nextLayout = new PushButton();
+            nextLayout.Name = "nextLayoutButton";
             nextLayout.ParentOrigin = ParentOrigin.TopRight;
             nextLayout.PivotPoint = PivotPoint.TopRight;
             nextLayout.PositionUsesPivotPoint = true;
