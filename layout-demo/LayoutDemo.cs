@@ -42,6 +42,7 @@ namespace LayoutDemo
             layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new NoLayoutExample());
+            layoutingExamples.Add(new GridExample());
 
             layoutingExamples[0].Create();
             layoutIndex = 0;
