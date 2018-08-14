@@ -8,6 +8,9 @@ namespace LayoutDemo
 {
     class PaddingExample : Example
     {
+        public PaddingExample() : base( "PaddingExample" )
+        {}
+
         static class TestImages
         {
             private const string resources = "./res";
@@ -32,7 +35,6 @@ namespace LayoutDemo
             view.PositionUsesPivotPoint = true;
             view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
             view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
-            view.BackgroundColor = Color.Blue;
 
             var layout = new LinearLayout();
             view.Layout = layout;

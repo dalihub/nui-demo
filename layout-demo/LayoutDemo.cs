@@ -12,11 +12,24 @@ namespace LayoutDemo
     /// </summary>
     abstract class Example
     {
+	// Constructor
+        protected Example(string name)
+        {
+            exampleName = name;
+        }
         /// Should be overridden by deriving classes to create the required Layouting example
         public abstract void Create();
 
         /// Should be overridden by deriving classes to remove their layouting example from stage
         public abstract void Remove();
+
+	// Get the title of the derived example
+        public string GetLabel()
+        {
+            return exampleName;
+        }
+
+        protected string exampleName = "Title";
     };
 
     class LayoutingExample : NUIApplication
@@ -24,11 +37,32 @@ namespace LayoutDemo
         private List<Example> layoutingExamples = new List<Example>();
         private int layoutIndex = 0;
         private PushButton nextLayout;
+        private TextLabel exampleTitle;
+
+        static private View toolbar;
+
+        public static ref View GetToolbar()
+        {
+            return ref toolbar;
+        }
 
         protected override void OnCreate()
         {
             base.OnCreate();
+            InitializeToolbar();
             Initialize();
+        }
+
+	// Create a tool bar for title and buttons
+        private void InitializeToolbar()
+        {
+            Window window = Window.Instance;
+            toolbar = new View();
+            var layout = new LinearLayout();
+            toolbar.Layout = layout;
+            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-1));
+            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(-2));
+            window.Add(toolbar);
         }
 
         private void Initialize()
@@ -44,13 +78,12 @@ namespace LayoutDemo
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new GridExample());
 
-            layoutingExamples[0].Create();
             layoutIndex = 0;
+            layoutingExamples[layoutIndex].Create();
+
+            string currentExampleLabel = layoutingExamples[layoutIndex].GetLabel();
 
             nextLayout = new PushButton();
-            nextLayout.ParentOrigin = ParentOrigin.TopRight;
-            nextLayout.PivotPoint = PivotPoint.TopRight;
-            nextLayout.PositionUsesPivotPoint = true;
             nextLayout.LabelText = "change layout";
             nextLayout.Clicked += (sender, e) =>
             {
@@ -59,15 +92,17 @@ namespace LayoutDemo
                     layoutingExamples[layoutIndex].Remove();
                     layoutIndex = (layoutIndex + 1) % layoutingExamples.Count;
                     layoutingExamples[layoutIndex].Create();
+                    currentExampleLabel = layoutingExamples[layoutIndex].GetLabel();
+                    exampleTitle.Text = currentExampleLabel;
                 }
-
-                // Reattach 'next layout' button so it stays on top and updated.
-                window.Remove(nextLayout);
-                window.Add(nextLayout);
                 return true;
             };
 
-            window.Add(nextLayout);
+            exampleTitle = new TextLabel();
+            exampleTitle.Text = currentExampleLabel;
+            exampleTitle.Margin = new Extents( 10, 10, 0, 0);
+            toolbar.Add(nextLayout);
+            toolbar.Add(exampleTitle);
         }
 
         /// <summary>

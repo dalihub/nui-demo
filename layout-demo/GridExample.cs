@@ -9,6 +9,9 @@ namespace LayoutDemo
     // Shows different features of the GridLayout and generic layout system
     class GridExample : Example
     {
+        public GridExample() : base( "GridLayout" )
+        {}
+
         static class TestImages
         {
             private const string resources = "./res";
@@ -70,8 +73,6 @@ namespace LayoutDemo
             }
 
             Window window = Window.Instance;
-
-            this.view = view;
 
             nextFeatureButton = new PushButton();
             nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;

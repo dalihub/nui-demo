@@ -8,6 +8,9 @@ namespace LayoutDemo
 {
     class NoLayoutExample : Example
     {
+        public NoLayoutExample() : base( "NoLayout" )
+        {}
+
         static class TestImages
         {
             private const string resources = "./res";
@@ -66,7 +69,7 @@ namespace LayoutDemo
             view.Add(field);
 
             CreateHelpButton();
-            window.Add( helpButton );
+            LayoutingExample.GetToolbar().Add( helpButton );
         }
 
         public override void Remove()
@@ -78,18 +81,17 @@ namespace LayoutDemo
                 helpImageView = null;
             }
             helpShowing = false;
-            window.Remove(helpButton);
+            LayoutingExample.GetToolbar().Remove(helpButton);
             window.Remove(view);
             helpButton = null;
             view = null;
         }
 
+	// Shows a thumbnail of the expected output
         private void CreateHelpButton()
         {
             helpButton = new PushButton();
-            helpButton.LabelText = "Example Help";
-            helpButton.PivotPoint = PivotPoint.TopLeft;
-            helpButton.PositionUsesPivotPoint = true;
+            helpButton.LabelText = "Help";
             helpButton.Clicked += (sender, e) =>
             {
                 if ( ! helpShowing )

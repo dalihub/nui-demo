@@ -8,6 +8,9 @@ namespace LayoutDemo
 {
     class AbsoluteExample : Example
     {
+        public AbsoluteExample() : base( "AbsoluteExample" )
+        {}
+
         static class TestImages
         {
             private const string resources = "./res";
@@ -27,7 +30,7 @@ namespace LayoutDemo
         {
             // Absolute Layout is created automatically in Window.
             View view = new View();
-            view.Name = "AbsoluteExample";
+            view.Name = "AbsoluteLayout";
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;

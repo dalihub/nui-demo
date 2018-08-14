@@ -8,6 +8,9 @@ namespace LayoutDemo
 {
     class FlexExample : Example
     {
+        public FlexExample() : base( "FlexLayout" )
+        {}
+
         static class TestImages
         {
             private const string resources = "./res";
@@ -36,7 +39,6 @@ namespace LayoutDemo
             view.PositionUsesPivotPoint = true;
             view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
             view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
-            view.BackgroundColor = Color.Blue;
 
             var layout = new FlexLayout();
             layout.WrapType = FlexLayout.FlexWrapType.NoWrap;
