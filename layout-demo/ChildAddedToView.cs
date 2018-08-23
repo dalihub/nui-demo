@@ -6,9 +6,9 @@ using Tizen.NUI.UIComponents;
 
 namespace LayoutDemo
 {
-    class NoLayoutExample : Example
+    class ChildAddedToViewExample : Example
     {
-        public NoLayoutExample() : base( "NoLayout" )
+        public ChildAddedToViewExample() : base( "Child to View" )
         {}
 
         static class TestImages
@@ -25,6 +25,7 @@ namespace LayoutDemo
             };
         }
 
+        private View linearView;
         private View view;
         private ImageView helpImageView;
         PushButton helpButton;
@@ -34,41 +35,37 @@ namespace LayoutDemo
         public override void Create()
         {
             Window window = Window.Instance;
-            window.BackgroundColor = Color.White;
+
+            linearView = new View()
+            {
+                LayoutWidthSpecificationFixed = 480,
+                LayoutHeightSpecification = ChildLayoutData.WrapContent,
+                BackgroundColor = Color.Blue,
+                Name = "LinearView",
+                Position2D = new Position2D(0, 250),
+            };
+            var layout = new LinearLayout();
+            linearView.Layout = layout;
+            window.Add(linearView);
 
             view = new View()
             {
-                Size2D = new Size2D(476,500),
                 BackgroundColor = Color.Green,
-                Position2D = new Position2D(2, 0),
-                ParentOrigin = ParentOrigin.BottomRight,
-                PivotPoint = PivotPoint.BottomRight,
-                PositionUsesPivotPoint = true,
+                Name = "View",
+                LayoutWidthSpecification = ChildLayoutData.WrapContent,
+                LayoutHeightSpecification = ChildLayoutData.WrapContent,
             };
-            window.Add(view);
+            linearView.Add(view);
 
             TextLabel textLabel = new TextLabel()
             {
-                Size2D = new Size2D(274, 70),
-                BackgroundColor = Color.Red,
-                Position2D = new Position2D(0, -10),
                 Name = "TextLabel",
                 Text = "Enter password",
-                ParentOrigin = ParentOrigin.BottomCenter,
-                PivotPoint = PivotPoint.BottomCenter,
-                PositionUsesPivotPoint = true,
+                PointSize = 40.0f,
+                Size2D = new Size2D(120, 80)
+
             };
             view.Add(textLabel);
-
-            TextField field = new TextField()
-            {
-                Size2D = new Size2D(120, 80),
-                Position2D = new Position2D(150,85),
-                BackgroundColor = Color.Cyan,
-                Name = "TextField",
-                PlaceholderText = "input something",
-            };
-            view.Add(field);
 
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );
@@ -84,9 +81,11 @@ namespace LayoutDemo
             }
             helpShowing = false;
             LayoutingExample.GetToolbar().Remove(helpButton);
-            window.Remove(view);
-            helpButton = null;
+            linearView.Remove(view);
+            window.Remove(linearView);
             view = null;
+            helpButton = null;
+            linearView = null;
         }
 
 	// Shows a thumbnail of the expected output
