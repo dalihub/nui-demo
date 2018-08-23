@@ -35,6 +35,16 @@ class HelloWorldExample : NUIApplication
         Window window = Window.Instance;
         window.BackgroundColor = Color.White;
 
+        window.KeyEvent += (sender, e) =>
+        {
+            RenderingBehaviorType behavior = RenderingBehaviorType.IfRequired;
+            if( e.Key.KeyPressedName == "1")
+            {
+                behavior = RenderingBehaviorType.Continuously;
+            }
+            window.RenderingBehavior = behavior;
+        };
+
         // Create a simple TextLabel
         TextLabel title = new TextLabel("Hello World");
 
