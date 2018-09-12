@@ -71,6 +71,7 @@ namespace LayoutDemo
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
+            layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new AbsoluteExample());
