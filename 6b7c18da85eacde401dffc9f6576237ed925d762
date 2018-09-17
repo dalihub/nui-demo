@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec773a70_9413962b",
+        "filename": "layout-demo/LinearExample.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2018-09-17T09:33:12Z",
+      "side": 1,
+      "message": "Now that there are more buttons in this demo I\u0027m thinking if using a mini horizontal layout for them too.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 9
+      },
+      "revId": "6b7c18da85eacde401dffc9f6576237ed925d762",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5501acbe_b1ebe6c0",
+        "filename": "layout-demo/LinearExample.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2018-09-17T09:33:12Z",
+      "side": 1,
+      "message": "as comment above",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 9
+      },
+      "revId": "6b7c18da85eacde401dffc9f6576237ed925d762",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
