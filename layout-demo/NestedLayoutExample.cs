@@ -58,6 +58,14 @@ namespace LayoutDemo
                 Position2D = new Position2D(0, 40),
             };
 
+	    View view1 = new View()
+	    {
+		PositionUsesPivotPoint = true,
+		PivotPoint = PivotPoint.Center,
+                ParentOrigin = ParentOrigin.Center,
+		BackgroundColor = Color.Black,
+	    };
+
             View popupBG = new View()
             {
                 Name = "popupBG",
@@ -136,7 +144,8 @@ namespace LayoutDemo
             popupBody.Layout = createHbox();
             popupBG.Layout = createVbox();
 
-            popupShadow.Add( popupBG );
+	    view1.Add(popupBG);
+            popupShadow.Add( view1 );
             Window.Instance.GetDefaultLayer().Add(popupShadow);
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );

@@ -71,13 +71,14 @@ namespace LayoutDemo
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
+	    layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new GridExample());
-            layoutingExamples.Add(new NestedLayoutExample());
+//            layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
 
             layoutIndex = 0;
