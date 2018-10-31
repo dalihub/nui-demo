@@ -25,7 +25,7 @@ namespace LayoutDemo
             };
         }
 
-        private View popupShadow;
+        private View contentBackgroundShadow;
         private ImageView helpImageView;
         PushButton helpButton;
         bool helpShowing = false;
@@ -50,17 +50,26 @@ namespace LayoutDemo
             Window window = Window.Instance;
             window.BackgroundColor = Color.Green;
 
-            popupShadow = new View()
+            contentBackgroundShadow = new View()
             {
-                Name = "popupShadow",
+                Name = "contentBackgroundShadow",
                 Size2D = new Size2D(476,500),
                 BackgroundColor = Color.Red,
                 Position2D = new Position2D(0, 40),
             };
 
-            View popupBG = new View()
+            View backgroundContainer = new View()
             {
-                Name = "popupBG",
+                Name = "backgroundContainer",
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.Center,
+                ParentOrigin = ParentOrigin.Center,
+                BackgroundColor = Color.Red,
+            };
+
+            View contentBackground = new View()
+            {
+                Name = "contentBackground",
                 PositionUsesPivotPoint = true,
                 PivotPoint = PivotPoint.Center,
                 ParentOrigin = ParentOrigin.Center,
@@ -77,16 +86,16 @@ namespace LayoutDemo
                 Text = "Popup title",
                 PointSize = 34
             };
-            popupBG.Add(textLabel);
+            contentBackground.Add(textLabel);
 
 
-            View popupBody = new View()
+            View contentContainer = new View()
             {
-                 Name = "popupBody",
+                 Name = "contentContainer",
                  LayoutWidthSpecification = ChildLayoutData.WrapContent,
                  LayoutHeightSpecification = ChildLayoutData.WrapContent
             };
-            popupBG.Add(popupBody);
+            contentBackground.Add(contentContainer);
 
             View contentAreaOne = new View()
             {
@@ -97,7 +106,7 @@ namespace LayoutDemo
                 LayoutHeightSpecification = ChildLayoutData.WrapContent,
                 BackgroundColor = Color.Red,
             };
-            popupBody.Add(contentAreaOne);
+            contentContainer.Add(contentAreaOne);
 
             View contentAreaTwo = new View()
             {
@@ -108,7 +117,7 @@ namespace LayoutDemo
                 LayoutHeightSpecification = ChildLayoutData.WrapContent,
                 BackgroundColor = Color.Cyan,
             };
-            popupBody.Add(contentAreaTwo);
+            contentContainer.Add(contentAreaTwo);
 
             ImageView[] children = new ImageView[3];
             for( int i = 0; i < 3; i++ )
@@ -133,11 +142,13 @@ namespace LayoutDemo
                 contentAreaTwo.Add(children2[i]);
             };
 
-            popupBody.Layout = createHbox();
-            popupBG.Layout = createVbox();
+            contentContainer.Layout = createHbox();
+            contentBackground.Layout = createVbox();
+            backgroundContainer.Add( contentBackground );
+            contentBackgroundShadow.Add( backgroundContainer );
+            contentBackgroundShadow.Add( contentBackground );
 
-            popupShadow.Add( popupBG );
-            Window.Instance.GetDefaultLayer().Add(popupShadow);
+            Window.Instance.GetDefaultLayer().Add(contentBackgroundShadow);
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );
         }
@@ -153,9 +164,9 @@ namespace LayoutDemo
             helpShowing = false;
             LayoutingExample.GetToolbar().Remove(helpButton);
             window.BackgroundColor = Color.White;
-            window.GetDefaultLayer().Remove(popupShadow);
+            window.GetDefaultLayer().Remove(contentBackgroundShadow);
             helpButton = null;
-            popupShadow = null;
+            contentBackgroundShadow = null;
         }
 
 	    // Shows a thumbnail of the expected output
