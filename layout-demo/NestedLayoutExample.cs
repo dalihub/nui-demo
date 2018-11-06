@@ -74,6 +74,7 @@ namespace LayoutDemo
                 PivotPoint = PivotPoint.Center,
                 ParentOrigin = ParentOrigin.Center,
                 BackgroundColor = Color.Yellow,
+                Layout = createVbox(),
                 LayoutWidthSpecification = ChildLayoutData.WrapContent,
                 LayoutHeightSpecification = ChildLayoutData.WrapContent,
             };
@@ -92,6 +93,10 @@ namespace LayoutDemo
             View contentContainer = new View()
             {
                  Name = "contentContainer",
+<<<<<<< db356469adba3453321f879c531cf8abdc400d1c
+=======
+                 Layout = createHbox(),
+>>>>>>> Updating NestedLayoutExample
                  LayoutWidthSpecification = ChildLayoutData.WrapContent,
                  LayoutHeightSpecification = ChildLayoutData.WrapContent
             };
@@ -139,15 +144,24 @@ namespace LayoutDemo
                 children2[i].LayoutWidthSpecificationFixed = 200;
                 children2[i].LayoutHeightSpecificationFixed = 70;
                 children2[i].BackgroundColor = new Color( i * 0.25f, i * 0.25f, 1.0f, 1.0f );
+                children2[i].Name = "imageView2";
                 contentAreaTwo.Add(children2[i]);
             };
 
+<<<<<<< db356469adba3453321f879c531cf8abdc400d1c
             contentContainer.Layout = createHbox();
             contentBackground.Layout = createVbox();
             backgroundContainer.Add( contentBackground );
             contentBackgroundShadow.Add( backgroundContainer );
             contentBackgroundShadow.Add( contentBackground );
 
+=======
+
+            backgroundContainer.Add( contentBackground );
+            contentBackgroundShadow.Add( backgroundContainer );
+
+
+>>>>>>> Updating NestedLayoutExample
             Window.Instance.GetDefaultLayer().Add(contentBackgroundShadow);
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );
