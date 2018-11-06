@@ -74,6 +74,7 @@ namespace LayoutDemo
                 PivotPoint = PivotPoint.Center,
                 ParentOrigin = ParentOrigin.Center,
                 BackgroundColor = Color.Yellow,
+                Layout = createVbox(),
                 LayoutWidthSpecification = ChildLayoutData.WrapContent,
                 LayoutHeightSpecification = ChildLayoutData.WrapContent,
             };
@@ -92,6 +93,7 @@ namespace LayoutDemo
             View contentContainer = new View()
             {
                  Name = "contentContainer",
+                 Layout = createHbox(),
                  LayoutWidthSpecification = ChildLayoutData.WrapContent,
                  LayoutHeightSpecification = ChildLayoutData.WrapContent
             };
@@ -139,14 +141,14 @@ namespace LayoutDemo
                 children2[i].LayoutWidthSpecificationFixed = 200;
                 children2[i].LayoutHeightSpecificationFixed = 70;
                 children2[i].BackgroundColor = new Color( i * 0.25f, i * 0.25f, 1.0f, 1.0f );
+                children2[i].Name = "imageView2";
                 contentAreaTwo.Add(children2[i]);
             };
 
-            contentContainer.Layout = createHbox();
-            contentBackground.Layout = createVbox();
+
             backgroundContainer.Add( contentBackground );
             contentBackgroundShadow.Add( backgroundContainer );
-            contentBackgroundShadow.Add( contentBackground );
+
 
             Window.Instance.GetDefaultLayer().Add(contentBackgroundShadow);
             CreateHelpButton();
