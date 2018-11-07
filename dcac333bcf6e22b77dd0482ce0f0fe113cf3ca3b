@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18031501_5ff950d5",
+        "filename": "layout-demo/NestedLayoutExample.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1014323
+      },
+      "writtenOn": "2018-11-07T14:04:26Z",
+      "side": 1,
+      "message": "\"imageView\" + i? Easier to debug",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 3
+      },
+      "revId": "dcac333bcf6e22b77dd0482ce0f0fe113cf3ca3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
