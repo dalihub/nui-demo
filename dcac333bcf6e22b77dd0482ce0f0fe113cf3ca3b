@@ -22,6 +22,30 @@
       "revId": "dcac333bcf6e22b77dd0482ce0f0fe113cf3ca3b",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c163aa74_97aeb373",
+        "filename": "layout-demo/NestedLayoutExample.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2018-11-07T15:05:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18031501_5ff950d5",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 3
+      },
+      "revId": "dcac333bcf6e22b77dd0482ce0f0fe113cf3ca3b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
