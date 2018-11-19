@@ -77,6 +77,7 @@ namespace LayoutDemo
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new GridExample());
             layoutingExamples.Add(new NestedLayoutExample());
+            layoutingExamples.Add(new NestedLayoutExample2());
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
 

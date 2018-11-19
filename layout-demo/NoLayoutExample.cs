@@ -26,6 +26,11 @@ namespace LayoutDemo
         }
 
         private View view;
+
+        private View nestedView;
+
+        private View deeplyNestedView;
+
         private ImageView helpImageView;
         PushButton helpButton;
         bool helpShowing = false;
@@ -53,7 +58,7 @@ namespace LayoutDemo
                 BackgroundColor = Color.Red,
                 Position2D = new Position2D(0, -10),
                 Name = "TextLabel",
-                Text = "Enter password",
+                Text = "Info Bar",
                 ParentOrigin = ParentOrigin.BottomCenter,
                 PivotPoint = PivotPoint.BottomCenter,
                 PositionUsesPivotPoint = true,
@@ -69,6 +74,34 @@ namespace LayoutDemo
                 PlaceholderText = "input something",
             };
             view.Add(field);
+
+            nestedView = new View()
+            {
+                Size2D = new Size2D( 400, 120 ),
+                BackgroundColor = Color.Yellow,
+                Name = "NestedView",
+                Position2D = new Position2D( 50, 175),
+            };
+            view.Add(nestedView);
+
+            deeplyNestedView = new View()
+            {
+                Size2D = new Size2D( 200, 100 ),
+                BackgroundColor = Color.Cyan,
+                Name = "DeeplyNestedView",
+                Position2D = new Position2D( 50, 10),
+            };
+            nestedView.Add(deeplyNestedView);
+
+            TextLabel nestedTextLabel = new TextLabel()
+            {
+                Size2D = new Size2D(180, 80),
+                BackgroundColor = Color.Red,
+                Position2D = new Position2D(6, 10),
+                Name = "NestedTextLabel",
+                Text = "Nested Text",
+            };
+            deeplyNestedView.Add(nestedTextLabel);
 
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );
