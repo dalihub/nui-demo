@@ -105,8 +105,35 @@ namespace LayoutDemo
             exampleTitle.Margin = new Extents( 10, 10, 0, 0);
             toolbar.Add(nextLayout);
             toolbar.Add(exampleTitle);
+
+            window.KeyEvent += WindowKeyEvent;
         }
 
+        // Change size of the window with key press (s)mall (m)edium (l)arge
+        private void WindowKeyEvent(object source, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                switch(e.Key.KeyPressedName)
+                {
+                  case "s" :
+                  {
+                    Window.Instance.WindowSize = new Size2D(480, 800);
+                    break;
+                  }
+                  case "m" :
+                  {
+                    Window.Instance.WindowSize = new Size2D(960, 1080);
+                    break;
+                  }
+                  case "l" :
+                  {
+                    Window.Instance.WindowSize = new Size2D(1920, 1090);
+                    break;
+                  }
+                }
+            }
+        }
         /// <summary>
         /// Helper function to create ImageViews with given filename and size..<br />
         /// </summary>
