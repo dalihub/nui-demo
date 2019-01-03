@@ -1,0 +1,26 @@
+//////////////////////
+Optional Prerequisites
+//////////////////////
+
+// Install NUnit 2 as seeing using dotnet 2, otherwise NUnit3 will be used.
+sudo apt-get install nupkg-nunit.2.6.4
+
+///////////////////
+Creating a new test
+///////////////////
+
+// In <unit-test> folder
+
+dotnet new classlib -f netcoreapp2.0
+dotnet add package nunit
+dotnet add package nunit3testadapter
+dotnet add package microsoft.net.test.sdk
+
+// In root test folder
+dotnet sln add ./Tests/<unit-test>.Tests/<unit test>.Tests.csproj
+
+// In <unit-test> folder
+
+Add test to .cs file
+Ensure it has a [TestFixture] and [Test]
+dotnet test
