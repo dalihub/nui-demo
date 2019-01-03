@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <DefineConstants>DOT_NET_CORE</DefineConstants>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="microsoft.net.test.sdk" Version="15.9.0" />
+    <PackageReference Include="nunit" Version="3.11.0" />
+    <PackageReference Include="nunit3testadapter" Version="3.12.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>LayoutingTests.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+  </PropertyGroup>
+
+</Project>
