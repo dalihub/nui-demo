@@ -50,7 +50,31 @@ class HelloWorldExample : NUIApplication
 
         // Add the text to the window
         window.Add(title);
+                    Window.Instance.KeyEvent += WindowKeyEvent;
+
+
     }
+
+        private void WindowKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                switch( e.Key.KeyPressedName )
+                {
+                    case "Left":
+                        LayoutController localController2 = new LayoutController();
+
+                    break;
+                    case "Right" :
+                    break;
+                    case "Up" :
+                    break;
+                    case "Down" :
+                    break;
+                }
+
+            }
+        }
 
     /// <summary>
     /// The main entry point for the application.
