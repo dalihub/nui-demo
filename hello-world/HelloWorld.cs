@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ using Tizen.NUI.Constants;
 
 class HelloWorldExample : NUIApplication
 {
+    TextLabel title;
     /// <summary>
     /// Override to create the required scene
     /// </summary>
@@ -36,7 +37,7 @@ class HelloWorldExample : NUIApplication
         window.BackgroundColor = Color.White;
 
         // Create a simple TextLabel
-        TextLabel title = new TextLabel("Hello World");
+        title = new TextLabel("Hello World");
 
         // Ensure TextLabel matches its parent's size (i.e. Window size)
         // By default, a TextLabel's natural size is the size of the text within it
@@ -50,6 +51,30 @@ class HelloWorldExample : NUIApplication
 
         // Add the text to the window
         window.Add(title);
+        Window.Instance.KeyEvent += WindowKeyEvent;
+
+
+    }
+
+    private void WindowKeyEvent(object sender, Window.KeyEventArgs e)
+    {
+        if (e.Key.State == Key.StateType.Down)
+        {
+            switch( e.Key.KeyPressedName )
+            {
+                case "Left":
+                    LayoutController localController2 = new LayoutController();
+                break;
+                case "Right" :
+                    title.Text = "Bye World";
+                break;
+                case "Up" :
+                break;
+                case "Down" :
+                break;
+            }
+
+        }
     }
 
     /// <summary>
