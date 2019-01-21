@@ -5,6 +5,9 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 
 EXAMPLES=$(ls $SCRIPT_DIR)
 
+BUILD_COMMAND="build -warnaserror"
+CLEAN_COMMAND="clean"
+
 ERROR=0
 
 Run()
@@ -34,19 +37,14 @@ Usage() {
   echo "    clean      Clean all examples"
 }
 
-FullBuild()
-{
-  Run build
-}
-
 if [[ $1 = "" ]]
 then
-  Run build
+  Run $BUILD_COMMAND
 else
   CMD=$1; shift;
   case "$CMD" in
-    full |--full |-f) Run build ;;
-    clean|--clean|-c) Run clean ;;
+    full |--full |-f) Run $BUILD_COMMAND ;;
+    clean|--clean|-c) Run $CLEAN_COMMAND ;;
     *) Usage ;;
   esac
 fi
