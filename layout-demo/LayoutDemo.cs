@@ -56,13 +56,13 @@ namespace LayoutDemo
 	// Create a tool bar for title and buttons
         private void InitializeToolbar()
         {
-            Window window = Window.Instance;
-            toolbar = new View();
-            var layout = new LinearLayout();
-            toolbar.Layout = layout;
-            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-1));
-            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(-2));
-            window.Add(toolbar);
+            // Window window = Window.Instance;
+            // toolbar = new View();
+            // var layout = new LinearLayout();
+            // toolbar.Layout = layout;
+            // toolbar.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-1));
+            // toolbar.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(-2));
+            // window.Add(toolbar);
         }
 
         private void Initialize()
@@ -71,6 +71,7 @@ namespace LayoutDemo
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
+            layoutingExamples.Add(new LinearExampleEx());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new AbsoluteExample());
@@ -103,8 +104,8 @@ namespace LayoutDemo
             exampleTitle = new TextLabel();
             exampleTitle.Text = currentExampleLabel;
             exampleTitle.Margin = new Extents( 10, 10, 0, 0);
-            toolbar.Add(nextLayout);
-            toolbar.Add(exampleTitle);
+            //toolbar.Add(nextLayout);
+            //toolbar.Add(exampleTitle);
         }
 
         /// <summary>
@@ -124,8 +125,8 @@ namespace LayoutDemo
             imageView.Image = imageVisual.OutputVisualMap;
 
             imageView.Name = "ImageView";
-            imageView.HeightResizePolicy = ResizePolicyType.Fixed;
-            imageView.WidthResizePolicy = ResizePolicyType.Fixed;
+            imageView.HeightResizePolicy = ResizePolicyType.FillToParent;
+            imageView.WidthResizePolicy = ResizePolicyType.FillToParent;
             return imageView;
         }
 
