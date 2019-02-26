@@ -25,7 +25,6 @@ namespace FoodShopper
         {
             LinearLayout settingsHorizontalLayout = new LinearLayout();
             settingsHorizontalLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            settingsHorizontalLayout.LayoutAnimate = true;
             settingsCluster.Layout = settingsHorizontalLayout;
             settingsCluster.LayoutWidthSpecification = ChildLayoutData.WrapContent;
         }
@@ -54,7 +53,7 @@ namespace FoodShopper
             settingsCluster = new View();
             settingsClusterLayout = new GridLayout();
             settingsClusterLayout.SetColumns( 2 );
-            settingsClusterLayout.LayoutAnimate = true;
+            //settingsClusterLayout.LayoutAnimate = true;
             UnFocused();
             Add(settingsCluster);
         }

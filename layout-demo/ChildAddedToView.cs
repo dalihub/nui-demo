@@ -6,6 +6,9 @@ using Tizen.NUI.UIComponents;
 
 namespace LayoutDemo
 {
+    /// <summary>
+    /// Tests adding a View with a UI control to a Linear Layout
+    /// </summary>
     class ChildAddedToViewExample : Example
     {
         public ChildAddedToViewExample() : base( "Child to View" )
@@ -26,7 +29,7 @@ namespace LayoutDemo
         }
 
         private View linearView;
-        private View view;
+        private View greenView;
         private ImageView helpImageView;
         PushButton helpButton;
         bool helpShowing = false;
@@ -39,7 +42,7 @@ namespace LayoutDemo
             linearView = new View()
             {
                 LayoutWidthSpecificationFixed = 480,
-                LayoutHeightSpecification = ChildLayoutData.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
                 BackgroundColor = Color.Blue,
                 Name = "LinearView",
                 Position2D = new Position2D(0, 250)
@@ -48,14 +51,14 @@ namespace LayoutDemo
             linearView.Layout = layout;
             window.Add(linearView);
 
-            view = new View()
+            greenView = new View()
             {
                 BackgroundColor = Color.Green,
                 Name = "GreenView",
-                LayoutWidthSpecification = ChildLayoutData.WrapContent,
-                LayoutHeightSpecification = ChildLayoutData.WrapContent,
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
             };
-            linearView.Add(view);
+            linearView.Add(greenView);
 
             TextLabel textLabel = new TextLabel()
             {
@@ -63,7 +66,7 @@ namespace LayoutDemo
                 Text = "TextLabel in a View",
                 PointSize = 20.0f
             };
-            view.Add(textLabel);
+            greenView.Add(textLabel);
 
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );
@@ -79,32 +82,32 @@ namespace LayoutDemo
             }
             helpShowing = false;
             LayoutingExample.GetToolbar().Remove(helpButton);
-            linearView.Remove(view);
+            linearView.Remove(greenView);
             window.Remove(linearView);
-            view = null;
+            greenView = null;
             helpButton = null;
             linearView = null;
         }
 
-	// Shows a thumbnail of the expected output
+        // Shows a thumbnail of the expected output
         private void CreateHelpButton()
         {
             helpButton = new PushButton();
             helpButton.LabelText = "Help";
             helpButton.Clicked += (sender, e) =>
             {
-                if ( ! helpShowing )
+                if (! helpShowing)
                 {
                     Window window = Window.Instance;
                     helpImageView = LayoutingExample.CreateChildImageView("./res/images/child-added-to-view-example.png", new Size2D(200, 200));
-                    helpImageView.Position2D = new Position2D( 0, helpButton.Size2D.Height );
+                    helpImageView.Position2D = new Position2D(0, helpButton.Size2D.Height);
                     helpShowing = true;
                     window.Add( helpImageView );
                 }
                 else
                 {
                     Window window = Window.Instance;
-                    window.Remove(  helpImageView );
+                    window.Remove(helpImageView);
                     helpShowing = false;
                 }
                 return true;

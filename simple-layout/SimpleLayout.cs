@@ -32,10 +32,6 @@ namespace SimpleLayout
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
-            //Layer layer = new Layer();
-
-            //window.AddLayer(layer);
-
             // Create a new view
             View customLayoutView = new View();
             customLayoutView.Name = "CustomLayoutView";
@@ -45,8 +41,8 @@ namespace SimpleLayout
             // Set our Custom Layout on the view
             var layout = new CustomLayout();
             customLayoutView.Layout = layout;
-            customLayoutView.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-2) );  // -2 WRAP_CONTENT
-            customLayoutView.SetProperty( LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(350) );
+            customLayoutView.WidthSpecification = LayoutParamPolicies.WrapContent;
+            customLayoutView.HeightSpecification = 350;
             customLayoutView.BackgroundColor = Color.Blue;
             window.Add( customLayoutView );
 
