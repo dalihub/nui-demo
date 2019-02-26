@@ -6,35 +6,34 @@ namespace SimpleLayout
 {
     internal class CustomLayout : LayoutGroup
     {
-        protected override void OnMeasure( LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec )
+        protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
-            var accumulatedWidth = new LayoutLength( 0 );
+            var accumulatedWidth = new LayoutLength(0);
             var maxHeight = 0;
-            var measuredWidth = new LayoutLength( 0 );
-            LayoutLength measuredHeight = new LayoutLength( 0) ;
-            LayoutMeasureSpec.ModeType widthMode = widthMeasureSpec.Mode;
-            LayoutMeasureSpec.ModeType heightMode = heightMeasureSpec.Mode;
+            var measuredWidth = new LayoutLength(0);
+            LayoutLength measuredHeight = new LayoutLength(0) ;
+            MeasureSpecification.ModeType widthMode = widthMeasureSpec.Mode;
+            MeasureSpecification.ModeType heightMode = heightMeasureSpec.Mode;
 
-            bool isWidthExact = (widthMode == LayoutMeasureSpec.ModeType.Exactly);
-            bool isHeightExact = (heightMode == LayoutMeasureSpec.ModeType.Exactly);
+            bool isWidthExact = (widthMode == MeasureSpecification.ModeType.Exactly);
+            bool isHeightExact = (heightMode == MeasureSpecification.ModeType.Exactly);
 
             // In this layout we will:
             //  Measuring the layout with the children in a horizontal configuration, one after another
             //  Set the required width to be the accumulated width of our children
             //  Set the required height to be the maximum height of any of our children
 
-            for( uint i = 0; i < ChildCount; ++i )
+            foreach (LayoutItem childLayout in _children)
             {
-                var childLayout = GetChildAt( i );
-                if( childLayout )
+                if( childLayout != null )
                 {
                     MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
-                    accumulatedWidth += childLayout.MeasuredWidth;
-                    maxHeight = System.Math.Max( childLayout.MeasuredHeight.Value, maxHeight );
+                    accumulatedWidth += childLayout.MeasuredWidth.Size;
+                    maxHeight = (int)System.Math.Ceiling(System.Math.Max( childLayout.MeasuredHeight.Size.AsRoundedValue(), maxHeight ));
                 }
             }
 
-            measuredHeight.Value = maxHeight ;
+            measuredHeight = new LayoutLength(maxHeight);
             measuredWidth = accumulatedWidth;
 
             if( isWidthExact )
@@ -48,57 +47,56 @@ namespace SimpleLayout
             }
 
             // Finally, call this method to set the dimensions we would like
-            SetMeasuredDimensions( new MeasuredSize( measuredWidth ), new MeasuredSize( measuredHeight ) );
+            SetMeasuredDimensions( new MeasuredSize( measuredWidth, MeasuredSize.StateType.MeasuredSizeOK),
+                                   new MeasuredSize( measuredHeight, MeasuredSize.StateType.MeasuredSizeOK) );
         }
 
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
         {
-            LayoutLength childTop = new LayoutLength( 0 );
             LayoutLength childLeft = new LayoutLength( 0 );
 
             // We want to vertically align the children to the middle
-            var height = bottom - top;
-            var middle = height / 2;
+            LayoutLength height = bottom - top;
+            float middle = height.AsDecimal() / 2;
 
             // Horizontally align the children to the middle of the space they are given too
-            var width = right - left;
-            uint count = ChildCount;
-            var childIncrement = 0;
+            LayoutLength width = right - left;
+            int count = _children.Count;
+            int childIncrement = 0;
             if (count > 0)
             {
-                childIncrement = width.Value / System.Convert.ToInt32( count );
+                childIncrement = (int)System.Math.Ceiling(width.AsDecimal() /  count);
             }
-            var center = childIncrement / 2;
+            float center = childIncrement / 2;
 
             // Check layout direction
             var view = GetOwner();
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
-            for ( uint i = 0; i < count; i++ )
+            for ( int i = 0; i < count; i++ )
             {
-                uint itemIndex;
+                int itemIndex = i;
                 // If RTL, then layout the last item first
                 if (layoutDirection == ViewLayoutDirectionType.RTL)
                 {
                     itemIndex = count - 1 - i;
                 }
-                else
+
+                LayoutItem childLayout = _children[itemIndex];
+                if(childLayout != null)
                 {
-                    itemIndex = i;
-                }
+                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                LayoutItem childLayout = GetChildAt( itemIndex );
-                if( childLayout )
-                {
-                    var childWidth = childLayout.MeasuredWidth;
-                    var childHeight = childLayout.MeasuredHeight;
+                    LayoutLength childTop = new LayoutLength(middle - (childHeight.AsDecimal()/2));
 
-                    childTop = middle - (childHeight / 2);
+                    LayoutLength leftPosition = new LayoutLength(childLeft.AsDecimal() + center - childWidth.AsDecimal()/2);
 
-                    var leftPosition = childLeft + center - childWidth / 2;
-
-                    childLayout.Layout( leftPosition, childTop, leftPosition + childWidth, childTop + childHeight );
-                    childLeft += childIncrement;
+                    childLayout.Layout( leftPosition,
+                                        childTop,
+                                        leftPosition + childWidth,
+                                        childTop + childHeight );
+                    childLeft += new LayoutLength(childIncrement);
                 }
             }
         }

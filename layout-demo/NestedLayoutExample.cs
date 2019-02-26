@@ -47,7 +47,7 @@ namespace LayoutDemo
 
         public override void Create()
         {
-            Window window = Window.Instance;
+            Window window = LayoutingExample.GetWindow();
             window.BackgroundColor = Color.Green;
 
             contentBackgroundShadow = new View()
@@ -62,6 +62,7 @@ namespace LayoutDemo
             {
                 Name = "backgroundContainer",
                 PositionUsesPivotPoint = true,
+                Size2D = new Size2D(376,400),
                 PivotPoint = PivotPoint.Center,
                 ParentOrigin = ParentOrigin.Center,
                 BackgroundColor = Color.Red,
@@ -75,8 +76,8 @@ namespace LayoutDemo
                 ParentOrigin = ParentOrigin.Center,
                 BackgroundColor = Color.Yellow,
                 Layout = createVbox(),
-                LayoutWidthSpecification = ChildLayoutData.WrapContent,
-                LayoutHeightSpecification = ChildLayoutData.WrapContent,
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
             };
 
             TextLabel textLabel = new TextLabel()
@@ -89,34 +90,32 @@ namespace LayoutDemo
             };
             contentBackground.Add(textLabel);
 
-
             View contentContainer = new View()
             {
-                 Name = "contentContainer",
-                 Layout = createHbox(),
-                 LayoutWidthSpecification = ChildLayoutData.WrapContent,
-                 LayoutHeightSpecification = ChildLayoutData.WrapContent
+                Name = "contentContainer",
+                Layout = createHbox(),
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent
             };
             contentBackground.Add(contentContainer);
 
             View contentAreaOne = new View()
             {
                 Name = "contentAreaOne",
-                Margin = new Extents(10,10,10,10),
+                //Margin = new Extents(10,10,10,10), Uncomment once Margins fixed
                 Layout = createVbox(),
-                LayoutWidthSpecification = ChildLayoutData.WrapContent,
-                LayoutHeightSpecification = ChildLayoutData.WrapContent,
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
                 BackgroundColor = Color.Red,
             };
-            contentContainer.Add(contentAreaOne);
 
             View contentAreaTwo = new View()
             {
                 Name = "contentAreaTwo",
-                Margin = new Extents(10,10,10,10),
+                //Margin = new Extents(10,10,10,10), Uncomment once Margins fixed
                 Layout = createVbox(),
-                LayoutWidthSpecification = ChildLayoutData.WrapContent,
-                LayoutHeightSpecification = ChildLayoutData.WrapContent,
+                WidthSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
                 BackgroundColor = Color.Cyan,
             };
             contentContainer.Add(contentAreaTwo);
@@ -133,6 +132,10 @@ namespace LayoutDemo
                 contentAreaOne.Add(children[i]);
             };
 
+            // contentAreaOne with ImageViews added to parent after it's child ImageViews are
+            // added to itself.  Demonstrates ordering is not important.
+            contentContainer.Add(contentAreaOne);
+
             ImageView[] children2 = new ImageView[5];
             for( int i = 0; i < 5; i++ )
             {
@@ -145,20 +148,18 @@ namespace LayoutDemo
                 contentAreaTwo.Add(children2[i]);
             };
 
-
             backgroundContainer.Add( contentBackground );
             contentBackgroundShadow.Add( backgroundContainer );
 
-
-            Window.Instance.GetDefaultLayer().Add(contentBackgroundShadow);
+            window.Add(contentBackgroundShadow);
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );
         }
 
         public override void Remove()
         {
-            Window window = Window.Instance;
-            if(helpImageView )
+            Window window = LayoutingExample.GetWindow();
+            if(helpImageView)
             {
                 window.Remove(helpImageView);
                 helpImageView = null;
@@ -166,21 +167,22 @@ namespace LayoutDemo
             helpShowing = false;
             LayoutingExample.GetToolbar().Remove(helpButton);
             window.BackgroundColor = Color.White;
-            window.GetDefaultLayer().Remove(contentBackgroundShadow);
+            window.Remove(contentBackgroundShadow);
             helpButton = null;
             contentBackgroundShadow = null;
         }
 
-	    // Shows a thumbnail of the expected output
+        // Shows a thumbnail of the expected output
         private void CreateHelpButton()
         {
             helpButton = new PushButton();
             helpButton.LabelText = "Help";
+            helpButton.Name = "help-button";
             helpButton.Clicked += (sender, e) =>
             {
+                Window window = LayoutingExample.GetWindow();
                 if ( ! helpShowing )
                 {
-                    Window window = Window.Instance;
                     helpImageView = LayoutingExample.CreateChildImageView("./res/images/nested-layers-help.png", new Size2D(200, 200));
                     helpImageView.Position2D = new Position2D( 0, helpButton.Size2D.Height );
                     helpShowing = true;
@@ -188,7 +190,6 @@ namespace LayoutDemo
                 }
                 else
                 {
-                    Window window = Window.Instance;
                     window.Remove(  helpImageView );
                     helpShowing = false;
                 }
