@@ -6,9 +6,9 @@ using Tizen.NUI.UIComponents;
 
 namespace LayoutDemo
 {
-    class LinearExample : Example
+    class LinearExampleEx : Example
     {
-        public LinearExample() : base( "LinearLayout" )
+        public LinearExampleEx() : base( "LinearLayout" )
         {}
 
         static class TestImages
@@ -30,13 +30,13 @@ namespace LayoutDemo
 
         public override void Create()
         {
-            View view = new View();
+            view = new View();
             view.Name = "LinearExample";
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
-            view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
+            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+            view.HeightSpecification = LayoutParamPolicies.WrapContent;
 
             var layout = new LinearLayout();
             view.Layout = layout;
@@ -49,13 +49,12 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
-            this.view = view;
-            window.Add(view);
+            LayoutingExample.GetWindow().Add(view);
 
             PushButton directionButton = new PushButton();
             LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
             LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
+            directionButton.Name = "directionButton";
             directionButton.ParentOrigin = new Vector3(0.33f, 1.0f, 0.5f);
             directionButton.PivotPoint = PivotPoint.BottomCenter;
             directionButton.PositionUsesPivotPoint = true;
@@ -76,12 +75,13 @@ namespace LayoutDemo
                 }
                 return true;
             };
-            window.Add(directionButton);
+            LayoutingExample.GetWindow().Add(directionButton);
             buttons.Add(directionButton);
 
             PushButton rotateButton = new PushButton();
             LayoutingExample.SetUnselectedIcon(rotateButton, "./res/images/icon-reset.png");
             LayoutingExample.SetSelectedIcon(rotateButton, "./res/images/icon-reset-selected.png");
+            rotateButton.Name = "rotateButton";
             rotateButton.ParentOrigin = new Vector3(0.66f, 1.0f, 0.5f);
             rotateButton.PivotPoint = PivotPoint.BottomCenter;
             rotateButton.PositionUsesPivotPoint = true;
@@ -100,18 +100,18 @@ namespace LayoutDemo
                 return true;
             };
 
-            window.Add(rotateButton);
+            LayoutingExample.GetWindow().Add(rotateButton);
             buttons.Add(rotateButton);
         }
 
         public override void Remove()
         {
-            Window window = Window.Instance;
-            window.Remove(view);
+            LayoutingExample.GetWindow().Remove(view);
+
             view = null;
             foreach (PushButton button in buttons)
             {
-                window.Remove(button);
+                LayoutingExample.GetWindow().Remove(button);
             }
             buttons.Clear();
         }
