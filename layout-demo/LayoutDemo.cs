@@ -12,7 +12,7 @@ namespace LayoutDemo
     /// </summary>
     abstract class Example
     {
-	// Constructor
+	    // Constructor
         protected Example(string name)
         {
             exampleName = name;
@@ -23,12 +23,11 @@ namespace LayoutDemo
         /// Should be overridden by deriving classes to remove their layouting example from stage
         public abstract void Remove();
 
-	// Get the title of the derived example
+        // Get the title of the derived example
         public string GetLabel()
         {
             return exampleName;
         }
-
         protected string exampleName = "Title";
     };
 
@@ -46,47 +45,78 @@ namespace LayoutDemo
             return ref toolbar;
         }
 
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            InitializeToolbar();
-            Initialize();
-        }
-
-	// Create a tool bar for title and buttons
-        private void InitializeToolbar()
-        {
-            Window window = Window.Instance;
-            toolbar = new View();
-            var layout = new LinearLayout();
-            toolbar.Layout = layout;
-            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-1));
-            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(-2));
-            window.Add(toolbar);
-        }
-
-        private void Initialize()
+        public static Window GetWindow()
         {
             // Change the background color of Window to White
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
+            return window;
+        }
 
-            layoutingExamples.Add(new LinearExample());
-            layoutingExamples.Add(new PaddingExample());
-            layoutingExamples.Add(new AbsoluteExample());
-            layoutingExamples.Add(new FlexExample());
-            layoutingExamples.Add(new GridExample());
+        protected override void OnCreate()
+        {
+            base.OnCreate();
+            Initialize();
+        }
+
+        // Create a tool bar for title and buttons
+        private void InitializeToolbar()
+        {
+            toolbar = new View();
+            toolbar.Name = "demo-toolbar";
+            var layout = new LinearLayout();
+            toolbar.Layout = layout;
+            toolbar.WidthSpecification = LayoutParamPolicies.MatchParent;
+            toolbar.HeightSpecification = LayoutParamPolicies.WrapContent;
+        }
+
+        private void InitializeTitle()
+        {
+            exampleTitle = new TextLabel();
+            exampleTitle.WidthSpecification = LayoutParamPolicies.WrapContent;
+            exampleTitle.HeightSpecification = LayoutParamPolicies.WrapContent;
+            exampleTitle.Margin = new Extents(10, 10, 0, 0);
+            toolbar.Add(exampleTitle);
+        }
+
+        private void Initialize()
+        {
+            // Initialize toolbar before any example try to use it.
+            InitializeToolbar();
+
+            // Setup change layout button
+            nextLayout = new PushButton();
+            nextLayout.Name = "next-layout-button";
+            nextLayout.WidthSpecification = LayoutParamPolicies.WrapContent;
+            nextLayout.HeightSpecification = LayoutParamPolicies.WrapContent;
+            nextLayout.LabelText = "change layout";
+            toolbar.Add(nextLayout);
+
+            // Initialize title and add to toolbar.
+            InitializeTitle();
+
+            // Toolbar added to Window but could be added to a new Layer instead.
+            GetWindow().Add(toolbar);
+
             layoutingExamples.Add(new NestedLayoutExample());
-            layoutingExamples.Add(new NoLayoutExample());
+            layoutingExamples.Add(new NestedLayoutTestExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
+            layoutingExamples.Add(new GridExample());
+            layoutingExamples.Add(new LinearExample());
+            layoutingExamples.Add(new NoLayoutExample());
+            layoutingExamples.Add(new ChangingLayoutsExample());
+            layoutingExamples.Add(new AbsoluteExample());
+            layoutingExamples.Add(new MultiRootsExample());
+            layoutingExamples.Add(new NestedLayoutTestExample());
+            layoutingExamples.Add(new DerivedViewExample());
+            layoutingExamples.Add(new PaddingExample());
 
             layoutIndex = 0;
             layoutingExamples[layoutIndex].Create();
 
             string currentExampleLabel = layoutingExamples[layoutIndex].GetLabel();
 
-            nextLayout = new PushButton();
-            nextLayout.LabelText = "change layout";
+            // Set up clicked callback for button to change layout.
             nextLayout.Clicked += (sender, e) =>
             {
                 if (layoutingExamples.Count != 0)
@@ -100,11 +130,8 @@ namespace LayoutDemo
                 return true;
             };
 
-            exampleTitle = new TextLabel();
+            // Set initial title
             exampleTitle.Text = currentExampleLabel;
-            exampleTitle.Margin = new Extents( 10, 10, 0, 0);
-            toolbar.Add(nextLayout);
-            toolbar.Add(exampleTitle);
         }
 
         /// <summary>
@@ -123,9 +150,9 @@ namespace LayoutDemo
             imageVisual.DesiredWidth = size.Width;
             imageView.Image = imageVisual.OutputVisualMap;
 
-            imageView.Name = "ImageView";
-            imageView.HeightResizePolicy = ResizePolicyType.Fixed;
-            imageView.WidthResizePolicy = ResizePolicyType.Fixed;
+            imageView.Name = "ImageView" + url;
+            imageView.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+            imageView.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
             return imageView;
         }
 
