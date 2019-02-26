@@ -33,8 +33,8 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
-            view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
+            view.WidthSpecification = 480;
+            view.HeightSpecification = 800;
 
             var layout = new LinearLayout();
             view.Layout = layout;
@@ -49,14 +49,14 @@ namespace LayoutDemo
                 {
                     if (sender is ImageView && e.Touch.GetState(0) == PointStateType.Down)
                     {
-                        ImageView iv = (ImageView)sender;
-                        if (iv.Padding.EqualTo(new Extents(0, 0, 0, 0)))
+                        ImageView touchedImageView = (ImageView)sender;
+                        if (touchedImageView.Padding.EqualTo(new Extents(0, 0, 0, 0)))
                         {
-                            iv.Padding = new Extents(10, 10, 10, 10);
+                            touchedImageView.Padding = new Extents(10, 10, 10, 10);
                         }
                         else
                         {
-                            iv.Padding = new Extents(0, 0, 0, 0);
+                            touchedImageView.Padding = new Extents(0, 0, 0, 0);
                         }
                     }
                     return true;
@@ -65,14 +65,14 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
+            Window window = LayoutingExample.GetWindow();
             this.view = view;
             window.Add(view);
         }
 
         public override void Remove()
         {
-            Window window = Window.Instance;
+            Window window = LayoutingExample.GetWindow();
             window.Remove(this.view);
             this.view = null;
         }
