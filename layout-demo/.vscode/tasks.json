@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/LayoutDemo.csproj"
+              "${workspaceFolder}/NuiSample.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
