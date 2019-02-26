@@ -39,6 +39,8 @@ namespace LayoutDemo
         private PushButton nextLayout;
         private TextLabel exampleTitle;
 
+        static private View windowLayout;
+
         static private View toolbar;
 
         public static ref View GetToolbar()
@@ -46,23 +48,28 @@ namespace LayoutDemo
             return ref toolbar;
         }
 
+        public static ref View GetWindowView()
+        {
+            return ref windowLayout;
+        }
+
         protected override void OnCreate()
         {
             base.OnCreate();
-            InitializeToolbar();
             Initialize();
         }
 
-	// Create a tool bar for title and buttons
+	      // Create a tool bar for title and buttons
         private void InitializeToolbar()
         {
-            Window window = Window.Instance;
-            toolbar = new View();
-            var layout = new LinearLayout();
-            toolbar.Layout = layout;
-            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-1));
-            toolbar.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(-2));
-            window.Add(toolbar);
+             Window window = Window.Instance;
+             toolbar = new View();
+             toolbar.Name = "demo-toolbar";
+             var layout = new LinearLayoutEx();
+             toolbar.LayoutEx = layout;
+             toolbar.WidthSpecification = LayoutParamPolicies.MatchParent;
+             toolbar.WidthSpecification = LayoutParamPolicies.WrapContent;
+             windowLayout.Add(toolbar);
         }
 
         private void Initialize()
@@ -71,9 +78,18 @@ namespace LayoutDemo
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
+            windowLayout = new View();
+            windowLayout.Name = "demo-windowLayout";
+            AbsoluteLayout windowLayoutAbsolute = new AbsoluteLayout();
+            windowLayout.LayoutEx = windowLayoutAbsolute;
+            windowLayout.WidthSpecification = 480;
+            windowLayout.HeightSpecification =  800;
+            window.Add(windowLayout);
+
+            layoutingExamples.Add(new AbsoluteExample());
+            layoutingExamples.Add(new LinearExampleEx());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new PaddingExample());
-            layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new GridExample());
             layoutingExamples.Add(new NestedLayoutExample());
@@ -86,6 +102,9 @@ namespace LayoutDemo
             string currentExampleLabel = layoutingExamples[layoutIndex].GetLabel();
 
             nextLayout = new PushButton();
+            nextLayout.Name = "next-layout-button";
+            nextLayout.WidthSpecification = LayoutParamPolicies.WrapContent;
+            nextLayout.HeightSpecification = LayoutParamPolicies.WrapContent;
             nextLayout.LabelText = "change layout";
             nextLayout.Clicked += (sender, e) =>
             {
@@ -102,7 +121,12 @@ namespace LayoutDemo
 
             exampleTitle = new TextLabel();
             exampleTitle.Text = currentExampleLabel;
+            exampleTitle.WidthSpecification = LayoutParamPolicies.WrapContent;
+            exampleTitle.HeightSpecification = LayoutParamPolicies.WrapContent;
             exampleTitle.Margin = new Extents( 10, 10, 0, 0);
+
+            InitializeToolbar();
+
             toolbar.Add(nextLayout);
             toolbar.Add(exampleTitle);
         }
@@ -124,8 +148,8 @@ namespace LayoutDemo
             imageView.Image = imageVisual.OutputVisualMap;
 
             imageView.Name = "ImageView";
-            imageView.HeightResizePolicy = ResizePolicyType.Fixed;
-            imageView.WidthResizePolicy = ResizePolicyType.Fixed;
+            imageView.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
+            imageView.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
             return imageView;
         }
 
