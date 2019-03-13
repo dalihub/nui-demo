@@ -32,7 +32,7 @@ namespace FoodShopper
 
         public void UnFocused()
         {
-            settingsCluster.Layout = settingsClusterLayout;
+            settingsCluster.LayoutEx = settingsClusterLayout;
             // Not possible to Match to parents height to make cluster square hence use fixed value;
             settingsCluster.LayoutWidthSpecificationFixed = BAR_HEIGHT;
             settingsCluster.LayoutHeightSpecification = ChildLayoutData.MatchParent;
@@ -54,7 +54,7 @@ namespace FoodShopper
             settingsCluster = new View();
             settingsClusterLayout = new GridLayout();
             settingsClusterLayout.SetColumns( 2 );
-            settingsClusterLayout.LayoutAnimate = true;
+            //settingsClusterLayout.LayoutAnimate = true;
             UnFocused();
             Add(settingsCluster);
         }
