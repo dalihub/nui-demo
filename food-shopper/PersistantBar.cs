@@ -54,7 +54,7 @@ namespace FoodShopper
             settingsCluster = new View();
             settingsClusterLayout = new GridLayout();
             settingsClusterLayout.SetColumns( 2 );
-            settingsClusterLayout.LayoutAnimate = true;
+            //settingsClusterLayout.LayoutAnimate = true;
             UnFocused();
             Add(settingsCluster);
         }

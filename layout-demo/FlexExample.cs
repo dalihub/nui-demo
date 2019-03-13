@@ -37,14 +37,14 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
-            view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
+            view.WidthSpecification = 480;
+            view.HeightSpecification = 800;
 
-            var layout = new FlexLayout();
-            layout.WrapType = FlexLayout.FlexWrapType.NoWrap;
-            layout.ItemsAlignment = FlexLayout.AlignmentType.Center;
-            view.Layout = layout;
-            view.LayoutDirection = ViewLayoutDirectionType.LTR;
+            //var layout = new FlexLayout();
+            //layout.WrapType = FlexLayout.FlexWrapType.NoWrap;
+            //layout.ItemsAlignment = FlexLayout.AlignmentType.Center;
+            //view.Layout = layout;
+            //view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
@@ -53,7 +53,7 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
+            Window window = LayoutingExample.GetWindow();
             this.view = view;
             window.Add(view);
 
@@ -92,21 +92,21 @@ namespace LayoutDemo
             wrapButton.MinimumSize = new Vector2(75, 75);
             wrapButton.Clicked += (sender, e) =>
             {
-                FlexLayout flexLayout = (FlexLayout)this.view.Layout;
-                if (flexLayout.WrapType == FlexLayout.FlexWrapType.Wrap)
-                {
-                    view.Padding = new Extents(0, 0, 0, 0);
-                    flexLayout.WrapType = FlexLayout.FlexWrapType.NoWrap;
-                    flexLayout.Alignment = FlexLayout.AlignmentType.Center;
-                    flexLayout.ItemsAlignment = FlexLayout.AlignmentType.Center;
-                }
-                else
-                {
-                    view.Padding = new Extents(25, 25, 75, 75);
-                    flexLayout.WrapType = FlexLayout.FlexWrapType.Wrap;
-                    flexLayout.Alignment = FlexLayout.AlignmentType.FlexStart;
-                    flexLayout.ItemsAlignment = FlexLayout.AlignmentType.FlexStart;
-                }
+                //FlexLayout flexLayout = (FlexLayout)this.view.Layout;
+                //if (flexLayout.WrapType == FlexLayout.FlexWrapType.Wrap)
+                //{
+                //    view.Padding = new Extents(0, 0, 0, 0);
+                    //flexLayout.WrapType = FlexLayout.FlexWrapType.NoWrap;
+                    //flexLayout.Alignment = FlexLayout.AlignmentType.Center;
+                    //flexLayout.ItemsAlignment = FlexLayout.AlignmentType.Center;
+               // }
+                //else
+                //{
+               //     view.Padding = new Extents(25, 25, 75, 75);
+                    //flexLayout.WrapType = FlexLayout.FlexWrapType.Wrap;
+                    //flexLayout.Alignment = FlexLayout.AlignmentType.FlexStart;
+                    //flexLayout.ItemsAlignment = FlexLayout.AlignmentType.FlexStart;
+                //}
                 return true;
             };
             window.Add(wrapButton);
@@ -121,15 +121,15 @@ namespace LayoutDemo
             justifyButton.MinimumSize = new Vector2(75, 75);
             justifyButton.Clicked += (sender, e) =>
             {
-                FlexLayout flexLayout = (FlexLayout)this.view.Layout;
-                if (flexLayout.Justification == FlexLayout.FlexJustification.FlexStart)
-                {
-                    flexLayout.Justification = FlexLayout.FlexJustification.SpaceBetween;
-                }
-                else
-                {
-                    flexLayout.Justification = FlexLayout.FlexJustification.FlexStart;
-                }
+                //FlexLayout flexLayout = (FlexLayout)this.view.Layout;
+                //if (flexLayout.Justification == FlexLayout.FlexJustification.FlexStart)
+                //{
+                //    flexLayout.Justification = FlexLayout.FlexJustification.SpaceBetween;
+                //}
+                //else
+                //{
+                //    flexLayout.Justification = FlexLayout.FlexJustification.FlexStart;
+                //}
                 return true;
             };
             window.Add(justifyButton);
@@ -144,15 +144,15 @@ namespace LayoutDemo
             rotateButton.MinimumSize = new Vector2(75, 75);
             rotateButton.Clicked += (sender, e) =>
             {
-                FlexLayout flexLayout = (FlexLayout)this.view.Layout;
-                if (flexLayout.Direction == FlexLayout.FlexDirection.Row)
-                {
-                    flexLayout.Direction = FlexLayout.FlexDirection.Column;
-                }
-                else
-                {
-                    flexLayout.Direction = FlexLayout.FlexDirection.Row;
-                }
+                //FlexLayout flexLayout = (FlexLayout)this.view.Layout;
+                //if (flexLayout.Direction == FlexLayout.FlexDirection.Row)
+                //{
+                //    flexLayout.Direction = FlexLayout.FlexDirection.Column;
+                //}
+                //else
+                //{
+                //    flexLayout.Direction = FlexLayout.FlexDirection.Row;
+                //}
                 return true;
             };
             window.Add(rotateButton);
@@ -161,7 +161,7 @@ namespace LayoutDemo
 
         public override void Remove()
         {
-            Window window = Window.Instance;
+            Window window = LayoutingExample.GetWindow();
             window.Remove(view);
             view = null;
             foreach (PushButton button in buttons)
