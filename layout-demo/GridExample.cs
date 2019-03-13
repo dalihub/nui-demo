@@ -54,17 +54,17 @@ namespace LayoutDemo
             view.PositionUsesPivotPoint = true;
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
-            view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(-2));
-            view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(-2));
+            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+            view.HeightSpecification = LayoutParamPolicies.WrapContent;
             view.BackgroundColor = Color.Blue;
 
             var layout = new GridLayout();
             layout.Columns = INITAL_NUMBER_OF_COLUMNS;
-            layout.LayoutAnimate = true;
-            view.Layout = layout;
+            //layout.LayoutAnimate = true;
+            view.LayoutEx = layout;
 
             // Add child image-views to the created view
-	        childItems = new List<ImageView>();
+	          childItems = new List<ImageView>();
             for( int i=0; i < INITIAL_NUMBER_OF_ITEMS; i++ )
             {
                 ImageView imageView = LayoutingExample.CreateChildImageView(TestImages.sample_images[0], new Size2D(100, 100) );
@@ -72,7 +72,7 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
 
             nextFeatureButton = new PushButton();
             nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
@@ -142,7 +142,7 @@ namespace LayoutDemo
                 {
                     ChangeTo3Columns();
                     featureIndex = ExampleFeature.GRID_EXACT_WIDTH;
-                    Window window = Window.Instance;
+                    View window = LayoutingExample.GetWindowView();
                     window.Remove(nextFeatureButton);
                     nextFeatureButton = null;
                     break;
@@ -158,7 +158,7 @@ namespace LayoutDemo
         //Clean up after examples ends
         public override void Remove()
         {
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
             window.Remove(view);
             view = null;
             if(nextFeatureButton)
@@ -168,14 +168,13 @@ namespace LayoutDemo
             }
         }
 
-
         // Features of Grid Layout that are demonstrated
 
         void ChangeTo3Columns()
         {
-            GridLayout gridLayout = view.Layout as GridLayout;
+            GridLayout gridLayout = view.LayoutEx as GridLayout;
 
-            if ( gridLayout )
+            if ( gridLayout != null )
             {
                 gridLayout.Columns = 3;
             }
@@ -217,17 +216,17 @@ namespace LayoutDemo
 
         void MatchParentOnWidth()
         {
-            view.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue( -1 ) );
+            view.WidthSpecification = LayoutParamPolicies.MatchParent;
         }
 
         void WrapContentOnWidth()
         {
-            view.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue( -2 ) );
+            view.WidthSpecification = LayoutParamPolicies.WrapContent;
         }
 
         void SetExactWidth()
         {
-            view.SetProperty( LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION,  new PropertyValue( 300 ) );
+            view.WidthSpecification = 300;
         }
     };
 }

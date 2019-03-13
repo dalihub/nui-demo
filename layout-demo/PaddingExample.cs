@@ -33,11 +33,11 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
-            view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
+            view.WidthSpecification = 480;
+            view.WidthSpecification = 800;
 
-            var layout = new LinearLayout();
-            view.Layout = layout;
+            var layout = new LinearLayoutEx();
+            view.LayoutEx = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
             // Add child image-views to the created view
@@ -65,14 +65,14 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
             this.view = view;
             window.Add(view);
         }
 
         public override void Remove()
         {
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
             window.Remove(this.view);
             this.view = null;
         }

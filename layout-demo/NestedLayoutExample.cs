@@ -31,23 +31,23 @@ namespace LayoutDemo
         bool helpShowing = false;
         private List<PushButton> buttons = new List<PushButton>();
 
-        public LinearLayout createVbox()
+        public LinearLayoutEx createVbox()
         {
-            LinearLayout vbox = new LinearLayout();
-            vbox.LinearOrientation = LinearLayout.Orientation.Vertical;
+            LinearLayoutEx vbox = new LinearLayoutEx();
+            vbox.LinearOrientation = LinearLayoutEx.Orientation.Vertical;
             return vbox;
         }
 
-        public LinearLayout createHbox()
+        public LinearLayoutEx createHbox()
         {
-            LinearLayout hbox = new LinearLayout();
-            hbox.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            LinearLayoutEx hbox = new LinearLayoutEx();
+            hbox.LinearOrientation = LinearLayoutEx.Orientation.Horizontal;
             return hbox;
         }
 
         public override void Create()
         {
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
             window.BackgroundColor = Color.Green;
 
             contentBackgroundShadow = new View()
@@ -74,7 +74,7 @@ namespace LayoutDemo
                 PivotPoint = PivotPoint.Center,
                 ParentOrigin = ParentOrigin.Center,
                 BackgroundColor = Color.Yellow,
-                Layout = createVbox(),
+                LayoutEx = createVbox(),
                 LayoutWidthSpecification = ChildLayoutData.WrapContent,
                 LayoutHeightSpecification = ChildLayoutData.WrapContent,
             };
@@ -93,7 +93,7 @@ namespace LayoutDemo
             View contentContainer = new View()
             {
                  Name = "contentContainer",
-                 Layout = createHbox(),
+                 LayoutEx = createHbox(),
                  LayoutWidthSpecification = ChildLayoutData.WrapContent,
                  LayoutHeightSpecification = ChildLayoutData.WrapContent
             };
@@ -103,7 +103,7 @@ namespace LayoutDemo
             {
                 Name = "contentAreaOne",
                 Margin = new Extents(10,10,10,10),
-                Layout = createVbox(),
+                LayoutEx = createVbox(),
                 LayoutWidthSpecification = ChildLayoutData.WrapContent,
                 LayoutHeightSpecification = ChildLayoutData.WrapContent,
                 BackgroundColor = Color.Red,
@@ -114,7 +114,7 @@ namespace LayoutDemo
             {
                 Name = "contentAreaTwo",
                 Margin = new Extents(10,10,10,10),
-                Layout = createVbox(),
+                LayoutEx = createVbox(),
                 LayoutWidthSpecification = ChildLayoutData.WrapContent,
                 LayoutHeightSpecification = ChildLayoutData.WrapContent,
                 BackgroundColor = Color.Cyan,
@@ -150,15 +150,15 @@ namespace LayoutDemo
             contentBackgroundShadow.Add( backgroundContainer );
 
 
-            Window.Instance.GetDefaultLayer().Add(contentBackgroundShadow);
+            window.Add(contentBackgroundShadow);  // Window.Instance.GetDefaultLayer()
             CreateHelpButton();
             LayoutingExample.GetToolbar().Add( helpButton );
         }
 
         public override void Remove()
         {
-            Window window = Window.Instance;
-            if(helpImageView )
+            View window = LayoutingExample.GetWindowView();
+            if(helpImageView)
             {
                 window.Remove(helpImageView);
                 helpImageView = null;
@@ -166,7 +166,7 @@ namespace LayoutDemo
             helpShowing = false;
             LayoutingExample.GetToolbar().Remove(helpButton);
             window.BackgroundColor = Color.White;
-            window.GetDefaultLayer().Remove(contentBackgroundShadow);
+            window.Remove(contentBackgroundShadow);  // Window.Instance.GetDefaultLayer()
             helpButton = null;
             contentBackgroundShadow = null;
         }
@@ -176,11 +176,12 @@ namespace LayoutDemo
         {
             helpButton = new PushButton();
             helpButton.LabelText = "Help";
+            helpButton.Name = "help-button";
             helpButton.Clicked += (sender, e) =>
             {
+                View window = LayoutingExample.GetWindowView();
                 if ( ! helpShowing )
                 {
-                    Window window = Window.Instance;
                     helpImageView = LayoutingExample.CreateChildImageView("./res/images/nested-layers-help.png", new Size2D(200, 200));
                     helpImageView.Position2D = new Position2D( 0, helpButton.Size2D.Height );
                     helpShowing = true;
@@ -188,7 +189,6 @@ namespace LayoutDemo
                 }
                 else
                 {
-                    Window window = Window.Instance;
                     window.Remove(  helpImageView );
                     helpShowing = false;
                 }
