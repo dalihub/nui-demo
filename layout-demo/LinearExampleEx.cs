@@ -8,7 +8,7 @@ namespace LayoutDemo
 {
     class LinearExampleEx : Example
     {
-        public LinearExampleEx() : base( "LinearLayoutEx" )
+        public LinearExampleEx() : base( "LinearLayout" )
         {}
 
         static class TestImages
@@ -35,11 +35,11 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.WidthSpecification = 480;
-            view.HeightSpecification = 800;
+            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+            view.HeightSpecification = LayoutParamPolicies.WrapContent;
 
-            var layout = new LinearLayoutEx();
-            view.LayoutEx = layout;
+            var layout = new LinearLayout();
+            view.Layout = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
             // Add child image-views to the created view
@@ -49,11 +49,12 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            LayoutingExample.GetWindowView().Add(view);
+            LayoutingExample.GetWindow().Add(view);
 
             PushButton directionButton = new PushButton();
             LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
             LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
+            directionButton.Name = "directionButton";
             directionButton.ParentOrigin = new Vector3(0.33f, 1.0f, 0.5f);
             directionButton.PivotPoint = PivotPoint.BottomCenter;
             directionButton.PositionUsesPivotPoint = true;
@@ -74,42 +75,43 @@ namespace LayoutDemo
                 }
                 return true;
             };
-            LayoutingExample.GetWindowView().Add(directionButton);
+            LayoutingExample.GetWindow().Add(directionButton);
             buttons.Add(directionButton);
 
             PushButton rotateButton = new PushButton();
             LayoutingExample.SetUnselectedIcon(rotateButton, "./res/images/icon-reset.png");
             LayoutingExample.SetSelectedIcon(rotateButton, "./res/images/icon-reset-selected.png");
+            rotateButton.Name = "rotateButton";
             rotateButton.ParentOrigin = new Vector3(0.66f, 1.0f, 0.5f);
             rotateButton.PivotPoint = PivotPoint.BottomCenter;
             rotateButton.PositionUsesPivotPoint = true;
             rotateButton.MinimumSize = new Vector2(75, 75);
             rotateButton.Clicked += (sender, e) =>
             {
-                LinearLayoutEx linearLayout = (LinearLayoutEx)this.view.LayoutEx;
-                if (linearLayout.LinearOrientation == LinearLayoutEx.Orientation.Horizontal)
+                LinearLayout linearLayout = (LinearLayout)this.view.Layout;
+                if (linearLayout.LinearOrientation == LinearLayout.Orientation.Horizontal)
                 {
-                    linearLayout.LinearOrientation = LinearLayoutEx.Orientation.Vertical;
+                    linearLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
                 }
                 else
                 {
-                    linearLayout.LinearOrientation = LinearLayoutEx.Orientation.Horizontal;
+                    linearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
                 }
                 return true;
             };
 
-            LayoutingExample.GetWindowView().Add(rotateButton);
+            LayoutingExample.GetWindow().Add(rotateButton);
             buttons.Add(rotateButton);
         }
 
         public override void Remove()
         {
-            LayoutingExample.GetWindowView().Remove(view);
+            LayoutingExample.GetWindow().Remove(view);
 
             view = null;
             foreach (PushButton button in buttons)
             {
-                LayoutingExample.GetWindowView().Remove(button);
+                LayoutingExample.GetWindow().Remove(button);
             }
             buttons.Clear();
         }

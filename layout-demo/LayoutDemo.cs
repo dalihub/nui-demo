@@ -23,7 +23,7 @@ namespace LayoutDemo
         /// Should be overridden by deriving classes to remove their layouting example from stage
         public abstract void Remove();
 
-	// Get the title of the derived example
+	      // Get the title of the derived example
         public string GetLabel()
         {
             return exampleName;
@@ -39,8 +39,6 @@ namespace LayoutDemo
         private PushButton nextLayout;
         private TextLabel exampleTitle;
 
-        static private View windowLayout;
-
         static private View toolbar;
 
         public static ref View GetToolbar()
@@ -48,9 +46,13 @@ namespace LayoutDemo
             return ref toolbar;
         }
 
-        public static ref View GetWindowView()
+        public static Window GetWindow()
         {
-            return ref windowLayout;
+            // Change the background color of Window to White
+            Window window = Window.Instance;
+            window.BackgroundColor = Color.White;
+
+            return window;
         }
 
         protected override void OnCreate()
@@ -62,39 +64,30 @@ namespace LayoutDemo
 	      // Create a tool bar for title and buttons
         private void InitializeToolbar()
         {
-             Window window = Window.Instance;
-             toolbar = new View();
-             toolbar.Name = "demo-toolbar";
-             var layout = new LinearLayoutEx();
-             toolbar.LayoutEx = layout;
-             toolbar.WidthSpecification = LayoutParamPolicies.MatchParent;
-             toolbar.WidthSpecification = LayoutParamPolicies.WrapContent;
-             windowLayout.Add(toolbar);
+            toolbar = new View();
+            toolbar.Name = "demo-toolbar";
+            var layout = new LinearLayout();
+            toolbar.Layout = layout;
+            toolbar.WidthSpecification = LayoutParamPolicies.MatchParent;
+            toolbar.HeightSpecification = LayoutParamPolicies.WrapContent;
         }
 
         private void Initialize()
         {
-            // Change the background color of Window to White
-            Window window = Window.Instance;
-            window.BackgroundColor = Color.White;
+            // Initialize toolbar before any example try to use it.
+            InitializeToolbar();
+            LayoutingExample.GetWindow().Add(toolbar);
 
-            windowLayout = new View();
-            windowLayout.Name = "demo-windowLayout";
-            AbsoluteLayout windowLayoutAbsolute = new AbsoluteLayout();
-            windowLayout.LayoutEx = windowLayoutAbsolute;
-            windowLayout.WidthSpecification = 480;
-            windowLayout.HeightSpecification =  800;
-            window.Add(windowLayout);
-
-            layoutingExamples.Add(new AbsoluteExample());
-            layoutingExamples.Add(new LinearExampleEx());
-            layoutingExamples.Add(new LinearExample());
-            layoutingExamples.Add(new PaddingExample());
-            layoutingExamples.Add(new FlexExample());
-            layoutingExamples.Add(new GridExample());
             layoutingExamples.Add(new NestedLayoutExample());
-            layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
+            layoutingExamples.Add(new GridExample());
+            layoutingExamples.Add(new LinearExampleEx());
+            layoutingExamples.Add(new NoLayoutExample());
+            layoutingExamples.Add(new ChangingLayoutsExample());
+            //layoutingExamples.Add(new FlexExample());
+            layoutingExamples.Add(new AbsoluteExample());
+	    layoutingExamples.Add(new MultiRootsExample());
+            layoutingExamples.Add(new PaddingExample());
 
             layoutIndex = 0;
             layoutingExamples[layoutIndex].Create();
@@ -123,9 +116,7 @@ namespace LayoutDemo
             exampleTitle.Text = currentExampleLabel;
             exampleTitle.WidthSpecification = LayoutParamPolicies.WrapContent;
             exampleTitle.HeightSpecification = LayoutParamPolicies.WrapContent;
-            exampleTitle.Margin = new Extents( 10, 10, 0, 0);
-
-            InitializeToolbar();
+            exampleTitle.Margin = new Extents(10, 10, 0, 0);
 
             toolbar.Add(nextLayout);
             toolbar.Add(exampleTitle);
@@ -147,7 +138,7 @@ namespace LayoutDemo
             imageVisual.DesiredWidth = size.Width;
             imageView.Image = imageVisual.OutputVisualMap;
 
-            imageView.Name = "ImageView";
+            imageView.Name = "ImageView" + url;
             imageView.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
             imageView.WidthResizePolicy = ResizePolicyType.UseNaturalSize;
             return imageView;
