@@ -86,12 +86,13 @@ namespace LayoutDemo
             windowLayout.HeightSpecification =  800;
             window.Add(windowLayout);
 
-            layoutingExamples.Add(new AbsoluteExample());
+            layoutingExamples.Add(new ChangingLayoutsExample());
             layoutingExamples.Add(new LinearExampleEx());
-            layoutingExamples.Add(new LinearExample());
-            layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new GridExample());
+            layoutingExamples.Add(new AbsoluteExample());
+            //layoutingExamples.Add(new LinearExample());
+            layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
@@ -125,10 +126,10 @@ namespace LayoutDemo
             exampleTitle.HeightSpecification = LayoutParamPolicies.WrapContent;
             exampleTitle.Margin = new Extents( 10, 10, 0, 0);
 
-            InitializeToolbar();
+            //InitializeToolbar();
 
-            toolbar.Add(nextLayout);
-            toolbar.Add(exampleTitle);
+            //toolbar.Add(nextLayout);
+            //toolbar.Add(exampleTitle);
         }
 
         /// <summary>
