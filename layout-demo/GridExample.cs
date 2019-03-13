@@ -60,8 +60,8 @@ namespace LayoutDemo
 
             var layout = new GridLayout();
             layout.Columns = INITAL_NUMBER_OF_COLUMNS;
-            layout.LayoutAnimate = true;
-            view.Layout = layout;
+            //layout.LayoutAnimate = true;
+            view.LayoutEx = layout;
 
             // Add child image-views to the created view
 	        childItems = new List<ImageView>();
@@ -72,7 +72,7 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
 
             nextFeatureButton = new PushButton();
             nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
@@ -158,7 +158,7 @@ namespace LayoutDemo
         //Clean up after examples ends
         public override void Remove()
         {
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
             window.Remove(view);
             view = null;
             if(nextFeatureButton)
@@ -173,9 +173,9 @@ namespace LayoutDemo
 
         void ChangeTo3Columns()
         {
-            GridLayout gridLayout = view.Layout as GridLayout;
+            GridLayout gridLayout = view.LayoutEx as GridLayout;
 
-            if ( gridLayout )
+            if ( gridLayout != null )
             {
                 gridLayout.Columns = 3;
             }
