@@ -37,13 +37,13 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
-            view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
+            view.WidthSpecification = 480;
+            view.HeightSpecification = 800;
 
             var layout = new FlexLayout();
             layout.WrapType = FlexLayout.FlexWrapType.NoWrap;
             layout.ItemsAlignment = FlexLayout.AlignmentType.Center;
-            view.Layout = layout;
+            view.LayoutEx = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
             // Add child image-views to the created view
@@ -53,7 +53,7 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
             this.view = view;
             window.Add(view);
 
@@ -92,7 +92,7 @@ namespace LayoutDemo
             wrapButton.MinimumSize = new Vector2(75, 75);
             wrapButton.Clicked += (sender, e) =>
             {
-                FlexLayout flexLayout = (FlexLayout)this.view.Layout;
+                FlexLayout flexLayout = (FlexLayout)this.view.LayoutEx;
                 if (flexLayout.WrapType == FlexLayout.FlexWrapType.Wrap)
                 {
                     view.Padding = new Extents(0, 0, 0, 0);
@@ -121,7 +121,7 @@ namespace LayoutDemo
             justifyButton.MinimumSize = new Vector2(75, 75);
             justifyButton.Clicked += (sender, e) =>
             {
-                FlexLayout flexLayout = (FlexLayout)this.view.Layout;
+                FlexLayout flexLayout = (FlexLayout)this.view.LayoutEx;
                 if (flexLayout.Justification == FlexLayout.FlexJustification.FlexStart)
                 {
                     flexLayout.Justification = FlexLayout.FlexJustification.SpaceBetween;
@@ -144,7 +144,7 @@ namespace LayoutDemo
             rotateButton.MinimumSize = new Vector2(75, 75);
             rotateButton.Clicked += (sender, e) =>
             {
-                FlexLayout flexLayout = (FlexLayout)this.view.Layout;
+                FlexLayout flexLayout = (FlexLayout)this.view.LayoutEx;
                 if (flexLayout.Direction == FlexLayout.FlexDirection.Row)
                 {
                     flexLayout.Direction = FlexLayout.FlexDirection.Column;
@@ -161,7 +161,7 @@ namespace LayoutDemo
 
         public override void Remove()
         {
-            Window window = Window.Instance;
+            View window = LayoutingExample.GetWindowView();
             window.Remove(view);
             view = null;
             foreach (PushButton button in buttons)

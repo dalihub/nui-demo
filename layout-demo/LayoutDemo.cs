@@ -86,12 +86,12 @@ namespace LayoutDemo
             windowLayout.HeightSpecification =  800;
             window.Add(windowLayout);
 
-            layoutingExamples.Add(new AbsoluteExample());
-            layoutingExamples.Add(new LinearExampleEx());
-            layoutingExamples.Add(new LinearExample());
-            layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new GridExample());
+            layoutingExamples.Add(new AbsoluteExample());
+            layoutingExamples.Add(new LinearExampleEx());
+            //layoutingExamples.Add(new LinearExample());
+            layoutingExamples.Add(new PaddingExample());
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
