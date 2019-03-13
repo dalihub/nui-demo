@@ -35,8 +35,8 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.WidthSpecification = 480;
-            view.HeightSpecification = 800;
+            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+            view.HeightSpecification = LayoutParamPolicies.WrapContent;
 
             var layout = new LinearLayoutEx();
             view.LayoutEx = layout;
@@ -49,11 +49,12 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            LayoutingExample.GetWindowView().Add(view);
+            LayoutingExample.GetWindow().Add(view);
 
             PushButton directionButton = new PushButton();
             LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
             LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
+            directionButton.Name = "directionButton";
             directionButton.ParentOrigin = new Vector3(0.33f, 1.0f, 0.5f);
             directionButton.PivotPoint = PivotPoint.BottomCenter;
             directionButton.PositionUsesPivotPoint = true;
@@ -74,12 +75,13 @@ namespace LayoutDemo
                 }
                 return true;
             };
-            LayoutingExample.GetWindowView().Add(directionButton);
+            LayoutingExample.GetWindow().Add(directionButton);
             buttons.Add(directionButton);
 
             PushButton rotateButton = new PushButton();
             LayoutingExample.SetUnselectedIcon(rotateButton, "./res/images/icon-reset.png");
             LayoutingExample.SetSelectedIcon(rotateButton, "./res/images/icon-reset-selected.png");
+            rotateButton.Name = "rotateButton";
             rotateButton.ParentOrigin = new Vector3(0.66f, 1.0f, 0.5f);
             rotateButton.PivotPoint = PivotPoint.BottomCenter;
             rotateButton.PositionUsesPivotPoint = true;
@@ -98,18 +100,18 @@ namespace LayoutDemo
                 return true;
             };
 
-            LayoutingExample.GetWindowView().Add(rotateButton);
+            LayoutingExample.GetWindow().Add(rotateButton);
             buttons.Add(rotateButton);
         }
 
         public override void Remove()
         {
-            LayoutingExample.GetWindowView().Remove(view);
+            LayoutingExample.GetWindow().Remove(view);
 
             view = null;
             foreach (PushButton button in buttons)
             {
-                LayoutingExample.GetWindowView().Remove(button);
+                LayoutingExample.GetWindow().Remove(button);
             }
             buttons.Clear();
         }

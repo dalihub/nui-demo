@@ -37,8 +37,8 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new PropertyValue(480));
-            view.SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new PropertyValue(800));
+            view.WidthSpecification = 480;
+            view.HeightSpecification = 800;
 
             var layout = new FlexLayout();
             layout.WrapType = FlexLayout.FlexWrapType.NoWrap;
@@ -53,7 +53,7 @@ namespace LayoutDemo
                 view.Add(imageView);
             }
 
-            Window window = Window.Instance;
+            Window window = LayoutingExample.GetWindow();
             this.view = view;
             window.Add(view);
 
@@ -161,7 +161,7 @@ namespace LayoutDemo
 
         public override void Remove()
         {
-            Window window = Window.Instance;
+            Window window = LayoutingExample.GetWindow();
             window.Remove(view);
             view = null;
             foreach (PushButton button in buttons)

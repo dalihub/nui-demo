@@ -71,7 +71,7 @@ namespace LayoutDemo
             view.Add(field);
 
             CreateHelpButton();
-            LayoutingExample.GetToolbar().Add( helpButton );
+            LayoutingExample.GetToolbar().Add(helpButton);
         }
 
         public override void Remove()
@@ -89,7 +89,7 @@ namespace LayoutDemo
             view = null;
         }
 
-	// Shows a thumbnail of the expected output
+	      // Shows a thumbnail of the expected output
         private void CreateHelpButton()
         {
             helpButton = new PushButton();
