@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,8 @@ class HelloWorldExample : NUIApplication
     [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
+        // Do not remove this print out - helps with the TizenFX stub sync issue
+        Console.WriteLine("Running Example...");
         HelloWorldExample example = new HelloWorldExample();
         example.Run(args);
     }

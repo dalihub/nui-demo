@@ -395,6 +395,8 @@ namespace FoodShopper
 
         static void Main(string[] args)
         {
+            // Do not remove this print out - helps with the TizenFX stub sync issue
+            Console.WriteLine("Running Example...");
             FoodShopperDemo foodShopperDemo = new FoodShopperDemo();
             foodShopperDemo.Run(args);
         }
