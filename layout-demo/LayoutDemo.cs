@@ -79,7 +79,6 @@ namespace LayoutDemo
             GetWindow().Add(toolbar);
 
             layoutingExamples.Add(new NestedLayoutExample());
-            layoutingExamples.Add(new NestedLayoutTestExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
             layoutingExamples.Add(new GridExample());
             layoutingExamples.Add(new LinearExample());
@@ -87,6 +86,8 @@ namespace LayoutDemo
             layoutingExamples.Add(new ChangingLayoutsExample());
             layoutingExamples.Add(new AbsoluteExample());
 	        layoutingExamples.Add(new MultiRootsExample());
+            layoutingExamples.Add(new NestedLayoutTestExample());
+            layoutingExamples.Add(new DerivedViewExample());
             layoutingExamples.Add(new PaddingExample());
 
             layoutIndex = 0;
