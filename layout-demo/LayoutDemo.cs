@@ -79,7 +79,6 @@ namespace LayoutDemo
             GetWindow().Add(toolbar);
 
             layoutingExamples.Add(new NestedLayoutExample());
-            layoutingExamples.Add(new NestedLayoutTestExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
             layoutingExamples.Add(new GridExample());
             layoutingExamples.Add(new LinearExample());

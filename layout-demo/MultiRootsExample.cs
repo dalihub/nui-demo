@@ -193,7 +193,7 @@ namespace LayoutDemo
                 if (! helpShowing)
                 {
                     Window window = Window.Instance;
-                    helpImageView = LayoutingExample.CreateChildImageView("./res/images/child-added-to-view-example.png", new Size2D(200, 200));
+                    helpImageView = LayoutingExample.CreateChildImageView("./res/images/multirootsExampleHelp.png", new Size2D(200, 200));
                     helpImageView.Position2D = new Position2D(0, helpButton.Size2D.Height);
                     helpShowing = true;
                     window.Add( helpImageView );
