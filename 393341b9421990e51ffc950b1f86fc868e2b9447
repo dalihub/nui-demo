@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "523a2d62_1b1422a7",
+        "filename": "layout-demo/FlexExample.cs",
+        "patchSetId": 13
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1007394
+      },
+      "writtenOn": "2019-04-25T12:50:15Z",
+      "side": 1,
+      "message": "could remove the demo until you\u0027ve implemented FlexLayout, rather than commenting out the code like this.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 19
+      },
+      "revId": "393341b9421990e51ffc950b1f86fc868e2b9447",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27637ea6_2b46c626",
+        "filename": "layout-demo/LayoutDemo.cs",
+        "patchSetId": 13
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1007394
+      },
+      "writtenOn": "2019-04-25T12:50:15Z",
+      "side": 1,
+      "message": "whitespace(tab)",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 26
+      },
+      "revId": "393341b9421990e51ffc950b1f86fc868e2b9447",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aeee41a_8c4fd281",
+        "filename": "layout-demo/MultiRootsExample.cs",
+        "patchSetId": 13
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1007394
+      },
+      "writtenOn": "2019-04-25T12:50:15Z",
+      "side": 1,
+      "message": "tab",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 1
+      },
+      "revId": "393341b9421990e51ffc950b1f86fc868e2b9447",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f11c8ddf_c3b2ffea",
+        "filename": "layout-demo/NestedLayoutExample.cs",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1007394
+      },
+      "writtenOn": "2019-04-25T12:50:15Z",
+      "side": 1,
+      "message": "Got a jira ticket for this? (Add this file/line to it)",
+      "range": {
+        "startLine": 115,
+        "startChar": 53,
+        "endLine": 115,
+        "endChar": 81
+      },
+      "revId": "393341b9421990e51ffc950b1f86fc868e2b9447",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
