@@ -35,10 +35,11 @@ namespace LayoutDemo
 
         public override void Create()
         {
+            Window window = LayoutingExample.GetWindow();
             view = new View();
             view.Name = "ChangingLayout";
-            view.WidthSpecification = 480;
-            view.HeightSpecification = LayoutParamPolicies.MatchParent;
+            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+            view.HeightSpecification = LayoutParamPolicies.WrapContent;
 
             // Position layout within Window.
             view.ParentOrigin = ParentOrigin.Center;
@@ -61,8 +62,8 @@ namespace LayoutDemo
             // Setup button to switch layouts.
             PushButton changeLayoutButton = new PushButton();
             changeLayoutButton.Name = "changeLayout-button";
-            LayoutingExample.SetUnselectedIcon(changeLayoutButton, "./res/images/icon-reverse.png");
-            LayoutingExample.SetSelectedIcon(changeLayoutButton, "./res/images/icon-reverse-selected.png");
+            LayoutingExample.SetUnselectedIcon(changeLayoutButton, "./res/images/iconLinear.png");
+            LayoutingExample.SetSelectedIcon(changeLayoutButton, "./res/images/iconLinearSelected.png");
             changeLayoutButton.ParentOrigin = new Vector3(0.33f, 1.0f, 0.5f);
             changeLayoutButton.PivotPoint = PivotPoint.BottomCenter;
             changeLayoutButton.PositionUsesPivotPoint = true;
@@ -72,10 +73,14 @@ namespace LayoutDemo
                 if (gridLayout)
                 {
                     SetLinearLayout(view);
+                    LayoutingExample.SetUnselectedIcon(changeLayoutButton, "./res/images/iconGrid.png");
+                    LayoutingExample.SetSelectedIcon(changeLayoutButton, "./res/images/iconGridSelected.png");
                 }
                 else
                 {
                     SetGridLayout(view);
+                    LayoutingExample.SetUnselectedIcon(changeLayoutButton, "./res/images/iconLinear.png");
+                    LayoutingExample.SetSelectedIcon(changeLayoutButton, "./res/images/iconLinearSelected.png");
                 }
 
                 return true;

@@ -8,7 +8,7 @@ namespace LayoutDemo
 {
     class NestedLayoutExample : Example
     {
-        public NestedLayoutExample() : base( "Nested" )
+        public NestedLayoutExample() : base( "Nested Layouts" )
         {}
 
         static class TestImages
@@ -48,24 +48,35 @@ namespace LayoutDemo
         public override void Create()
         {
             Window window = LayoutingExample.GetWindow();
-            window.BackgroundColor = Color.Green;
-
             contentBackgroundShadow = new View()
             {
                 Name = "contentBackgroundShadow",
-                Size2D = new Size2D(476,500),
-                BackgroundColor = Color.Red,
+                Size2D = new Size2D(window.Size.Width,500),
+                BackgroundColor = Color.Black,
                 Position2D = new Position2D(0, 40),
             };
 
+            // Create gradient visual that can be set as a background
+            GradientVisual gradientVisualMap1 = new GradientVisual();
+            PropertyArray stopColor = new PropertyArray();
+            stopColor.Add(new PropertyValue(new Vector4(0.35f, 0.0f, 0.65f, 0.9f)));
+            stopColor.Add(new PropertyValue(new Vector4(1.0f, 0.99f, 0.89f, 0.9f)));
+            gradientVisualMap1.StopColor = stopColor;
+            gradientVisualMap1.StartPosition = new Vector2(0.0f, -0.5f);
+            gradientVisualMap1.EndPosition = new Vector2(-0.5f, 0.5f);
+            gradientVisualMap1.PositionPolicy = VisualTransformPolicyType.Relative;
+            gradientVisualMap1.SizePolicy = VisualTransformPolicyType.Relative;
+
+            int shadowOffset = 4;
             View backgroundContainer = new View()
             {
                 Name = "backgroundContainer",
                 PositionUsesPivotPoint = true,
-                Size2D = new Size2D(376,400),
-                PivotPoint = PivotPoint.Center,
-                ParentOrigin = ParentOrigin.Center,
-                BackgroundColor = Color.Red,
+                Size2D = new Size2D((window.Size.Width -(shadowOffset*2)) , (500 -(shadowOffset*2))),
+                Position2D = new Position2D(shadowOffset,shadowOffset),
+                PivotPoint = PivotPoint.TopLeft,
+                ParentOrigin = ParentOrigin.TopLeft,
+                Background = gradientVisualMap1.OutputVisualMap,
             };
 
             View contentBackground = new View()
@@ -162,7 +173,6 @@ namespace LayoutDemo
             }
             helpShowing = false;
             LayoutingExample.GetToolbar().Remove(helpButton);
-            window.BackgroundColor = Color.White;
             window.Remove(contentBackgroundShadow);
             helpButton = null;
             contentBackgroundShadow = null;

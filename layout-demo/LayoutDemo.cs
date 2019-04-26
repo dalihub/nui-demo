@@ -47,9 +47,7 @@ namespace LayoutDemo
 
         public static Window GetWindow()
         {
-            // Change the background color of Window to White
             Window window = Window.Instance;
-            window.BackgroundColor = Color.White;
             return window;
         }
 
@@ -57,6 +55,20 @@ namespace LayoutDemo
         {
             base.OnCreate();
             Initialize();
+        }
+
+        static private GradientVisual CreateGradientVisual()
+        {
+            GradientVisual gradientVisualMap1 = new GradientVisual();
+            PropertyArray stopColor = new PropertyArray();
+            stopColor.Add(new PropertyValue(new Vector4(0.0f, 0.35f, 0.65f, 0.9f)));
+            stopColor.Add(new PropertyValue(new Vector4(1.0f, 0.99f, 0.89f, 0.9f)));
+            gradientVisualMap1.StopColor = stopColor;
+            gradientVisualMap1.StartPosition = new Vector2(0.0f, -0.5f);
+            gradientVisualMap1.EndPosition = new Vector2(-0.5f, 0.5f);
+            gradientVisualMap1.PositionPolicy = VisualTransformPolicyType.Relative;
+            gradientVisualMap1.SizePolicy = VisualTransformPolicyType.Relative;
+            return gradientVisualMap1;
         }
 
         // Create a tool bar for title and buttons
@@ -81,6 +93,14 @@ namespace LayoutDemo
 
         private void Initialize()
         {
+            // Added gradient background
+            VisualView visualView = new VisualView();
+            visualView.AddVisual("gradientVisual", CreateGradientVisual() );
+            visualView.WidthResizePolicy = ResizePolicyType.FillToParent;
+            visualView.HeightResizePolicy = ResizePolicyType.FillToParent;
+            visualView.LowerToBottom();
+            GetWindow().Add(visualView);
+
             // Initialize toolbar before any example try to use it.
             InitializeToolbar();
 
@@ -166,14 +186,14 @@ namespace LayoutDemo
         {
             var imageVisual = new ImageVisual();
             imageVisual.URL = url;
-            button.SelectedVisual = imageVisual.OutputVisualMap;
+            button.SelectedBackgroundVisual = imageVisual.OutputVisualMap;
         }
 
         public static void SetUnselectedIcon(Button button, string url)
         {
             var imageVisual = new ImageVisual();
             imageVisual.URL = url;
-            button.UnselectedVisual = imageVisual.OutputVisualMap;
+            button.UnselectedBackgroundVisual = imageVisual.OutputVisualMap;
         }
 
         static void Main(string[] args)
