@@ -9,7 +9,7 @@ namespace LayoutDemo
     // Shows different features of the GridLayout and generic layout system
     class GridExample : Example
     {
-        public GridExample() : base( "GridLayout" )
+        public GridExample() : base( "Grid Layout" )
         {}
 
         static class TestImages

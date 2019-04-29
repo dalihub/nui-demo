@@ -11,7 +11,7 @@ namespace LayoutDemo
     /// </summary>
     class MultiRootsExample : Example
     {
-        public MultiRootsExample() : base( "Multi Roots" )
+        public MultiRootsExample() : base( "Multi roots with layouts added to window" )
         {}
 
         static class TestImages

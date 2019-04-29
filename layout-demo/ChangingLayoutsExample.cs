@@ -11,7 +11,7 @@ namespace LayoutDemo
     /// </summary>
     class ChangingLayoutsExample : Example
     {
-        public ChangingLayoutsExample() : base( "ChangingLayouts" )
+        public ChangingLayoutsExample() : base( "Changing Layouts" )
         {}
 
         static class TestImages
