@@ -8,7 +8,7 @@ namespace LayoutDemo
 {
     class DerivedViewExample : Example
     {
-        public DerivedViewExample() : base( "DerivedView" )
+        public DerivedViewExample() : base( "Derived View assigned layout" )
         {}
 
         static class TestImages

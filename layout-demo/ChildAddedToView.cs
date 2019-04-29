@@ -11,7 +11,7 @@ namespace LayoutDemo
     /// </summary>
     class ChildAddedToViewExample : Example
     {
-        public ChildAddedToViewExample() : base( "Child to View" )
+        public ChildAddedToViewExample() : base( "Child Added to View - Auto View assigned" )
         {}
 
         static class TestImages

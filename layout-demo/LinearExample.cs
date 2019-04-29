@@ -8,7 +8,7 @@ namespace LayoutDemo
 {
     class LinearExample : Example
     {
-        public LinearExample() : base( "LinearLayout" )
+        public LinearExample() : base( "Linear Layout" )
         {}
 
         static class TestImages

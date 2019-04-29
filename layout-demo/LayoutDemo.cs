@@ -145,6 +145,7 @@ namespace LayoutDemo
                     layoutingExamples[layoutIndex].Create();
                     currentExampleLabel = layoutingExamples[layoutIndex].GetLabel();
                     exampleTitle.Text = currentExampleLabel;
+                    exampleTitle.EnableAutoScroll = true;
                 }
                 return true;
             };
