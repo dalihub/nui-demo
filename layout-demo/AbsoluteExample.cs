@@ -7,7 +7,7 @@ namespace LayoutDemo
 {
     class AbsoluteExample : Example
     {
-        public AbsoluteExample() : base( "AbsoluteExample" )
+        public AbsoluteExample() : base( "Absolute Layout" )
         {}
 
         static class TestImages

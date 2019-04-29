@@ -8,7 +8,7 @@ namespace LayoutDemo
 {
     class PaddingExample : Example
     {
-        public PaddingExample() : base( "PaddingExample" )
+        public PaddingExample() : base( "Padding Example" )
         {}
 
         static class TestImages
