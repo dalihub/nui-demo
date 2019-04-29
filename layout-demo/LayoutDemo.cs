@@ -140,11 +140,13 @@ namespace LayoutDemo
             {
                 if (layoutingExamples.Count != 0)
                 {
+                    exampleTitle.EnableAutoScroll = false;
                     layoutingExamples[layoutIndex].Remove();
                     layoutIndex = (layoutIndex + 1) % layoutingExamples.Count;
                     layoutingExamples[layoutIndex].Create();
                     currentExampleLabel = layoutingExamples[layoutIndex].GetLabel();
                     exampleTitle.Text = currentExampleLabel;
+                    exampleTitle.EnableAutoScroll = true;
                 }
                 return true;
             };

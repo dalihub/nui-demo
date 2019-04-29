@@ -52,7 +52,7 @@ namespace LayoutDemo
             {
                 Name = "contentBackgroundShadow",
                 Size2D = new Size2D(window.Size.Width,500),
-                BackgroundColor = Color.Black,
+                BackgroundColor = new Color(75f,0f,130f, 0.8f),
                 Position2D = new Position2D(0, 40),
             };
 

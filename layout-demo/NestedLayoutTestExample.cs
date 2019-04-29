@@ -8,7 +8,7 @@ namespace LayoutDemo
 {
     class NestedLayoutTestExample : Example
     {
-        public NestedLayoutTestExample() : base( "NestedTest" )
+        public NestedLayoutTestExample() : base( "Test Nested Layouts (Complex)" )
         {}
 
         static class TestImages

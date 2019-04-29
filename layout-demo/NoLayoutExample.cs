@@ -8,7 +8,7 @@ namespace LayoutDemo
 {
     class NoLayoutExample : Example
     {
-        public NoLayoutExample() : base( "NoLayout" )
+        public NoLayoutExample() : base( "No Layouts Set" )
         {}
 
         static class TestImages

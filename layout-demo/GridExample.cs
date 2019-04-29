@@ -9,7 +9,7 @@ namespace LayoutDemo
     // Shows different features of the GridLayout and generic layout system
     class GridExample : Example
     {
-        public GridExample() : base( "GridLayout" )
+        public GridExample() : base( "Grid Layout" )
         {}
 
         static class TestImages
@@ -63,7 +63,7 @@ namespace LayoutDemo
             view.Layout = layout;
 
             // Add child image-views to the created view
-	        childItems = new List<ImageView>();
+	          childItems = new List<ImageView>();
             for( int i=0; i < INITIAL_NUMBER_OF_ITEMS; i++ )
             {
                 ImageView imageView = LayoutingExample.CreateChildImageView(TestImages.sample_images[0], new Size2D(100, 100) );
