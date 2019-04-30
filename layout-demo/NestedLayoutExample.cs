@@ -114,6 +114,8 @@ namespace LayoutDemo
             {
                 Name = "contentAreaOne",
                 Layout = createVbox(),
+                Margin = new Extents(10,10,10,10),
+                Padding = new Extents(15,10,15,10),
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 BackgroundColor = Color.Red,
