@@ -155,6 +155,7 @@ namespace LayoutDemo
 
         void CreateNextFeatureButton()
         {
+            featureIndex = ExampleFeature.SET_PARENT_HORIZONTAL_LAYOUT;
             nextFeatureButton = new PushButton();
             nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
             nextFeatureButton.PivotPoint = PivotPoint.BottomCenter;
