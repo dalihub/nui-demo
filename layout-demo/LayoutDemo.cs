@@ -118,6 +118,7 @@ namespace LayoutDemo
             // Toolbar added to Window but could be added to a new Layer instead.
             GetWindow().Add(toolbar);
 
+            layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
             layoutingExamples.Add(new GridExample());
