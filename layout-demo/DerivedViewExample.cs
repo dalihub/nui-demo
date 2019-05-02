@@ -44,7 +44,10 @@ namespace LayoutDemo
 
             _derivedView = new DerivedView()
             {
-                Size2D = new Size2D(400,500),
+                Size2D = new Size2D(400,500), // Not working after Layout is Set
+
+                //Size = new Size(400, 500, 0), // Working in both Size and Layout
+
                 BackgroundColor = Color.Green,
                 ParentOrigin = ParentOrigin.TopLeft,
                 PivotPoint = PivotPoint.TopLeft,

@@ -45,7 +45,14 @@ namespace LayoutDemo
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
             {
-                ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(100, 100));
+                ImageView imageView = new ImageView(image);
+                imageView.Size2D = new Size2D( 200, 200 ); // Not working
+                
+                //imageView.Size = new Size( 200, 200, 0 ); // Working
+                
+                //imageView.WidthSpecification = 200;
+                //imageView.HeightSpecification = 200; // Working
+                
                 view.Add(imageView);
             }
 

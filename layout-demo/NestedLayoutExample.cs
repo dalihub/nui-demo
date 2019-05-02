@@ -148,8 +148,12 @@ namespace LayoutDemo
             {
                 children2[i] = new ImageView("./res/images/application-icon-102.png");
                 children2[i].PivotPoint = PivotPoint.Center;
-                children2[i].LayoutWidthSpecificationFixed = 200;
-                children2[i].LayoutHeightSpecificationFixed = 70;
+                //children2[i].LayoutWidthSpecificationFixed = 200;
+                //children2[i].LayoutHeightSpecificationFixed = 70;
+
+                children2[i].WidthSpecification = 200;
+                children2[i].HeightSpecification = 70; // The difference with LayoutHeightSpecificationFixed
+                
                 children2[i].BackgroundColor = new Color( i * 0.25f, i * 0.25f, 1.0f, 1.0f );
                 children2[i].Name = "imageView2ndSet_" + i;
                 contentAreaTwo.Add(children2[i]);

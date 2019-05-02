@@ -33,8 +33,9 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.WidthSpecification = 480;
-            view.HeightSpecification = 800;
+            view.WidthSpecification = LayoutParamPolicies.WrapContent;
+            view.HeightSpecification = LayoutParamPolicies.WrapContent;
+            view.BackgroundColor = Color.Black;
 
             var layout = new LinearLayout();
             view.Layout = layout;

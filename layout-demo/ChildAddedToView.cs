@@ -58,6 +58,7 @@ namespace LayoutDemo
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
             };
+            //greenView.Layout = layout; // Reusable Layout -> Crash
             linearView.Add(greenView);
 
             TextLabel textLabel = new TextLabel()
