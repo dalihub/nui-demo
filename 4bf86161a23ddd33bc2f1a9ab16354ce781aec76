@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1cb4363_2da224c5",
+        "filename": "layout-demo/LayoutDemo.cs",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1007416
+      },
+      "writtenOn": "2019-05-03T16:10:36Z",
+      "side": 1,
+      "message": "Why do we have to set it to false only to set it back to true again later on?",
+      "revId": "4bf86161a23ddd33bc2f1a9ab16354ce781aec76",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
