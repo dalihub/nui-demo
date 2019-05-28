@@ -16,7 +16,7 @@ namespace FoodShopper
             layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             Layout = layout;
             BackgroundColor = Color.Blue;
-            LayoutWidthSpecification = ChildLayoutData.MatchParent;
+            WidthSpecification = LayoutParamPolicies.MatchParent;
             LayoutHeightSpecificationFixed = 600;
         }
 

@@ -65,8 +65,8 @@ namespace FoodShopper
             var layout = new LinearLayout();
             layout.LinearOrientation = LinearLayout.Orientation.Vertical;
             mainScreen.Layout = layout;
-            mainScreen.LayoutWidthSpecification = ChildLayoutData.MatchParent;
-            mainScreen.LayoutHeightSpecification = ChildLayoutData.MatchParent;;
+            mainScreen.WidthSpecification = LayoutParamPolicies.MatchParent;
+            mainScreen.HeightSpecification = LayoutParamPolicies.MatchParent;
 
             // Create Centre Content Pane, scrolling content relevant to categories.
             ContentPane contentPane = new ContentPane();

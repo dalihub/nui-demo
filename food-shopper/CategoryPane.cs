@@ -31,7 +31,7 @@ namespace FoodShopper
             var layout = new LinearLayout();
             layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             Layout = layout;
-            LayoutWidthSpecification = ChildLayoutData.MatchParent;
+            WidthSpecification = LayoutParamPolicies.MatchParent;
             LayoutHeightSpecificationFixed = 200;
             AddTiles();
             Focusable = true;
@@ -60,7 +60,7 @@ namespace FoodShopper
                 imageVisual.URL = categoriesDirectory + file.Name;
                 imageView.Image = imageVisual.OutputVisualMap;
                 imageView.LayoutWidthSpecificationFixed = 400;
-                imageView.LayoutHeightSpecification = ChildLayoutData.MatchParent;
+                imageView.HeightSpecification = LayoutParamPolicies.MatchParent;
                 imageView.Padding = new Extents(25, 25, 0, 0);
                 imageView.Name = "Category_" + file.Name;
                 Add(imageView);
