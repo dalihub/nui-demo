@@ -28,8 +28,9 @@ namespace Scrolling
             // not propogate layouting unless given a layout.
             var groupingLayout = new LayoutGroup();
             Layout = groupingLayout;
-            LayoutWidthSpecification = ChildLayoutData.MatchParent;
-            LayoutHeightSpecification = ChildLayoutData.WrapContent;
+            WidthSpecification = LayoutParamPolicies.MatchParent;
+            HeightSpecification = LayoutParamPolicies.WrapContent;
+
             AddedToWindow += OnWindow;
         }
 

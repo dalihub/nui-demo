@@ -32,8 +32,8 @@ namespace FoodShopper
             layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             Layout = layout;
             BackgroundColor = Color.Blue;
-            LayoutWidthSpecification = ChildLayoutData.MatchParent;
-            LayoutHeightSpecification = ChildLayoutData.MatchParent;
+            WidthSpecification = LayoutParamPolicies.MatchParent;
+            HeightSpecification = LayoutParamPolicies.MatchParent;
             contentItemsArray = new ContentItemInfo[ MAX_ITEMS ];
         }
 
@@ -49,7 +49,7 @@ namespace FoodShopper
             imageVisual.URL = itemInfo.imageUrl;
             imageView.Image = imageVisual.OutputVisualMap;
             imageView.LayoutWidthSpecificationFixed = 1000;
-            imageView.LayoutHeightSpecification = ChildLayoutData.MatchParent;
+            imageView.HeightSpecification = LayoutParamPolicies.MatchParent;
             imageView.Padding = new Extents(40, 40, 0, 0);
 
             imageView.Name = "ImageView_" + itemInfo.imageUrl;

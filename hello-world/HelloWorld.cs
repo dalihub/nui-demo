@@ -40,8 +40,8 @@ class HelloWorldExample : NUIApplication
 
         // Ensure TextLabel matches its parent's size (i.e. Window size)
         // By default, a TextLabel's natural size is the size of the text within it
-        title.LayoutWidthSpecification = ChildLayoutData.MatchParent;
-        title.LayoutHeightSpecification = ChildLayoutData.MatchParent;
+        title.WidthSpecification = LayoutParamPolicies.MatchParent;
+        title.HeightSpecification = LayoutParamPolicies.MatchParent;
 
         // By default, text is aligned to the top-left within the TextLabel
         // Align it to the center of the TextLabel

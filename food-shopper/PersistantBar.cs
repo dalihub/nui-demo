@@ -26,7 +26,8 @@ namespace FoodShopper
             LinearLayout settingsHorizontalLayout = new LinearLayout();
             settingsHorizontalLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             settingsCluster.Layout = settingsHorizontalLayout;
-            settingsCluster.LayoutWidthSpecification = ChildLayoutData.WrapContent;
+            settingsCluster.WidthSpecification = LayoutParamPolicies.MatchParent;
+
         }
 
         public void UnFocused()
@@ -34,7 +35,7 @@ namespace FoodShopper
             settingsCluster.Layout = settingsClusterLayout;
             // Not possible to Match to parents height to make cluster square hence use fixed value;
             settingsCluster.LayoutWidthSpecificationFixed = BAR_HEIGHT;
-            settingsCluster.LayoutHeightSpecification = ChildLayoutData.MatchParent;
+            settingsCluster.HeightSpecification = LayoutParamPolicies.MatchParent;
         }
 
         private void Initialize()
@@ -43,7 +44,7 @@ namespace FoodShopper
             layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             Layout = layout;
             BackgroundColor = Color.Cyan;
-            LayoutWidthSpecification = ChildLayoutData.MatchParent;
+            WidthSpecification = LayoutParamPolicies.MatchParent;
             LayoutHeightSpecificationFixed = BAR_HEIGHT;
             CreateCluster();
         }
