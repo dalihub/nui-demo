@@ -130,7 +130,7 @@ namespace LayoutDemo
             View08 = new View()
             {
                 BackgroundColor = Color.Magenta,
-                Size2D = new Size2D( 280,280),
+                Size2D = new Size2D(280,280),
                 Name = "View08"
             };
             View04.Add(View08);
@@ -143,7 +143,7 @@ namespace LayoutDemo
             {
                 BackgroundColor = Color.Yellow,
                 Name = "View05",
-                Size2D = new Size2D(10,100)
+                Size2D = new Size2D(20,100)
             };
             View02.Add(View05);
 
