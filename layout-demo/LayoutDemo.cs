@@ -124,6 +124,7 @@ namespace LayoutDemo
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChangingLayoutsExample());
+            layoutingExamples.Add(new ChangingSizeExample());
             layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new MultiRootsExample());
             layoutingExamples.Add(new NestedLayoutTestExample());

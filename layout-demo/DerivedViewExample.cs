@@ -137,6 +137,7 @@ namespace LayoutDemo
             if(_derivedView.Layout == null)
             {
                 _derivedView.Layout = new LinearLayout();
+                _derivedView.HeightSpecification = LayoutParamPolicies.WrapContent;
             }
             Window.Instance.Remove(nextFeatureButton);
             LayoutingExample.GetToolbar().Add(helpButton);
