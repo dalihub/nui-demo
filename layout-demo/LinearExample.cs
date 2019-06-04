@@ -35,8 +35,8 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.WidthSpecification = LayoutParamPolicies.WrapContent;
-            view.HeightSpecification = LayoutParamPolicies.WrapContent;
+            view.WidthSpecification = LayoutParamPolicies.MatchParent;
+            view.HeightSpecification = LayoutParamPolicies.MatchParent;
 
             var layout = new LinearLayout();
             view.Layout = layout;
@@ -45,7 +45,24 @@ namespace LayoutDemo
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
             {
-                ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(100, 100));
+                ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(80, 80));
+                imageView.TouchEvent += (sender, e) =>
+                {
+                    if (sender is ImageView && e.Touch.GetState(0) == PointStateType.Down)
+                    {
+                        ImageView touchedImageView = (ImageView)sender;
+                        if (touchedImageView.Weight == 1.0f)
+                        {
+                            touchedImageView.Weight = 0.0f;
+                        }
+                        else
+                        {
+                            touchedImageView.Weight = 1.0f;
+                        }
+                    }
+                    return true;
+                };
+
                 view.Add(imageView);
             }
 
