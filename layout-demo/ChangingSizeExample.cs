@@ -56,11 +56,11 @@ namespace LayoutDemo
             };
 
 
-            RadioButton parentButton100 = new RadioButton("100");
-            parentButtons.Add(parentButton100);
-            parentButton100.Clicked += (sender, e) =>
+            RadioButton parentButton160 = new RadioButton("160");
+            parentButtons.Add(parentButton160);
+            parentButton160.Clicked += (sender, e) =>
             {
-                contentContainer.Size2D = new Size2D(100,100);
+                contentContainer.Size2D = new Size2D(160,160);
                 return true;
             };
 
