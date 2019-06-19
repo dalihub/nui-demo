@@ -87,6 +87,7 @@ namespace LayoutDemo
             exampleTitle = new TextLabel();
             exampleTitle.WidthSpecification = LayoutParamPolicies.WrapContent;
             exampleTitle.HeightSpecification = LayoutParamPolicies.WrapContent;
+            exampleTitle.Weight = 1.0f;
             exampleTitle.Margin = new Extents(10, 10, 0, 0);
             toolbar.Add(exampleTitle);
         }
