@@ -39,6 +39,7 @@ namespace LayoutDemo
         private TextLabel exampleTitle;
 
         static private View toolbar;
+        private Layer toolbarLayer;
 
         public static ref View GetToolbar()
         {
@@ -116,8 +117,10 @@ namespace LayoutDemo
             // Initialize title and add to toolbar.
             InitializeTitle();
 
-            // Toolbar added to Window but could be added to a new Layer instead.
-            GetWindow().Add(toolbar);
+            // Toolbar added to Layer so content can be added to window.
+            toolbarLayer = new Layer();
+            GetWindow().Add(toolbarLayer);
+            toolbarLayer.Add(toolbar);
 
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
