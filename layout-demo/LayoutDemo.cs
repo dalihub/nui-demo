@@ -88,6 +88,14 @@ namespace LayoutDemo
             exampleTitle.WidthSpecification = LayoutParamPolicies.WrapContent;
             exampleTitle.HeightSpecification = LayoutParamPolicies.WrapContent;
             exampleTitle.Margin = new Extents(10, 10, 0, 0);
+            exampleTitle.TouchEvent += (sender, e) =>
+            {
+                if ( e.Touch.GetState(0) == PointStateType.Down)
+                {
+                    exampleTitle.EnableAutoScroll = true;
+                }
+                return true;
+            };
             toolbar.Add(exampleTitle);
         }
 
@@ -146,7 +154,6 @@ namespace LayoutDemo
                     layoutingExamples[layoutIndex].Create();
                     currentExampleLabel = layoutingExamples[layoutIndex].GetLabel();
                     exampleTitle.Text = currentExampleLabel;
-                    exampleTitle.EnableAutoScroll = true;
                 }
                 return true;
             };
