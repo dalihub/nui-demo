@@ -23,6 +23,8 @@ using Tizen.NUI.Constants;
 
 class HelloWorldExample : NUIApplication
 {
+    private bool _large = false;
+
     /// <summary>
     /// Override to create the required scene
     /// </summary>
@@ -33,14 +35,48 @@ class HelloWorldExample : NUIApplication
 
         // Get the window instance and change background color
         Window window = Window.Instance;
-        window.BackgroundColor = Color.White;
+        window.BackgroundColor = Color.Red;
+
+        View linearLayout = new View()
+        {
+            Layout = new LinearLayout(),
+            WidthSpecification = (int)(window.Size.Width * 0.5),
+            HeightSpecification = LayoutParamPolicies.MatchParent,
+            PositionX = window.Size.Width * 0.5f,
+            BackgroundColor = Color.White,
+            Name = "linearLayout"
+        };
+
+        window.Add(linearLayout);
 
         // Create a simple TextLabel
-        TextLabel title = new TextLabel("Hello World");
+        TextLabel title = new TextLabel("Hello")
+        {
+            BackgroundColor = Color.Cyan,
+            WidthSpecification = LayoutParamPolicies.WrapContent,
+            HeightSpecification = LayoutParamPolicies.WrapContent,
+            Name = "textLabel"
+        };
 
-        // Ensure TextLabel matches its parent's size (i.e. Window size)
-        // By default, a TextLabel's natural size is the size of the text within it
-        title.Size2D = new Size2D(window.Size.Width, window.Size.Height);
+        title.TouchEvent += (sender, e) =>
+        {
+            if (sender is TextLabel && e.Touch.GetState(0) == PointStateType.Down)
+            {
+                if (_large)
+                {
+                    _large = false;
+                    TextLabel touchedTextLabel = (TextLabel)sender;
+                    touchedTextLabel.Text = "Hello";
+                }
+                else
+                {
+                    _large = true;
+                    TextLabel touchedTextLabel = (TextLabel)sender;
+                    touchedTextLabel.Text = "Hello World";
+                }
+            }
+            return true;
+        };
 
         // By default, text is aligned to the top-left within the TextLabel
         // Align it to the center of the TextLabel
@@ -48,7 +84,7 @@ class HelloWorldExample : NUIApplication
         title.VerticalAlignment = VerticalAlignment.Center;
 
         // Add the text to the window
-        window.Add(title);
+        linearLayout.Add(title);
     }
 
     /// <summary>
