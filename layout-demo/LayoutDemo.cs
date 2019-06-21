@@ -78,6 +78,7 @@ namespace LayoutDemo
             toolbar = new View();
             toolbar.Name = "demo-toolbar";
             var layout = new LinearLayout();
+            layout.LinearAlignment = LinearLayout.Alignment.CenterVertical;
             toolbar.Layout = layout;
             toolbar.WidthSpecification = LayoutParamPolicies.MatchParent;
             toolbar.HeightSpecification = LayoutParamPolicies.WrapContent;
