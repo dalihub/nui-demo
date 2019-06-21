@@ -39,6 +39,7 @@ namespace LayoutDemo
             view.HeightSpecification = LayoutParamPolicies.MatchParent;
 
             var layout = new LinearLayout();
+            layout.LinearAlignment = LinearLayout.Alignment.Center;
             view.Layout = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
