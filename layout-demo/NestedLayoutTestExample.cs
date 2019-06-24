@@ -63,8 +63,8 @@ namespace LayoutDemo
         {
             ImageView imageView = new ImageView("./res/images/gallery-small-23.jpg");
             imageView.PivotPoint = PivotPoint.Center;
-            imageView.LayoutWidthSpecificationFixed = 70;
-            imageView.LayoutHeightSpecificationFixed = 70;
+            imageView.WidthSpecification = 70;
+            imageView.HeightSpecification = 70;
             imageView.Name = "imageView_" + namePrefix + imageViewTally++;
             return imageView;
         }

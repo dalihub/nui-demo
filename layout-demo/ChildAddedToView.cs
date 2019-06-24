@@ -41,7 +41,7 @@ namespace LayoutDemo
 
             linearView = new View()
             {
-                LayoutWidthSpecificationFixed = LayoutParamPolicies.MatchParent,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 BackgroundColor = Color.Blue,
                 Name = "LinearView",
