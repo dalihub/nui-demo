@@ -32,7 +32,7 @@ namespace FoodShopper
             layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
             Layout = layout;
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            LayoutHeightSpecificationFixed = 200;
+            HeightSpecification = 200;
             AddTiles();
             Focusable = true;
             FocusGained += OnFocusGained;
@@ -59,7 +59,7 @@ namespace FoodShopper
                 // Categories to be the height of the ContentPane whilst having a fixed width
                 imageVisual.URL = categoriesDirectory + file.Name;
                 imageView.Image = imageVisual.OutputVisualMap;
-                imageView.LayoutWidthSpecificationFixed = 400;
+                imageView.WidthSpecification = 400;
                 imageView.HeightSpecification = LayoutParamPolicies.MatchParent;
                 imageView.Padding = new Extents(25, 25, 0, 0);
                 imageView.Name = "Category_" + file.Name;

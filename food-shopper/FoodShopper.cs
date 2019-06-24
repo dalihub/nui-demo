@@ -55,18 +55,17 @@ namespace FoodShopper
 
         private void InitializeMainScreen()
         {
-            TextLabel title = new TextLabel("Food Shopper");
-            title.PointSize = 58;
-            Window window = Window.Instance;
-            window.BackgroundColor = Color.White;
-            window.Add(title);
-
             View mainScreen = new View();
             var layout = new LinearLayout();
             layout.LinearOrientation = LinearLayout.Orientation.Vertical;
             mainScreen.Layout = layout;
             mainScreen.WidthSpecification = LayoutParamPolicies.MatchParent;
             mainScreen.HeightSpecification = LayoutParamPolicies.MatchParent;
+            mainScreen.BackgroundColor = Color.White;
+
+            TextLabel title = new TextLabel("Food Shopper");
+            title.PointSize = 58;
+            mainScreen.Add(title);
 
             // Create Centre Content Pane, scrolling content relevant to categories.
             ContentPane contentPane = new ContentPane();
@@ -99,7 +98,7 @@ namespace FoodShopper
 
             CreateClusterButtons();
 
-            window.Add(mainScreen);
+            Window.Instance.Add(mainScreen);
 
             keyboardFocusManager = FocusManager.Instance;
             keyboardFocusManager.PreFocusChange += OnKeyboardPreFocusChangeSignal;
@@ -173,18 +172,18 @@ namespace FoodShopper
         {
             ImageView settingsButton = new ImageView();
             settingsButton.SetImage( imagesLocation + "/clusterOptions/exit-icon.png" );
-            settingsButton.LayoutWidthSpecificationFixed = 100;
-            settingsButton.LayoutHeightSpecificationFixed = 100;
+            settingsButton.WidthSpecification = 100;
+            settingsButton.HeightSpecification = 100;
 
             ImageView backgroundButton = new ImageView();
             backgroundButton.SetImage( imagesLocation + "/clusterOptions/search-icon.png" );
-            backgroundButton.LayoutWidthSpecificationFixed = 100;
-            backgroundButton.LayoutHeightSpecificationFixed = 100;
+            backgroundButton.WidthSpecification = 100;
+            backgroundButton.HeightSpecification = 100;
 
             ImageView infoButton = new ImageView();
             infoButton.SetImage( imagesLocation + "/clusterOptions/settings-icon.png" );
-            infoButton.LayoutWidthSpecificationFixed = 100;
-            infoButton.LayoutHeightSpecificationFixed = 100;
+            infoButton.WidthSpecification = 100;
+            infoButton.HeightSpecification = 100;
 
             bottomBar.AddClusterButtons(settingsButton);
             bottomBar.AddClusterButtons(backgroundButton);
