@@ -45,13 +45,15 @@ namespace FoodShopper
             Layout = layout;
             BackgroundColor = Color.Cyan;
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            LayoutHeightSpecificationFixed = BAR_HEIGHT;
+            HeightSpecification = BAR_HEIGHT;
+            Name = "persistantBar";
             CreateCluster();
         }
 
         private void CreateCluster()
         {
             settingsCluster = new View();
+            settingsCluster.Name = "settingsCluster";
             settingsClusterLayout = new GridLayout();
             settingsClusterLayout.SetColumns( 2 );
             //settingsClusterLayout.LayoutAnimate = true;
