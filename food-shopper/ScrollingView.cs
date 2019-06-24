@@ -25,12 +25,12 @@ namespace Scrolling
         public ScrollingView()
         {
             // LayoutGroup needed as Scrolling View is a dervied View class so will
-            // not propogate layouting unless given a layout.
+            // not propagate layouting unless given a layout.
             var groupingLayout = new LayoutGroup();
             Layout = groupingLayout;
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
-
+            Name = "scrollingView";
             AddedToWindow += OnWindow;
         }
 
