@@ -17,7 +17,8 @@ namespace FoodShopper
             Layout = layout;
             BackgroundColor = Color.Blue;
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            LayoutHeightSpecificationFixed = 600;
+            HeightSpecification = 600;
+            Name = "contentPane";
         }
 
         public void ShowContentGroup( ContentGroup contentGroup )

@@ -138,8 +138,8 @@ namespace LayoutDemo
             {
                 children[i] = new ImageView("./res/images/gallery-small-23.jpg");
                 children[i].PivotPoint = PivotPoint.Center;
-                children[i].LayoutWidthSpecificationFixed = 70;
-                children[i].LayoutHeightSpecificationFixed = 70;
+                children[i].WidthSpecification = 70;
+                children[i].HeightSpecification = 70;
                 children[i].BackgroundColor = new Color( i * 0.25f, i * 0.25f, 1.0f, 1.0f );
                 children[i].Name = "imageView1stSet_" + i;
                 contentAreaOne.Add(children[i]);
@@ -150,8 +150,8 @@ namespace LayoutDemo
             {
                 children2[i] = new ImageView("./res/images/application-icon-102.png");
                 children2[i].PivotPoint = PivotPoint.Center;
-                children2[i].LayoutWidthSpecificationFixed = 200;
-                children2[i].LayoutHeightSpecificationFixed = 70;
+                children2[i].WidthSpecification = 200;
+                children2[i].HeightSpecification = 70;
                 children2[i].BackgroundColor = new Color( i * 0.25f, i * 0.25f, 1.0f, 1.0f );
                 children2[i].Name = "imageView2ndSet_" + i;
                 contentAreaTwo.Add(children2[i]);

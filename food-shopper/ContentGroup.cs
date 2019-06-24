@@ -48,7 +48,7 @@ namespace FoodShopper
             // Categories to be the height of the ContentPane whilst having a fixed width
             imageVisual.URL = itemInfo.imageUrl;
             imageView.Image = imageVisual.OutputVisualMap;
-            imageView.LayoutWidthSpecificationFixed = 1000;
+            imageView.WidthSpecification = 1000;
             imageView.HeightSpecification = LayoutParamPolicies.MatchParent;
             imageView.Padding = new Extents(40, 40, 0, 0);
 
