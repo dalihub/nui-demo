@@ -123,12 +123,12 @@ namespace LayoutDemo
             GetWindow().Add(toolbarLayer);
             toolbarLayer.Add(toolbar);
 
+            layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new MessageExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
             layoutingExamples.Add(new GridExample());
-            layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChangingLayoutsExample());
             layoutingExamples.Add(new ChangingSizeExample());
