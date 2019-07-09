@@ -31,7 +31,7 @@ namespace LayoutDemo
         public override void Create()
         {
             view = new View();
-            view.Name = "LinearExample";
+            view.Name = "MainLinearLayout";
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
@@ -43,10 +43,69 @@ namespace LayoutDemo
             view.Layout = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
+            // Set custom transition for changes to this Linear Layout
+            TransitionComponents slowEaseInOutSine = new TransitionComponents();
+            slowEaseInOutSine.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
+            slowEaseInOutSine.Duration = 1200;
+            slowEaseInOutSine.Delay = 0;
+
+            LayoutTransition customPositionTransition = new LayoutTransition(
+                                                              TransitionCondition.LayoutChanged,
+                                                              AnimatableProperties.Position,
+                                                              0.0,
+                                                              slowEaseInOutSine );
+            view.LayoutTransition = customPositionTransition;
+
+
+            // Set custom transition for changes to this Linear Layout
+            TransitionComponents fadeOut = new TransitionComponents();
+            fadeOut.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            fadeOut.Duration = 1200;
+            fadeOut.Delay = 0;
+            float targetOpacityOut = .2f;
+            LayoutTransition customOpacityTransitionOut = new LayoutTransition(
+                                                                TransitionCondition.LayoutChanged,
+                                                                AnimatableProperties.Opacity,
+                                                                targetOpacityOut,
+                                                                fadeOut,
+                                                                false );
+            view.LayoutTransition = customOpacityTransitionOut;
+
+
+            // Set custom transition for changes to this Linear Layout
+            TransitionComponents fadeIn = new TransitionComponents();
+            fadeIn.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            fadeIn.Duration = 1200;
+            fadeIn.Delay = 600;
+            float targetOpacityIn = 1.0f;
+            LayoutTransition customOpacityTransitionIn = new LayoutTransition(
+                                                                TransitionCondition.LayoutChanged,
+                                                                AnimatableProperties.Opacity,
+                                                                targetOpacityIn,
+                                                                fadeIn,
+                                                                false );
+            view.LayoutTransition = customOpacityTransitionIn;
+
+
+            var index = 0;
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
             {
+                // Set a delayed custom transition for each Image View so each moves into place after it's
+                // adjacent sibbling.
+                TransitionComponents easeInOutSineDelayed = new TransitionComponents();
+                easeInOutSineDelayed.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
+                easeInOutSineDelayed.Delay = 300 * index;
+                easeInOutSineDelayed.Duration = 300 * TestImages.s_images.Length;
+
+                LayoutTransition customPositionTransitionDelayed = new LayoutTransition(
+                                                              TransitionCondition.LayoutChanged,
+                                                              AnimatableProperties.Position,
+                                                              0.0,
+                                                              easeInOutSineDelayed );
+
                 ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(80, 80));
+                imageView.LayoutTransition = customPositionTransitionDelayed;
                 imageView.TouchEvent += (sender, e) =>
                 {
                     if (sender is ImageView && e.Touch.GetState(0) == PointStateType.Down)
@@ -65,6 +124,7 @@ namespace LayoutDemo
                 };
 
                 view.Add(imageView);
+                index++;
             }
 
             LayoutingExample.GetWindow().Add(view);
