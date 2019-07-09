@@ -31,7 +31,7 @@ namespace LayoutDemo
         public override void Create()
         {
             view = new View();
-            view.Name = "LinearExample";
+            view.Name = "MainLinearLayout";
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
@@ -43,10 +43,94 @@ namespace LayoutDemo
             view.Layout = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
+            // Set custom transition for changes to this Linear Layout
+            TransitionComponents slowEaseInOutSine = new TransitionComponents();
+            slowEaseInOutSine.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
+            slowEaseInOutSine.Duration = 800;
+            slowEaseInOutSine.Delay = 0;
+
+            LayoutTransition customPositionTransition = new LayoutTransition(
+                                                              TransitionCondition.LayoutChanged,
+                                                              AnimatableProperties.Position,
+                                                              0.0,
+                                                              slowEaseInOutSine );
+            view.LayoutTransition = customPositionTransition;
+
+
+            // Set custom transition for changes to this Linear Layout
+            TransitionComponents fadeOut = new TransitionComponents();
+            fadeOut.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            fadeOut.Duration = 1200;
+            fadeOut.Delay = 0;
+            float targetOpacityOut = .2f;
+            LayoutTransition customOpacityTransitionOut = new LayoutTransition(
+                                                                TransitionCondition.Add,
+                                                                AnimatableProperties.Opacity,
+                                                                targetOpacityOut,
+                                                                fadeOut,
+                                                                false );
+            view.LayoutTransition = customOpacityTransitionOut;
+
+
+            // Set custom transition for changes to this Linear Layout
+            TransitionComponents fadeIn = new TransitionComponents();
+            fadeIn.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            fadeIn.Duration = 1200;
+            fadeIn.Delay = 600;
+            float targetOpacityIn = 1.0f;
+            LayoutTransition customOpacityTransitionIn = new LayoutTransition(
+                                                                TransitionCondition.LayoutChanged,
+                                                                AnimatableProperties.Opacity,
+                                                                targetOpacityIn,
+                                                                fadeIn,
+                                                                false );
+            view.LayoutTransition = customOpacityTransitionIn;
+
+            TransitionComponents instantPosition = new TransitionComponents();
+            instantPosition.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            instantPosition.Delay = 0;
+            instantPosition.Duration = 1;
+
+why is this not doing an instant positioning, are we overwriting the values set?? Keys
+
+            LayoutTransition instantPositionInsertion = new LayoutTransition(
+                                                      TransitionCondition.Add,
+                                                      AnimatableProperties.Position,
+                                                      0.0,
+                                                      instantPosition );
+            view.LayoutTransition = instantPositionInsertion;
+
+            TransitionComponents delayedInsertion = new TransitionComponents();
+            delayedInsertion.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            delayedInsertion.Delay = 900;
+            delayedInsertion.Duration = 1200;
+
+            LayoutTransition customDelayedInsertion = new LayoutTransition(
+                                                      TransitionCondition.Add,
+                                                      AnimatableProperties.Opacity,
+                                                      1.0,
+                                                      delayedInsertion );
+            view.LayoutTransition = customDelayedInsertion;
+
+            var index = 0;
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
             {
+                // Set a delayed custom transition for each Image View so each moves into place after it's
+                // adjacent sibbling.
+                TransitionComponents easeInOutSineDelayed = new TransitionComponents();
+                easeInOutSineDelayed.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
+                easeInOutSineDelayed.Delay = 300 * index;
+                easeInOutSineDelayed.Duration = 300 * TestImages.s_images.Length;
+
+                LayoutTransition customPositionTransitionDelayed = new LayoutTransition(
+                                                                  TransitionCondition.LayoutChanged,
+                                                                  AnimatableProperties.Position,
+                                                                  0.0,
+                                                                  easeInOutSineDelayed );
+
                 ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(80, 80));
+                imageView.LayoutTransition = customPositionTransitionDelayed;
                 imageView.TouchEvent += (sender, e) =>
                 {
                     if (sender is ImageView && e.Touch.GetState(0) == PointStateType.Down)
@@ -65,6 +149,7 @@ namespace LayoutDemo
                 };
 
                 view.Add(imageView);
+                index++;
             }
 
             LayoutingExample.GetWindow().Add(view);
@@ -81,15 +166,19 @@ namespace LayoutDemo
             {
                 if (this.view.LayoutDirection == ViewLayoutDirectionType.LTR)
                 {
-                    this.view.LayoutDirection = ViewLayoutDirectionType.RTL;
-                    LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-play.png");
-                    LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-play-selected.png");
+                    ImageView imageView = LayoutingExample.CreateChildImageView(TestImages.s_images[0], new Size2D(80, 80));
+                    // Delay transition not applied to images added at run time.
+                    imageView.Opacity = 0.2f;
+                    view.Add(imageView);
+                    //this.view.LayoutDirection = ViewLayoutDirectionType.RTL;
+                    //LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-play.png");
+                    //LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-play-selected.png");
                 }
                 else
                 {
-                    this.view.LayoutDirection = ViewLayoutDirectionType.LTR;
-                    LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
-                    LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
+                    //this.view.LayoutDirection = ViewLayoutDirectionType.LTR;
+                    //LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
+                    //LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
                 }
                 return true;
             };
