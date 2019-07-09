@@ -91,6 +91,7 @@ namespace LayoutDemo
             exampleTitle.HeightSpecification = LayoutParamPolicies.WrapContent;
             exampleTitle.Weight = 1.0f;
             exampleTitle.Margin = new Extents(10, 10, 0, 0);
+            exampleTitle.Name = "layout-demo-title";
             toolbar.Add(exampleTitle);
         }
 
@@ -123,12 +124,12 @@ namespace LayoutDemo
             GetWindow().Add(toolbarLayer);
             toolbarLayer.Add(toolbar);
 
+            layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new MessageExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
             layoutingExamples.Add(new GridExample());
-            layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChangingLayoutsExample());
             layoutingExamples.Add(new ChangingSizeExample());
