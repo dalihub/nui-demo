@@ -43,6 +43,15 @@ namespace LayoutDemo
             view.Layout = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
+            TransitionComponents layoutChangedAnimatorMap = new TransitionComponents();
+            layoutChangedAnimatorMap.AlphaFunction = AlphaFunction.BuiltinFunctions.Linear;
+            layoutChangedAnimatorMap.Duration = 3000;
+            layoutChangedAnimatorMap.Delay = 1000;
+
+            LayoutTransition customTransition = new LayoutTransition( TransitionCondition.LayoutChanged, layoutChangedAnimatorMap );
+
+            view.LayoutTransition = customTransition;
+
             // Add child image-views to the created view
             foreach (String image in TestImages.s_images)
             {
