@@ -30,6 +30,8 @@ namespace LayoutDemo
 
         private bool addedItem = false;
 
+        private int ITEM_MOVE_DURATION = 100;
+
         public override void Create()
         {
             view = new View();
@@ -44,32 +46,6 @@ namespace LayoutDemo
             layout.LinearAlignment = LinearLayout.Alignment.Center;
             view.Layout = layout;
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
-
-            ///////////////////////////////////////////////////////////////////////////////////////
-            // Custom transitions for the View (LinearLayout) when changing layout
-            //
-            //
-            ///////////////////////////////////////////////////////////////////////////////////////
-            TransitionComponents slowEaseInOutSine = new TransitionComponents();
-            slowEaseInOutSine.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
-            slowEaseInOutSine.Duration = 800;
-            slowEaseInOutSine.Delay = 0;
-
-            view.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
-                                                          AnimatableProperties.Position,
-                                                          0.0,
-                                                          slowEaseInOutSine );
-
-            TransitionComponents fadeIn = new TransitionComponents();
-            fadeIn.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
-            fadeIn.Duration = 1200;
-            fadeIn.Delay = 600;
-            float targetOpacityIn = 1.0f;
-            view.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
-                                                          AnimatableProperties.Opacity,
-                                                          targetOpacityIn,
-                                                          fadeIn);
-
 
             ///////////////////////////////////////////////////////////////////////////////////////
             //  Custom transitions for Adding an ImageView
@@ -88,8 +64,8 @@ namespace LayoutDemo
 
             TransitionComponents delayedInsertion = new TransitionComponents();
             delayedInsertion.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
-            delayedInsertion.Delay = 1200;
-            delayedInsertion.Duration = 1600;
+            delayedInsertion.Delay = 100;
+            delayedInsertion.Duration = 200;
 
             view.LayoutTransition = new LayoutTransition( TransitionCondition.Add,
                                                           AnimatableProperties.Opacity,
@@ -100,6 +76,11 @@ namespace LayoutDemo
             //  Custom transitions for siblings after ADDing an ImageView to the View
             //  Siblings are moved using AlphaFunction.BuiltinFunctions.EaseInOutSine
             ///////////////////////////////////////////////////////////////////////////////////////
+            TransitionComponents slowEaseInOutSine = new TransitionComponents();
+            slowEaseInOutSine.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
+            slowEaseInOutSine.Duration = 164;
+            slowEaseInOutSine.Delay = 0;
+
             view.LayoutTransition = new LayoutTransition( TransitionCondition.ChangeOnAdd,
                                                           AnimatableProperties.Position,
                                                           0.0,
@@ -127,8 +108,8 @@ namespace LayoutDemo
                 // adjacent sibbling.
                 TransitionComponents easeInOutSineDelayed = new TransitionComponents();
                 easeInOutSineDelayed.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
-                easeInOutSineDelayed.Delay = 300 * index;
-                easeInOutSineDelayed.Duration = 300 * TestImages.s_images.Length;
+                easeInOutSineDelayed.Delay = ITEM_MOVE_DURATION * index;
+                easeInOutSineDelayed.Duration = ITEM_MOVE_DURATION * TestImages.s_images.Length;
 
                 ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(80, 80));
 
@@ -221,6 +202,7 @@ namespace LayoutDemo
 
             PushButton addItemButton = new PushButton();
             LayoutingExample.SetUnselectedIcon(addItemButton, "./res/images/icon-plus.png");
+            LayoutingExample.SetSelectedIcon(addItemButton, "./res/images/icon-plus.png");
             addItemButton.Name = "addItemButton";
             addItemButton.ParentOrigin = new Vector3(.9f, 1.0f, 0.5f);
             addItemButton.PivotPoint = PivotPoint.BottomCenter;
@@ -232,8 +214,15 @@ namespace LayoutDemo
                 if (!addedItem)
                 {
                     ImageView imageView = LayoutingExample.CreateChildImageView(TestImages.s_images[0], new Size2D(80, 80));
-                    // Delay transition not applied to images added at run time.
-                    imageView.Opacity = 0.2f;
+                    TransitionComponents easeInOutSineDelayed = new TransitionComponents();
+                    easeInOutSineDelayed.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine);
+                    easeInOutSineDelayed.Delay = ITEM_MOVE_DURATION * (index ); // index was the last item added
+                    easeInOutSineDelayed.Duration = ITEM_MOVE_DURATION * (index + 1);
+                    imageView.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
+                                                                       AnimatableProperties.Position,
+                                                                       0.0,
+                                                                       easeInOutSineDelayed );
+                    imageView.Opacity = 0.0f;
                     imageView.Name = "ImageViewBeingAdded-png";
                     view.Add(imageView);
                     LayoutingExample.SetUnselectedIcon(button, "./res/images/icon-minus.png");
