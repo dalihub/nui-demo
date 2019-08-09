@@ -24,7 +24,7 @@ namespace LayoutDemo
         }
 
         const int INITIAL_NUMBER_OF_ITEMS = 5;
-        const int INITAL_NUMBER_OF_COLUMNS = 2;
+        const int INITIAL_NUMBER_OF_COLUMNS = 2;
         const int MAX_NUMBER_OF_ITEMS = 9;
 
         // States to match features
@@ -52,14 +52,12 @@ namespace LayoutDemo
             view.ParentOrigin = ParentOrigin.Center;
             view.PivotPoint = PivotPoint.Center;
             view.PositionUsesPivotPoint = true;
-            view.ParentOrigin = ParentOrigin.Center;
-            view.PivotPoint = PivotPoint.Center;
             view.WidthSpecification = LayoutParamPolicies.WrapContent;
             view.HeightSpecification = LayoutParamPolicies.WrapContent;
             view.BackgroundColor = Color.Blue;
 
             var layout = new GridLayout();
-            layout.Columns = INITAL_NUMBER_OF_COLUMNS;
+            layout.Columns = INITIAL_NUMBER_OF_COLUMNS;
             view.Layout = layout;
 
             // Add child image-views to the created view

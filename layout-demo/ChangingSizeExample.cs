@@ -174,6 +174,15 @@ namespace LayoutDemo
             gradientVisualMap1.PositionPolicy = VisualTransformPolicyType.Relative;
             gradientVisualMap1.SizePolicy = VisualTransformPolicyType.Relative;
 
+            ///////////////////////////////////////////////////////////////////////////////////////
+            //  Custom transitions for changes in the layout positioning and size.
+            //  Size animates over a few frames.
+            ///////////////////////////////////////////////////////////////////////////////////////
+            TransitionComponents easeInSine = new TransitionComponents();
+            easeInSine.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSine);
+            easeInSine.Delay = 0;
+            easeInSine.Duration = 64;
+
             int shadowOffset = 4;
             View backgroundContainer = new View()
             {
@@ -204,6 +213,11 @@ namespace LayoutDemo
                 Size2D = new Size2D(80,80),
                 BackgroundColor = Color.Blue
             };
+
+            contentContainer.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
+                                                                      AnimatableProperties.Size,
+                                                                      0.0f,
+                                                                      easeInSine );
             contentBackground.Add(contentContainer);
 
             const int NUMBER_OF_IMAGEVIEWS = 1;
