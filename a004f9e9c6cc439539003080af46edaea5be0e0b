@@ -22,6 +22,30 @@
       "revId": "a004f9e9c6cc439539003080af46edaea5be0e0b",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d2fb92a_4a0547fc",
+        "filename": "multiple-window/MultipleWindow.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1015495
+      },
+      "writtenOn": "2019-08-13T10:33:06Z",
+      "side": 1,
+      "message": "It\u0027s not wrong. This is the property for retrieving the window size and resize it. We want to keep it.\n\nWhat we are missing is an API to allow the app to create main window with given size, and that\u0027s what I am adding.",
+      "parentUuid": "165063e0_74e9e864",
+      "range": {
+        "startLine": 90,
+        "startChar": 19,
+        "endLine": 90,
+        "endChar": 29
+      },
+      "revId": "a004f9e9c6cc439539003080af46edaea5be0e0b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
     }
   ]
 }
