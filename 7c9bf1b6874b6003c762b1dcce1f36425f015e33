@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5aa0c1d0_d22cdb44",
+        "filename": "multiple-window/MultipleWindow.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2019-08-13T11:17:32Z",
+      "side": 1,
+      "message": "whitespace here and multiple places",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 4
+      },
+      "revId": "7c9bf1b6874b6003c762b1dcce1f36425f015e33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b714961_6917cee0",
+        "filename": "multiple-window/MultipleWindow.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2019-08-13T11:17:32Z",
+      "side": 1,
+      "message": "mixing between 2 an 4 spaces indent. Use 4 throughout.",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 8
+      },
+      "revId": "7c9bf1b6874b6003c762b1dcce1f36425f015e33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d2867d9_2a02e06c",
+        "filename": "multiple-window/MultipleWindow.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2019-08-13T11:17:32Z",
+      "side": 1,
+      "message": "Could use one OnButtonTouched with aa case statement within it for the action (CreatDeleteWindowTest) and then just call SetCurrentFocu on the sender.\nLess code.",
+      "range": {
+        "startLine": 243,
+        "startChar": 16,
+        "endLine": 243,
+        "endChar": 32
+      },
+      "revId": "7c9bf1b6874b6003c762b1dcce1f36425f015e33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37557d85_d6560842",
+        "filename": "multiple-window/MultipleWindow.cs",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2019-08-13T11:17:32Z",
+      "side": 1,
+      "message": "commented out code",
+      "range": {
+        "startLine": 437,
+        "startChar": 0,
+        "endLine": 439,
+        "endChar": 142
+      },
+      "revId": "7c9bf1b6874b6003c762b1dcce1f36425f015e33",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
