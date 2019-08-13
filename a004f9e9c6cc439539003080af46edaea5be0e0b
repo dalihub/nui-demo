@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "165063e0_74e9e864",
+        "filename": "multiple-window/MultipleWindow.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1011527
+      },
+      "writtenOn": "2019-08-13T10:16:26Z",
+      "side": 1,
+      "message": "@Adeel, Why do you think this is the wrong?  Should the API be removed?",
+      "range": {
+        "startLine": 90,
+        "startChar": 19,
+        "endLine": 90,
+        "endChar": 29
+      },
+      "revId": "a004f9e9c6cc439539003080af46edaea5be0e0b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
