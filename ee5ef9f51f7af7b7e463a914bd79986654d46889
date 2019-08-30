@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61355643_1cdbb054",
+        "filename": "silk-demo/SilkDemo.cs",
+        "patchSetId": 6
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1007416
+      },
+      "writtenOn": "2019-08-30T15:16:37Z",
+      "side": 1,
+      "message": "Dead code.",
+      "range": {
+        "startLine": 550,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 17
+      },
+      "revId": "ee5ef9f51f7af7b7e463a914bd79986654d46889",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
