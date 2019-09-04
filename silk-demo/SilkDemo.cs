@@ -27,6 +27,8 @@ namespace Silk
         private const string resources = "./res/";
         private const int TitlePointSize = 30;
 
+        private const float AxisLockThreshold = 0.36f;
+
         // Width of the scrolling frame, defaults to window size.
         private int FrameWidth;
         // Height of the scrolling frame, defaults to window size.
@@ -37,6 +39,8 @@ namespace Silk
 
         // Ratio of of thumb nail to frame size
         private int ThumbnailSizeRatio = 8;
+
+        private float RatioToScreenHeightToCompleteScroll = 0.6f;
 
         // Container for categories. Transitions between vertical and horizontal
         private View categoryStack;
@@ -61,6 +65,12 @@ namespace Silk
         private bool listView;
 
         private bool Animating;
+
+        private bool AxisYLock;
+
+        private float PanGestureDisplacementY;
+
+        Animation scrollAnimation;
 
         private TapGestureDetector tapGestureDetector;
 
@@ -348,12 +358,14 @@ namespace Silk
             SetupCategoryItems();
             InitializeCategoryStack();
             InitializeTitleStack();
-            InitializeContent();
+            //InitializeContent();
 
-            Window.Instance.Add(contentArea);
-            contentArea.PositionY = FrameHeight;
-            Window.Instance.Add(categoryStack);
+            //Window.Instance.Add(contentArea);
+           //contentArea.PositionY = FrameHeight;
+           Window.Instance.Add(categoryStack);
             Window.Instance.Add(titleStack);
+
+            scrollAnimation = new Animation();
 
             tapGestureDetector = new TapGestureDetector();
             tapGestureDetector.Attach(mainScreen);
@@ -370,8 +382,6 @@ namespace Silk
         }
         private void EventAction(Action action)
         {
-            Animation scrollAnimation = new Animation();
-
             switch(action)
             {
                 case Action.ScrollLeft:
@@ -381,17 +391,17 @@ namespace Silk
                         scrollAnimation.AnimateTo(categoryStack, "PositionX", categoryStack.PositionX - FrameWidth,
                         0,
                         800,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare) );
+                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
                         scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX - ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
                         0,
                         600,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare) );
+                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
-                        scrollAnimation.AnimateTo(contentArea, "PositionX", contentArea.PositionX - FrameWidth,
-                        0,
-                        800,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare) );
+                        // scrollAnimation.AnimateTo(contentArea, "PositionX", contentArea.PositionX - FrameWidth,
+                        // 0,
+                        // 800,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
                         currentView++;
                     }
@@ -405,17 +415,17 @@ namespace Silk
                             scrollAnimation.AnimateTo(categoryStack, "PositionX", categoryStack.PositionX + FrameWidth,
                             0,
                             800,
-                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare) );
+                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
                             scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX + ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
                             0,
                             600,
-                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare) );
+                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
-                            scrollAnimation.AnimateTo(contentArea, "PositionX", contentArea.PositionX + FrameWidth,
-                            0,
-                            800,
-                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare) );
+                            // scrollAnimation.AnimateTo(contentArea, "PositionX", contentArea.PositionX + FrameWidth,
+                            // 0,
+                            // 800,
+                            // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
                             currentView--;
                         }
@@ -437,18 +447,18 @@ namespace Silk
                         titleStack.HeightSpecification = CategoryStackHeight;
                         titleStack.WidthSpecification = LayoutParamPolicies.WrapContent;
 
-                        scrollAnimation.AnimateTo(titleStack, "PositionX", 120.0f,
-                        0,
-                        256,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
+                        // scrollAnimation.AnimateTo(titleStack, "PositionX", 120.0f,
+                        // 0,
+                        // 256,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
 
                         //titleStack.Margin = new Extents(0,0,0,0);
 
                         //Animate up the content area to meet category area.
-                        scrollAnimation.AnimateTo(contentArea, "PositionY", CategoryStackHeight,
-                        256,
-                        400,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
+                        // scrollAnimation.AnimateTo(contentArea, "PositionY", CategoryStackHeight,
+                        // 256,
+                        // 400,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
 
                         currentView = 0;
                         scrollAnimation.Finished += AnimationFinished;
@@ -473,28 +483,28 @@ namespace Silk
                         titleStack.HeightSpecification = LayoutParamPolicies.MatchParent;
                         titleStack.WidthSpecification = LayoutParamPolicies.MatchParent;
 
-                        scrollAnimation.AnimateTo(categoryStack, "PositionX", 0.0f,
-                        0,
-                        CategoryStackHeight,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
+                        // scrollAnimation.AnimateTo(categoryStack, "PositionX", 0.0f,
+                        // 0,
+                        // 240,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
 
-                        scrollAnimation.AnimateTo(titleStack, "PositionX", 0.0f,
-                        0,
-                        CategoryStackHeight,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
+                        // scrollAnimation.AnimateTo(titleStack, "PositionX", 0.0f,
+                        // 0,
+                        // 240,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
 
                         //titleStack.Margin = new Extents(60,0,0,0);
-                        // Animate the content are off the screen
-                        scrollAnimation.AnimateTo(contentArea, "PositionY", FrameHeight,
-                        0,
-                        256,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
+                        // Animate the content off the screen
+                        // scrollAnimation.AnimateTo(contentArea, "PositionY", FrameHeight,
+                        // 0,
+                        // 256,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
-                        // Reset X position to view 0
-                        scrollAnimation.AnimateTo(contentArea, "PositionX", 0.0f,
-                        256,
-                        256,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
+                        // // Reset X position to view 0
+                        // scrollAnimation.AnimateTo(contentArea, "PositionX", 0.0f,
+                        // 256,
+                        // 256,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
 
                         currentView = 0;
                         scrollAnimation.Finished += AnimationFinished;
@@ -547,33 +557,92 @@ namespace Silk
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
+            Animation layoutAnimation = scrollAnimation;
+            Animation otherAnimation = Window.Instance.LayoutController.GetCoreAnimation();
             switch(e.PanGesture.State)
             {
                 case Gesture.StateType.Finished :
                 {
-                    if (e.PanGesture.Velocity.Y > 0)
+                    if (AxisYLock)
                     {
-                        EventAction(Action.ShowList);
+                        Console.WriteLine("panned:{0} progress{1}", PanGestureDisplacementY,layoutAnimation.CurrentProgress );
+                        if (layoutAnimation.CurrentProgress > RatioToScreenHeightToCompleteScroll)
+                        {
+                            // Panned enough to allow auto completion of animation.
+                            layoutAnimation.SpeedFactor = 1;
+                            layoutAnimation.EndAction = Animation.EndActions.StopFinal;
+                            layoutAnimation.Play();
+
+                            otherAnimation.SpeedFactor = 1;
+                            otherAnimation.EndAction = Animation.EndActions.StopFinal;
+                            otherAnimation.Play();
+                        }
+                        else
+                        {
+                            // Reverse animation as have panned enought to warrant completion.
+                            layoutAnimation.SpeedFactor = -1;
+                            layoutAnimation.EndAction = Animation.EndActions.Cancel;
+                            layoutAnimation.Play();
+
+                            otherAnimation.SpeedFactor = -1;
+                            otherAnimation.EndAction = Animation.EndActions.Cancel;
+                            otherAnimation.Play();
+                        }
+                        Window.Instance.LayoutController.OverrideCoreAnimation = false;
                     }
-                    else if (e.PanGesture.Velocity.Y < 0)
+                    else
                     {
-                        EventAction(Action.ShowContent);
+                        if (e.PanGesture.Velocity.X > 0)
+                        {
+                            EventAction(Action.ScrollRight);
+                        }
+                        else if (e.PanGesture.Velocity.X < 0)
+                        {
+                            EventAction(Action.ScrollLeft);
+                        }
+                        layoutAnimation.Play();
+
                     }
 
-                    if (e.PanGesture.Velocity.X > 0)
-                    {
-                        EventAction(Action.ScrollRight);
-                    }
-                    else if (e.PanGesture.Velocity.X < 0)
-                    {
-                        EventAction(Action.ScrollLeft);
-                    }
                 }
                 break;
                 case Gesture.StateType.Continuing :
+                {
+                    if (AxisYLock)
+                    {
+                        PanGestureDisplacementY += e.PanGesture.ScreenDisplacement.Y;
+                        float progress = PanGestureDisplacementY/(FrameHeight*0.5f*RatioToScreenHeightToCompleteScroll);
+                        Console.WriteLine("panning:{0} progress{1} animiationProgress{2}", PanGestureDisplacementY,progress, otherAnimation.CurrentProgress);
+                        layoutAnimation.CurrentProgress = progress;
+                        otherAnimation.CurrentProgress = progress;
+                    }
+                }
+                break;
                 case Gesture.StateType.Started :
                 {
-                    // fall through
+                    Console.WriteLine("Displacement.Y:{0} Displacement.X{1}", e.PanGesture.Displacement.Y, e.PanGesture.Displacement.X);
+
+                    if (e.PanGesture.Displacement.Y > e.PanGesture.Displacement.X)
+                    {
+                        AxisYLock = true;
+                        layoutAnimation.EndAction = Animation.EndActions.Discard;
+                        EventAction(Action.ShowContent);
+                        layoutAnimation.Play();
+                        layoutAnimation.Pause();
+
+                        otherAnimation.EndAction = Animation.EndActions.Discard;
+                        otherAnimation.Play();
+                        otherAnimation.Pause();
+                        Window.Instance.LayoutController.OverrideCoreAnimation = true;
+                        Console.WriteLine("started: progress{0}", otherAnimation.CurrentProgress);
+
+                        PanGestureDisplacementY = 0;
+                    }
+                    else
+                    {
+                        AxisYLock = false;
+                    }
+
                 }
                 break;
             }

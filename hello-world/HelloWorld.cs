@@ -23,6 +23,12 @@ using Tizen.NUI.Constants;
 
 class HelloWorldExample : NUIApplication
 {
+    PanGestureDetector panGestureDetector;
+    float PanGestureDisplacementY;
+    float RatioToScreenHeightToCompleteScroll = 0.6;
+
+    Animation scrollAnimation;
+
     /// <summary>
     /// Override to create the required scene
     /// </summary>
@@ -34,21 +40,84 @@ class HelloWorldExample : NUIApplication
         // Get the window instance and change background color
         Window window = Window.Instance;
         window.BackgroundColor = Color.White;
+        Size2D windowSize = new Size2D(window.Size.Width, window.Size.Height);
+
+        View background = new View()
+        {
+            Size2D = windowSize,
+        };
+        window.Add(background);
 
         // Create a simple TextLabel
         TextLabel title = new TextLabel("Hello World");
 
         // Ensure TextLabel matches its parent's size (i.e. Window size)
         // By default, a TextLabel's natural size is the size of the text within it
-        title.Size2D = new Size2D(window.Size.Width, window.Size.Height);
+        title.Size2D = new Size2D(100, 100);
+        title.PositionY = windowSize.Height*0.5;
 
         // By default, text is aligned to the top-left within the TextLabel
         // Align it to the center of the TextLabel
         title.HorizontalAlignment = HorizontalAlignment.Center;
         title.VerticalAlignment = VerticalAlignment.Center;
 
+        panGestureDetector = new PanGestureDetector();
+        panGestureDetector.Attach(background);
+        panGestureDetector.Detected += OnPanGestureDetected;
+
+        scrollAnimation = new Animation();
+        scrollAnimation.AnimateTo(title, "PositionY", 50.0f,
+                        0,
+                        800,
+                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare) );
+
         // Add the text to the window
         window.Add(title);
+    }
+
+    private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
+    {
+        switch(e.PanGesture.State)
+        {
+            case Gesture.StateType.Finished :
+            {
+                Console.WriteLine("panned:{0} progress{1}", PanGestureDisplacementY,scrollAnimation.CurrentProgress );
+                if( scrollAnimation.CurrentProgress > RatioToScreenHeightToCompleteScroll)
+                {
+                   // Panned enough to allow auto completion of animation.
+                   scrollAnimation.SpeedFactor = 1;
+                   scrollAnimation.EndAction = Animation.EndActions.StopFinal;
+                   scrollAnimation.Play();
+                }
+                else
+                {
+                    // Reverse animation as have panned enought to warrant completion.
+                    scrollAnimation.SpeedFactor = -1;
+                    scrollAnimation.EndAction = Animation.EndActions.Cancel;
+                    scrollAnimation.Play();
+                }
+            }
+            break;
+            case Gesture.StateType.Continuing :
+            {
+                PanGestureDisplacementY += e.PanGesture.ScreenDisplacement.Y;
+                var progress = PanGestureDisplacementY/(windowSize.Height*0.5*RatioToScreenHeightToCompleteScroll);
+                Console.WriteLine("panning:{0} progress{1} animiationProgress{2}", PanGestureDisplacementY,progress, scrollAnimation.CurrentProgress);
+                scrollAnimation.CurrentProgress = progress;
+            }
+            break;
+            case Gesture.StateType.Started :
+            {
+                scrollAnimation.EndAction = Animation.EndActions.Discard;
+                scrollAnimation.Play();
+                scrollAnimation.Pause();
+
+                PanGestureDisplacementY = 0;
+                Console.WriteLine("start_panning:{0}, total{1}", e.PanGesture.ScreenDisplacement.Y, PanGestureDisplacementY);
+            }
+            break;
+        }
+
     }
 
     /// <summary>
