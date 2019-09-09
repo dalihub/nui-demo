@@ -489,8 +489,6 @@ class MultipleWindowExample : NUIApplication
     [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
-        // Do not remove this print out - helps with the TizenFX stub sync issue
-        Console.WriteLine("Running Example.......");
         MultipleWindowExample example = new MultipleWindowExample(new Size2D(1290, 200), new Position2D(0, 0));
         example.Run(args);
     }
