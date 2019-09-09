@@ -596,8 +596,6 @@ namespace Silk
 
         static void Main(string[] args)
         {
-            // Do not remove this print out - helps with the TizenFX stub sync issue
-            Console.WriteLine("Running Example...");
             Demo silkDemo = new Demo();
             silkDemo.Run(args);
         }
