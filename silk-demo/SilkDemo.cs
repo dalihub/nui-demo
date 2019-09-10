@@ -3,7 +3,6 @@ using System.IO;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Silk
 {
@@ -14,8 +13,8 @@ namespace Silk
     {
         private enum Action
         {
-            ScrollLeft,
-            ScrollRight,
+            ScrollBackward,
+            ScrollForward,
             ShowContent,
             ShowList
         }
@@ -40,7 +39,7 @@ namespace Silk
         // Ratio of of thumb nail to frame size
         private int ThumbnailSizeRatio = 8;
 
-        private float RatioToScreenHeightToCompleteScroll = 0.6f;
+        private float RatioToScreenDimensionToCompleteScroll = 0.6f;
 
         // Container for categories. Transitions between vertical and horizontal
         private View categoryStack;
@@ -59,8 +58,9 @@ namespace Silk
 
         // List of a list of Views to ne used for the content
         private List<List<View>> contentStore;
-
         private ScrollingContainer contentScrollingContainer;
+
+        private ScrollingContainer categoryScrollingContainer;
 
         private int currentView;
 
@@ -71,6 +71,8 @@ namespace Silk
         private bool AxisYLock;
 
         private float PanGestureDisplacementY;
+
+        private float PanGestureDisplacementX;
 
         Animation scrollAnimation;
 
@@ -111,9 +113,10 @@ namespace Silk
             View entry = new View()
             {
                 Name = "Entry",
-                Layout = linearLayout,
+                //Layout = linearLayout,
                 Padding = new Extents(10,10,10,10),
                 WidthSpecification = width,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
             };
 
             View thumbnail = CreateImageViewFromUrl(thumbnailFilename, thumbnailSize);
@@ -226,34 +229,39 @@ namespace Silk
             }
         }
 
+        private void SetCatergoryStackTransition(View stack, AlphaFunction.BuiltinFunctions alphaFunction, int delay, int duration)
+        {
+            TransitionComponents shrinkAndGrow = new TransitionComponents();
+            shrinkAndGrow.AlphaFunction = new AlphaFunction(alphaFunction);
+            shrinkAndGrow.Delay = delay;
+            shrinkAndGrow.Duration = duration;
+
+            stack.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
+                                                           AnimatableProperties.Position,
+                                                           0.0,
+                                                           shrinkAndGrow );
+
+            stack.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
+                                                           AnimatableProperties.Size,
+                                                           0.0f,
+                                                           shrinkAndGrow );
+        }
+
         private void InitializeCategoryStack()
         {
-
-            TransitionComponents shrinkAndGrow = new TransitionComponents();
-            shrinkAndGrow.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn);
-            shrinkAndGrow.Delay = 0;
-            shrinkAndGrow.Duration = 480;
-
             var layout = new LinearLayout();
             layout.LinearOrientation = LinearLayout.Orientation.Vertical;
             categoryStack = new View()
             {
                 Name = "CategoryStack",
                 Layout = layout,
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = FrameWidth,
+                HeightSpecification = FrameHeight,
             };
             listView = true;
 
-            categoryStack.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
-                                                                   AnimatableProperties.Position,
-                                                                   0.0,
-                                                                   shrinkAndGrow );
+            SetCatergoryStackTransition(categoryStack, AlphaFunction.BuiltinFunctions.EaseIn, 0, 480);
 
-            categoryStack.LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
-                                                                   AnimatableProperties.Size,
-                                                                   0.0f,
-                                                                   shrinkAndGrow );
             foreach( View category in categoryList)
             {
                 categoryStack.Add(category);
@@ -309,7 +317,7 @@ namespace Silk
             {
                 Layout = layout,
                 Name = "ContentArea",
-                WidthSpecification = LayoutParamPolicies.WrapContent,
+                WidthSpecification = FrameWidth * categoryList.Count,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Padding = new Extents(1,1,20,10),
             };
@@ -326,6 +334,7 @@ namespace Silk
                     Layout = contentItemLayout,
                     WidthSpecification = FrameWidth,
                     HeightSpecification = LayoutParamPolicies.WrapContent,
+                    Name = "ContentCategory",
                 };
 
                 foreach (View item in subList)
@@ -338,13 +347,24 @@ namespace Silk
 
         }
 
-        private void InitializeScrollingContentContainer()
+        private void InitializeScrollingContainer(ref ScrollingContainer scrollingContainer, string viewName )
         {
+            TransitionComponents easeIn = new TransitionComponents();
+            easeIn.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSquare);
+            easeIn.Delay = 0;
+            easeIn.Duration = 256;
 
-            contentScrollingContainer = new ScrollingContainer()
+            scrollingContainer = new ScrollingContainer()
             {
                 WidthSpecification = LayoutParamPolicies.WrapContent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
+                PageWidth = FrameWidth,
+                Name = viewName,
+                LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
+                                                         AnimatableProperties.Position,
+                                                         0.0,
+                                                         easeIn ),
+                BackgroundColor = Color.Green,
             };
         }
 
@@ -359,8 +379,8 @@ namespace Silk
             {
                 Layout = layout,
                 Name = "MainScreen",
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = FrameWidth,//LayoutParamPolicies.MatchParent,
+                HeightSpecification = FrameHeight,//LayoutParamPolicies.MatchParent,
                 Background = CreateGradientVisual(new Vector4(0.0f, 0.0f, 1.0f, 1.0f)).OutputVisualMap,
             };
 
@@ -369,14 +389,16 @@ namespace Silk
 
             SetupCategoryItems();
             InitializeCategoryStack();
+            InitializeScrollingContainer(ref categoryScrollingContainer, "CategoryScrollingContainer" );
             InitializeTitleStack();
             InitializeContent();
-            InitializeScrollingContentContainer();
+            InitializeScrollingContainer(ref contentScrollingContainer, "ContentScrollingContainer");
 
+            categoryScrollingContainer.Add(categoryStack);
             contentScrollingContainer.Add(contentArea);
             Window.Instance.Add(contentScrollingContainer);
-            contentArea.PositionY = FrameHeight;
-            Window.Instance.Add(categoryStack);
+            contentScrollingContainer.PositionY = FrameHeight;
+            Window.Instance.Add(categoryScrollingContainer);
             Window.Instance.Add(titleStack);
 
             scrollAnimation = new Animation();
@@ -392,64 +414,68 @@ namespace Silk
 
         private void AnimationFinished(object sender, EventArgs e)
         {
-            Animating = false;
+            //Animating = false;
         }
+
         private void EventAction(Action action)
         {
+            Animation animationController = Window.Instance.LayoutController.GetCoreAnimation();
             switch(action)
             {
-                case Action.ScrollLeft:
+                case Action.ScrollBackward:
                 {
-                    if (!listView && currentView <3 && !Animating)
+                    Console.WriteLine("Action ScrollBackward listView{0} currentView{1}", listView, currentView);
+                    if (!listView && currentView <3 /*&& !Animating*/)
                     {
-                        scrollAnimation.AnimateTo(categoryStack, "PositionX", categoryStack.PositionX - FrameWidth,
-                        0,
-                        800,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
+                        // Set animation for scrolling, different to changing layouts
+                        SetCatergoryStackTransition(categoryStack, AlphaFunction.BuiltinFunctions.EaseInSquare, 0, 256);
 
-                        scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX - ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
-                        0,
-                        600,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
-
-                        scrollAnimation.AnimateTo(contentArea, "PositionX", contentArea.PositionX - FrameWidth,
-                        0,
-                        800,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
+                        categoryScrollingContainer.ScrollBackward();
+                        contentScrollingContainer.ScrollBackward();
+                        animationController.EndAction = Animation.EndActions.StopFinal;
 
                         currentView++;
+
+                        // scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX - ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
+                        // 0,
+                        // 256,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSquare) );
+
                     }
                 }
                 break;
 
-                case Action.ScrollRight:
+                case Action.ScrollForward:
                 {
-                    if (!listView && currentView > 0 && !Animating)
-                        {
-                            scrollAnimation.AnimateTo(categoryStack, "PositionX", categoryStack.PositionX + FrameWidth,
-                            0,
-                            800,
-                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
+                    Console.WriteLine("Action ScrollForward listView{0} currentView{1}", listView, currentView);
+                    if (!listView && currentView > 0 /*&& !Animating*/)
+                    {
+                        // Set animation for scrolling, different to changing layouts
+                        SetCatergoryStackTransition(categoryStack, AlphaFunction.BuiltinFunctions.EaseInSquare, 0, 256);
 
-                            scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX + ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
-                            0,
-                            600,
-                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
+                        categoryScrollingContainer.ScrollForward();
+                        contentScrollingContainer.ScrollForward();
+                        animationController.EndAction = Animation.EndActions.StopFinal;
 
-                            scrollAnimation.AnimateTo(contentArea, "PositionX", contentArea.PositionX + FrameWidth,
-                            0,
-                            800,
-                            new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
+                        currentView--;
 
-                            currentView--;
-                        }
+                        // scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX + ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
+                        // 0,
+                        // 256,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSquare) );
+
+                    }
                 }
                 break;
 
                 case Action.ShowContent:
                 {
+                    Console.WriteLine("Action ShowContent listView{0}", listView);
                     if(listView)
                     {
+                        // Use changing layout transition
+                        SetCatergoryStackTransition(categoryStack, AlphaFunction.BuiltinFunctions.EaseIn, 0, 480);
+
                         // Get existing Linear layout and change orientation
                         LinearLayout layout = categoryStack.Layout as LinearLayout;
                         layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
@@ -461,21 +487,24 @@ namespace Silk
                         titleStack.HeightSpecification = CategoryStackHeight;
                         titleStack.WidthSpecification = LayoutParamPolicies.WrapContent;
 
-                        scrollAnimation.AnimateTo(titleStack, "PositionX", 120.0f,
-                        0,
-                        256,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
+                        Animation otherAnimation = Window.Instance.LayoutController.GetCoreAnimation();
+
+                        // otherAnimation.AnimateTo(titleStack, "PositionX", 120.0f,
+                        // 0,
+                        // 256,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
 
                         //titleStack.Margin = new Extents(0,0,0,0);
 
                         //Animate up the content area to meet category area.
-                        scrollAnimation.AnimateTo(contentArea, "PositionY", CategoryStackHeight,
-                        256,
-                        400,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
+
+                        // scrollAnimation.AnimateTo(contentScrollingContainer, "PositionY", CategoryStackHeight,
+                        // 0,
+                        // 256,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
 
                         currentView = 0;
-                        scrollAnimation.Finished += AnimationFinished;
+                        //scrollAnimation.Finished += AnimationFinished;
                         listView = false;
                         Animating = true;
                     }
@@ -484,8 +513,12 @@ namespace Silk
 
                 case Action.ShowList:
                 {
+                    Console.WriteLine("Action ShowList listView{0}", listView);
                     if (!listView)
                     {
+                        // Use changing layout transition
+                        SetCatergoryStackTransition(categoryStack, AlphaFunction.BuiltinFunctions.EaseIn, 0, 480);
+
                         // Get existing Linear layout and change orientation
                         LinearLayout layout = categoryStack.Layout as LinearLayout;
                         layout.LinearOrientation = LinearLayout.Orientation.Vertical;
@@ -497,33 +530,35 @@ namespace Silk
                         titleStack.HeightSpecification = LayoutParamPolicies.MatchParent;
                         titleStack.WidthSpecification = LayoutParamPolicies.MatchParent;
 
-                        scrollAnimation.AnimateTo(categoryStack, "PositionX", 0.0f,
-                        0,
-                        240,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
+                        Animation otherAnimation = Window.Instance.LayoutController.GetCoreAnimation();
 
-                        scrollAnimation.AnimateTo(titleStack, "PositionX", 0.0f,
-                        0,
-                        240,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
+                        if (!otherAnimation)
+                        {
+                            otherAnimation = new Animation();
+                        }
+
+                        // otherAnimation.AnimateTo(categoryStack, "PositionX", 0.0f,
+                        // 0,
+                        // 240,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
+
+                        // otherAnimation.AnimateTo(titleStack, "PositionX", 0.0f,
+                        // 0,
+                        // 240,
+                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
 
                         //titleStack.Margin = new Extents(60,0,0,0);
                         //Animate the content off the screen
-                        scrollAnimation.AnimateTo(contentArea, "PositionY", FrameHeight,
+
+                        otherAnimation.AnimateTo(contentScrollingContainer, "PositionY", FrameHeight,
                         0,
                         256,
                         new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
-                        // Reset X position to view 0
-                        scrollAnimation.AnimateTo(contentArea, "PositionX", 0.0f,
-                        256,
-                        256,
-                        new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
-
                         currentView = 0;
-                        scrollAnimation.Finished += AnimationFinished;
+                        //scrollAnimation.Finished += AnimationFinished;
                         listView = true;
-                        Animating = true;
+                        //Animating = true;
                     }
                 }
                 break;
@@ -535,26 +570,33 @@ namespace Silk
         {
             if (e.Key.State == Key.StateType.Down)
             {
+                Animation animationController = Window.Instance.LayoutController.GetCoreAnimation();
                 switch( e.Key.KeyPressedName )
                 {
                     case "Left" :
                     {
-                        EventAction(Action.ScrollRight);
+                        EventAction(Action.ScrollForward);
+                        animationController.Play();
                     }
                     break;
                     case "Right" :
                     {
-                        EventAction(Action.ScrollLeft);
+                        EventAction(Action.ScrollBackward);
+                        animationController.Play();
                     }
                     break;
                     case "Up" :
                     {
                         EventAction(Action.ShowContent);
+                        animationController.Play();
+                        //scrollAnimation.Play();
                     }
                     break;
                     case "Down" :
                     {
                         EventAction(Action.ShowList);
+                        animationController.Play();
+                        //scrollAnimation.Play();
                     }
                     break;
                 }
@@ -571,51 +613,76 @@ namespace Silk
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
-            Animation layoutAnimation = scrollAnimation;
-            Animation otherAnimation = Window.Instance.LayoutController.GetCoreAnimation();
+            Animation animationController = Window.Instance.LayoutController.GetCoreAnimation();
+            Console.WriteLine("OnPanGestureDetected animation null:{0}", animationController == null );
             switch(e.PanGesture.State)
             {
                 case Gesture.StateType.Finished :
                 {
                     if (AxisYLock)
                     {
-                        Console.WriteLine("panned:{0} progress{1}", PanGestureDisplacementY,otherAnimation.CurrentProgress );
-                        if (otherAnimation.CurrentProgress > RatioToScreenHeightToCompleteScroll)
+                        Console.WriteLine("panned:{0} animationProgress:{1} scroll:{2} contentPos:{3} size:{4},{5}", PanGestureDisplacementX, animationController.CurrentProgress,
+                                           scrollAnimation.CurrentProgress, contentScrollingContainer.CurrentPosition.X, contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
+
+                        if (animationController.CurrentProgress > RatioToScreenDimensionToCompleteScroll)
                         {
                             // Panned enough to allow auto completion of animation.
-                            layoutAnimation.SpeedFactor = 1;
-                            layoutAnimation.EndAction = Animation.EndActions.StopFinal;
-                            layoutAnimation.Play();
+                            scrollAnimation.SpeedFactor = 1;
+                            scrollAnimation.EndAction = Animation.EndActions.StopFinal;
+                            //scrollAnimation.Play();
 
-                            otherAnimation.SpeedFactor = 1;
-                            otherAnimation.EndAction = Animation.EndActions.StopFinal;
-                            otherAnimation.Play();
+                            animationController.SpeedFactor = 1;
+                            animationController.EndAction = Animation.EndActions.StopFinal;
+                            animationController.Play();
                         }
                         else
                         {
                             // Reverse animation as not panned enough to warrant completion.
-                            layoutAnimation.SpeedFactor = -1;
-                            layoutAnimation.EndAction = Animation.EndActions.Cancel;
-                            layoutAnimation.Play();
+                            scrollAnimation.SpeedFactor = -1;
+                            scrollAnimation.EndAction = Animation.EndActions.Cancel;
+                            //scrollAnimation.Play();
 
-                            otherAnimation.SpeedFactor = -1;
-                            otherAnimation.EndAction = Animation.EndActions.Cancel;
-                            otherAnimation.Play();
+                            animationController.SpeedFactor = -1;
+                            animationController.EndAction = Animation.EndActions.Cancel;
+                            animationController.Play();
                         }
                         Window.Instance.LayoutController.OverrideCoreAnimation = false;
+                        AxisYLock = false;
                     }
                     else
                     {
-                        if (e.PanGesture.Velocity.X > 0)
+                        Console.WriteLine("panned:{0} animationProgress:{1} scroll:{2} contentPos:{3} size:{4},{5}", PanGestureDisplacementY, animationController.CurrentProgress,
+                        animationController.CurrentProgress, contentScrollingContainer.CurrentPosition.Y, contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
+
+                        if (e.PanGesture.Velocity.X > 0 )
                         {
-                            EventAction(Action.ScrollRight);
+                            Console.WriteLine("panned flick forward detected");
+                            EventAction(Action.ScrollForward);
                         }
                         else if (e.PanGesture.Velocity.X < 0)
                         {
-                            EventAction(Action.ScrollLeft);
+                            Console.WriteLine("panned flick back detected");
+                            EventAction(Action.ScrollBackward);
                         }
-                        layoutAnimation.Play();
 
+                        if ( !listView && currentView<3 && currentView >0)
+                        {
+                            //scrollAnimation.Play();
+                        }
+
+                        if (animationController.CurrentProgress > RatioToScreenDimensionToCompleteScroll)
+                        {
+                            // Panned enough to allow auto completion of animation.
+                            animationController.SpeedFactor = 1;
+                            animationController.EndAction = Animation.EndActions.StopFinal;
+                            animationController.Play();                        }
+                        else
+                        {
+                            // Reverse animation as not panned enough to warrant completion.
+                            animationController.SpeedFactor = -1;
+                            animationController.EndAction = Animation.EndActions.Cancel;
+                            animationController.Play();
+                        }
                     }
 
                 }
@@ -625,16 +692,26 @@ namespace Silk
                     if (AxisYLock)
                     {
                         PanGestureDisplacementY += e.PanGesture.ScreenDisplacement.Y;
-                        float progress = Math.Abs(PanGestureDisplacementY/(FrameHeight*0.5f*RatioToScreenHeightToCompleteScroll));
-                        Console.WriteLine("panning:{0} progress{1} animationProgress{2}", PanGestureDisplacementY,progress, otherAnimation.CurrentProgress);
-                        layoutAnimation.CurrentProgress = progress;
-                        otherAnimation.CurrentProgress = progress;
+                        float progress = Math.Abs(PanGestureDisplacementY/(FrameHeight*RatioToScreenDimensionToCompleteScroll));
+                        Console.WriteLine("panning:{0} progress{1} animationProgress:{2} scroll:{3} contentPos:{4} size:{5},{6}", PanGestureDisplacementY,progress, animationController.CurrentProgress,
+                                           scrollAnimation.CurrentProgress, contentScrollingContainer.CurrentPosition.Y, contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
+                        //scrollAnimation.CurrentProgress = progress;
+                        animationController.CurrentProgress = progress;
+                    }
+                    else
+                    {
+                        PanGestureDisplacementX += e.PanGesture.ScreenDisplacement.X;
+                        float progress = Math.Abs(PanGestureDisplacementX/(FrameWidth*RatioToScreenDimensionToCompleteScroll));
+                        animationController.CurrentProgress = progress;
+                        Console.WriteLine("panning:{0} progress{1} animationProgress:{2} scroll:{3} contentPos:{4} size:{5},{6}", PanGestureDisplacementX,progress, animationController.CurrentProgress,
+                                           scrollAnimation.CurrentProgress, contentScrollingContainer.CurrentPosition.X, contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
                     }
                 }
                 break;
                 case Gesture.StateType.Started :
                 {
-                    Console.WriteLine("Displacement.Y:{0} Displacement.X{1}", e.PanGesture.Displacement.Y, e.PanGesture.Displacement.X);
+                    Console.WriteLine("Started Displacement.Y:{0} Displacement.X{1}", e.PanGesture.Displacement.Y, e.PanGesture.Displacement.X);
+                    Window.Instance.LayoutController.OverrideCoreAnimation = true;
 
                     if ( Math.Abs(e.PanGesture.Displacement.Y) > Math.Abs(e.PanGesture.Displacement.X))
                     {
@@ -642,47 +719,54 @@ namespace Silk
 
                         if( e.PanGesture.Displacement.Y < 0 )
                         {
-                            layoutAnimation.EndAction = Animation.EndActions.Discard;
+                            Console.WriteLine("started: progress{0}", animationController.CurrentProgress);
+                            //scrollAnimation.EndAction = Animation.EndActions.Discard;
                             EventAction(Action.ShowContent);
-                            layoutAnimation.Play();
-                            layoutAnimation.Pause();
+                            //scrollAnimation.Play();
+                            //scrollAnimation.Pause();
 
-                            otherAnimation.EndAction = Animation.EndActions.Discard;
-                            otherAnimation.Play();
-                            otherAnimation.Pause();
-                            Window.Instance.LayoutController.OverrideCoreAnimation = true;
-                            Console.WriteLine("started: progress{0}", otherAnimation.CurrentProgress);
-
-                            PanGestureDisplacementY = 0;
+                            animationController.EndAction = Animation.EndActions.Discard;
+                            animationController.Play();
+                            animationController.Pause();
                         }
                         else
                         {
                           if ( !listView)
                           {
-                              layoutAnimation.EndAction = Animation.EndActions.Discard;
+                              Console.WriteLine("started: progress{0}", animationController.CurrentProgress);
+                              //scrollAnimation.EndAction = Animation.EndActions.Discard;
                               EventAction(Action.ShowList);
-                              layoutAnimation.Play();
-                              layoutAnimation.Pause();
+                              //scrollAnimation.Play();
+                              //scrollAnimation.Pause();
 
-                              otherAnimation.EndAction = Animation.EndActions.Discard;
-                              otherAnimation.Play();
-                              otherAnimation.Pause();
-                              Window.Instance.LayoutController.OverrideCoreAnimation = true;
-                              Console.WriteLine("started: progress{0}", otherAnimation.CurrentProgress);
-
-                              PanGestureDisplacementY = 0;
+                              animationController.EndAction = Animation.EndActions.Discard;
+                              animationController.Play();
+                              animationController.Pause();
                           }
                         }
+                        PanGestureDisplacementY = 0;
+
                     }
                     else
                     {
                         AxisYLock = false;
+                        if( e.PanGesture.Displacement.X < 0 )
+                        {
+                            animationController.EndAction = Animation.EndActions.Discard;
+                            EventAction(Action.ScrollBackward);
+                        }
+                        else
+                        {
+                            animationController.EndAction = Animation.EndActions.Discard;
+                            EventAction(Action.ScrollForward);
+                        }
+                        animationController.Play();
+                        animationController.Pause();
+                        PanGestureDisplacementX = 0;
                     }
-
                 }
                 break;
             }
-
         }
 
         static private GradientVisual CreateGradientVisual(Vector4 targetcolor)

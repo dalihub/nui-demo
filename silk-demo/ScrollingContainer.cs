@@ -33,20 +33,33 @@ namespace Silk
             Layout = scrollingContainerLayout;
         }
 
-        public void ScrollForwardBy()
-        {
-            scrollingContainerLayout.CurrentPage++;
-        }
-
-        public void ScrollBackwardBy()
+        public void ScrollForward()
         {
             scrollingContainerLayout.CurrentPage--;
+            scrollingContainerLayout.RequestLayout();
+        }
+
+        public void ScrollBackward()
+        {
+            scrollingContainerLayout.CurrentPage++;
+            scrollingContainerLayout.RequestLayout();
         }
     }
 
     internal class ScrollingContainerLayout : LayoutGroup
     {
-        public int CurrentPage {get; set;} = 0;
+        private int currentPage = 0;
+        public int CurrentPage
+        {
+          get
+          {
+              return currentPage;
+          }
+          set
+          {
+              currentPage = System.Math.Max(0,value);
+          }
+        }
         public int PageWidth {get; set;} = 0;
         protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
@@ -55,38 +68,35 @@ namespace Silk
 
             if (childToScroll !=null)
             {
-                int childDesiredHeight = childToScroll.Owner.HeightSpecification;
+                MeasureSpecification parentWidthMeasureSpec = new MeasureSpecification( new LayoutLength(-2), MeasureSpecification.ModeType.Unspecified);
+                MeasureSpecification parentHeightMeasureSpec = new MeasureSpecification( new LayoutLength(-2), MeasureSpecification.ModeType.Unspecified);
 
-                MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(widthMeasureSpec,
-                            new LayoutLength(childToScroll.Padding.Start + childToScroll.Padding.End),
-                            new LayoutLength(LayoutParamPolicies.WrapContent));
+                MeasureChild( childToScroll, parentWidthMeasureSpec, parentHeightMeasureSpec );
 
-                MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(heightMeasureSpec,
-                                        new LayoutLength(childToScroll.Padding.Top + childToScroll.Padding.Bottom),
-                                        new LayoutLength(childDesiredHeight));
+                MeasuredSize widthSizeAndState = ResolveSizeAndState(childToScroll.MeasuredWidth.Size, widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize heightSizeAndState = ResolveSizeAndState(childToScroll.MeasuredHeight.Size, heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
 
-                childToScroll.Measure( childWidthMeasureSpec, childHeightMeasureSpec);
+                SetMeasuredDimensions( new MeasuredSize( widthSizeAndState.Size, MeasuredSize.StateType.MeasuredSizeOK),
+                                       new MeasuredSize( heightSizeAndState.Size, MeasuredSize.StateType.MeasuredSizeOK) );
 
-                SetMeasuredDimensions( new MeasuredSize( childToScroll.MeasuredWidth.Size, MeasuredSize.StateType.MeasuredSizeOK),
-                                      new MeasuredSize( childToScroll.MeasuredHeight.Size, MeasuredSize.StateType.MeasuredSizeOK) );
             }
-
         }
 
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
         {
-            int horizontallOffset = PageWidth*CurrentPage;
+            int horizontallPageOffset = PageWidth*CurrentPage;
             LayoutItem childToScroll = _children[0];
             if (childToScroll !=null)
             {
                 LayoutLength childWidth = childToScroll.MeasuredWidth.Size;
                 LayoutLength childHeight = childToScroll.MeasuredHeight.Size;
 
-                childToScroll.Layout( left + horizontallOffset,
+                childToScroll.Layout( left - horizontallPageOffset,
                                       top,
-                                      left + horizontallOffset + childWidth,
-                                      childHeight );
+                                      left - horizontallPageOffset + childWidth,
+                                      top + childHeight );
             }
+            System.Console.WriteLine("Scrolling Container width:{0} height:{1}", (right -  left).AsDecimal(), (bottom - top).AsDecimal() );
 
         }
     }
