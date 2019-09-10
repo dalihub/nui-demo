@@ -33,20 +33,33 @@ namespace Silk
             Layout = scrollingContainerLayout;
         }
 
-        public void ScrollForwardBy()
-        {
-            scrollingContainerLayout.CurrentPage++;
-        }
-
-        public void ScrollBackwardBy()
+        public void ScrollForward()
         {
             scrollingContainerLayout.CurrentPage--;
+            scrollingContainerLayout.RequestLayout();
+        }
+
+        public void ScrollBackward()
+        {
+            scrollingContainerLayout.CurrentPage++;
+            scrollingContainerLayout.RequestLayout();
         }
     }
 
     internal class ScrollingContainerLayout : LayoutGroup
     {
-        public int CurrentPage {get; set;} = 0;
+        private int currentPage = 0;
+        public int CurrentPage
+        {
+          get
+          {
+              return currentPage;
+          }
+          set
+          {
+              currentPage = System.Math.Max(0,value);
+          }
+        }
         public int PageWidth {get; set;} = 0;
         protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
@@ -57,20 +70,17 @@ namespace Silk
             {
                 int childDesiredHeight = childToScroll.Owner.HeightSpecification;
 
-                MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(widthMeasureSpec,
-                            new LayoutLength(childToScroll.Padding.Start + childToScroll.Padding.End),
-                            new LayoutLength(LayoutParamPolicies.WrapContent));
+                MeasureSpecification childWidthMeasureSpec = new MeasureSpecification( new LayoutLength(PageWidth*4), MeasureSpecification.ModeType.Unspecified);
 
                 MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(heightMeasureSpec,
-                                        new LayoutLength(childToScroll.Padding.Top + childToScroll.Padding.Bottom),
-                                        new LayoutLength(childDesiredHeight));
+                                         new LayoutLength(childToScroll.Padding.Top + childToScroll.Padding.Bottom),
+                                         new LayoutLength(childDesiredHeight));
 
-                childToScroll.Measure( childWidthMeasureSpec, childHeightMeasureSpec);
+                MeasureChild( childToScroll, childWidthMeasureSpec, heightMeasureSpec );
 
-                SetMeasuredDimensions( new MeasuredSize( childToScroll.MeasuredWidth.Size, MeasuredSize.StateType.MeasuredSizeOK),
-                                      new MeasuredSize( childToScroll.MeasuredHeight.Size, MeasuredSize.StateType.MeasuredSizeOK) );
+                SetMeasuredDimensions( new MeasuredSize( childWidthMeasureSpec.Size, MeasuredSize.StateType.MeasuredSizeOK),
+                                       new MeasuredSize( new LayoutLength(childDesiredHeight), MeasuredSize.StateType.MeasuredSizeOK) );
             }
-
         }
 
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
@@ -82,10 +92,10 @@ namespace Silk
                 LayoutLength childWidth = childToScroll.MeasuredWidth.Size;
                 LayoutLength childHeight = childToScroll.MeasuredHeight.Size;
 
-                childToScroll.Layout( left + horizontallOffset,
+                childToScroll.Layout( left - horizontallOffset,
                                       top,
-                                      left + horizontallOffset + childWidth,
-                                      childHeight );
+                                      left - horizontallOffset + childWidth,
+                                      top + childHeight );
             }
 
         }
