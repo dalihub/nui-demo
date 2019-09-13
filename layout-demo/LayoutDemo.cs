@@ -121,9 +121,10 @@ namespace LayoutDemo
 
             // Toolbar added to Layer so content can be added to window.
             toolbarLayer = new Layer();
-            GetWindow().Add(toolbarLayer);
+            GetWindow().AddLayer(toolbarLayer);
             toolbarLayer.Add(toolbar);
 
+            layoutingExamples.Add(new PanningExample());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new FlexExample());
