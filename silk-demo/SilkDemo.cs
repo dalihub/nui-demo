@@ -74,8 +74,6 @@ namespace Silk
 
         private float PanGestureDisplacementX;
 
-        Animation scrollAnimation;
-
         private TapGestureDetector tapGestureDetector;
 
         private PanGestureDetector panGestureDetector;
@@ -401,8 +399,6 @@ namespace Silk
             Window.Instance.Add(categoryScrollingContainer);
             Window.Instance.Add(titleStack);
 
-            scrollAnimation = new Animation();
-
             tapGestureDetector = new TapGestureDetector();
             tapGestureDetector.Attach(mainScreen);
             tapGestureDetector.Detected += OnTapGestureDetected;
@@ -435,12 +431,6 @@ namespace Silk
                         animationController.EndAction = Animation.EndActions.StopFinal;
 
                         currentView++;
-
-                        // scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX - ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
-                        // 0,
-                        // 256,
-                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSquare) );
-
                     }
                 }
                 break;
@@ -458,12 +448,6 @@ namespace Silk
                         animationController.EndAction = Animation.EndActions.StopFinal;
 
                         currentView--;
-
-                        // scrollAnimation.AnimateTo(titleStack, "PositionX", titleStack.PositionX + ((FrameWidth/TitleWidthToFrameWidthRatio)+400),
-                        // 0,
-                        // 256,
-                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInSquare) );
-
                     }
                 }
                 break;
@@ -495,16 +479,7 @@ namespace Silk
                         // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
 
                         //titleStack.Margin = new Extents(0,0,0,0);
-
-                        //Animate up the content area to meet category area.
-
-                        // scrollAnimation.AnimateTo(contentScrollingContainer, "PositionY", CategoryStackHeight,
-                        // 0,
-                        // 256,
-                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
-
                         currentView = 0;
-                        //scrollAnimation.Finished += AnimationFinished;
                         listView = false;
                         Animating = true;
                     }
@@ -556,14 +531,12 @@ namespace Silk
                         new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
 
                         currentView = 0;
-                        //scrollAnimation.Finished += AnimationFinished;
                         listView = true;
                         //Animating = true;
                     }
                 }
                 break;
             }
-            scrollAnimation.Play();
         }
 
         private void WindowKeyEvent(object sender, Window.KeyEventArgs e)
@@ -589,14 +562,12 @@ namespace Silk
                     {
                         EventAction(Action.ShowContent);
                         animationController.Play();
-                        //scrollAnimation.Play();
                     }
                     break;
                     case "Down" :
                     {
                         EventAction(Action.ShowList);
                         animationController.Play();
-                        //scrollAnimation.Play();
                     }
                     break;
                 }
@@ -621,16 +592,15 @@ namespace Silk
                 {
                     if (AxisYLock)
                     {
-                        Console.WriteLine("panned:{0} animationProgress:{1} scroll:{2} contentPos:{3} size:{4},{5}", PanGestureDisplacementX, animationController.CurrentProgress,
-                                           scrollAnimation.CurrentProgress, contentScrollingContainer.CurrentPosition.X, contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
+                        Console.WriteLine("panned:{0} animationProgress:{1}  contentPos:{2} size:{3},{4}",
+                                           PanGestureDisplacementX, animationController.CurrentProgress,
+                                           contentScrollingContainer.CurrentPosition.X,
+                                           contentScrollingContainer.Size2D.Width,
+                                           contentScrollingContainer.Size2D.Height);
 
                         if (animationController.CurrentProgress > RatioToScreenDimensionToCompleteScroll)
                         {
-                            // Panned enough to allow auto completion of animation.
-                            scrollAnimation.SpeedFactor = 1;
-                            scrollAnimation.EndAction = Animation.EndActions.StopFinal;
-                            //scrollAnimation.Play();
-
+                            // Panned enough to allow auto completion of animation
                             animationController.SpeedFactor = 1;
                             animationController.EndAction = Animation.EndActions.StopFinal;
                             animationController.Play();
@@ -638,10 +608,6 @@ namespace Silk
                         else
                         {
                             // Reverse animation as not panned enough to warrant completion.
-                            scrollAnimation.SpeedFactor = -1;
-                            scrollAnimation.EndAction = Animation.EndActions.Cancel;
-                            //scrollAnimation.Play();
-
                             animationController.SpeedFactor = -1;
                             animationController.EndAction = Animation.EndActions.Cancel;
                             animationController.Play();
@@ -667,7 +633,6 @@ namespace Silk
 
                         if ( !listView && currentView<3 && currentView >0)
                         {
-                            //scrollAnimation.Play();
                         }
 
                         if (animationController.CurrentProgress > RatioToScreenDimensionToCompleteScroll)
@@ -692,19 +657,26 @@ namespace Silk
                     if (AxisYLock)
                     {
                         PanGestureDisplacementY += e.PanGesture.ScreenDisplacement.Y;
+//                        float progress = Math.Abs(PanGestureDisplacementY/FrameHeight);
                         float progress = Math.Abs(PanGestureDisplacementY/(FrameHeight*RatioToScreenDimensionToCompleteScroll));
-                        Console.WriteLine("panning:{0} progress{1} animationProgress:{2} scroll:{3} contentPos:{4} size:{5},{6}", PanGestureDisplacementY,progress, animationController.CurrentProgress,
-                                           scrollAnimation.CurrentProgress, contentScrollingContainer.CurrentPosition.Y, contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
-                        //scrollAnimation.CurrentProgress = progress;
+                        Console.WriteLine("panning:{0} progress{1} animationProgress:{2} contentPos:{3} size:{4},{5}",
+                                           PanGestureDisplacementY, progress,
+                                           animationController.CurrentProgress,
+                                           contentScrollingContainer.CurrentPosition.Y,
+                                           contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
                         animationController.CurrentProgress = progress;
                     }
                     else
                     {
                         PanGestureDisplacementX += e.PanGesture.ScreenDisplacement.X;
+//                        float progress = Math.Abs(PanGestureDisplacementX/FrameWidth);
                         float progress = Math.Abs(PanGestureDisplacementX/(FrameWidth*RatioToScreenDimensionToCompleteScroll));
                         animationController.CurrentProgress = progress;
-                        Console.WriteLine("panning:{0} progress{1} animationProgress:{2} scroll:{3} contentPos:{4} size:{5},{6}", PanGestureDisplacementX,progress, animationController.CurrentProgress,
-                                           scrollAnimation.CurrentProgress, contentScrollingContainer.CurrentPosition.X, contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
+                        Console.WriteLine("panning:{0} progress{1} animationProgress:{2} contentPos:{3} size:{4},{5}",
+                                           PanGestureDisplacementX, progress,
+                                           animationController.CurrentProgress,
+                                           contentScrollingContainer.CurrentPosition.X,
+                                           contentScrollingContainer.Size2D.Width, contentScrollingContainer.Size2D.Height);
                     }
                 }
                 break;
@@ -720,10 +692,7 @@ namespace Silk
                         if( e.PanGesture.Displacement.Y < 0 )
                         {
                             Console.WriteLine("started: progress{0}", animationController.CurrentProgress);
-                            //scrollAnimation.EndAction = Animation.EndActions.Discard;
                             EventAction(Action.ShowContent);
-                            //scrollAnimation.Play();
-                            //scrollAnimation.Pause();
 
                             animationController.EndAction = Animation.EndActions.Discard;
                             animationController.Play();
@@ -734,10 +703,7 @@ namespace Silk
                           if ( !listView)
                           {
                               Console.WriteLine("started: progress{0}", animationController.CurrentProgress);
-                              //scrollAnimation.EndAction = Animation.EndActions.Discard;
                               EventAction(Action.ShowList);
-                              //scrollAnimation.Play();
-                              //scrollAnimation.Pause();
 
                               animationController.EndAction = Animation.EndActions.Discard;
                               animationController.Play();
