@@ -331,7 +331,7 @@ namespace Silk
                 {
                     Layout = contentItemLayout,
                     WidthSpecification = FrameWidth,
-                    HeightSpecification = LayoutParamPolicies.WrapContent,
+                    HeightSpecification = 800,//LayoutParamPolicies.WrapContent,
                     Name = "ContentCategory",
                 };
 
