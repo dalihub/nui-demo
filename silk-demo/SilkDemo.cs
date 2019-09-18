@@ -661,7 +661,6 @@ namespace Silk
                     if (AxisYLock)
                     {
                         PanGestureDisplacementY += e.PanGesture.ScreenDisplacement.Y;
-//                        float progress = Math.Abs(PanGestureDisplacementY/FrameHeight);
                         float progress = Math.Abs(PanGestureDisplacementY/(FrameHeight*RatioToScreenDimensionToCompleteScroll));
                         Console.WriteLine("panning:{0} progress{1} animationProgress:{2} contentPos:{3} size:{4},{5}",
                                            PanGestureDisplacementY, progress,
@@ -673,8 +672,7 @@ namespace Silk
                     else
                     {
                         PanGestureDisplacementX += e.PanGesture.ScreenDisplacement.X;
-//                        float progress = Math.Abs(PanGestureDisplacementX/FrameWidth);
-                        float progress = Math.Abs(PanGestureDisplacementX/(FrameWidth*RatioToScreenDimensionToCompleteScroll));
+                        float progress = Math.Abs(PanGestureDisplacementX/FrameWidth);
                         animationController.CurrentProgress = progress;
                         Console.WriteLine("panning:{0} progress{1} animationProgress:{2} contentPos:{3} size:{4},{5}",
                                            PanGestureDisplacementX, progress,

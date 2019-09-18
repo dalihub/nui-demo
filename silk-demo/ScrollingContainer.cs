@@ -41,8 +41,12 @@ namespace Silk
 
         public void ScrollBackward()
         {
-            scrollingContainerLayout.CurrentPage++;
-            scrollingContainerLayout.RequestLayout();
+            View childToScroll = Children[0];
+            if (childToScroll.PositionX <= scrollingContainerLayout.CurrentPage+1*PageWidth)
+            {
+              scrollingContainerLayout.CurrentPage++;
+              scrollingContainerLayout.RequestLayout();
+            }
         }
     }
 
