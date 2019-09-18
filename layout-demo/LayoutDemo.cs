@@ -161,6 +161,29 @@ namespace LayoutDemo
 
             // Set initial title
             exampleTitle.Text = currentExampleLabel;
+
+            // Respond to key events
+            Window.Instance.KeyEvent += OnKeyEvent;
+        }
+
+        /// <summary>
+        /// Called when any key event is received.
+        /// Will use this to exit the application if the Back or Escape key is pressed
+        /// </summary>
+        private void OnKeyEvent( object sender, Window.KeyEventArgs eventArgs )
+        {
+            if( eventArgs.Key.State == Key.StateType.Down )
+            {
+                switch( eventArgs.Key.KeyPressedName )
+                {
+                    case "Escape":
+                    case "Back":
+                    {
+                        Exit();
+                    }
+                    break;
+                }
+            }
         }
 
         /// <summary>

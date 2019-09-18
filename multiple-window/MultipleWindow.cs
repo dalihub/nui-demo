@@ -83,9 +83,10 @@ class MultipleWindowExample : NUIApplication
         // Up call to the Base class first
         base.OnCreate();
 
-        // Get the main window instance and change background color
+        // Get the main window instance, change background color & respond to key events
         Window mainWindow = Window.Instance;
         mainWindow.BackgroundColor = Color.Red;
+        mainWindow.KeyEvent += OnKeyEvent;
 
         var layout = new LinearLayout()
         {
@@ -139,6 +140,26 @@ class MultipleWindowExample : NUIApplication
 
         _focusManager.SetAsFocusGroup(menuView, true);
         _focusManager.FocusIndicator = new View();
+    }
+
+    /// <summary>
+    /// Called when any key event is received.
+    /// Will use this to exit the application if the Back or Escape key is pressed
+    /// </summary>
+    private void OnKeyEvent( object sender, Window.KeyEventArgs eventArgs )
+    {
+        if( eventArgs.Key.State == Key.StateType.Down )
+        {
+            switch( eventArgs.Key.KeyPressedName )
+            {
+                case "Escape":
+                case "Back":
+                {
+                    Exit();
+                }
+                break;
+            }
+        }
     }
 
     private View OnPreFocusChange(object source, FocusManager.PreFocusChangeEventArgs e)

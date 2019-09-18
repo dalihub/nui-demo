@@ -533,6 +533,12 @@ namespace Silk
                         EventAction(Action.ShowList);
                     }
                     break;
+                    case "Escape" :
+                    case "Back" :
+                    {
+                        Exit();
+                    }
+                    break;
                 }
             }
         }
