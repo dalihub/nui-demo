@@ -354,8 +354,8 @@ namespace Silk
 
             scrollingContainer = new ScrollingContainer()
             {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
                 PageWidth = FrameWidth,
                 Name = viewName,
                 LayoutTransition = new LayoutTransition( TransitionCondition.LayoutChanged,
@@ -371,14 +371,14 @@ namespace Silk
             FrameWidth = Window.Instance.WindowSize.Width;
             FrameHeight = Window.Instance.WindowSize.Height;
 
-            var layout = new LinearLayout();
-            layout.LinearOrientation = LinearLayout.Orientation.Vertical;
+            AbsoluteLayout layout = new AbsoluteLayout();
+
             View mainScreen = new View()
             {
                 Layout = layout,
                 Name = "MainScreen",
-                WidthSpecification = FrameWidth,//LayoutParamPolicies.MatchParent,
-                HeightSpecification = FrameHeight,//LayoutParamPolicies.MatchParent,
+                WidthSpecification = FrameWidth,
+                HeightSpecification = FrameHeight,
                 Background = CreateGradientVisual(new Vector4(0.0f, 0.0f, 1.0f, 1.0f)).OutputVisualMap,
             };
 
@@ -396,6 +396,7 @@ namespace Silk
             contentScrollingContainer.Add(contentArea);
             Window.Instance.Add(contentScrollingContainer);
             contentScrollingContainer.PositionY = FrameHeight;
+            contentScrollingContainer.HeightSpecification = FrameHeight - CategoryStackHeight;
             Window.Instance.Add(categoryScrollingContainer);
             Window.Instance.Add(titleStack);
 
@@ -465,15 +466,21 @@ namespace Silk
                         layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
                         categoryStack.HeightSpecification = CategoryStackHeight;
                         categoryStack.WidthSpecification = FrameWidth*categoryList.Count;
+                        categoryScrollingContainer.HeightSpecification = CategoryStackHeight;
 
                         LinearLayout titlelayout = titleStack.Layout as LinearLayout;
                         titlelayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
                         titleStack.HeightSpecification = CategoryStackHeight;
                         titleStack.WidthSpecification = LayoutParamPolicies.WrapContent;
 
-                        Animation otherAnimation = Window.Instance.LayoutController.GetCoreAnimation();
+                        Animation coreAnimation = Window.Instance.LayoutController.GetCoreAnimation();
 
-                        // otherAnimation.AnimateTo(titleStack, "PositionX", 120.0f,
+                        coreAnimation.AnimateTo(contentScrollingContainer, "PositionY", CategoryStackHeight,
+                        0,
+                        256,
+                        new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
+
+                        // coreAnimation.AnimateTo(titleStack, "PositionX", 120.0f,
                         // 0,
                         // 256,
                         // new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn) );
@@ -497,25 +504,22 @@ namespace Silk
                         // Get existing Linear layout and change orientation
                         LinearLayout layout = categoryStack.Layout as LinearLayout;
                         layout.LinearOrientation = LinearLayout.Orientation.Vertical;
-                        categoryStack.HeightSpecification = LayoutParamPolicies.MatchParent;
-                        categoryStack.WidthSpecification = LayoutParamPolicies.MatchParent;
+                        categoryStack.HeightSpecification = FrameHeight;
+                        categoryStack.WidthSpecification = FrameWidth;
+                        categoryScrollingContainer.HeightSpecification = FrameHeight;
 
                         LinearLayout titleLayout = titleStack.Layout as LinearLayout;
                         titleLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
                         titleStack.HeightSpecification = LayoutParamPolicies.MatchParent;
                         titleStack.WidthSpecification = LayoutParamPolicies.MatchParent;
 
-                        Animation otherAnimation = Window.Instance.LayoutController.GetCoreAnimation();
+                        Animation coreAnimation = Window.Instance.LayoutController.GetCoreAnimation();
 
-                        if (!otherAnimation)
+                        if (!coreAnimation)
                         {
-                            otherAnimation = new Animation();
+                            System.Console.WriteLine("intialising new core Animation");
+                            coreAnimation = new Animation();
                         }
-
-                        // otherAnimation.AnimateTo(categoryStack, "PositionX", 0.0f,
-                        // 0,
-                        // 240,
-                        // new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
 
                         // otherAnimation.AnimateTo(titleStack, "PositionX", 0.0f,
                         // 0,
@@ -523,9 +527,9 @@ namespace Silk
                         // new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear) );
 
                         //titleStack.Margin = new Extents(60,0,0,0);
-                        //Animate the content off the screen
 
-                        otherAnimation.AnimateTo(contentScrollingContainer, "PositionY", FrameHeight,
+                        //Animate the content off the screen
+                        coreAnimation.AnimateTo(contentScrollingContainer, "PositionY", FrameHeight,
                         0,
                         256,
                         new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOut) );
