@@ -28,9 +28,10 @@ namespace SimpleLayout
 
         private void Initialize()
         {
-            // Change the background color of Window to White
+            // Change the background color of Window to White & respond to key events
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
+            window.KeyEvent += OnKeyEvent;
 
             // Create a new view
             View customLayoutView = new View();
@@ -73,6 +74,26 @@ namespace SimpleLayout
             imageView.HeightResizePolicy = ResizePolicyType.Fixed;
             imageView.WidthResizePolicy = ResizePolicyType.Fixed;
             return imageView;
+        }
+
+        /// <summary>
+        /// Called when any key event is received.
+        /// Will use this to exit the application if the Back or Escape key is pressed
+        /// </summary>
+        private void OnKeyEvent( object sender, Window.KeyEventArgs eventArgs )
+        {
+            if( eventArgs.Key.State == Key.StateType.Down )
+            {
+                switch( eventArgs.Key.KeyPressedName )
+                {
+                    case "Escape":
+                    case "Back":
+                    {
+                        Exit();
+                    }
+                    break;
+                }
+            }
         }
 
         static void Main(string[] args)

@@ -232,37 +232,48 @@ namespace HelloWorldTest
             {
                 keySubclassTest.Text = $"DeviceSubClass={e.Key.DeviceSubClass}, DeviceClass={e.Key.DeviceClass}, DeviceName={e.Key.DeviceName}, KeyCode={e.Key.KeyCode}";
 
-                if (e.Key.KeyPressedName == "Up")
+                switch( e.Key.KeyPressedName )
                 {
-                    if (_animation)
+                    case "Up":
                     {
-                        _animation.Finished += AnimationFinished;
-                        cnt++;
-                        Tizen.Log.Fatal("NUI", "AnimationFinished added!");
-                    }
-                    //pointLabel.TextColorAnimatable = Color.Blue;
-                    //pixelLabel.TextColorAnimatable = Color.Blue;
+                        if (_animation)
+                        {
+                            _animation.Finished += AnimationFinished;
+                            cnt++;
+                            Tizen.Log.Fatal("NUI", "AnimationFinished added!");
+                        }
 
-                    Tizen.Log.Fatal("NUI", $"LineWrapMode 1st={ myTextLabel?.LineWrapMode} 2nd={ myTextLabel2?.LineWrapMode}");
-                }
-                else if (e.Key.KeyPressedName == "Down")
-                {
-                    if (_animation)
+                        Tizen.Log.Fatal("NUI", $"LineWrapMode 1st={ myTextLabel?.LineWrapMode} 2nd={ myTextLabel2?.LineWrapMode}");
+                    }
+                    break;
+
+                    case "Down":
                     {
-                        _animation.Finished -= AnimationFinished;
-                        cnt--;
-                        Tizen.Log.Fatal("NUI", "AnimationFinished removed!");
-                    }
-                    //pointLabel.TextColorAnimatable = Color.Red;
-                    //pixelLabel.TextColorAnimatable = Color.Red;
+                        if (_animation)
+                        {
+                            _animation.Finished -= AnimationFinished;
+                            cnt--;
+                            Tizen.Log.Fatal("NUI", "AnimationFinished removed!");
+                        }
 
-                    Window.Instance.SetClass($"Window.SetClass() Test #{win_test++}", "");
-                    Tizen.Log.Fatal("NUI", $"Check with enlightenment_info -topwins ! Window.SetClass() Test #{win_test}");
-                }
-                else if (e.Key.KeyPressedName == "Return")
-                {
-                    _animation.Play();
-                    Tizen.Log.Fatal("NUI", "_animation play here!");
+                        Window.Instance.SetClass($"Window.SetClass() Test #{win_test++}", "");
+                        Tizen.Log.Fatal("NUI", $"Check with enlightenment_info -topwins ! Window.SetClass() Test #{win_test}");
+                    }
+                    break;
+
+                    case "Return":
+                    {
+                        _animation.Play();
+                        Tizen.Log.Fatal("NUI", "_animation play here!");
+                    }
+                    break;
+
+                    case "Escape":
+                    case "Back":
+                    {
+                        Exit();
+                    }
+                    break;
                 }
             }
         }

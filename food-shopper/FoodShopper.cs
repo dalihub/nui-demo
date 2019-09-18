@@ -203,17 +203,34 @@ namespace FoodShopper
                 switch( e.Key.KeyPressedName )
                 {
                     case "Left":
+                    {
                         HorizontalOperation( false );
+                    }
+                    break;
 
-                    break;
                     case "Right" :
+                    {
                         HorizontalOperation( true );
+                    }
                     break;
+
                     case "Up" :
+                    {
                         FocusSectionUp();
+                    }
                     break;
+
                     case "Down" :
+                    {
                         FocusSectionDown();
+                    }
+                    break;
+
+                    case "Escape":
+                    case "Back":
+                    {
+                        Exit();
+                    }
                     break;
                 }
 
