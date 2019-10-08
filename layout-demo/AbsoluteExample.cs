@@ -62,6 +62,8 @@ namespace LayoutDemo
             sizeButton.LabelText = "change size";
             sizeButton.Clicked += (sender, e) =>
             {
+                Tizen.Log.Error("Seoyeon", "Seoyeon@@@@@@@@ 1. view width : "+view.Size2D.Width+", Height : "+view.Size2D.Height+"\n");
+                Tizen.Log.Error("Seoyeon", "Seoyeon@@@@@@@@ 2. View width : "+this.view.Size2D.Width+", Height : "+this.view.Size2D.Height+"\n");
                 if (!fullSize)
                 {
                     this.view.WidthSpecification = LayoutParamPolicies.MatchParent;

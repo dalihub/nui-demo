@@ -124,6 +124,7 @@ namespace LayoutDemo
             GetWindow().Add(toolbarLayer);
             toolbarLayer.Add(toolbar);
 
+            layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new FlexExample());
@@ -133,7 +134,6 @@ namespace LayoutDemo
             layoutingExamples.Add(new NoLayoutExample());
             layoutingExamples.Add(new ChangingLayoutsExample());
             layoutingExamples.Add(new ChangingSizeExample());
-            layoutingExamples.Add(new AbsoluteExample());
             layoutingExamples.Add(new MultiRootsExample());
             layoutingExamples.Add(new NestedLayoutTestExample());
             layoutingExamples.Add(new DerivedViewExample());
