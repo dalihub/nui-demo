@@ -124,6 +124,7 @@ namespace LayoutDemo
             GetWindow().AddLayer(toolbarLayer);
             toolbarLayer.Add(toolbar);
 
+            layoutingExamples.Add(new ScrollingListExample());
             layoutingExamples.Add(new PanningExample());
             layoutingExamples.Add(new LinearExample());
             layoutingExamples.Add(new NestedLayoutExample());
