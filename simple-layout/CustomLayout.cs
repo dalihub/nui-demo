@@ -23,7 +23,7 @@ namespace SimpleLayout
             //  Set the required width to be the accumulated width of our children
             //  Set the required height to be the maximum height of any of our children
 
-            foreach (LayoutItem childLayout in _children)
+            foreach (LayoutItem childLayout in LayoutChildren)
             {
                 if( childLayout != null )
                 {
@@ -61,7 +61,7 @@ namespace SimpleLayout
 
             // Horizontally align the children to the middle of the space they are given too
             LayoutLength width = right - left;
-            int count = _children.Count;
+            int count = LayoutChildren.Count;
             int childIncrement = 0;
             if (count > 0)
             {
@@ -70,7 +70,7 @@ namespace SimpleLayout
             float center = childIncrement / 2;
 
             // Check layout direction
-            var view = GetOwner();
+            var view = Owner;
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
             for ( int i = 0; i < count; i++ )
@@ -82,7 +82,7 @@ namespace SimpleLayout
                     itemIndex = count - 1 - i;
                 }
 
-                LayoutItem childLayout = _children[itemIndex];
+                LayoutItem childLayout = LayoutChildren[itemIndex];
                 if(childLayout != null)
                 {
                     LayoutLength childWidth = childLayout.MeasuredWidth.Size;
