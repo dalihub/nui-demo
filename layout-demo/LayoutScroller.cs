@@ -26,14 +26,97 @@ namespace LayoutDemo
     /// </summary>
     internal class LayoutScroller : CustomView
     {
-        static bool LayoutDebugScroller = true; // Debug flag
+	static bool LayoutDebugScroller = false; // Debug flag
+
+        private class ScrollerCustomLayout : LayoutGroup
+        {
+            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+            {
+                float totalHeight = 0.0f;
+                float totalWidth = 0.0f;
+
+                MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+                MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
+
+                // measure children
+                foreach( LayoutItem childLayout in LayoutChildren )
+                {
+                    if (childLayout != null)
+                    {
+                        // Get size of child
+                        // Use an Unspecified MeasureSpecification mode so scrolling child is not restricted to it's parents size in Height (for vertical scrolling)
+                        MeasureSpecification heightMeasureSpecUnrestricted = new MeasureSpecification( heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+                        MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpecUnrestricted );
+                        float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+                        float childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+
+                        // Determine the width and height needed by the children using their given position and size.
+                        // Children could overlap so find the left most and right most child.
+                        Position2D childPosition = childLayout.Owner.Position2D;
+                        float childLeft = childPosition.X;
+                        float childTop = childPosition.Y;
+
+                        // Store current width and height needed to contain all children.
+                        Extents padding = Padding;
+                        Extents childMargin = childLayout.Margin;
+                        totalWidth = childWidth + padding.Start + padding.End + childMargin.Start + childMargin.End;
+                        totalHeight = childHeight + padding.Top + padding.Bottom + childMargin.Top + childMargin.Bottom;
+
+                        if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                        {
+                            childWidthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
+                        }
+                        if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                        {
+                            childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
+                        }
+                    }
+                }
+
+
+                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                totalWidth = widthSizeAndState.Size.AsDecimal();
+                totalHeight = heightSizeAndState.Size.AsDecimal();
+
+                // Ensure layout respects it's given minimum size
+                totalWidth = Math.Max( totalWidth, SuggestedMinimumWidth.AsDecimal() );
+                totalHeight = Math.Max( totalHeight, SuggestedMinimumHeight.AsDecimal() );
+
+                widthSizeAndState.State = childWidthState;
+                heightSizeAndState.State = childHeightState;
+
+                SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth), widthMeasureSpec, childWidthState ),
+                                       ResolveSizeAndState( new LayoutLength(totalHeight), heightMeasureSpec, childHeightState ) );
+            }
+
+            protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+            {
+                foreach( LayoutItem childLayout in LayoutChildren )
+                {
+                    if( childLayout != null )
+                    {
+                        LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                        LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+
+                        Position2D childPosition = childLayout.Owner.Position2D;
+                        Extents padding = Padding;
+                        Extents childMargin = childLayout.Margin;
+
+                        LayoutLength childLeft = new LayoutLength(childPosition.X + childMargin.Start + padding.Start);
+                        LayoutLength childTop = new LayoutLength(childPosition.Y + childMargin.Top + padding.Top);
+
+                        childLayout.Layout( childLeft, childTop, childLeft + childWidth, childTop + childHeight );
+                    }
+                }
+            }
+        }
+
         private Animation scrollAnimation;
         private float maxScrollDistance;
+        private float childTargetPosition = 0.0f;
         private PanGestureDetector mPanGestureDetector;
-
         private View mScrollingChild;
-
-        private bool verticalScrolling = true;
 
         /// <summary>
         /// [Draft] Constructor
@@ -48,6 +131,8 @@ namespace LayoutDemo
             ClippingMode = ClippingModeType.ClipToBoundingBox;
 
             mScrollingChild = new View();
+
+            Layout = new ScrollerCustomLayout();
         }
 
         public void AddLayoutToScroll(View child)
@@ -91,29 +176,37 @@ namespace LayoutDemo
             return new LayoutScroller();
         }
 
-        public void OffsetChildVertically(float displacement)
+        public void OffsetChildVertically(float displacement, bool animate)
         {
-            if (scrollAnimation == null)
+            float previousTargetPosition = childTargetPosition;
+
+            childTargetPosition = childTargetPosition + displacement;
+            childTargetPosition = Math.Min(0,childTargetPosition);
+            childTargetPosition = Math.Max(-maxScrollDistance,childTargetPosition);
+
+            Debug.WriteLineIf( LayoutDebugScroller, "OffsetChildVertically currentYPosition:" + mScrollingChild.PositionY + "childTargetPosition:" + childTargetPosition);
+
+            if (animate)
             {
-                scrollAnimation = new Animation();
+                if (scrollAnimation == null)
+                {
+                    scrollAnimation = new Animation();
+                }
+                else if (scrollAnimation.State == Animation.States.Playing)
+                {
+                    scrollAnimation.Stop(Animation.EndActions.StopFinal);
+                    scrollAnimation.Clear();
+                }
+                scrollAnimation.Duration = 500;
+                scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
+                scrollAnimation.AnimateTo(mScrollingChild, "PositionY", childTargetPosition);
+                scrollAnimation.Play();
             }
-            else if (scrollAnimation.State == Animation.States.Playing)
+            else
             {
-                scrollAnimation.Stop(Animation.EndActions.StopFinal);
-                scrollAnimation.Clear();
+                // Set position of scrolling child without an animation
+                mScrollingChild.PositionY = childTargetPosition;
             }
-            scrollAnimation.Duration = 500;
-            scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
-
-
-            float targetPosition = mScrollingChild.PositionY + displacement;
-            targetPosition = Math.Min(0,targetPosition);
-            targetPosition = Math.Max(-maxScrollDistance,targetPosition);
-
-            Debug.WriteLineIf( LayoutDebugScroller, "OffsetChildVertically targetYPos:" + targetPosition);
-
-            scrollAnimation.AnimateTo(mScrollingChild, "PositionY", targetPosition);
-            scrollAnimation.Play();
         }
 
         /// <summary>
@@ -144,6 +237,16 @@ namespace LayoutDemo
             base.Dispose(type);
         }
 
+        private void ScrollWithVelocity(Vector2 velocity)
+        {
+            float speed = velocity.LengthSquared();
+            float FlickThreshold = 500.0f;
+            if (speed > FlickThreshold)
+            {
+
+            }
+        }
+
         private float ScrollBy(float displacement)
         {
             if (GetChildCount() == 0 || displacement == 0)
@@ -151,7 +254,8 @@ namespace LayoutDemo
                 return 0;
             }
 
-            maxScrollDistance = mScrollingChild.CurrentSize.Height -CurrentSize.Height;
+            int scrollingChildHeight = (int)mScrollingChild.Layout.MeasuredHeight.Size.AsRoundedValue();
+            maxScrollDistance = scrollingChildHeight - CurrentSize.Height;
 
             Debug.WriteLineIf( LayoutDebugScroller, "ScrollBy maxScrollDistance:" + maxScrollDistance +
                                                     " parent length:" + CurrentSize.Height +
@@ -159,7 +263,7 @@ namespace LayoutDemo
 
             float absDisplacement = Math.Abs(displacement);
 
-            OffsetChildVertically(displacement);
+            OffsetChildVertically(displacement, false);
 
             return absDisplacement;
         }
@@ -172,16 +276,12 @@ namespace LayoutDemo
             }
             else if (e.PanGesture.State == Gesture.StateType.Continuing)
             {
-                {
-                    ScrollVerticallyBy(e.PanGesture.Displacement.Y);
-                }
+                ScrollVerticallyBy(e.PanGesture.Displacement.Y);
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
-                //if (mLayout.CanScrollVertically())
-                {
-                    ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600);
-                }
+                Console.WriteLine("Velocity:{0}",e.PanGesture.Velocity.Y);
+                ScrollVerticallyBy(e.PanGesture.Velocity.Y);
             }
         }
 
