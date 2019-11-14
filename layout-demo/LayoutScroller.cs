@@ -26,7 +26,7 @@ namespace LayoutDemo
     /// </summary>
     internal class LayoutScroller : CustomView
     {
-	static bool LayoutDebugScroller = false; // Debug flag
+	static bool LayoutDebugScroller = true; // Debug flag
 
         private class ScrollerCustomLayout : LayoutGroup
         {
@@ -116,7 +116,10 @@ namespace LayoutDemo
         private float maxScrollDistance;
         private float childTargetPosition = 0.0f;
         private PanGestureDetector mPanGestureDetector;
+        private TapGestureDetector mTapGestureDetector;
         private View mScrollingChild;
+
+        private bool Scrolling = false;
 
         /// <summary>
         /// [Draft] Constructor
@@ -127,6 +130,10 @@ namespace LayoutDemo
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
             mPanGestureDetector.Detected += OnPanGestureDetected;
+
+            mTapGestureDetector = new TapGestureDetector();
+            mTapGestureDetector.Attach(this);
+            mTapGestureDetector.Detected += OnTapGestureDetected;
 
             ClippingMode = ClippingModeType.ClipToBoundingBox;
 
@@ -151,14 +158,14 @@ namespace LayoutDemo
         public float ScrollVerticallyBy(float displacement)
         {
             Debug.WriteLineIf( LayoutDebugScroller, "ScrollVerticallyBy displacement:" + displacement);
-            return ScrollBy(displacement);
+            return ScrollBy(displacement, false);
         }
 
         internal void StopScroll()
         {
             if (scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
-                scrollAnimation.Stop(Animation.EndActions.StopFinal);
+                scrollAnimation.Stop(Animation.EndActions.Cancel);
                 scrollAnimation.Clear();
             }
         }
@@ -191,14 +198,16 @@ namespace LayoutDemo
                 if (scrollAnimation == null)
                 {
                     scrollAnimation = new Animation();
+                    scrollAnimation.Finished += ScrollAnimationFinished;
+
                 }
                 else if (scrollAnimation.State == Animation.States.Playing)
                 {
                     scrollAnimation.Stop(Animation.EndActions.StopFinal);
                     scrollAnimation.Clear();
                 }
-                scrollAnimation.Duration = 500;
-                scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
+                scrollAnimation.Duration = 1000;
+                scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
                 scrollAnimation.AnimateTo(mScrollingChild, "PositionY", childTargetPosition);
                 scrollAnimation.Play();
             }
@@ -233,21 +242,31 @@ namespace LayoutDemo
                     mPanGestureDetector.Dispose();
                     mPanGestureDetector = null;
                 }
+
+                if (mTapGestureDetector != null)
+                {
+                    mTapGestureDetector.Detected -= OnTapGestureDetected;
+                    mTapGestureDetector.Dispose();
+                    mTapGestureDetector = null;
+                }
             }
             base.Dispose(type);
         }
 
         private void ScrollWithVelocity(Vector2 velocity)
         {
-            float speed = velocity.LengthSquared();
-            float FlickThreshold = 500.0f;
+            float speed = Math.Min(4.0f,Math.Abs(velocity.Y));
+            float FlickThreshold = 2.0f;
             if (speed > FlickThreshold)
             {
-
+                Scrolling = true;
+                Debug.WriteLineIf( LayoutDebugScroller, "ScrollWithVelocity speed " + speed);
+                float flickLength = (mScrollingChild.Layout.MeasuredHeight.Size.AsRoundedValue())/CurrentSize.Height;
+                OffsetChildVertically(flickLength*velocity.Y*speed, true);
             }
         }
 
-        private float ScrollBy(float displacement)
+        private float ScrollBy(float displacement, bool animate)
         {
             if (GetChildCount() == 0 || displacement == 0)
             {
@@ -263,7 +282,7 @@ namespace LayoutDemo
 
             float absDisplacement = Math.Abs(displacement);
 
-            OffsetChildVertically(displacement, false);
+            OffsetChildVertically(displacement, animate);
 
             return absDisplacement;
         }
@@ -272,7 +291,10 @@ namespace LayoutDemo
         {
             if (e.PanGesture.State == Gesture.StateType.Started)
             {
-                StopScroll();
+                if(Scrolling)
+                {
+                    StopScroll();
+                }
             }
             else if (e.PanGesture.State == Gesture.StateType.Continuing)
             {
@@ -280,10 +302,27 @@ namespace LayoutDemo
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
-                Console.WriteLine("Velocity:{0}",e.PanGesture.Velocity.Y);
-                ScrollVerticallyBy(e.PanGesture.Velocity.Y);
+                ScrollWithVelocity(e.PanGesture.Velocity); // Animate scroll.
             }
         }
+
+        private void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
+        {
+            if (e.TapGesture.Type == Gesture.GestureType.Tap)
+            {
+                // Stop scrolling if touch detected
+                if(Scrolling)
+                {
+                    StopScroll();
+                }
+            }
+        }
+
+        private void ScrollAnimationFinished(object sender, EventArgs e)
+        {
+            Scrolling = false;
+        }
+
 
     }
 
