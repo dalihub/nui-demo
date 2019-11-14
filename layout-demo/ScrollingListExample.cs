@@ -28,7 +28,7 @@ namespace LayoutDemo
 
         private LayoutScroller layoutScroller = null;
 
-        private int numberOfItems = 8;
+        private int numberOfItems = 48;
 
         private float SizeRatio = .8f;
 
@@ -218,15 +218,21 @@ namespace LayoutDemo
             listViewContainer.Add( CreateListItem(false,"Motion Detection", true) );
             listViewContainer.Add( CreateListItem(false,"Clean Screen", false) );
 
-            listViewContainer.Add( CreateListItem(true,"HomeScreen", false) );
-            listViewContainer.Add( CreateListItem(false,"HomeScreen Wallpaper", false) );
-
-            listViewContainer.Add( CreateListItem(true,"Screensaver", false) );
-            listViewContainer.Add( CreateListItem(false,"Screensaver", true) );
-            listViewContainer.Add( CreateListItem(false,"Screensaver themes", false) );
-            listViewContainer.Add( CreateListItem(false,"Show latest info", true) );
-            listViewContainer.Add( CreateListItem(false,"Screensaver After", false) );
-            listViewContainer.Add( CreateListItem(false,"Screensaver Duration", false) );
+            for (var i =0; i<numberOfItems/2;i++)  // large list testing
+            {
+                listViewContainer.Add( CreateListItem(true,"HomeScreen", false) );
+                listViewContainer.Add( CreateListItem(false,"HomeScreen Wallpaper", false) );
+            }
+            for (var i =0; i<numberOfItems/2;i++)  // large list testing
+            {
+                listViewContainer.Add( CreateListItem(true,"Screensaver", false) );
+                listViewContainer.Add( CreateListItem(false,"Screensaver", true) );
+                listViewContainer.Add( CreateListItem(false,"Screensaver themes", false) );
+                listViewContainer.Add( CreateListItem(false,"Show latest info", true) );
+                listViewContainer.Add( CreateListItem(false,"Screensaver After", false) );
+                listViewContainer.Add( CreateListItem(false,"Screensaver Duration", false) );
+            }
+            listViewContainer.Add( CreateListItem(false,"Reset", false) );
         }
 
     };
