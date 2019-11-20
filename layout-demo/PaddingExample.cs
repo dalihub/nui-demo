@@ -26,7 +26,9 @@ namespace LayoutDemo
         }
         private View _view;
         private PushButton _nextFeatureButton;
+        private PushButton _paddingButton;
 
+        private PushButton _widthSpecificationButton;
         private int _featureIndex = 0;
         GradientVisual CreateGradientVisual()
         {
@@ -63,11 +65,11 @@ namespace LayoutDemo
         static Feature[] featureArray =  new Feature[]
         {
             new Feature() { feature = ExampleFeatures.REMOVE_LAYOUT, featureName = "remove layout" },
-            new Feature() { feature = ExampleFeatures.ADD_MARGIN, featureName = "add margin" },
+            new Feature() { feature = ExampleFeatures.ADD_MARGIN, featureName = "add child margin" },
             new Feature() { feature = ExampleFeatures.ADD_LAYOUT, featureName = "add layout" },
             new Feature() { feature = ExampleFeatures.REMOVE_LAYOUT, featureName = "remove layout" },
             new Feature() { feature = ExampleFeatures.ADD_LAYOUT, featureName = "add layout" },
-            new Feature() { feature = ExampleFeatures.REMOVE_MARGIN, featureName = "remove margin" },
+            new Feature() { feature = ExampleFeatures.REMOVE_MARGIN, featureName = "remove childmargin" },
         };
 
         public override void Create()
@@ -115,8 +117,8 @@ namespace LayoutDemo
             window.Add(_view);
 
             _nextFeatureButton = new PushButton();
-            _nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
-            _nextFeatureButton.PivotPoint = PivotPoint.BottomCenter;
+            _nextFeatureButton.ParentOrigin = ParentOrigin.BottomRight;
+            _nextFeatureButton.PivotPoint = PivotPoint.BottomRight;
             _nextFeatureButton.PositionUsesPivotPoint = true;
             _nextFeatureButton.LabelText = featureArray[_featureIndex].featureName;
             _nextFeatureButton.Clicked += (sender, e) =>
@@ -125,8 +127,19 @@ namespace LayoutDemo
                 return true;
             };
 
-            window.Add(_nextFeatureButton);
+            _paddingButton = new PushButton();
+            _paddingButton.ParentOrigin = ParentOrigin.BottomLeft;
+            _paddingButton.PivotPoint = PivotPoint.BottomLeft;
+            _paddingButton.PositionUsesPivotPoint = true;
+            _paddingButton.LabelText = "Add Parent Padding";
+            _paddingButton.Clicked += (sender, e) =>
+            {
+                TooglePaddingOnContainer();
+                return true;
+            };
 
+            window.Add(_nextFeatureButton);
+            window.Add(_paddingButton);
         }
 
         // Call function depending on feature index and update index to next feature.
@@ -170,6 +183,20 @@ namespace LayoutDemo
             _nextFeatureButton.LabelText = featureArray[_featureIndex].featureName;
         }
 
+        private void TooglePaddingOnContainer()
+        {
+            if (_view.Padding.EqualTo(new Extents(0, 0, 0, 0)))
+            {
+                _view.Padding = new Extents(5,5,5,5);
+                _paddingButton.LabelText = "Remove Parent padding";
+            }
+            else
+            {
+                _view.Padding = new Extents(0,0,0,0);
+                _paddingButton.LabelText = "Add Parent padding";
+            }
+        }
+
         // Remove the LinearLayout by setting an AbsoluteLayout
         // Position children explicitly.
         private void RemoveLayout()
@@ -205,6 +232,7 @@ namespace LayoutDemo
             Window window = LayoutingExample.GetWindow();
             window.Remove(this._view);
             window.Remove(_nextFeatureButton);
+            window.Remove(_paddingButton);
             _view = null;
             _nextFeatureButton = null;
         }
