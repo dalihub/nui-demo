@@ -15,10 +15,11 @@ namespace LayoutDemo
             private const string resources = "./res";
 
             /// Child image filenames
-            public static readonly string[] iconImage = new string[]
+            public static readonly string[] images = new string[]
             {
                 resources + "/images/dropdown_bg.png",
                 resources + "/images/dropdown_checkbox_on.png",
+                resources + "/images/list_ic_dropdown.png",
             };
         }
 
@@ -44,55 +45,62 @@ namespace LayoutDemo
                 Layout = linearLayout,
             };
 
-            Window.Instance.Add(root);
+// Don't use root whilst testing DropDown style refactor, add to Window instead.
+            //Window.Instance.Add(root);
 
             text = new TextLabel()
             {
                 Text = "DropDown Clicked item string is ",
-                PointSize = 14,
+                PointSize = 18,
                 HeightSpecification = 80,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 MultiLine = true,
                 BackgroundColor = new Color(0.8f, 0.8f, 0.8f, 1.0f),
+                PositionY = 80,
             };
-            root.Add(text);
+// Don't use root whilst testing DropDown style refactor, add to Window instead.
+//            root.Add(text);
+            Window.Instance.Add(text);
 
-            DropDownAttributes dropDownAttributes = new DropDownAttributes();
-
-            dropDown = new Tizen.NUI.Components.DropDown(dropDownAttributes)
+            dropDown = new DropDown()
             {
-                ListSize = new Size(360, 500),
-                Name = "DropDownButtonControl",
-                HeaderText = "Selectable item",
-                HeaderTextColor = new Color(0, 0, 0, 1),
-                HeaderTextPointSize = 28,
-                HeaderTextFontFamily = "SamsungOneUI 500C",
-                ButtonText = "DropDown Text",
-                ButtonTextColor = new Color(0, 0, 0, 1),
-                ButtonTextPointSize = 20,
-                ButtonTextFontFamily = "SamsungOneUI 500",
-                ButtonIconSize = new Size(48, 48),
-                LeftSpace = 56,
-                SpaceBetweenButtonTextAndIcon = 8,
-                ListBackgroundImageURL = TestImages.iconImage[0],
-                ListBackgroundImageBorder = new Rectangle(51, 51, 51, 51),
-                ListMargin = new Extents(20,0,20,0),
+                Size2D = new Size2D(900, 108),
+                Position2D = new Position2D(50, 300),
                 BackgroundColor = new Color(1, 1, 1, 1),
                 ListPadding = new Extents(4, 4, 4, 4),
             };
-
-            dropDown.WidthSpecification = 900; // LayoutParamPolicies.MatchParent
-            dropDown.HeightSpecification = 108;
-
             dropDown.ItemClickEvent += DropDownItemClickEvent;
-            root.Add(dropDown);
+            dropDown.Style.HeaderText.Text = "TitleArea";
+            dropDown.Style.HeaderText.TextColor = new Color(0, 0, 0, 1);
+            dropDown.Style.HeaderText.PointSize = 28;
+            dropDown.Style.HeaderText.FontFamily = "SamsungOneUI 500C";
+            dropDown.Style.Button.Text.Text = "DropDown Text";
+            dropDown.Style.Button.Text.TextColor = new Color(0, 0, 0, 1);
+            dropDown.Style.Button.Text.PointSize = 20;
+            dropDown.Style.Button.Text.FontFamily = "SamsungOneUI 500";
+            dropDown.Style.Button.Icon.ResourceUrl = TestImages.images[2];
+            dropDown.Style.Button.Icon.Size = new Size(48, 48);
+            dropDown.Style.Button.BackgroundColor.Pressed = new Color(0,1,0,0.4f);
+            dropDown.Style.Button.BackgroundColor.Normal = new Color(0,0,1,0.4f);
+            dropDown.Style.Button.PositionX = 56;
+            dropDown.SpaceBetweenButtonTextAndIcon = 8;
+            dropDown.Style.ListBackgroundImage.ResourceUrl = TestImages.images[0];
+            dropDown.Style.ListBackgroundImage.Border = new Rectangle(51, 51, 51, 51);
+            dropDown.Style.ListBackgroundImage.BackgroundColor = new Color(1,1,1,1f);
+            dropDown.Style.ListBackgroundImage.Size = new Size(360, 500);
+            dropDown.ListMargin.Start = 20;
+            dropDown.ListMargin.Top = 20;
+
+// Don't use root whilst testing DropDown style refactor, add to Window instead.
+            //root.Add(dropDown);
+            Window.Instance.Add(dropDown);
 
             for (int i = 0; i < 8; i++)
             {
-                DropDown.DropDownItemData item = new DropDown.DropDownItemData();
+                DropDown.DropDownDataItem item = new DropDown.DropDownDataItem();
                 item.Size = new Size(360, 96);
-                item.BackgroundColorSelector = new ColorSelector
+                item.BackgroundColorSelector = new Selector<Color>
                 {
                     Pressed = new Color(0, 0, 0, 0.4f),
                     Other = new Color(1, 1, 1, 0),
@@ -102,8 +110,8 @@ namespace LayoutDemo
                 item.FontFamily = "SamsungOne 500";
                 item.TextPosition = new Position(28, 0);
                 item.CheckImageSize = new Size(40, 40);
-                item.CheckImageResourceUrl = TestImages.iconImage[1];
-                item.CheckImageRightSpace = 16;
+                item.CheckImageResourceUrl = TestImages.images[1];
+                item.CheckImageGapToBoundary = 16;
                 dropDown.AddItem(item);
             }
 
@@ -173,12 +181,6 @@ namespace LayoutDemo
                 root.Dispose();
             }
         }
-
-        private void ButtonClickEvent(object sender, Tizen.NUI.Components.Button.ClickEventArgs e)
-        {
-            Tizen.NUI.Components.Button btn = sender as Tizen.NUI.Components.Button;
-        }
-
         public override void Remove()
         {
             Window window = Window.Instance;
