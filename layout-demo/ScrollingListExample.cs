@@ -160,11 +160,11 @@ namespace LayoutDemo
 
             if (toggle)
             {
-                Tizen.NUI.Components.ButtonAttributes buttonAttributes = new Tizen.NUI.Components.ButtonAttributes()
+                Tizen.NUI.Components.ButtonStyle buttonStyle = new Tizen.NUI.Components.ButtonStyle
                 {
-                    BackgroundImageAttributes = new Tizen.NUI.Components.ImageAttributes
+                    Icon = new ImageViewStyle
                     {
-                        ResourceURL = new Tizen.NUI.Components.StringSelector
+                        ResourceUrl = new Tizen.NUI.Components.StringSelector
                         {
                           Normal = TestImages.iconImage[2],
                           Selected = TestImages.iconImage[1]
@@ -173,7 +173,7 @@ namespace LayoutDemo
                     IsSelectable = true,
                 };
 
-                Tizen.NUI.Components.Button toggleButton = new Tizen.NUI.Components.Button(buttonAttributes)
+                Tizen.NUI.Components.Button toggleButton = new Tizen.NUI.Components.Button(buttonStyle)
                 {
                     Name = "toggleButton",
                     Size2D = new Size2D(90,30),
