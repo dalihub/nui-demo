@@ -100,6 +100,8 @@ namespace NUITemplate1
             layoutScroller = new LayoutScroller()
             {
                 Name = "LayoutScroller",
+                FlickAnimationDurationModifier = 0.8f,
+                FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
             };
             layoutScroller.AddLayoutToScroll(listViewContainer);
 
@@ -121,7 +123,7 @@ namespace NUITemplate1
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = linearLayout,
-                Padding = new Extents(5, 5, 55, 55),
+                Padding = new Extents(5, 5, 40, 40),
                 Name = "flexibleLayout-entry-" + text,
             };
 
@@ -131,7 +133,9 @@ namespace NUITemplate1
                 Name = "flexibleLayout-text-label-" + text,
                 Margin = new Extents(90, 0, 0, 0),
                 TextColor = new Color(0.6f,0.6f,0.6f,1),
-            };
+                PointSize = 38,
+                FontFamily = "SamsungOneUI 500C",
+        };
 
             if (imageIndex>=0)
             {
