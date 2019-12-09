@@ -6,23 +6,14 @@ using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
-    class ScrollingListExample : Example
+    class PagesExample : Example
     {
-        public ScrollingListExample() : base( "ScrollingListExample" )
+        public PagesExample() : base( "PagesExample" )
         {}
 
         static class TestImages
         {
             public const string listIconsDir = "/images/applicationIcons";
-
-            /// Child image filenames
-            public static readonly string[] iconImage = new string[]
-            {
-                "./res" + "/images/dropdown_bg.png",
-                "./res" + "/images/toggle-selected.jpg",
-                "./res" + "/images/toggle-normal.jpg",
-            };
-
         }
 
         private readonly string[] applicationNames = new string[]
@@ -33,10 +24,14 @@ namespace LayoutDemo
             "Streaming", "Timer", "Todo", "Trivia", "Radio"
         };
 
+        private readonly Color[] colors = { Color.White, Color.Green, Color.Magenta, Color.Cyan };
+
         private string[] applicationIconsArray;
 
         private View root = null;
         private View listViewContainer = null;
+
+        private int numberOfPages = 4;
 
         private Tizen.NUI.Components.LayoutScroller layoutScroller = null;
 
@@ -51,7 +46,7 @@ namespace LayoutDemo
             };
             Window.Instance.Add(root);
 
-            CreateList();
+            CreatePages();
             PopulateList();
         }
 
@@ -74,20 +69,20 @@ namespace LayoutDemo
             window.Remove(root);
         }
 
-        private void CreateList()
+        private void CreatePages()
         {
 
             LinearLayout linear = new LinearLayout();
-            linear.LinearOrientation = LinearLayout.Orientation.Vertical;
+
+            linear.LinearOrientation = LinearLayout.Orientation.Horizontal;
 
             listViewContainer = new View()
             {
                 Layout = linear,
                 Name = "DropDownMenuList",
-                WidthSpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = Window.Instance.WindowSize.Width * numberOfPages,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
-                Focusable = true,
-                Padding = new Extents(40,40,0,0),
+                Padding = new Extents(40, 40, 0, 0),
             };
 
             TransitionComponents slowPositioning = new TransitionComponents();
@@ -109,7 +104,9 @@ namespace LayoutDemo
             {
                 Name = "LayoutScroller",
                 FlickAnimationSpeed = 0.8f,
-                FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
+                FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
+                HorizontalScrolling = true,
+                SnapToPage = true,
             };
             layoutScroller.AddLayoutToScroll(listViewContainer);
 
@@ -119,83 +116,59 @@ namespace LayoutDemo
             root.Add(layoutScroller);
         }
 
-        private View CreateListItem(int imageIndex, string text, bool toggle)
+        private View CreatePage(int imageIndex, string text)
         {
+            var rand = new System.Random();
+
             LinearLayout linearLayout = new LinearLayout()
             {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearOrientation = LinearLayout.Orientation.Vertical,
             };
 
             View listItem = new View()
             {
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
+                WidthSpecification = Window.Instance.WindowSize.Width,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
                 Layout = linearLayout,
-                Padding = new Extents(5, 5, 40, 40),
+                Padding = new Extents(15, 15, 40, 40),
                 Name = "flexibleLayout-entry-" + text,
+                BackgroundColor = colors[(rand.Next(0, 3))],
             };
 
             TextLabel textLabel = new TextLabel()
             {
                 Text = text,
                 Name = "flexibleLayout-text-label-" + text,
-                Margin = new Extents(90, 0, 0, 0),
-                TextColor = new Color(0.6f,0.6f,0.6f,1),
+                Margin = new Extents(10, 0, 0, 0),
+                TextColor = new Color(0.6f, 0.6f, 0.6f, 1),
                 PointSize = 38,
                 FontFamily = "SamsungOneUI 500C",
-        };
-
-            if (imageIndex>=0)
-            {
-                ImageView icon = new ImageView(applicationIconsArray[imageIndex]);
-                listItem.Add(icon);
-            }
-
+            };
             listItem.Add(textLabel);
 
-            if (toggle)
+            if (imageIndex >= 0)
             {
-                Tizen.NUI.Components.ButtonStyle buttonStyle = new Tizen.NUI.Components.ButtonStyle
+                ImageView icon = new ImageView(applicationIconsArray[imageIndex])
                 {
-                    Icon = new ImageViewStyle
-                    {
-                        ResourceUrl = new Tizen.NUI.Components.StringSelector
-                        {
-                            Normal = "res/" + TestImages.iconImage[2],
-                            Selected = "res/" + TestImages.iconImage[1]
-                        },
-                    },
-                    IsSelectable = true,
+                    WidthSpecification = 200,
+                    HeightSpecification = 200,
                 };
-
-                Tizen.NUI.Components.Button toggleButton = new Tizen.NUI.Components.Button(buttonStyle)
-                {
-                    Name = "toggleButton",
-                    Size2D = new Size2D(90, 30),
-                };
-
-                listItem.Add(toggleButton);
+                listItem.Add(icon);
             }
-
-
             return listItem;
         }
 
         private void PopulateList()
         {
-            GetFiles("res/"+TestImages.listIconsDir, ref applicationIconsArray);
+            GetFiles("./res"+TestImages.listIconsDir, ref applicationIconsArray);
             int numberOfIcons = applicationIconsArray.Length;
             var rand = new System.Random();
 
-            foreach (string name in applicationNames)
+            for (int index=0; index < numberOfPages; index++)
             {
-
-                listViewContainer.Add(CreateListItem(rand.Next(0,numberOfIcons), name, false));
-                listViewContainer.Add(new View() { WidthSpecification = LayoutParamPolicies.MatchParent,
-                                                   HeightSpecification = 2,
-                                                   BackgroundColor = new Color(0.8f,0.8f,0.8f,1),
-                                                 });
+                listViewContainer.Add(CreatePage(rand.Next(0, numberOfIcons), applicationNames[index]));
             };
+            layoutScroller.NumberOfPages = numberOfPages;
 
         }
     };

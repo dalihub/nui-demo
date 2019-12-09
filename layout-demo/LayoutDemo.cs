@@ -129,6 +129,7 @@ namespace LayoutDemo
             layoutingExamples.Add(new NestedLayoutExample());
             layoutingExamples.Add(new FlexExample());
             layoutingExamples.Add(new ScrollingListExample());
+            layoutingExamples.Add(new PagesExample());
             layoutingExamples.Add(new MessageExample());
             layoutingExamples.Add(new ChildAddedToViewExample());
             layoutingExamples.Add(new GridExample());
