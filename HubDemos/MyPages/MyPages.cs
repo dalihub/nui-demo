@@ -27,7 +27,7 @@ namespace MyPages
         private View root = null;
         private View listViewContainer = null;
 
-        private LayoutScroller layoutScroller = null;
+        private Scrollable scrollable = null;
 
         private int numberOfPages = 4;
 
@@ -77,35 +77,20 @@ namespace MyPages
                 Padding = new Extents(40, 40, 0, 0),
             };
 
-            TransitionComponents slowPositioning = new TransitionComponents();
-            slowPositioning.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
-            slowPositioning.Delay = 0;
-            slowPositioning.Duration = 164;
-
-            listViewContainer.LayoutTransition = new LayoutTransition(TransitionCondition.LayoutChanged,
-                                                                      AnimatableProperties.Position,
-                                                                      0.0,
-                                                                      slowPositioning);
-
-            listViewContainer.LayoutTransition = new LayoutTransition(TransitionCondition.LayoutChanged,
-                                                                      AnimatableProperties.Size,
-                                                                      0.0,
-                                                                      slowPositioning);
-
-            layoutScroller = new LayoutScroller()
+            scrollable = new Scrollable()
             {
-                Name = "LayoutScroller",
-                FlickAnimationDurationModifier = 0.8f,
+                Name = "Scrollable",
+                FlickAnimationSpeed = 0.8f,
                 FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
-                HorizontalScrolling = true,
+                ScrollingDirection = Tizen.NUI.Components.Scrollable.Direction.Horizontal,
                 SnapToPage = true,
             };
-            layoutScroller.AddLayoutToScroll(listViewContainer);
+            scrollable.Add(listViewContainer);
 
-            layoutScroller.WidthSpecification = LayoutParamPolicies.MatchParent;
-            layoutScroller.HeightSpecification = LayoutParamPolicies.MatchParent;
+            scrollable.WidthSpecification = LayoutParamPolicies.MatchParent;
+            scrollable.HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            root.Add(layoutScroller);
+            root.Add(scrollable);
         }
 
         private View CreatePage(int imageIndex, string text)
@@ -160,7 +145,7 @@ namespace MyPages
             {
                 listViewContainer.Add(CreatePage(rand.Next(0, numberOfIcons), applicationNames[index]));
             };
-            layoutScroller.NumberOfPages = numberOfPages;
+            scrollable.NumberOfPages = numberOfPages;
 
         }
 
