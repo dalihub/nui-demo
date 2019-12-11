@@ -2,7 +2,6 @@
 using System.IO;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -13,27 +12,25 @@ namespace LayoutDemo
 
         static class TestImages
         {
-            public const string listIconsDir = "/images/applicationIcons";
+            public const string iconsDir = "/images/applicationIcons";
         }
 
         private readonly string[] applicationNames = new string[]
         {
-            "Dash", "Music", "Calendar", "Clock", "Deals", "Engineer Mode", "FridgeManager","Gallery",
-            "FoodHub", "HomeHub", "Internet", "Planner", "Memo", "AM Brief", "Demo", "Charm",
-            "Circle", "Care","Settings", "Shopping List", "Recipes", "SmartView", "SmartThings",
-            "Streaming", "Timer", "Todo", "Trivia", "Radio"
+            "Gallery", "Music", "Calendar", "Recipes"
         };
 
-        private readonly Color[] colors = { Color.White, Color.Green, Color.Magenta, Color.Cyan };
+        private readonly Color[] colors = { new Color(0.0f, 0.6f, 1.0f, 1.0f), new Color(0.7f, 0.0f, 1.0f, 1.0f),
+                                            new Color(0.8f, 0.27f, 0.27f, 1.0f), new Color(0.0f, 0.8f, 0.4f, 1.0f) };
 
         private string[] applicationIconsArray;
 
         private View root = null;
-        private View listViewContainer = null;
+        private View pagesContainer = null;
 
         private int numberOfPages = 4;
 
-        private Tizen.NUI.Components.LayoutScroller layoutScroller = null;
+        private Tizen.NUI.Components.Scrollable scrollable = null;
 
         public override void Create()
         {
@@ -46,8 +43,8 @@ namespace LayoutDemo
             };
             Window.Instance.Add(root);
 
-            CreatePages();
-            PopulateList();
+            CreatePagesContainer();
+            PopulateContainerWithPages();
         }
 
         public void Deactivate()
@@ -69,51 +66,37 @@ namespace LayoutDemo
             window.Remove(root);
         }
 
-        private void CreatePages()
+        private void CreatePagesContainer()
         {
 
             LinearLayout linear = new LinearLayout();
 
             linear.LinearOrientation = LinearLayout.Orientation.Horizontal;
 
-            listViewContainer = new View()
+            pagesContainer = new View()
             {
                 Layout = linear,
-                Name = "DropDownMenuList",
+                Name = "PageContainer",
                 WidthSpecification = Window.Instance.WindowSize.Width * numberOfPages,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
+                BackgroundColor = new Color(0.4f,0.7f,1.0f,1.0f),
                 Padding = new Extents(40, 40, 0, 0),
             };
 
-            TransitionComponents slowPositioning = new TransitionComponents();
-            slowPositioning.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
-            slowPositioning.Delay = 0;
-            slowPositioning.Duration = 164;
-
-            listViewContainer.LayoutTransition = new LayoutTransition(TransitionCondition.LayoutChanged,
-                                                                      AnimatableProperties.Position,
-                                                                      0.0,
-                                                                      slowPositioning);
-
-            listViewContainer.LayoutTransition = new LayoutTransition(TransitionCondition.LayoutChanged,
-                                                                      AnimatableProperties.Size,
-                                                                      0.0,
-                                                                      slowPositioning);
-
-            layoutScroller = new Tizen.NUI.Components.LayoutScroller()
+            scrollable = new Tizen.NUI.Components.Scrollable()
             {
-                Name = "LayoutScroller",
+                Name = "Scrollable",
                 FlickAnimationSpeed = 0.8f,
                 FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
-                ScrollingAxis = Tizen.NUI.Components.LayoutScroller.Axis.Horizontal,
+                ScrollingDirection = Tizen.NUI.Components.Scrollable.Direction.Horizontal,
                 SnapToPage = true,
             };
-            layoutScroller.Add(listViewContainer);
+            scrollable.Add(pagesContainer);
 
-            layoutScroller.WidthSpecification = LayoutParamPolicies.MatchParent;
-            layoutScroller.HeightSpecification = LayoutParamPolicies.MatchParent;
+            scrollable.WidthSpecification = LayoutParamPolicies.MatchParent;
+            scrollable.HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            root.Add(layoutScroller);
+            root.Add(scrollable);
         }
 
         private View CreatePage(int imageIndex, string text)
@@ -125,26 +108,26 @@ namespace LayoutDemo
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
 
-            View listItem = new View()
+            View page = new View()
             {
                 WidthSpecification = Window.Instance.WindowSize.Width,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 Layout = linearLayout,
                 Padding = new Extents(15, 15, 40, 40),
-                Name = "flexibleLayout-entry-" + text,
+                Name = "page-" + text,
                 BackgroundColor = colors[(rand.Next(0, 3))],
             };
 
             TextLabel textLabel = new TextLabel()
             {
                 Text = text,
-                Name = "flexibleLayout-text-label-" + text,
+                Name = "page-title-" + text,
                 Margin = new Extents(10, 0, 0, 0),
                 TextColor = new Color(0.6f, 0.6f, 0.6f, 1),
                 PointSize = 38,
                 FontFamily = "SamsungOneUI 500C",
             };
-            listItem.Add(textLabel);
+            page.Add(textLabel);
 
             if (imageIndex >= 0)
             {
@@ -153,22 +136,22 @@ namespace LayoutDemo
                     WidthSpecification = 200,
                     HeightSpecification = 200,
                 };
-                listItem.Add(icon);
+                page.Add(icon);
             }
-            return listItem;
+            return page;
         }
 
-        private void PopulateList()
+        private void PopulateContainerWithPages()
         {
-            GetFiles("./res"+TestImages.listIconsDir, ref applicationIconsArray);
+            GetFiles("./res"+TestImages.iconsDir, ref applicationIconsArray);
             int numberOfIcons = applicationIconsArray.Length;
             var rand = new System.Random();
 
             for (int index=0; index < numberOfPages; index++)
             {
-                listViewContainer.Add(CreatePage(rand.Next(0, numberOfIcons), applicationNames[index]));
+                pagesContainer.Add(CreatePage(rand.Next(0, numberOfIcons), applicationNames[index]));
             };
-            layoutScroller.NumberOfPages = numberOfPages;
+            scrollable.NumberOfPages = numberOfPages;
 
         }
     };

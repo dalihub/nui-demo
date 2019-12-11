@@ -38,7 +38,7 @@ namespace LayoutDemo
         private View root = null;
         private View listViewContainer = null;
 
-        private Tizen.NUI.Components.LayoutScroller layoutScroller = null;
+        private Tizen.NUI.Components.Scrollable scrollable = null;
 
         public override void Create()
         {
@@ -74,12 +74,12 @@ namespace LayoutDemo
             window.Remove(root);
         }
 
-        private void OnScrollEnded(object sender, Tizen.NUI.Components.LayoutScroller.ScrollEventArgs e)
+        private void OnScrollEnded(object sender, Tizen.NUI.Components.Scrollable.ScrollEventArgs e)
         {
             Console.WriteLine("OnScrollEnded");
         }
 
-        private void OnScrollStarted(object sender, Tizen.NUI.Components.LayoutScroller.ScrollEventArgs e)
+        private void OnScrollStarted(object sender, Tizen.NUI.Components.Scrollable.ScrollEventArgs e)
         {
             Console.WriteLine("OnScrollStart");
         }
@@ -115,20 +115,20 @@ namespace LayoutDemo
                                                                       0.0,
                                                                       slowPositioning);
 
-            layoutScroller = new Tizen.NUI.Components.LayoutScroller()
+            scrollable = new Tizen.NUI.Components.Scrollable()
             {
                 Name = "LayoutScroller",
                 FlickAnimationSpeed = 0.8f,
                 FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
             };
-            layoutScroller.Add(listViewContainer);
-            layoutScroller.ScrollEndedEvent += OnScrollEnded;
-            layoutScroller.ScrollStartedEvent += OnScrollStarted;
+            scrollable.Add(listViewContainer);
+            scrollable.ScrollEndedEvent += OnScrollEnded;
+            scrollable.ScrollStartedEvent += OnScrollStarted;
 
-            layoutScroller.WidthSpecification = LayoutParamPolicies.MatchParent;
-            layoutScroller.HeightSpecification = LayoutParamPolicies.MatchParent;
+            scrollable.WidthSpecification = LayoutParamPolicies.MatchParent;
+            scrollable.HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            root.Add(layoutScroller);
+            root.Add(scrollable);
         }
 
         private View CreateListItem(int imageIndex, string text, bool toggle)
