@@ -74,6 +74,16 @@ namespace LayoutDemo
             window.Remove(root);
         }
 
+        private void OnScrollEnded(object sender, Tizen.NUI.Components.LayoutScroller.ScrollEventArgs e)
+        {
+            Console.WriteLine("OnScrollEnded");
+        }
+
+        private void OnScrollStarted(object sender, Tizen.NUI.Components.LayoutScroller.ScrollEventArgs e)
+        {
+            Console.WriteLine("OnScrollStart");
+        }
+
         private void CreateList()
         {
 
@@ -111,7 +121,9 @@ namespace LayoutDemo
                 FlickAnimationSpeed = 0.8f,
                 FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
             };
-            layoutScroller.AddLayoutToScroll(listViewContainer);
+            layoutScroller.Add(listViewContainer);
+            layoutScroller.ScrollEndedEvent += OnScrollEnded;
+            layoutScroller.ScrollStartedEvent += OnScrollStarted;
 
             layoutScroller.WidthSpecification = LayoutParamPolicies.MatchParent;
             layoutScroller.HeightSpecification = LayoutParamPolicies.MatchParent;
