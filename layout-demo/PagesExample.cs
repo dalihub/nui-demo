@@ -105,10 +105,10 @@ namespace LayoutDemo
                 Name = "LayoutScroller",
                 FlickAnimationSpeed = 0.8f,
                 FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
-                HorizontalScrolling = true,
+                ScrollingAxis = Tizen.NUI.Components.LayoutScroller.Axis.Horizontal,
                 SnapToPage = true,
             };
-            layoutScroller.AddLayoutToScroll(listViewContainer);
+            layoutScroller.Add(listViewContainer);
 
             layoutScroller.WidthSpecification = LayoutParamPolicies.MatchParent;
             layoutScroller.HeightSpecification = LayoutParamPolicies.MatchParent;
