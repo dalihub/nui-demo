@@ -38,7 +38,7 @@ namespace LayoutDemo
         private View root = null;
         private View listViewContainer = null;
 
-        private Tizen.NUI.Components.Scrollable scrollable = null;
+        private Tizen.NUI.Components.ScrollableBase scrollable = null;
 
         public override void Create()
         {
@@ -74,12 +74,12 @@ namespace LayoutDemo
             window.Remove(root);
         }
 
-        private void OnScrollEnded(object sender, Tizen.NUI.Components.Scrollable.ScrollEventArgs e)
+        private void OnScrollEnded(object sender, Tizen.NUI.Components.ScrollableBase.ScrollEventArgs e)
         {
             Console.WriteLine("OnScrollEnded");
         }
 
-        private void OnScrollStarted(object sender, Tizen.NUI.Components.Scrollable.ScrollEventArgs e)
+        private void OnScrollStarted(object sender, Tizen.NUI.Components.ScrollableBase.ScrollEventArgs e)
         {
             Console.WriteLine("OnScrollStart");
         }
@@ -93,7 +93,7 @@ namespace LayoutDemo
             listViewContainer = new View()
             {
                 Layout = linear,
-                Name = "DropDownMenuList",
+                Name = "ListContainer",
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 Focusable = true,
@@ -115,7 +115,7 @@ namespace LayoutDemo
                                                                       0.0,
                                                                       slowPositioning);
 
-            scrollable = new Tizen.NUI.Components.Scrollable()
+            scrollable = new Tizen.NUI.Components.ScrollableBase()
             {
                 Name = "LayoutScroller",
                 FlickAnimationSpeed = 0.8f,
@@ -169,7 +169,7 @@ namespace LayoutDemo
             {
                 Tizen.NUI.Components.ButtonStyle buttonStyle = new Tizen.NUI.Components.ButtonStyle
                 {
-                    Icon = new ImageViewStyle
+                    Icon = new ImageControlStyle
                     {
                         ResourceUrl = new Tizen.NUI.Components.StringSelector
                         {

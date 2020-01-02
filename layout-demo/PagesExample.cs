@@ -30,7 +30,7 @@ namespace LayoutDemo
 
         private int numberOfPages = 4;
 
-        private Tizen.NUI.Components.Scrollable scrollable = null;
+        private Tizen.NUI.Components.ScrollableBase scrollable = null;
 
         public override void Create()
         {
@@ -83,12 +83,12 @@ namespace LayoutDemo
                 Padding = new Extents(40, 40, 0, 0),
             };
 
-            scrollable = new Tizen.NUI.Components.Scrollable()
+            scrollable = new Tizen.NUI.Components.ScrollableBase()
             {
-                Name = "Scrollable",
+                Name = "ScrollableBase",
                 FlickAnimationSpeed = 0.8f,
                 FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
-                ScrollingDirection = Tizen.NUI.Components.Scrollable.Direction.Horizontal,
+                ScrollingDirection = Tizen.NUI.Components.ScrollableBase.Direction.Horizontal,
                 SnapToPage = true,
             };
             scrollable.Add(pagesContainer);
