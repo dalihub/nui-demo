@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -19,6 +19,16 @@ namespace LayoutDemo
         {
             "Gallery", "Music", "Calendar", "Recipes"
         };
+
+        private readonly string[] listItemNames = new string[]
+        {
+            "Dash", "Music", "Calendar", "Clock", "Deals", "Engineer Mode", "FridgeManager","Gallery",
+            "FoodHub", "HomeHub", "Internet", "Planner", "Memo", "AM Brief", "Demo", "Charm",
+            "Circle", "Care","Settings", "Shopping List", "Recipes", "SmartView", "SmartThings",
+            "Streaming", "Timer", "Todo", "Trivia", "Radio"
+        };
+
+        private List<View> pageContent = null;
 
         private readonly Color[] colors = { new Color(0.0f, 0.6f, 1.0f, 1.0f), new Color(0.7f, 0.0f, 1.0f, 1.0f),
                                             new Color(0.8f, 0.27f, 0.27f, 1.0f), new Color(0.0f, 0.8f, 0.4f, 1.0f) };
@@ -99,7 +109,7 @@ namespace LayoutDemo
             root.Add(scrollable);
         }
 
-        private View CreatePage(int imageIndex, string text)
+        private View CreatePage(int imageIndex, string text, View content)
         {
             var rand = new System.Random();
 
@@ -138,7 +148,97 @@ namespace LayoutDemo
                 };
                 page.Add(icon);
             }
+
+            if(content)
+            {
+                page.Add(content);
+            }
+
             return page;
+        }
+
+        private View CreateScrollingList()
+        {
+            Tizen.NUI.Components.ScrollableBase scrollingView = new Tizen.NUI.Components.ScrollableBase()
+            {
+                Name = "LayoutScroller",
+                FlickAnimationSpeed = 0.8f,
+                FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = (int)(Window.Instance.WindowSize.Height * 0.75),
+            };
+
+            View listItemsContainer = new View()
+            {
+                Layout = new LinearLayout{ LinearOrientation = LinearLayout.Orientation.Vertical },
+                Name = "ListContainer",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Focusable = true,
+                Padding = new Extents(40,40,0,0),
+            };
+
+            foreach (string name in listItemNames)
+            {
+                TextLabel textLabel = new TextLabel()
+                {
+                    Text = name,
+                    Name = "list-item-text-label-" + name,
+                    Margin = new Extents(90, 0, 0, 0),
+                    TextColor = Color.Black,
+                    PointSize = 68,
+                    FontFamily = "SamsungOneUI 500C",
+                };
+
+                View listItem = new View
+                {
+                    WidthSpecification = LayoutParamPolicies.MatchParent,
+                    HeightSpecification = LayoutParamPolicies.WrapContent,
+                    BackgroundColor = Color.Blue,
+                    Layout = new LinearLayout(),
+                };
+
+                listItem.Add(textLabel);
+
+                listItemsContainer.Add(listItem);
+            }
+
+            scrollingView.Add(listItemsContainer);
+            return scrollingView;
+        }
+
+        private void PopulateContent()
+        {
+            pageContent = new List<View>();
+
+            View framedView = new View()
+            {
+                BackgroundColor = Color.Green,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = (int)(Window.Instance.WindowSize.Height * 0.75),
+                Padding = new Extents(10,10,100,50),
+            };
+            pageContent.Add(framedView);
+
+            pageContent.Add(CreateScrollingList());
+
+            View framedView2 = new View()
+            {
+                BackgroundColor = Color.Green,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = (int)(Window.Instance.WindowSize.Height * 0.75),
+                Padding = new Extents(10,10,100,50),
+            };
+            pageContent.Add(framedView2);
+
+            View imageView = new ImageView()
+            {
+                ResourceUrl = "./res/images/fruit.jpg",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = (int)(Window.Instance.WindowSize.Height * 0.75),
+                Padding = new Extents(20,20,100,50),
+            };
+            pageContent.Add(imageView);
         }
 
         private void PopulateContainerWithPages()
@@ -146,12 +246,12 @@ namespace LayoutDemo
             GetFiles("./res"+TestImages.iconsDir, ref applicationIconsArray);
             int numberOfIcons = applicationIconsArray.Length;
             var rand = new System.Random();
-
-            for (int index=0; index < numberOfPages; index++)
+            PopulateContent();
+            scrollable.NumberOfPages =  pageContent.Count;
+            for (int index=0; index < scrollable.NumberOfPages; index++)
             {
-                pagesContainer.Add(CreatePage(rand.Next(0, numberOfIcons), applicationNames[index]));
+                pagesContainer.Add(CreatePage(rand.Next(0, numberOfIcons), applicationNames[index], pageContent[index]));
             };
-            scrollable.NumberOfPages = numberOfPages;
 
         }
     };

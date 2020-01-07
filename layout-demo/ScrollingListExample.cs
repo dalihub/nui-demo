@@ -95,38 +95,23 @@ namespace LayoutDemo
                 Layout = linear,
                 Name = "ListContainer",
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
                 Focusable = true,
                 Padding = new Extents(40,40,0,0),
             };
-
-            TransitionComponents slowPositioning = new TransitionComponents();
-            slowPositioning.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
-            slowPositioning.Delay = 0;
-            slowPositioning.Duration = 164;
-
-            listViewContainer.LayoutTransition = new LayoutTransition(TransitionCondition.LayoutChanged,
-                                                                      AnimatableProperties.Position,
-                                                                      0.0,
-                                                                      slowPositioning);
-
-            listViewContainer.LayoutTransition = new LayoutTransition(TransitionCondition.LayoutChanged,
-                                                                      AnimatableProperties.Size,
-                                                                      0.0,
-                                                                      slowPositioning);
 
             scrollable = new Tizen.NUI.Components.ScrollableBase()
             {
                 Name = "LayoutScroller",
                 FlickAnimationSpeed = 0.8f,
                 FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
             };
+
             scrollable.Add(listViewContainer);
             scrollable.ScrollEndedEvent += OnScrollEnded;
             scrollable.ScrollStartedEvent += OnScrollStarted;
-
-            scrollable.WidthSpecification = LayoutParamPolicies.MatchParent;
-            scrollable.HeightSpecification = LayoutParamPolicies.MatchParent;
 
             root.Add(scrollable);
         }
@@ -144,18 +129,18 @@ namespace LayoutDemo
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Layout = linearLayout,
                 Padding = new Extents(5, 5, 40, 40),
-                Name = "flexibleLayout-entry-" + text,
+                Name = "scrollingItem-entry-" + text,
             };
 
             TextLabel textLabel = new TextLabel()
             {
                 Text = text,
-                Name = "flexibleLayout-text-label-" + text,
+                Name = "scrollingItem-entry-text-label-" + text,
                 Margin = new Extents(90, 0, 0, 0),
                 TextColor = new Color(0.6f,0.6f,0.6f,1),
                 PointSize = 38,
                 FontFamily = "SamsungOneUI 500C",
-        };
+            };
 
             if (imageIndex>=0)
             {
