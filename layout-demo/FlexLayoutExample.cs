@@ -65,6 +65,24 @@ namespace LayoutDemo
             foreach (String image in TestImages.s_images)
             {
                 ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(100, 100));
+                imageView.TouchEvent += (sender, e) =>
+                {
+                    if (sender is ImageView && e.Touch.GetState(0) == PointStateType.Down)
+                    {
+                        ImageView touchedImageView = (ImageView)sender;
+                        if (touchedImageView.Weight == 1.0f)
+                        {
+                            touchedImageView.Weight = 0.0f;
+
+                        }
+                        else
+                        {
+                            touchedImageView.Weight = 1.0f;
+                        }
+                    }
+                    return true;
+                };
+
                 view.Add(imageView);
             }
 
