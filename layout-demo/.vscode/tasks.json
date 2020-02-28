@@ -1,15 +1,41 @@
 {
     "version": "2.0.0",
-    "command": "dotnet",
-    "type": "shell",
-    "args": [],
     "tasks": [
         {
             "label": "build",
+            "command": "dotnet",
+            "type": "process",
             "args": [
-                "${workspaceRoot}/NuiSample.csproj"
+                "build",
+                "${workspaceFolder}/NuiSample.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
             ],
-            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/NuiSample.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/NuiSample.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
             "problemMatcher": "$msCompile"
         }
     ]

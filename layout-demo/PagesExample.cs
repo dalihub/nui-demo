@@ -247,8 +247,7 @@ namespace LayoutDemo
             int numberOfIcons = applicationIconsArray.Length;
             var rand = new System.Random();
             PopulateContent();
-            scrollable.NumberOfPages =  pageContent.Count;
-            for (int index=0; index < scrollable.NumberOfPages; index++)
+            for (int index=0; index < pageContent.Count; index++)
             {
                 pagesContainer.Add(CreatePage(rand.Next(0, numberOfIcons), applicationNames[index], pageContent[index]));
             };
