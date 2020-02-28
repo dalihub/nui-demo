@@ -110,8 +110,8 @@ namespace LayoutDemo
             };
 
             scrollable.Add(listViewContainer);
-            scrollable.ScrollEndedEvent += OnScrollEnded;
-            scrollable.ScrollStartedEvent += OnScrollStarted;
+            scrollable.ScrollAnimationEndEvent += OnScrollEnded;
+            scrollable.ScrollDragStartEvent += OnScrollStarted;
 
             root.Add(scrollable);
         }
@@ -154,7 +154,7 @@ namespace LayoutDemo
             {
                 Tizen.NUI.Components.ButtonStyle buttonStyle = new Tizen.NUI.Components.ButtonStyle
                 {
-                    Icon = new ImageControlStyle
+                    Icon = new ImageViewStyle
                     {
                         ResourceUrl = new Tizen.NUI.Components.StringSelector
                         {
