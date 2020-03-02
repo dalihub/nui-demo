@@ -17,12 +17,17 @@
 
 using System;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
 
 class HelloWorldExample : NUIApplication
 {
+    bool animated;
+    ScrollableBase scroll;
+    View scrollContainer;
+    Position prevPointPosition;
+    PanGestureDetector detector;
+
     /// <summary>
     /// Override to create the required scene
     /// </summary>
@@ -31,47 +36,97 @@ class HelloWorldExample : NUIApplication
         // Up call to the Base class first
         base.OnCreate();
 
-        // Get the window instance and change background color
-        Window window = Window.Instance;
-        window.BackgroundColor = Color.White;
+        scroll = new ScrollableBase()
+        {
+            Size = new Size(Window.Instance.WindowSize),
+            ScrollingDirection = ScrollableBase.Direction.Horizontal,
+            ScrollDuration = 600,
+            SnapToPage = true,
+        };
+        scroll.ScrollAnimationEndEvent += OnScrollAnimationEnded;
+        Window.Instance.GetDefaultLayer().Add(scroll);
 
-        // Create a simple TextLabel
-        TextLabel title = new TextLabel("Hello World");
+        scrollContainer = new View()
+        {
+            WidthSpecification = LayoutParamPolicies.WrapContent,
+            HeightSpecification = LayoutParamPolicies.WrapContent,
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+            },
+        };
+        scroll.Add(scrollContainer);
 
-        // Ensure TextLabel matches its parent's size (i.e. Window size)
-        // By default, a TextLabel's natural size is the size of the text within it
-        title.Size2D = new Size2D(window.Size.Width, window.Size.Height);
+        for(int i = 0; i < 5; i++)
+        {
+            View page = new View()
+            {
+                Size = new Size(Window.Instance.WindowSize),
+                BackgroundColor = i%2 == 0 ? Color.Cyan:Color.Magenta,
+                Layout = new AbsoluteLayout(),
+            };
 
-        // By default, text is aligned to the top-left within the TextLabel
-        // Align it to the center of the TextLabel
-        title.HorizontalAlignment = HorizontalAlignment.Center;
-        title.VerticalAlignment = VerticalAlignment.Center;
+            scrollContainer.Add(page);
+        }
 
-        // Add the text to the window
-        window.Add(title);
+        View item = new View()
+        {
+            Size = new Size(100,100),
+            BackgroundColor = Color.Yellow,
+        };
+        item.TouchEvent += OnItemTouched;
+        scrollContainer.Children[0].Add(item);
 
-        // Respond to key events
-        window.KeyEvent += OnKeyEvent;
+        detector = new PanGestureDetector();
+        detector.Attach(item);
     }
 
-    /// <summary>
-    /// Called when any key event is received.
-    /// Will use this to exit the application if the Back or Escape key is pressed
-    /// </summary>
-    private void OnKeyEvent( object sender, Window.KeyEventArgs eventArgs )
+    void OnScrollAnimationEnded(object source, ScrollableBase.ScrollEventArgs args)
     {
-        if( eventArgs.Key.State == Key.StateType.Down )
+        animated = false;
+    }
+
+    bool OnItemTouched(object source, View.TouchEventArgs args)
+    {
+        View target = source as View;
+        Position pointPosition = new Position(args.Touch.GetScreenPosition(0));
+
+        if(args.Touch.GetState(0) == PointStateType.Started)
         {
-            switch( eventArgs.Key.KeyPressedName )
+            target.BackgroundColor = Color.Red;
+            // Move item to window
+            Window.Instance.GetDefaultLayer().Add(target);
+            // Initialize point position
+            prevPointPosition = pointPosition;
+        }
+        else if(args.Touch.GetState(0) == PointStateType.Motion)
+        {
+            if(pointPosition.X < 50 && scroll.CurrentPage > 0 && animated == false)
             {
-                case "Escape":
-                case "Back":
-                {
-                    Exit();
-                }
-                break;
+                animated = true;
+                scroll.ScrollToIndex(scroll.CurrentPage - 1);
+            }
+            else if(pointPosition.X > 430 && scroll.CurrentPage < scrollContainer.Children.Count -1 && animated == false )
+            {
+                animated = true;
+                scroll.ScrollToIndex(scroll.CurrentPage + 1);
+            }
+            else
+            {
+                float xDiff = pointPosition.X - prevPointPosition.X;
+                float yDiff = pointPosition.Y - prevPointPosition.Y;
+
+                target.Position = new Position( target.Position.X + xDiff, target.Position.Y + yDiff);
+                prevPointPosition = pointPosition;
             }
         }
+        else if(args.Touch.GetState(0) == PointStateType.Up || args.Touch.GetState(0) == PointStateType.Leave)
+        {
+            scrollContainer.Children[scroll.CurrentPage].Add(target);
+            target.BackgroundColor = Color.Yellow;
+        }
+
+        return true;
     }
 
     /// <summary>

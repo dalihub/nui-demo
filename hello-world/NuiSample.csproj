@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
