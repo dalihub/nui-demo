@@ -59,6 +59,7 @@ class HelloWorldExample : NUIApplication
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
             },
+            BackgroundColor = Color.Yellow,
         };
         scroll.Add(scrollContainer);
         detector = new LongPressGestureDetector();
@@ -122,6 +123,8 @@ class HelloWorldExample : NUIApplication
             float newPositionXOfCenter = oldPageSize * currentPage + pageSizeDiff;
             float expectedMargin = newPositionXOfCenter - (EDIT_PADDING + newPageSize) * currentPage;
 
+            scroll.ScrollAvailableArea = new Rectangle();
+
             for( int i = 0; i< scrollContainer.Children.Count; i++)
             {
                 scrollContainer.Children[i].BackgroundColor = Color.White;
@@ -131,6 +134,15 @@ class HelloWorldExample : NUIApplication
                 float postionX = expectedMargin + (EDIT_PADDING + newPageSize)*i - pageSizeDiff;
                 editModeAnimation.AnimateTo(scrollContainer.Children[i],"ScaleX", SIZE_FACTOR);
                 editModeAnimation.AnimateTo(scrollContainer.Children[i],"PositionX", postionX);
+
+                if(i == 0)
+                {
+                    scroll.ScrollAvailableArea.X = (int)postionX; 
+                }
+                else if(i == scrollContainer.Children.Count-1)
+                {
+                    scroll.ScrollAvailableArea.Width = (int)postionX - scroll.ScrollAvailableArea.X; 
+                }
             }
 
             editModeAnimation.Play();
@@ -148,6 +160,11 @@ class HelloWorldExample : NUIApplication
                 editModeAnimation.AnimateTo(scrollContainer.Children[i],"ScaleX", 1.0f);
                 editModeAnimation.AnimateTo(scrollContainer.Children[i],"PositionX", postionX);
             }
+
+            scroll.ScrollAvailableArea = new Rectangle(
+                0,0,
+                Window.Instance.WindowSize.Width*(scrollContainer.Children.Count-1),0);
+
             editModeAnimation.Play();
         }
     }
