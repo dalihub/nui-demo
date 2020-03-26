@@ -17,62 +17,90 @@
 
 using System;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+
+using System.Collections.Generic;
+
 using Tizen.NUI.Constants;
 
 class HelloWorldExample : NUIApplication
 {
-    /// <summary>
-    /// Override to create the required scene
-    /// </summary>
+    class MyListItem : RecyclerList.ListItem
+    {
+        public MyListItem()
+        {
+            Layout = new FlexLayout()
+            {
+                ItemsAlignment = FlexLayout.AlignmentType.Center,
+                Justification = FlexLayout.FlexJustification.Center,
+            };
+
+            WidthSpecification = 360;
+            HeightSpecification = 115;
+            BackgroundColor = Color.Cyan;
+            Title = new TextLabel("[]")
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                WidthSpecification = 360,
+            };
+            Add(Title);
+        }
+
+        public TextLabel Title{get;set;}
+    }
+
+
+    class MyAdapter : RecyclerList.ListAdapter
+    {
+        public override RecyclerList.ListItem CreateListItem()
+        {
+            return new MyListItem();
+        }
+
+        public override void BindData(RecyclerList.ListItem item, int index)
+        {
+            MyListItem target = item as MyListItem;
+            target.Title.Text = "["+index+"]";
+            Tizen.Log.Error("NUI","BIND DATA ====  "+index+"\n");
+        }
+    }
+
     protected override void OnCreate()
     {
         // Up call to the Base class first
         base.OnCreate();
 
-        // Get the window instance and change background color
         Window window = Window.Instance;
         window.BackgroundColor = Color.White;
 
-        // Create a simple TextLabel
-        TextLabel title = new TextLabel("Hello World");
+        MyAdapter adapter = new MyAdapter();
+        List<object> data = new List<object>();
 
-        // Ensure TextLabel matches its parent's size (i.e. Window size)
-        // By default, a TextLabel's natural size is the size of the text within it
-        title.Size2D = new Size2D(window.Size.Width, window.Size.Height);
-
-        // By default, text is aligned to the top-left within the TextLabel
-        // Align it to the center of the TextLabel
-        title.HorizontalAlignment = HorizontalAlignment.Center;
-        title.VerticalAlignment = VerticalAlignment.Center;
-
-        // Add the text to the window
-        window.Add(title);
-
-        // Respond to key events
-        window.KeyEvent += OnKeyEvent;
-    }
-
-    /// <summary>
-    /// Called when any key event is received.
-    /// Will use this to exit the application if the Back or Escape key is pressed
-    /// </summary>
-    private void OnKeyEvent( object sender, Window.KeyEventArgs eventArgs )
-    {
-        if( eventArgs.Key.State == Key.StateType.Down )
+        for(int i = 0 ; i<100; i++)
         {
-            switch( eventArgs.Key.KeyPressedName )
-            {
-                case "Escape":
-                case "Back":
-                {
-                    Exit();
-                }
-                break;
-            }
+            data.Add("["+i+"]");
         }
+        adapter.Data = data;
+
+        RecyclerList list = new RecyclerList()
+        {
+            ScrollingDirection = ScrollableBase.Direction.Vertical,
+            WidthSpecification = 360,
+            HeightSpecification = 360,
+            Layout = new LinearLayout(){
+                LinearOrientation = LinearLayout.Orientation.Vertical
+            },
+            Adapter = adapter,
+            BackgroundColor = Color.Green,
+            FlickAnimationSpeed = 1.0f,
+            FlickDistanceMultiplierRange = new Vector2(1.5f,4.0f),
+        };
+
+        window.GetDefaultLayer().Add(list);
     }
+
+    private View test;
 
     /// <summary>
     /// The main entry point for the application.
