@@ -9,11 +9,12 @@ namespace NUIWHome
 {
     public class HelloRotary : NUIApplication
     {
+        //fix - icon size 62x62
+        private int ICON_SIZE = 62;
+
         private RotarySelector rotarySelector;
         private Window defaultWindow;
 
-        //fix - icon size 62x62
-        private int ICON_SIZE = 62;
 
         protected override void OnCreate()
         {
@@ -33,6 +34,12 @@ namespace NUIWHome
             Timer StartAnimationDelayTimer = new Timer(300);
             StartAnimationDelayTimer.Tick += DelayTimer_Tick;
             StartAnimationDelayTimer.Start();
+        }
+
+        private bool DelayTimer_Tick(object source, Timer.TickEventArgs e)
+        {
+            rotarySelector.StartAppsAnimation();
+            return false;
         }
 
         //Create Default UI
@@ -87,19 +94,14 @@ namespace NUIWHome
             return imageFileList;
         }
 
-        private bool DelayTimer_Tick(object source, Timer.TickEventArgs e)
-        {
-            rotarySelector.StartAppsAnimation();
-            return false;
-        }
 
         private void DefaultWindow_KeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Up && (e.Key.KeyPressedName == "XF86Back"))
             {
-                if (rotarySelector.IsEditMode)
+                if (rotarySelector.GetCurrentMode() == RotarySelector.Mode.EditMode)
                 {
-                    rotarySelector.IsEditMode = false;
+                    rotarySelector.SetNormalMode();
                 }
                 else
                 {
@@ -107,12 +109,11 @@ namespace NUIWHome
                 }
             }
         }
+
         static void Main(string[] args)
         {
             HelloRotary example = new HelloRotary();
             example.Run(args);
-
         }
-
     }
 }

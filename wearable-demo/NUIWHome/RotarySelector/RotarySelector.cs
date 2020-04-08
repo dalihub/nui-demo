@@ -19,13 +19,13 @@ namespace NUIWHome
         private LongPressGestureDetector longPressDetector;
         private PanGestureDetector panDetector;
 
-        private bool isEditMode = false;
+        private Mode mode = Mode.NormalMode;
         private int panScreenPosition = 0;
 
 
         public RotarySelector()
         {
-            
+
             rotarySelectorManager = new RotarySelectorManager(new Size(360, 360));
             this.Add(rotarySelectorManager.GetRotaryLayerView());
 
@@ -52,46 +52,46 @@ namespace NUIWHome
 
         private void PanDetector_Detected(object source, PanGestureDetector.DetectedEventArgs e)
         {
-            if(isEditMode)
+            if (mode == Mode.EditMode)
             {
                 return;
             }
-            switch(e.PanGesture.State)
+            switch (e.PanGesture.State)
             {
                 case Gesture.StateType.Finished:
-                {
+                    {
 
-                    int mouse_nextX = (int)e.PanGesture.ScreenPosition.X;
-                    int distance = mouse_nextX - panScreenPosition;
-                    if (distance > DRAG_DISTANCE)
-                    {
-                        rotarySelectorManager.NextPage();
+                        int mouse_nextX = (int)e.PanGesture.ScreenPosition.X;
+                        int distance = mouse_nextX - panScreenPosition;
+                        if (distance > DRAG_DISTANCE)
+                        {
+                            rotarySelectorManager.NextPage();
+                        }
+                        else if (distance < -DRAG_DISTANCE)
+                        {
+                            rotarySelectorManager.PrevPage();
+                        }
+
+                        panScreenPosition = 0;
+                        break;
                     }
-                    else if (distance < -DRAG_DISTANCE)
-                    {
-                        rotarySelectorManager.PrevPage();
-                    }
-                    
-                    panScreenPosition = 0;
-                    break;
-                }
 
                 case Gesture.StateType.Continuing:
                     break;
                 case Gesture.StateType.Started:
-                {
-                    panScreenPosition = (int)e.PanGesture.ScreenPosition.X;
-                    break;
-                }
+                    {
+                        panScreenPosition = (int)e.PanGesture.ScreenPosition.X;
+                        break;
+                    }
             }
-            
+
         }
 
         private void Detector_Detected(object source, LongPressGestureDetector.DetectedEventArgs e)
         {
-            if(!isEditMode)
+            if (GetCurrentMode() == Mode.NormalMode)
             {
-                IsEditMode = true;
+                SetEditMode();
             }
         }
 
@@ -130,23 +130,85 @@ namespace NUIWHome
         {
             rotarySelectorManager.ClearItem();
         }
-
-        public bool IsEditMode
+        
+        public Mode GetCurrentMode()
         {
-            get
-            {
-                return isEditMode;
-            }
-            set
-            {
-                isEditMode = value;
-                rotarySelectorManager.SetRotarySelectorMode(isEditMode);
-            }
+            return mode;
+        }
+
+        public void SetEditMode()
+        {
+            mode = Mode.EditMode;
+            rotarySelectorManager.SetRotarySelectorMode(true);
+            CallEditModeEntered();
+        }
+
+        public void SetNormalMode()
+        {
+            mode = Mode.NormalMode;
+            rotarySelectorManager.SetRotarySelectorMode(false);
+            CallEditModExited();
         }
 
         internal void StartAppsAnimation()
         {
             rotarySelectorManager.StartAppsAnimation();
+        }
+
+        public enum Mode
+        {
+            NormalMode,
+            EditMode
+        }
+
+        //When the user entered to the editing mode. 
+        private event EventHandler<EventArgs> editModeEnteredHandler;
+
+        private void CallEditModeEntered()
+        {
+            EventArgs e = new EventArgs();
+
+            if (editModeEnteredHandler != null)
+            {
+                editModeEnteredHandler(this, e);
+            }
+        }
+
+        public event EventHandler<EventArgs> EditModeEntered
+        {
+            add
+            {
+                editModeEnteredHandler += value;
+            }
+            remove
+            {
+                editModeEnteredHandler -= value;
+            }
+        }
+
+
+        private event EventHandler<EventArgs> editModeExitedHandler;
+
+        private void CallEditModExited()
+        {
+            EventArgs e = new EventArgs();
+
+            if (editModeExitedHandler != null)
+            {
+                editModeExitedHandler(this, e);
+            }
+        }
+
+        public event EventHandler<EventArgs> EditModeExited
+        {
+            add
+            {
+                editModeExitedHandler += value;
+            }
+            remove
+            {
+                editModeExitedHandler -= value;
+            }
         }
 
     }

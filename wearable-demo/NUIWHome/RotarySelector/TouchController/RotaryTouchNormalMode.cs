@@ -41,9 +41,11 @@ namespace NUIWHome
                 }
                 else
                 {
+                    SelectedItem.UnSelectItem();
                     ani.AnimateTo(SelectedItem, "Scale", new Vector3(1.0f, 1.0f, 1.0f));
                     ani.AnimateTo(item, "Scale", new Vector3(1.17f, 1.17f, 1.17f));
                     ani.Play();
+
                     SelectedItem = item;
                     SelectedItem.SelectItem();
                     ani.Finished += Ani_Finished;

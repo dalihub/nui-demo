@@ -156,15 +156,7 @@ namespace NUIWHome
             Window.Instance.TouchEvent -= Instance_TouchEvent;
             rotaryTouchController.SelectedItem = null;
         }
-
-        internal void AppendItem(RotarySelectorItem item)
-        {
-            rotaryLayerView.AppendItem(item);
-            WrappingItem(item);
-            item.OnItemSelected += OnItemSelected;
-            item.TouchEvent += Item_TouchEvent;
-        }
-
+        
         internal void SelectItemByWheel(int direction)
         {
             //Not set 'IsAnimating' to true. Just Block while paging animation.
@@ -228,27 +220,47 @@ namespace NUIWHome
         {
             return rotaryTouchController.ProcessTouchEvent(source, e);
         }
+        private void InitItem(RotarySelectorItem item)
+        {
+            WrappingItem(item);
+            item.OnItemSelected += OnItemSelected;
+            item.TouchEvent += Item_TouchEvent;
+        }
+
+        internal void AppendItem(RotarySelectorItem item)
+        {
+            rotaryLayerView.AppendItem(item);
+            InitItem(item);
+        }
 
         internal void PrependItem(RotarySelectorItem item)
         {
             rotaryLayerView.PrependItem(item);
+            InitItem(item);
         }
 
         internal void InsertItem(int index, RotarySelectorItem item)
         {
             rotaryLayerView.InsertItem(index, item);
+            InitItem(item);
         }
 
+
+        //Need to add function
         internal void DeleteItem(RotarySelectorItem item)
         {
             rotaryLayerView.Remove(item);
         }
 
+
+        //Need to add function
         internal void DeleteItemIndex(int index)
         {
             rotaryLayerView.DeleteItemIndex(index);
         }
 
+
+        //Need to add function
         internal void ClearItem()
         {
             rotaryLayerView.ClearItem();
