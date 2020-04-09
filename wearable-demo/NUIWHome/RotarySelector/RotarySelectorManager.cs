@@ -18,7 +18,7 @@ namespace NUIWHome
 
         private int currentPage = 0;
         private int lastPage = 0;
-        private uint currentWrapIdx = 0;
+        private int currentWrapIdx = 0;
         private int currentSelectIdx = 0;
         private Size rotarySize;
 
@@ -220,9 +220,9 @@ namespace NUIWHome
         {
             return rotaryTouchController.ProcessTouchEvent(source, e);
         }
+
         private void InitItem(RotarySelectorItem item)
         {
-            WrappingItem(item);
             item.OnItemSelected += OnItemSelected;
             item.TouchEvent += Item_TouchEvent;
         }
@@ -231,18 +231,22 @@ namespace NUIWHome
         {
             rotaryLayerView.AppendItem(item);
             InitItem(item);
+            ReWrappingAllItems();
+            //WrappingAppendItem(item);
         }
 
         internal void PrependItem(RotarySelectorItem item)
         {
             rotaryLayerView.PrependItem(item);
             InitItem(item);
+            ReWrappingAllItems();
         }
 
         internal void InsertItem(int index, RotarySelectorItem item)
         {
             rotaryLayerView.InsertItem(index, item);
             InitItem(item);
+            ReWrappingAllItems();
         }
 
 
@@ -250,6 +254,7 @@ namespace NUIWHome
         internal void DeleteItem(RotarySelectorItem item)
         {
             rotaryLayerView.Remove(item);
+            ReWrappingAllItems();
         }
 
 
@@ -257,6 +262,7 @@ namespace NUIWHome
         internal void DeleteItemIndex(int index)
         {
             rotaryLayerView.DeleteItemIndex(index);
+            ReWrappingAllItems();
         }
 
 
@@ -264,6 +270,7 @@ namespace NUIWHome
         internal void ClearItem()
         {
             rotaryLayerView.ClearItem();
+            ReWrappingAllItems();
         }
 
         internal RotaryLayerView GetRotaryLayerView()
@@ -271,11 +278,21 @@ namespace NUIWHome
             return rotaryLayerView;
         }
 
-        private void WrappingItem(RotarySelectorItem item)
+        private void GeneratePage()
+        {
+            int remainder = 0;
+            lastPage = Math.DivRem(rotaryLayerView.GetTotalItemCount(), ApplicationConstants.MAX_ITEM_COUNT, out remainder);
+            lastPage += (remainder > 0) ? 1 : 0;
+
+            pagination.CreatePagination(lastPage);
+
+        }
+
+        private void WrappingAppendItem(RotarySelectorItem item)
         {
             if (currentWrapIdx < ApplicationConstants.MAX_ITEM_COUNT)
             {
-                wrapperList[(int)currentWrapIdx].RotaryItem = item;
+                wrapperList[currentWrapIdx].RotaryItem = item;
                 currentWrapIdx++;
             }
             else
@@ -283,12 +300,34 @@ namespace NUIWHome
                 item.Hide();
             }
 
-            int remainder = 0;
-            lastPage = Math.DivRem(rotaryLayerView.GetTotalItemCount(), ApplicationConstants.MAX_ITEM_COUNT, out remainder);
-            lastPage += (remainder > 0) ? 1 : 0;
-
-            pagination.CreatePagination(lastPage);
+            GeneratePage();
         }
+
+        //Needs improvement for performance.
+        private void ReWrappingAllItems()
+        {
+            if(rotaryLayerView.RotaryItemList.Count == 0)
+            {
+                //Clear
+            }
+
+            currentWrapIdx = 0;
+            foreach (RotarySelectorItem item in rotaryLayerView.RotaryItemList)
+            {
+                if (currentWrapIdx < ApplicationConstants.MAX_ITEM_COUNT)
+                {
+                    wrapperList[(int)currentWrapIdx].RotaryItem = item;
+                    currentWrapIdx++;
+                }
+                else
+                {
+                    item.Hide();
+                }
+            }
+
+            GeneratePage();
+        }
+
 
         private void PlayPageAnimation(List<RotarySelectorItem> itemList, int vIdx, bool cw, AnimationManager.PageAnimationType type = AnimationManager.PageAnimationType.Slide)
         {
@@ -351,6 +390,8 @@ namespace NUIWHome
                                 animationManager.AnimatePathOnEdit(wrapperList[idx], false);
                             }
                         }
+
+                        rotaryLayerView.ChagneItemPosition(SelectedItem, collisionItem);
                         wrapperList[page + colIdx].RotaryItem = SelectedItem;
                         animationManager.PlayCoreAnimation();
                     }

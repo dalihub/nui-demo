@@ -75,7 +75,10 @@ namespace NUIWHome
 
         internal void AddToParent()
         {
-            currentParent.Add(this);
+            if(!currentParent.Children.Contains(this))
+            {
+                currentParent.Add(this);
+            }
         }
 
         //"item,selected": When the user selected an item.

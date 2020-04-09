@@ -89,6 +89,14 @@ namespace NUIWHome
             }
         }
 
+        //Change position a->b
+        internal void ChagneItemPosition(RotarySelectorItem a, RotarySelectorItem b)
+        {
+            int idx = itemList.IndexOf(b);
+            itemList.Remove(a);
+            itemList.Insert(idx, a);
+        }
+
         internal void SetText(string mainText, string subText)
         {
             this.mainText.Text = mainText;
@@ -104,11 +112,13 @@ namespace NUIWHome
 
         internal void PrependItem(RotarySelectorItem item)
         {
+            item.SetCurrentParent(container);
             itemList.Insert(0, item);
         }
 
         internal void InsertItem(int index, RotarySelectorItem item)
         {
+            item.SetCurrentParent(container);
             itemList.Insert(index, item);
         }
 
