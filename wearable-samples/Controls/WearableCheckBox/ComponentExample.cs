@@ -33,21 +33,32 @@ public class ComponentExample : NUIApplication
         Tizen.NUI.Components.StyleManager.Instance.Theme = "wearable";
 
         Window window = NUIApplication.GetDefaultWindow();
-        window.BackgroundColor = Color.Black;        
+        window.BackgroundColor = Color.Black;
 
-        // Create a button with a predefined style
-        var button = new Button()
+        var button1 = new CheckBox()
         {
-            Text = "Hello World!",
-            Size = new Size(210, 72),
-
-            // Positioning it to the bottom
-            ParentOrigin = ParentOrigin.BottomCenter,
-            PivotPoint = PivotPoint.BottomCenter,
+            Size = new Size(100, 100),
+            Position = new Position(0, -50),
             PositionUsesPivotPoint = true,
-            Position = new Position(0, -20)
+            ParentOrigin = ParentOrigin.Center,
+            PivotPoint = PivotPoint.Center,
+            IsSelected = true,
         };
-        window.Add(button);
+        window.Add(button1);
+
+        var button2 = new CheckBox()
+        {
+            Size = new Size(100, 100),
+            Position = new Position(0, 50),
+            PositionUsesPivotPoint = true,
+            ParentOrigin = ParentOrigin.Center,
+            PivotPoint = PivotPoint.Center,
+        };
+        window.Add(button2);
+
+        var group = new CheckBoxGroup();
+        group.Add(button1);
+        group.Add(button2);
     }
 
     [STAThread] // Forces app to use one thread to access NUI

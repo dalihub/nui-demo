@@ -1,5 +1,7 @@
 # Component Sample Applications
 
+The related platform may done within 17 April, 2020.
+
 * Button
     * [Wearable basic button](./Button/WearableBasicButton/README.md)
     * [Button with a overlay animation on press](./Button/ButtonWithOverlayAnimation/README.md)

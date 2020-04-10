@@ -1,20 +1,20 @@
-# RadioButton in wearable theme
-This example shows how a RadioButton will look on a wearable device.
+# CheckBox in wearable theme
+This example shows how a CheckBox will look on a wearable device.
 
 When an application is running on a wearable device, the wearable styles will be applied to the component by default.
 
-The wearable RadioButton uses Lottie to express touch animation.
+The wearable CheckBox uses Lottie to express touch animation.
 
 The Lottie image would look like,
 
 <div style="text-align:center;width:100%;"><img src="./res/icon.gif" /></div>
 
-* Selection  :  0 ~ 12 frames
-* Unselection: 13 ~ 25 frames
+* Selection  :  0 ~ 18 frames
+* Unselection: 19 ~ 36 frames
 
 ## Notice
 * Available only in wearable devices!
-* This example used predefined style provided by Tizen.NUI.Component package. For more detail, see `GetRadioButtonStyle()` code in [WearableTheme](https://github.com/rabbitfor/TizenFX/blob/master/src/Tizen.NUI.Components/PreloadStyle/WearableTheme.cs). You can refer this code to make your own style.
+* This example used predefined style provided by Tizen.NUI.Component package. For more detail, see `GetCheckBoxStyle()` code in [WearableTheme](https://github.com/rabbitfor/TizenFX/blob/master/src/Tizen.NUI.Components/PreloadStyle/WearableTheme.cs). You can refer this code to make your own style.
 
 ## Sample Application
 
@@ -37,7 +37,7 @@ public class ComponentExample : NUIApplication
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-        var button1 = new RadioButton()
+        var button1 = new CheckBox()
         {
             Size = new Size(100, 100),
             Position = new Position(0, -50),
@@ -48,7 +48,7 @@ public class ComponentExample : NUIApplication
         };
         window.Add(button1);
 
-        var button2 = new RadioButton()
+        var button2 = new CheckBox()
         {
             Size = new Size(100, 100),
             Position = new Position(0, 50),
@@ -58,7 +58,7 @@ public class ComponentExample : NUIApplication
         };
         window.Add(button2);
 
-        var group = new RadioButtonGroup();
+        var group = new CheckBoxGroup();
         group.Add(button1);
         group.Add(button2);
     }

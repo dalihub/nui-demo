@@ -35,30 +35,14 @@ public class ComponentExample : NUIApplication
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-        var button1 = new RadioButton()
+        var button = new Switch()
         {
-            Size = new Size(100, 100),
-            Position = new Position(0, -50),
-            PositionUsesPivotPoint = true,
-            ParentOrigin = ParentOrigin.Center,
-            PivotPoint = PivotPoint.Center,
-            IsSelected = true,
-        };
-        window.Add(button1);
-
-        var button2 = new RadioButton()
-        {
-            Size = new Size(100, 100),
-            Position = new Position(0, 50),
+            Size = new Size(200, 200),
             PositionUsesPivotPoint = true,
             ParentOrigin = ParentOrigin.Center,
             PivotPoint = PivotPoint.Center,
         };
-        window.Add(button2);
-
-        var group = new RadioButtonGroup();
-        group.Add(button1);
-        group.Add(button2);
+        window.Add(button);
     }
 
     [STAThread] // Forces app to use one thread to access NUI
