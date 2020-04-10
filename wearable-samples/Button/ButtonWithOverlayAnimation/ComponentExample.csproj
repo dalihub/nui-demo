@@ -16,11 +16,11 @@
 
   <ItemGroup>
     <!-- Need to update Tizen.NET version after release -->
-    <!--PackageReference Include="Tizen.NET" Version="8.0.0.15154" /-->
+    <PackageReference Include="Tizen.NET" Version="8.0.0.99999" />
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--ItemGroup>
     <ProjectReference Include="../../../../TizenFX/src/Tizen/Tizen.csproj" />
     <ProjectReference Include="../../../../TizenFX/src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
     <ProjectReference Include="../../../../TizenFX/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
@@ -28,7 +28,7 @@
     <ProjectReference Include="../../../../TizenFX/src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
     <ProjectReference Include="../../../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
     <ProjectReference Include="../../../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
-  </ItemGroup>
+  </ItemGroup-->
 
 
 </Project>

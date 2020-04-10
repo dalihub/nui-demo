@@ -1,6 +1,6 @@
 # Component Sample Applications
 
-The platform binary needed to run the samples will be produced within 17 April, 2020.
+The platform binary and nuget package needed to build & run the samples will be produced within 17 April, 2020.
 
 * Button
     * [Wearable button](./Button/WearableButton/README.md)
