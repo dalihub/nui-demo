@@ -13,12 +13,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="8.0.0.15163" />
+    <!-- Need to update Tizen.NET version after release -->
+    <!--PackageReference Include="Tizen.NET" Version="8.0.0.15163" /-->
     <PackageReference Include="Tizen.NET.SDK" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Need to update Tizen.NET version after release -->
+    <ProjectReference Include="../../../TizenFX/src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.Log/Tizen.Log.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
   </ItemGroup>
 
 </Project>
