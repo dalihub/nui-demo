@@ -1,9 +1,9 @@
 # Component Sample Applications
 
-The related platform may done within 17 April, 2020.
+The platform binary needed to run the samples will be produced within 17 April, 2020.
 
 * Button
-    * [Wearable basic button](./Button/WearableBasicButton/README.md)
+    * [Wearable button](./Button/WearableButton/README.md)
     * [Button with a overlay animation on press](./Button/ButtonWithOverlayAnimation/README.md)
 * Controls
     * [Wearable radio button](./Controls/WearableRadioButton/README.md)
