@@ -52,7 +52,6 @@ public class TextFieldExample : NUIApplication
         window.Add(field);
     }
 
-    [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
         TextFieldExample example = new TextFieldExample();

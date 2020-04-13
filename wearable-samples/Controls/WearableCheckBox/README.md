@@ -63,7 +63,6 @@ public class ComponentExample : NUIApplication
         group.Add(button2);
     }
 
-    [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
         ComponentExample example = new ComponentExample();

@@ -42,7 +42,6 @@ public class TextLabelExample : NUIApplication
         window.Add(label);
     }
 
-    [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
         TextLabelExample example = new TextLabelExample();
