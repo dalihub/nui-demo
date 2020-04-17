@@ -61,12 +61,26 @@ namespace NUIWHome
                     CornerRadius = ICON_SIZE / 2,
                     MainText = imageFileList[i].name,
                 };
+                item.Clicked += Item_Clicked;
+                item.Selected += Item_Selected;
                 //Icon init:opacity 0, for starting animation
                 item.Opacity = 0.0f;
                 rotarySelector.AppendItem(item);
             }
             defaultWindow.Add(rotarySelector);
 
+        }
+
+        private void Item_Clicked(object sender, EventArgs e)
+        {
+            RotarySelectorItem item = sender as RotarySelectorItem;
+            Tizen.Log.Error("MYLOG", "clicked item text :" + item.MainText);
+        }
+
+        private void Item_Selected(object sender, EventArgs e)
+        {
+            RotarySelectorItem item = sender as RotarySelectorItem;
+            Tizen.Log.Error("MYLOG", "Selected item text :" + item.MainText);
         }
 
         //Store Image all icons to list.

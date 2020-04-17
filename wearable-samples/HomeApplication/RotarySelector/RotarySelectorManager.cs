@@ -171,7 +171,7 @@ namespace NUIWHome
                 if (currentSelectIdx + 1 < ApplicationConstants.MAX_TRAY_COUNT - 1)
                 {
                     currentSelectIdx++;
-                    SelectItem();
+                    wrapperList[currentSelectIdx].RotaryItem.SelectedItem();
                 }
                 else
                 {
@@ -183,7 +183,7 @@ namespace NUIWHome
                 if(currentSelectIdx - 1 >= 0)
                 {
                     currentSelectIdx--;
-                    SelectItem();
+                    wrapperList[currentSelectIdx].RotaryItem.SelectedItem();
                 }
                 else
                 {

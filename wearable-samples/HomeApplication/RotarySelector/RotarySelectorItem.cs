@@ -32,8 +32,6 @@ namespace NUIWHome
 
         internal int CurrentIndex { get; set; }
 
-        private bool isSelected = false;
-
         /// <summary>
         /// Creates a new instance of a RotarySelectorItem.
         /// </summary>
@@ -46,24 +44,17 @@ namespace NUIWHome
         public delegate void ItemSelectedHandler(RotarySelectorItem item);
         public event ItemSelectedHandler OnItemSelected;
 
-        internal void SelectItem()
+        internal void SelectedItem()
         {
-            if (!isSelected)
-            {
-                isSelected = true;
-                OnItemSelected(this);
-                CallSelect();
-            }
-            else
-            {
-                //Clicked
-                CallClick();
-            }
+            OnItemSelected(this);
+            CallSelect();
         }
 
-        internal void UnSelectItem()
+        internal void ClickedItem()
         {
-            isSelected = false;
+            OnItemSelected(this);
+            CallSelect();
+            CallClick();
         }
 
         private View currentParent { get; set; }
