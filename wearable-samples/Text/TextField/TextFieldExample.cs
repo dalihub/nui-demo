@@ -34,8 +34,8 @@ public class TextFieldExample : NUIApplication
         // Create a TextField
         TextField field = new TextField()
         {
-            Size = new Size(250, 47),
-            Position =  new Position(0, 50),
+            Size = new Size(250, 50),
+            Position =  new Position(0, 53),
             BackgroundColor = Color.Black,
 
             // Set TextField properties, such as PlaceholderText and PrimaryCursorColor
