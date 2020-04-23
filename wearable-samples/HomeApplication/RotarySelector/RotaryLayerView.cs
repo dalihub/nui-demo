@@ -25,6 +25,8 @@ namespace NUIWHome
         //for editing
         private ImageView movingIcon;
 
+        private RotarySelectorItem item;
+
         /// <summary>
         /// Creates a new instance of a RotaryLayerView.
         /// Contains objects that are actually displayed on the screen.
@@ -37,8 +39,7 @@ namespace NUIWHome
 
             container = new View()
             {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
+                Size = new Size(360, 360), 
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center,
                 PositionUsesPivotPoint = true,
@@ -48,6 +49,8 @@ namespace NUIWHome
 
             mainText = new TextLabel()
             {
+                Size = new Size(210, 210),
+                MultiLine = true,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
@@ -56,6 +59,7 @@ namespace NUIWHome
                 TextColor = Color.White,
                 PointSize = 8.0f,
             };
+            mainText.TouchEvent += MainText_TouchEvent;
             container.Add(mainText);
 
             //Temporary code, Need to fix.
@@ -80,7 +84,16 @@ namespace NUIWHome
             rotaryIndicator.Opacity = 0.0f;
             container.Add(rotaryIndicator);
         }
-        
+
+        private bool MainText_TouchEvent(object source, TouchEventArgs e)
+        {
+            if(e.Touch.GetState(0) == PointStateType.Up)
+            {
+                item.ClickedItem();
+            }
+            return false;
+        }
+
         internal List<RotarySelectorItem> RotaryItemList
         {
             get
@@ -95,6 +108,12 @@ namespace NUIWHome
             int idx = itemList.IndexOf(b);
             itemList.Remove(a);
             itemList.Insert(idx, a);
+        }
+
+
+        internal void SetItem(RotarySelectorItem item)
+        {
+            this.item = item;
         }
 
         internal void SetText(string mainText, string subText)

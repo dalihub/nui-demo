@@ -210,6 +210,7 @@ namespace NUIWHome
             }
 
             currentSelectIdx = item.CurrentIndex;
+            rotaryLayerView.SetItem(item);
             rotaryLayerView.SetText(item.MainText, item.SubText);
             rotaryLayerView.SetRotaryPosition(item.CurrentIndex);
 

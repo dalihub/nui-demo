@@ -95,7 +95,7 @@ namespace NUIWHome
                 {
                     String FileNameOnly = File.Name.Substring(0, File.Name.Length - 4);
                     FileNameOnly = string.Format("{0}{1}", char.ToUpper(FileNameOnly[0]), FileNameOnly.Remove(0, 1));
-                    FileNameOnly = FileNameOnly.Substring(0, FileNameOnly.Length >= 6 ? 6 : FileNameOnly.Length);
+                    //FileNameOnly = FileNameOnly.Substring(0, FileNameOnly.Length >= 6 ? 6 : FileNameOnly.Length);
                     String FullFileName = File.FullName;
 
                     imageFileList.Add(new CommonResource.ResourceData(FileNameOnly, FullFileName));
