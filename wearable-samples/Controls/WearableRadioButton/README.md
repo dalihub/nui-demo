@@ -30,10 +30,6 @@ public class ComponentExample : NUIApplication
     {
         base.OnCreate();
 
-        // Set theme to wearable.
-        // (It is not needed in the wearable device)
-        Tizen.NUI.Components.StyleManager.Instance.Theme = "wearable";
-
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
