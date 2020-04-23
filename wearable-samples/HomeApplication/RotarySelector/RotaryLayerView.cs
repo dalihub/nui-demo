@@ -187,7 +187,7 @@ namespace NUIWHome
                 this.subText.Text = itemList[0].SubText;
                 this.mainText.Opacity = 0.0f;
 
-                rotaryIndicator.SetRotaryPosition(0);
+                //rotaryIndicator.SetRotaryPosition(0);
                 rotaryIndicator.Show();
             }
         }
