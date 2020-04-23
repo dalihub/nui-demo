@@ -108,6 +108,7 @@ namespace NUIWHome
 
             if (clickedHandler != null)
             {
+                Tizen.Log.Error("MYLOG", "clicked");
                 clickedHandler(this, e);
             }
         }

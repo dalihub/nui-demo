@@ -30,14 +30,16 @@ namespace NUIWHome
                 RotarySelectorItem item = source as RotarySelectorItem;
                 if ((e.Touch.GetState(0) == PointStateType.Down))
                 {
-                    if(ProcessTouchDownEvent(item))
+                    if (ProcessTouchDownEvent(item))
                     {
                         CallOnNotify(item, 1);
                     }
                 }
                 else if (e.Touch.GetState(0) == PointStateType.Up)
                 {
-                    ProcessTouchUpEvent(item);
+                    if(ProcessTouchUpEvent(item))
+                    {
+                    }
                 }
                 else if ((e.Touch.GetState(0) == PointStateType.Motion))
                 {

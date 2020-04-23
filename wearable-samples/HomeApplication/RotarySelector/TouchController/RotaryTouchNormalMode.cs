@@ -13,13 +13,12 @@ namespace NUIWHome
         public RotaryTouchNormalMode()
         {
         }
-
-        public override bool ProcessTouchDownEvent(RotarySelectorItem item)
+        public override bool ProcessTouchUpEvent(RotarySelectorItem item)
         {
-            if(!IsProcessing)
+            if (!IsProcessing)
             {
                 IsProcessing = true;
-                if(ani != null)
+                if (ani != null)
                 {
                     ani.Reset();
                     ani.Clear();
@@ -51,6 +50,12 @@ namespace NUIWHome
                     return true;
                 }
             }
+
+            return false;
+        }
+
+        public override bool ProcessTouchDownEvent(RotarySelectorItem item)
+        {
             return false;
         }
 
