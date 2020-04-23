@@ -107,21 +107,26 @@ namespace NUIWHome
 
         internal void PrevPage(bool isEndEffect = true, AnimationManager.PageAnimationType type = AnimationManager.PageAnimationType.Slide)
         {
+            Tizen.Log.Error("MYLOG", "1");
             if (animationManager.IsAnimating)
             {
                 return;
             }
+            Tizen.Log.Error("MYLOG", "2");
             animationManager.IsAnimating = true;
 
             if (currentPage > 0)
             {
+                Tizen.Log.Error("MYLOG", "3");
                 //For editing mode
                 rotaryLayerView.CheckEditBG(currentPage-1, lastPage);
                 rotaryLayerView.AnimateBG(false);
-
+                Tizen.Log.Error("MYLOG", "4 :" + currentPage);
                 PlayPageAnimation(rotaryLayerView.RotaryItemList, currentPage - 1, true, type);
+                Tizen.Log.Error("MYLOG", "5");
                 currentPage--;
-                pagination.SetCurrentPage(currentPage);
+                pagination.SetCurrentPage(currentPage); 
+                Tizen.Log.Error("MYLOG", "6");
 
             }
             else
@@ -378,15 +383,17 @@ namespace NUIWHome
 
             for (int i = sIdx, j = eIdx; i < sIdx + ApplicationConstants.MAX_ITEM_COUNT; i++, j++)
             {
-                animationManager.AnimateHidePage(wrapperList[i], cw, type);
-                //wrapperList[i].PlayPageHideAnimation(hideAnimation, cw);
+                //if Not set the item
+                if(wrapperList[i].RotaryItem != null)
+                {
+                    animationManager.AnimateHidePage(wrapperList[i], cw, type);
+                }
 
                 if (setIdx < totalItemCount)
                 {
                     wrapperList[j].RotaryItem = itemList[setIdx++];
                     wrapperList[j].RotaryItem.Show();
                     animationManager.AnimateShowPage(wrapperList[j], cw, type);
-                    //wrapperList[j].PlayPageShowAnimation(showAnimation, cw);
                 }
             }
             animationManager.AnimatePageLayerContents(rotaryLayerView, !cw);
