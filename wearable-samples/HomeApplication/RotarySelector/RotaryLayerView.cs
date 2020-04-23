@@ -125,6 +125,7 @@ namespace NUIWHome
         internal void DeleteItem(RotarySelectorItem item)
         {
             itemList.Remove(item);
+            item.Unparent();
         }
 
         internal void DeleteItemIndex(int index)
@@ -194,6 +195,11 @@ namespace NUIWHome
         internal void SetRotaryPosition(int toIdx)
         {
             rotaryIndicator.SetRotaryPosition(toIdx);
+        }
+
+        internal void SetIndicatorPosition()
+        {
+            rotaryIndicator.SetCurrentPosition();
         }
 
         internal ImageView GetMovingIcon()

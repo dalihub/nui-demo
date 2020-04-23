@@ -30,7 +30,7 @@ namespace NUIWHome
         {
             Tizen.Log.Error("MYLOG", "p1 : " + pageNavigatorList.Count);
             Tizen.Log.Error("MYLOG", "p2 : " + pageCount);
-            if (pageNavigatorList.Count == pageCount)
+            if (pageNavigatorList.Count >= pageCount)
             {
                 return;
             }
@@ -52,6 +52,12 @@ namespace NUIWHome
 
             pageNavigatorList.Add(pageNavi);
             this.Add(pageNavi);
+        }
+
+        public void DeletePage()
+        {
+            pageNavigatorList[0].Unparent();
+            pageNavigatorList.RemoveAt(0);
         }
 
         public void SetCurrentPage(int currentPage)

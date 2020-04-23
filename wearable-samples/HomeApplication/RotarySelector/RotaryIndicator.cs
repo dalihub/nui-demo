@@ -49,12 +49,17 @@ namespace NUIWHome
         /// <summary>
         /// Set current position of indicator using rotary animation. call PlayRotaryAnimation function.
         /// </summary>
-        public void SetRotaryPosition(int toIdx, int rad = 90)
+        public void SetRotaryPosition(int toIdx)
         {
             PrevIndex = CurrentIndex;
             CurrentIndex = toIdx;
-
         }
+
+        public void SetCurrentPosition()
+        {
+            this.Position = GetRotaryPosition(CurrentIndex + 1);
+        }
+
         public bool isNotMoving()
         {
             return (PrevIndex == CurrentIndex);

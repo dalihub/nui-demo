@@ -82,9 +82,19 @@ namespace NUIWHome
 
 
                 PlayPageAnimation(rotaryLayerView.RotaryItemList, currentPage + 1, false, type);
+
+                Tizen.Log.Error("MYLOG", "cur : " + currentPage);
+
                 currentPage++;
                 pagination.SetCurrentPage(currentPage);
 
+
+                if (currentPage + 1 == lastPage)
+                {
+                    int lastIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
+                    Tizen.Log.Error("MYLOG", "lastr : " + lastIdx);
+                    SelectItem(rotaryLayerView.RotaryItemList[lastIdx - 1], false);
+                }
             }
             else
             {
@@ -207,7 +217,10 @@ namespace NUIWHome
             {
                 //for moving indicator
                 animationManager.AnimateChangeState(rotaryLayerView, false, true);
-
+            }
+            else
+            {
+                rotaryLayerView.SetIndicatorPosition();
             }
         }
 
@@ -247,14 +260,35 @@ namespace NUIWHome
             rotaryLayerView.InsertItem(index, item);
             InitItem(item);
             ReWrappingAllItems();
+            
         }
 
 
         //Need to add function
         internal void DeleteItem(RotarySelectorItem item)
         {
-            rotaryLayerView.Remove(item);
+            int page = currentPage * ApplicationConstants.MAX_ITEM_COUNT;
+            int pageIdx = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
+            rotaryLayerView.DeleteItem(item);
             ReWrappingAllItems();
+
+            if (lastPage == currentPage)
+            {
+                //Delete Last Item
+                if (item.CurrentIndex == pageIdx)
+                {
+                    SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1]);
+                    return;
+                }
+                if (item.CurrentIndex == 0 && pageIdx == 1)
+                {
+                    PrevPage();
+                    pagination.DeletePage();
+                    return;
+                }
+            }
+            SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1], false);
+
         }
 
 
@@ -311,17 +345,19 @@ namespace NUIWHome
                 //Clear
             }
 
-            currentWrapIdx = 0;
-            foreach (RotarySelectorItem item in rotaryLayerView.RotaryItemList)
+            int sIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT;
+            int setIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT;
+            int totalItemCount = rotaryLayerView.GetTotalItemCount();
+
+            for (int i = sIdx; i < sIdx + ApplicationConstants.MAX_ITEM_COUNT; i++)
             {
-                if (currentWrapIdx < ApplicationConstants.MAX_ITEM_COUNT)
+                if (setIdx < totalItemCount)
                 {
-                    wrapperList[(int)currentWrapIdx].RotaryItem = item;
-                    currentWrapIdx++;
-                }
-                else
-                {
-                    item.Hide();
+                    Tizen.Log.Error("MYLOG", "set idx : " + setIdx);
+                    wrapperList[i].RotaryItem = rotaryLayerView.RotaryItemList[setIdx];
+                    wrapperList[i].RotaryItem.Opacity = 1.0f;
+                    wrapperList[i].RotaryItem.Show();
+                    setIdx++;
                 }
             }
 
