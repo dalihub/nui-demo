@@ -14,3 +14,5 @@ The platform binary and nuget package needed to build & run the samples will be 
     * [Text field](./Text/TextField/README.md)
 * HomeApplication (rotary selector)
     * [Home Application](./HomeApplication/README.md)
+* Pagination
+    * [Linear Pagination](./Pagination/LinearPagination/README.md)
