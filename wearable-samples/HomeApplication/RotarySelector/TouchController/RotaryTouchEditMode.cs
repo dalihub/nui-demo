@@ -37,6 +37,15 @@ namespace NUIWHome
             }
             return false;
         }
+        public override bool ProcessTouchUpEvent(RotarySelectorItem item)
+        {
+            if (SelectedItem != null && !IsProcessing)
+            {
+                SelectedItem.ClickedItem();
+            }
+            return false;
+        }
+
 
     }
 }

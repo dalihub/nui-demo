@@ -53,11 +53,20 @@ namespace NUIWHome
 
         private void PanDetector_Detected(object source, PanGestureDetector.DetectedEventArgs e)
         {
+            RotaryTouchController controller = rotarySelectorManager.GetRotaryTouchController();
+            if (mode == Mode.EditMode && controller.SelectedItem != null)
+            {
+                return;
+            }
+
             switch (e.PanGesture.State)
             {
                 case Gesture.StateType.Finished:
                     {
-
+                        if(controller.SelectedItem != null && controller.IsProcessing)
+                        {
+                            return;
+                        }
                         int mouse_nextX = (int)e.PanGesture.ScreenPosition.X;
                         int distance = mouse_nextX - panScreenPosition;
                         if (distance > DRAG_DISTANCE)

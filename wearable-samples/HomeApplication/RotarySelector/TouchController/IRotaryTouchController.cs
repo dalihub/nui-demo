@@ -8,7 +8,7 @@ namespace NUIWHome
 {
     public class RotaryTouchController
     { 
-        protected bool IsProcessing { get; set; }
+        public bool IsProcessing { get; set; }
 
         public RotarySelectorItem SelectedItem { get; set; }
 

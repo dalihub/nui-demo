@@ -566,5 +566,10 @@ namespace NUIWHome
                 return isMotionPaging;
             }
         }
+
+        internal RotaryTouchController GetRotaryTouchController()
+        {
+            return rotaryTouchController;
+        }
     }
 }
