@@ -26,6 +26,7 @@ namespace NUIWHome
         private ImageView movingIcon;
 
         private RotarySelectorItem item;
+        private bool isEditMode;
 
         /// <summary>
         /// Creates a new instance of a RotaryLayerView.
@@ -87,9 +88,9 @@ namespace NUIWHome
 
         private bool MainText_TouchEvent(object source, TouchEventArgs e)
         {
-            if(e.Touch.GetState(0) == PointStateType.Up)
+            if(!this.isEditMode && e.Touch.GetState(0) == PointStateType.Up)
             {
-                item.ClickedItem();
+                item?.ClickedItem();
             }
             return false;
         }
@@ -209,6 +210,7 @@ namespace NUIWHome
                 //rotaryIndicator.SetRotaryPosition(0);
                 rotaryIndicator.Show();
             }
+            this.isEditMode = isEditMode;
         }
 
         internal void SetRotaryPosition(int toIdx)
