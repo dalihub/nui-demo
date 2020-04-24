@@ -83,7 +83,6 @@ namespace NUIWHome
 
                 PlayPageAnimation(rotaryLayerView.RotaryItemList, currentPage + 1, false, type);
 
-                Tizen.Log.Error("MYLOG", "cur : " + currentPage);
 
                 currentPage++;
                 pagination.SetCurrentPage(currentPage);
@@ -92,7 +91,6 @@ namespace NUIWHome
                 if (currentPage + 1 == lastPage)
                 {
                     int lastIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
-                    Tizen.Log.Error("MYLOG", "lastr : " + lastIdx);
                     SelectItem(rotaryLayerView.RotaryItemList[lastIdx - 1], false);
                 }
             }
@@ -107,26 +105,20 @@ namespace NUIWHome
 
         internal void PrevPage(bool isEndEffect = true, AnimationManager.PageAnimationType type = AnimationManager.PageAnimationType.Slide)
         {
-            Tizen.Log.Error("MYLOG", "1");
             if (animationManager.IsAnimating)
             {
                 return;
             }
-            Tizen.Log.Error("MYLOG", "2");
             animationManager.IsAnimating = true;
 
             if (currentPage > 0)
             {
-                Tizen.Log.Error("MYLOG", "3");
                 //For editing mode
                 rotaryLayerView.CheckEditBG(currentPage-1, lastPage);
                 rotaryLayerView.AnimateBG(false);
-                Tizen.Log.Error("MYLOG", "4 :" + currentPage);
                 PlayPageAnimation(rotaryLayerView.RotaryItemList, currentPage - 1, true, type);
-                Tizen.Log.Error("MYLOG", "5");
                 currentPage--;
                 pagination.SetCurrentPage(currentPage); 
-                Tizen.Log.Error("MYLOG", "6");
 
             }
             else
@@ -142,13 +134,11 @@ namespace NUIWHome
         {
             if (isEditMode)
             {
-                Tizen.Log.Error("MYLOG", "Change editMode");
                 rotaryTouchController = new RotaryTouchEditMode();
                 rotaryTouchController.OnNotify += RotaryTouchController_OnNotify;
             }
             else
             {
-                Tizen.Log.Error("MYLOG", "Change NormalMode");
                 rotaryTouchController = new RotaryTouchNormalMode();
             }
             rotaryLayerView.ChangeMode(isEditMode, currentPage, lastPage);
@@ -359,7 +349,6 @@ namespace NUIWHome
             {
                 if (setIdx < totalItemCount)
                 {
-                    Tizen.Log.Error("MYLOG", "set idx : " + setIdx);
                     wrapperList[i].RotaryItem = rotaryLayerView.RotaryItemList[setIdx];
                     wrapperList[i].RotaryItem.Opacity = 1.0f;
                     wrapperList[i].RotaryItem.Show();
@@ -458,7 +447,6 @@ namespace NUIWHome
             {
                 if ((e.Touch.GetState(0) == PointStateType.Up))
                 {
-                    Tizen.Log.Error("MYLOG", "Finish edit mode\n");
                     rotaryTouchController.SelectedItem.RaiseToTop();
                     rotaryTouchController.SelectedItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
                     Window.Instance.TouchEvent -= Instance_TouchEvent;
@@ -480,7 +468,6 @@ namespace NUIWHome
                     }
                     //animationManager.IsAnimating = true;
 
-                    Tizen.Log.Error("MYLOG", "mouse X:" + mousePosition.X + ", Y:" + mousePosition.Y);
                     if(mousePosition.X <= 50 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
                     {
                         rotaryLayerView.AnimateLeftCue();
