@@ -73,6 +73,7 @@ namespace NUIWHome
                         }
 
                         panScreenPosition = 0;
+                        rotarySelectorManager.IsPaging = false;
                         break;
                     }
 
@@ -80,6 +81,7 @@ namespace NUIWHome
                     break;
                 case Gesture.StateType.Started:
                     {
+                        rotarySelectorManager.IsPaging = true;
                         panScreenPosition = (int)e.PanGesture.ScreenPosition.X;
                         break;
                     }

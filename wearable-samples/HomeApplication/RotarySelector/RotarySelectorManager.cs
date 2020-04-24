@@ -23,6 +23,7 @@ namespace NUIWHome
         private Size rotarySize;
 
         private bool isEditMode = false;
+        private bool isMotionPaging = false;        
 
         internal RotarySelectorManager(Size rotarySize)
         {
@@ -87,11 +88,12 @@ namespace NUIWHome
                 currentPage++;
                 pagination.SetCurrentPage(currentPage);
 
-
-                if (currentPage + 1 == lastPage)
+                int mod = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
+                if (currentSelectIdx + 1 > mod && currentPage + 1 == lastPage)
                 {
-                    int lastIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
+                    int lastIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + mod;
                     SelectItem(rotaryLayerView.RotaryItemList[lastIdx - 1], false);
+                    return;
                 }
             }
             else
@@ -99,8 +101,15 @@ namespace NUIWHome
                 if(isEndEffect)
                 {
                     animationManager.AnimateEndEffect(rotaryLayerView.GetContainer());
+                    return;
                 }
             }
+
+            int selIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
+            RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
+            rotaryLayerView.SetItem(item);
+            rotaryLayerView.SetText(item.MainText, item.SubText);
+            return;
         }
 
         internal void PrevPage(bool isEndEffect = true, AnimationManager.PageAnimationType type = AnimationManager.PageAnimationType.Slide)
@@ -118,16 +127,20 @@ namespace NUIWHome
                 rotaryLayerView.AnimateBG(false);
                 PlayPageAnimation(rotaryLayerView.RotaryItemList, currentPage - 1, true, type);
                 currentPage--;
-                pagination.SetCurrentPage(currentPage); 
-
+                pagination.SetCurrentPage(currentPage);
             }
             else
             {
                 if (isEndEffect)
                 {
                     animationManager.AnimateEndEffect(rotaryLayerView.GetContainer());
+                    return;
                 }
             }
+            int selIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
+            RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
+            rotaryLayerView.SetItem(item);
+            rotaryLayerView.SetText(item.MainText, item.SubText);
         }
 
         internal void SetRotarySelectorMode(bool isEditMode)
@@ -175,8 +188,22 @@ namespace NUIWHome
             {
                 if (currentSelectIdx + 1 < ApplicationConstants.MAX_TRAY_COUNT - 1)
                 {
-                    currentSelectIdx++;
-                    wrapperList[currentSelectIdx].RotaryItem.SelectedItem();
+
+                    if (currentPage + 1 < lastPage)
+                    {
+                        currentSelectIdx++;
+                    }
+                    else
+                    {
+                        int mod = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
+                        if (currentSelectIdx + 1 < mod)
+                        {
+                            currentSelectIdx++;
+                        }
+                    }
+
+                    int selIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
+                    wrapperList[selIdx].RotaryItem.SelectedItem();
                 }
                 else
                 {
@@ -188,7 +215,8 @@ namespace NUIWHome
                 if(currentSelectIdx - 1 >= 0)
                 {
                     currentSelectIdx--;
-                    wrapperList[currentSelectIdx].RotaryItem.SelectedItem();
+                    int selIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
+                    wrapperList[selIdx].RotaryItem.SelectedItem();
                 }
                 else
                 {
@@ -227,6 +255,10 @@ namespace NUIWHome
 
         private bool Item_TouchEvent(object source, View.TouchEventArgs e)
         {
+            if(isMotionPaging)
+            {
+                return false;
+            }
             return rotaryTouchController.ProcessTouchEvent(source, e);
         }
 
@@ -506,6 +538,18 @@ namespace NUIWHome
         internal RotaryPagination GetRotaryPagination()
         {
             return pagination;
+        }
+
+        internal bool IsPaging
+        {
+            set
+            {
+                isMotionPaging = value;
+            }
+            get
+            {
+                return isMotionPaging;
+            }
         }
     }
 }
