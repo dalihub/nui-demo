@@ -53,10 +53,6 @@ namespace NUIWHome
 
         private void PanDetector_Detected(object source, PanGestureDetector.DetectedEventArgs e)
         {
-            if (mode == Mode.EditMode)
-            {
-                return;
-            }
             switch (e.PanGesture.State)
             {
                 case Gesture.StateType.Finished:

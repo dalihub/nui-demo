@@ -98,6 +98,11 @@ namespace NUIWHome
             }
             else
             {
+                if(isEditMode)
+                {
+                    animationManager.IsAnimating = false;
+                    return;
+                }
                 if(isEndEffect)
                 {
                     animationManager.AnimateEndEffect(rotaryLayerView.GetContainer());
@@ -131,6 +136,11 @@ namespace NUIWHome
             }
             else
             {
+                if (isEditMode)
+                {
+                    animationManager.IsAnimating = false;
+                    return;
+                }
                 if (isEndEffect)
                 {
                     animationManager.AnimateEndEffect(rotaryLayerView.GetContainer());
@@ -179,6 +189,11 @@ namespace NUIWHome
         {
             //Not set 'IsAnimating' to true. Just Block while paging animation.
             if (animationManager.IsAnimating)
+            {
+                return;
+            }
+
+            if(isEditMode)
             {
                 return;
             }
