@@ -31,6 +31,7 @@ namespace NUIWHome
 
             longPressDetector = new LongPressGestureDetector();
             longPressDetector.Detected += Detector_Detected;
+            longPressDetector.Attach(rotarySelectorManager.GetRotaryLayerView().GetMainText());
 
             panDetector = new PanGestureDetector();
             panDetector.Attach(this);
