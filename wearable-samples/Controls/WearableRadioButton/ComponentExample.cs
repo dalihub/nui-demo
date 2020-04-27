@@ -16,12 +16,33 @@
  */
 using System;
 using Tizen.NUI;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using Tizen.NUI.Components.Extension;
 
 public class ComponentExample : NUIApplication
 {
     public ComponentExample() : base()
     {
+    }
+
+    protected ButtonStyle GetRadioButtonStyle()
+    {
+        return new LottieButtonStyle
+        {
+            LottieUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "nui_wearable_radiobutton_icon.json",
+            PlayRange = new Selector<LottieFrameInfo>
+            {
+                Selected = (0, 12),
+                Normal = (13, 25)
+            },
+            Opacity = new Selector<float?>
+            {
+                Other = 1.0f,
+                Pressed = 0.6f,
+                Disabled = 0.3f,
+            },
+        };
     }
 
     protected override void OnCreate()
@@ -31,7 +52,7 @@ public class ComponentExample : NUIApplication
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-        var button1 = new RadioButton()
+        var button1 = new RadioButton(GetRadioButtonStyle())
         {
             Size = new Size(100, 100),
             Position = new Position(0, -50),
@@ -42,7 +63,7 @@ public class ComponentExample : NUIApplication
         };
         window.Add(button1);
 
-        var button2 = new RadioButton()
+        var button2 = new RadioButton(GetRadioButtonStyle())
         {
             Size = new Size(100, 100),
             Position = new Position(0, 50),

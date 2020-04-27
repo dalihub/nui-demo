@@ -16,6 +16,7 @@
  */
 using System;
 using Tizen.NUI;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 
 public class ComponentExample : NUIApplication
@@ -24,19 +25,49 @@ public class ComponentExample : NUIApplication
     {
     }
 
+    protected ButtonStyle GetButtonStyle()
+    {
+        return new ButtonStyle
+        {
+            Size = new Size(210, 72),
+            CornerRadius = 36,
+            BackgroundColor = new Selector<Color>
+            {
+                Normal = new Color(0, 42f/255f, 77f/255f, 0.85f),
+                Pressed = new Color(0, 70f/255f, 128f/255f, 0.85f),
+                Disabled = new Color(61f/255f, 61f/255f, 61f/255f, 0.85f),
+            },
+            Text = new TextLabelStyle
+            {
+                FontFamily = "SamsungOne 700",
+                PixelSize = 28,
+                TextColor = new Selector<Color>
+                {
+                    Normal = new Color(56f/255f, 164f/255f, 252f/255f, 1),
+                    Pressed = new Color(56f/255f, 164f/255f, 252f/255f, 1),
+                    Disabled = new Color(1, 1, 1, 0.35f),
+                },
+                Padding = new Extents(20, 20, 0, 0),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+            },
+            Opacity = new Selector<float?>
+            {
+                Other = 1.0f,
+                Disabled = 0.3f,
+            }
+        };
+    }
+
     protected override void OnCreate()
     {
         base.OnCreate();
-
-        // Set theme to wearable.
-        // (It is not needed in the wearable device)
-        Tizen.NUI.Components.StyleManager.Instance.Theme = "wearable";
 
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;        
 
         // Create a button with
-        var button = new Button()
+        var button = new Button(GetButtonStyle())
         {
             Text = "Hello World!",
             Size = new Size(210, 72),

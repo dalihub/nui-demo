@@ -17,6 +17,8 @@
 using System;
 using Tizen.NUI;
 using Tizen.NUI.Components;
+using Tizen.NUI.Components.Extension;
+using Tizen.NUI.BaseComponents;
 
 public class ComponentExample : NUIApplication
 {
@@ -24,18 +26,35 @@ public class ComponentExample : NUIApplication
     {
     }
 
+    protected ButtonStyle GetWearableCheckBoxStyle()
+    {
+        return new LottieButtonStyle
+        {
+            LottieUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "nui_wearable_checkbox_icon.json",
+            PlayRange = new Selector<LottieFrameInfo>
+            {
+                Selected = (0, 18),
+                Normal = (19, 36)
+            },
+            Opacity = new Selector<float?>
+            {
+                Other = 1.0f,
+                Pressed = 0.6f,
+                Disabled = 0.3f,
+            },
+        };
+    }
+
     protected override void OnCreate()
     {
         base.OnCreate();
 
-        // Set theme to wearable.
-        // (It is not needed in the wearable device)
         Tizen.NUI.Components.StyleManager.Instance.Theme = "wearable";
 
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-        var button1 = new CheckBox()
+        var button1 = new CheckBox(GetWearableCheckBoxStyle())
         {
             Size = new Size(100, 100),
             Position = new Position(0, -50),
@@ -46,7 +65,7 @@ public class ComponentExample : NUIApplication
         };
         window.Add(button1);
 
-        var button2 = new CheckBox()
+        var button2 = new CheckBox(GetWearableCheckBoxStyle())
         {
             Size = new Size(100, 100),
             Position = new Position(0, 50),

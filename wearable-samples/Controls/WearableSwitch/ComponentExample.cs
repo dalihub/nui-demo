@@ -16,7 +16,9 @@
  */
 using System;
 using Tizen.NUI;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using Tizen.NUI.Components.Extension;
 
 public class ComponentExample : NUIApplication
 {
@@ -24,18 +26,33 @@ public class ComponentExample : NUIApplication
     {
     }
 
+    protected SwitchStyle GetSwitchStyle()
+    {
+        return new LottieSwitchStyle
+        {
+            LottieUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "nui_wearable_switch_icon.json",
+            PlayRange = new Selector<LottieFrameInfo>
+            {
+                Selected = (0, 18),
+                Normal = (19, 36)
+            },
+            Opacity = new Selector<float?>
+            {
+                Other = 1.0f,
+                Pressed = 0.6f,
+                Disabled = 0.3f,
+            },
+        };
+    }
+
     protected override void OnCreate()
     {
         base.OnCreate();
 
-        // Set theme to wearable.
-        // (It is not needed in the wearable device)
-        Tizen.NUI.Components.StyleManager.Instance.Theme = "wearable";
-
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-        var button = new Switch()
+        var button = new Switch(GetSwitchStyle())
         {
             Size = new Size(200, 200),
             PositionUsesPivotPoint = true,
