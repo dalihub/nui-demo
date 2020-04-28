@@ -1,5 +1,5 @@
 # Gallery
-Gallery is a sample for gallery of wearable device.
+Gallery is a sample for gallery application of wearable device.
 
 In particular, it shows how to configure WearableGallery component.
 
