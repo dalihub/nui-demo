@@ -59,23 +59,34 @@ public class ComponentExample : NUIApplication
             Position = new Position(360, 0),
             CornerRadius = 180,
             BackgroundColor = Color.Blue,
-            Text = "Hello World!",
+            Text = "Click To Dismiss!",
             TextColor = Color.White,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
 
-        var animationOnPost = new Animation(500);
-        animationOnPost.AnimateTo(contentView, "Position", new Position(0, 0));
-
-        var animationOnDismiss = new Animation(500);
-        animationOnDismiss.AnimateTo(contentView, "Position", new Position(360, 0));
-
         new Notification(contentView)
-            .SetDismissOnTouch(true)                   // (Optional) Dismiss when user touches it.
-            .SetAnimationOnPost(animationOnPost)       // (Optional) Set an animation to be played when post.
-            .SetAnimationOnDismiss(animationOnDismiss) // (Optional) Set an animation to be played when dismiss.
+            .SetDismissOnTouch(true)                     // (Optional) Dismiss when user touch.
+            .SetOnPostDelegate(OnNotificationPost)       // (Optional) Set a callback to be called when ready to post.
+            .SetOnDismissDelegate(OnNotificationDismiss) // (Optional) Set a callback to be called when dismiss.
             .Post();  // You may set duration in ms like, Post(3000). If you don't it won't set timer for dismissal.
+    }
+
+    void OnNotificationPost(Notification notification)
+    {
+        var animation = new Animation(500);
+        animation.AnimateTo(notification.ContentView, "Position", new Position(0, 0));
+        animation.Play();
+    }
+
+    uint OnNotificationDismiss(Notification notification)
+    {
+        var animation = new Animation(500);
+        animation.AnimateTo(notification.ContentView, "Position", new Position(360, 0));
+        animation.Play();
+
+        // Delay dismiss for animation playing duration
+        return 500;
     }
 
     static void Main(string[] args)

@@ -29,27 +29,47 @@ var contentView = new TextLabel()
     Position = new Position(360, 0),
     CornerRadius = 180,
     BackgroundColor = Color.Blue,
-    Text = "Hello World!",
+    Text = "Click To Dismiss!",
     TextColor = Color.White,
     HorizontalAlignment = HorizontalAlignment.Center,
     VerticalAlignment = VerticalAlignment.Center,
 };
 
-var animationOnPost = new Animation(500);
-animationOnPost.AnimateTo(contentView, "Position", new Position(0, 0));
-
-var animationOnDismiss = new Animation(500);
-animationOnDismiss.AnimateTo(contentView, "Position", new Position(360, 0));
-
 // Create a new Notification with the contentView and post!
+
 new Notification(contentView)
-    // (Optional) Dismiss when user touches it.
+    // (Optional) Dismiss when user touch.
     .SetDismissOnTouch(true)
-    // (Optional) Set an animation to be played when post.
-    .SetAnimationOnPost(animationOnPost)
-    // (Optional) Set an animation to be played when dismiss.
-    .SetAnimationOnDismiss(animationOnDismiss)
+    // (Optional) Set a callback to be called when ready to post.
+    .SetOnPostDelegate(OnNotificationPost)
+    // (Optional) Set a callback to be called when dismiss.
+    .SetOnDismissDelegate(OnNotificationDismiss)
     // You may set duration in ms like, Post(3000). If you don't it won't set timer for dismissal.
     .Post();
 
+```
+
+### Define onPost behavior.
+```C#
+void OnNotificationPost(Notification notification)
+{
+    // Animate contentView to move to (0, 0).
+    var animation = new Animation(500);
+    animation.AnimateTo(notification.ContentView, "Position", new Position(0, 0));
+    animation.Play();
+}
+```
+
+### Define onDismiss behavior.
+```C#
+uint OnNotificationDismiss(Notification notification)
+{
+    // Animate contentView to move to (360, 0).
+    var animation = new Animation(500);
+    animation.AnimateTo(notification.ContentView, "Position", new Position(360, 0));
+    animation.Play();
+
+    // Delay dismiss for animation playing duration
+    return 500;
+}
 ```
