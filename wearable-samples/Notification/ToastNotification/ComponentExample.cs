@@ -46,47 +46,42 @@ public class ComponentExample : NUIApplication
         window.TouchEvent += OnWindowTouch;
     }
 
-    void OnWindowTouch(object target, Window.TouchEventArgs arg)
+    void OnWindowTouch(object target, Window.TouchEventArgs args)
     {
-        if (arg.Touch.GetState(0) != PointStateType.Down)
+        if (args.Touch.GetState(0) != PointStateType.Down)
         {
             return;
         }
 
         var contentView = new TextLabel()
         {
-            Size = new Size(360, 360),
-            Position = new Position(360, 0),
-            CornerRadius = 180,
-            BackgroundColor = Color.Blue,
-            Text = "Click To Dismiss!",
-            TextColor = Color.White,
+            Size = new Size(180, 60),
+            CornerRadius = 30,
+            BackgroundColor = Color.White,
+            Opacity = 0,
+            Text = "Hello World!",
+            PixelSize = 24,
+            ParentOrigin = ParentOrigin.Center,
+            PivotPoint = PivotPoint.Center,
+            PositionUsesPivotPoint = true,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
+            Scale = new Vector3(0, 0, 0),
         };
 
+        var animationOnPost = new Animation(500);
+        animationOnPost.AnimateTo(contentView, "Opacity", 0.8f);
+        animationOnPost.AnimateTo(contentView, "Scale", new Vector3(1, 1, 1));
+
+        var animationOnDismiss = new Animation(500);
+        animationOnDismiss.AnimateTo(contentView, "Opacity", 0);
+        animationOnDismiss.AnimateTo(contentView, "Scale", new Vector3(0, 0, 0));
+
         new Notification(contentView)
-            .SetDismissOnTouch(true)                     // (Optional) Dismiss when user touch.
-            .SetOnPostDelegate(OnNotificationPost)       // (Optional) Set a callback to be called when ready to post.
-            .SetOnDismissDelegate(OnNotificationDismiss) // (Optional) Set a callback to be called when dismiss.
-            .Post();  // You may set duration in ms like, Post(3000). If you don't it won't set timer for dismissal.
-    }
-
-    void OnNotificationPost(Notification notification)
-    {
-        var animation = new Animation(500);
-        animation.AnimateTo(notification.ContentView, "Position", new Position(0, 0));
-        animation.Play();
-    }
-
-    uint OnNotificationDismiss(Notification notification)
-    {
-        var animation = new Animation(500);
-        animation.AnimateTo(notification.ContentView, "Position", new Position(360, 0));
-        animation.Play();
-
-        // Delay dismiss for animation playing duration
-        return 500;
+            .SetAnimationOnPost(animationOnPost)            // (Optional) Set an animation to be played when post.
+            .SetAnimationOnDismiss(animationOnDismiss)      // (Optional) Set an animation to be played when dismiss.
+            .SetPositionSize(new Rectangle(0, 0, 360, 100)) // (Optional) Set notification window boundary.
+            .Post(3000); // Post for 3 seconds
     }
 
     static void Main(string[] args)
