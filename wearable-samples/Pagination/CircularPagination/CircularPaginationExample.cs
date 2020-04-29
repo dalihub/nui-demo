@@ -18,14 +18,15 @@ using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using Tizen.NUI.Wearable;
 
-public class LinearPaginationExample : NUIApplication
+public class CircularPaginationExample : NUIApplication
 {
-    private Pagination pagination;
+    private CircularPagination pagination;
     private ScrollableBase scrollable;
 
-    private readonly int PAGE_COUNT = 6;
-    public LinearPaginationExample() : base()
+    private readonly int PAGE_COUNT = 19;
+    public CircularPaginationExample() : base()
     {
     }
 
@@ -36,26 +37,24 @@ public class LinearPaginationExample : NUIApplication
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-        // Create Pagination component
-        pagination = new Pagination()
+        // Create CircularPagination
+        pagination = new CircularPagination()
         {
-            Size = new Size(118, 10),
-            Position = new Position(0, 24),
+            Size = new Size(360, 360),
 
-            // Set Pagination properties, such as Indicator size, count, and images.
+            // Set CircularPagination properties, such as Indicator size, count, and images.
             IndicatorSize = new Size(10, 10),
             IndicatorImageURL = new Selector<string>()
             {
                 Normal = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "normal_dot.png",
                 Selected = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "focus_dot.png",
             },
-            IndicatorSpacing = 8,
             IndicatorCount = PAGE_COUNT,
             SelectedIndex = 0,
 
-            // Positioning it to the top center
-            ParentOrigin = ParentOrigin.TopCenter,
-            PivotPoint = PivotPoint.TopCenter,
+            // Positioning it to the center
+            ParentOrigin = ParentOrigin.Center,
+            PivotPoint = PivotPoint.Center,
             PositionUsesPivotPoint = true
         };
 
@@ -142,7 +141,6 @@ public class LinearPaginationExample : NUIApplication
 
         //int index = (int)Math.Abs( e.Position.X / 360 );
 
-
         ///////////////////// 2. Using CurrentPage property of ScrollableBase /////////////////////
         // In this time, ScrollableBase variable should be global. Then, the user can get the value.
 
@@ -156,7 +154,7 @@ public class LinearPaginationExample : NUIApplication
 
     static void Main(string[] args)
     {
-        LinearPaginationExample example = new LinearPaginationExample();
+        CircularPaginationExample example = new CircularPaginationExample();
         example.Run(args);
     }
 }

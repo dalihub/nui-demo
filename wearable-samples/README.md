@@ -16,3 +16,4 @@ The platform binary and nuget package needed to build & run the samples will be 
     * [Home Application](./HomeApplication/README.md)
 * Pagination
     * [Linear Pagination](./Pagination/LinearPagination/README.md)
+    * [Circular Pagination](./Pagination/CircularPagination/README.md)
