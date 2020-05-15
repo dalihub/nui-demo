@@ -22,8 +22,6 @@ using Tizen.NUI.Wearable;
 public class ComponentExample : NUIApplication
 {
     const float contentLength = 1000;
-    const float speed = 10;
-
     float currentPosition = 0;
     CircularScrollBar scrollbar;
 
