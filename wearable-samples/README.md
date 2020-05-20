@@ -16,6 +16,7 @@ The platform binary and nuget package needed to build & run the samples will be 
     * [Linear Pagination](./Pagination/LinearPagination/README.md)
     * [Circular Pagination](./Pagination/CircularPagination/README.md)
 * List
-    * [Circular Scrollbar](./List/CircularScrollBar/README.md)
+    * [Circular Scrollbar - Horizontal](./List/CircularScrollBar(Horizontal)/README.md)
+    * [Circular Scrollbar - Vertical](./List/CircularScrollBar(Vertical)/README.md)
 * HomeApplication (rotary selector)
     * [Home Application](./HomeApplication/README.md)

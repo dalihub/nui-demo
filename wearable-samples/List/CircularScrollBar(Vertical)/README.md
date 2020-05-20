@@ -1,4 +1,4 @@
-# Circular Scrollbar
+# Circular Scrollbar (Vertical)
 
 CircularScrollBar is a class that provides scroll track and thumb which shapes arcs for circular devices.
 
