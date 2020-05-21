@@ -49,7 +49,9 @@ new Notification(contentView)
     .SetAnimationOnPost(animationOnPost)
     // (Optional) Set an animation to be played when dismiss.
     .SetAnimationOnDismiss(animationOnDismiss)
-    // You may set duration in ms like, Post(3000). If you don't it won't set timer for dismissal.
+    // You may set duration in ms when calling Post().
+    // e.g. Post(3000/*duration*/)
+    // If you don't set duration, it won't set timer for dismissal.
     .Post();
 
 ```

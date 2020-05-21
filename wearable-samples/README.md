@@ -1,7 +1,5 @@
 # Component Sample Applications
 
-The platform binary and nuget package needed to build & run the samples will be produced within 17 April, 2020.
-
 * Button
     * [Wearable button](./Button/WearableButton/README.md)
     * [Button with a overlay animation on press](./Button/ButtonWithOverlayAnimation/README.md)
@@ -15,8 +13,16 @@ The platform binary and nuget package needed to build & run the samples will be 
 * Pagination
     * [Linear Pagination](./Pagination/LinearPagination/README.md)
     * [Circular Pagination](./Pagination/CircularPagination/README.md)
-* List
-    * [Circular Scrollbar - Horizontal](./List/CircularScrollBar(Horizontal)/README.md)
-    * [Circular Scrollbar - Vertical](./List/CircularScrollBar(Vertical)/README.md)
+* Notification
+    * [Fullsize Notification](./Notification/FullsizeNotification/)
+    * [Toast Notification](./Notification/ToastNotification/README.md)
 * HomeApplication (rotary selector)
     * [Home Application](./HomeApplication/README.md)
+
+
+# Component Sample Applications (Not released yet)
+
+* List
+    * Fisheye List
+    * [Circular Scrollbar - Horizontal](./List/CircularScrollBar(Horizontal)/README.md)
+    * [Circular Scrollbar - Vertical](./List/CircularScrollBar(Vertical)/README.md)

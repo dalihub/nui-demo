@@ -53,6 +53,7 @@ public class ComponentExample : NUIApplication
             return;
         }
 
+        // Prepare content to notify
         var contentView = new TextLabel()
         {
             Size = new Size(180, 60),
@@ -69,19 +70,19 @@ public class ComponentExample : NUIApplication
             Scale = new Vector3(0, 0, 0),
         };
 
-        var animationOnPost = new Animation(500);
+        var animationOnPost = new Animation(200);
         animationOnPost.AnimateTo(contentView, "Opacity", 0.8f);
         animationOnPost.AnimateTo(contentView, "Scale", new Vector3(1, 1, 1));
 
-        var animationOnDismiss = new Animation(500);
+        var animationOnDismiss = new Animation(200);
         animationOnDismiss.AnimateTo(contentView, "Opacity", 0);
         animationOnDismiss.AnimateTo(contentView, "Scale", new Vector3(0, 0, 0));
 
         new Notification(contentView)
             .SetAnimationOnPost(animationOnPost)            // (Optional) Set an animation to be played when post.
             .SetAnimationOnDismiss(animationOnDismiss)      // (Optional) Set an animation to be played when dismiss.
-            .SetPositionSize(new Rectangle(0, 0, 360, 100)) // (Optional) Set notification window boundary.
-            .Post(3000); // Post for 3 seconds
+            .SetPositionSize(new Rectangle(90, 20, 180, 60)) // (Optional) Set notification window boundary.
+            .Post(2000); // Post for 2 seconds
     }
 
     static void Main(string[] args)

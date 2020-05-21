@@ -53,6 +53,7 @@ public class ComponentExample : NUIApplication
             return;
         }
 
+        // Prepare content to notify
         var contentView = new TextLabel()
         {
             Size = new Size(360, 360),
@@ -75,7 +76,7 @@ public class ComponentExample : NUIApplication
             .SetDismissOnTouch(true)                   // (Optional) Dismiss when user touches it.
             .SetAnimationOnPost(animationOnPost)       // (Optional) Set an animation to be played when post.
             .SetAnimationOnDismiss(animationOnDismiss) // (Optional) Set an animation to be played when dismiss.
-            .Post();  // You may set duration in ms like, Post(3000). If you don't it won't set timer for dismissal.
+            .Post();
     }
 
     static void Main(string[] args)
