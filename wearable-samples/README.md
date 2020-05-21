@@ -1,28 +1,28 @@
 # Component Sample Applications
 
 * Button
-    * [Wearable button](./Button/WearableButton/README.md)
-    * [Button with a overlay animation on press](./Button/ButtonWithOverlayAnimation/README.md)
+    * [Wearable button](./Button/WearableButton/)
+    * [Button with a overlay animation on press](./Button/ButtonWithOverlayAnimation/)
 * Controls
-    * [Wearable radio button](./Controls/WearableRadioButton/README.md)
-    * [Wearable check box](./Controls/WearableCheckBox/README.md)
-    * [Wearable switch](./Controls/WearableSwitch/README.md)
+    * [Wearable radio button](./Controls/WearableRadioButton/)
+    * [Wearable check box](./Controls/WearableCheckBox/)
+    * [Wearable switch](./Controls/WearableSwitch/)
 * Text
-    * [Text label](./Text/TextLabel/README.md)
-    * [Text field](./Text/TextField/README.md)
+    * [Text label](./Text/TextLabel/)
+    * [Text field](./Text/TextField/)
 * Pagination
-    * [Linear Pagination](./Pagination/LinearPagination/README.md)
-    * [Circular Pagination](./Pagination/CircularPagination/README.md)
+    * [Linear Pagination](./Pagination/LinearPagination/)
+    * [Circular Pagination](./Pagination/CircularPagination/)
 * Notification
     * [Fullsize Notification](./Notification/FullsizeNotification/)
-    * [Toast Notification](./Notification/ToastNotification/README.md)
+    * [Toast Notification](./Notification/ToastNotification/)
 * HomeApplication (rotary selector)
-    * [Home Application](./HomeApplication/README.md)
+    * [Home Application](./HomeApplication/)
 
 
 # Component Sample Applications (Not released yet)
 
 * List
     * Fisheye List
-    * [Circular Scrollbar - Horizontal](./List/CircularScrollBar(Horizontal)/README.md)
-    * [Circular Scrollbar - Vertical](./List/CircularScrollBar(Vertical)/README.md)
+    * [Circular Scrollbar - Horizontal](./List/CircularScrollBar(Horizontal)/)
+    * [Circular Scrollbar - Vertical](./List/CircularScrollBar(Vertical)/)
