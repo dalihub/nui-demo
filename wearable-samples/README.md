@@ -20,7 +20,7 @@
     * [Home Application](./HomeApplication/)
 
 
-# Component Sample Applications (Not released yet)
+# Coming Soon
 
 * List
     * Fisheye List
