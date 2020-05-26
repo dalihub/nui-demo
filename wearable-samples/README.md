@@ -28,4 +28,5 @@
     * [Circular Scrollbar - Vertical](./List/CircularScrollBar(Vertical)/)
 * Indicator
     * [Circular Progress](./Indicator/CircularProgress/)
-    * [Activity Indicator](./Indicator/ActivityIndicator/)
+    * [Activity Indicator - Full](./Indicator/ActivityIndicator(Full)/)
+    * [Activity Indicator - Small](./Indicator/ActivityIndicator(Small)/)

@@ -38,23 +38,11 @@ public class ActivityIndicatorExample : NUIApplication
         string[] imageArray = new string[120];
         for (int i = 0; i < 120; i++)
         {
-            if (i < 10)
-            {
-                imageArray[i] = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "activityindicator_full0000" + i + ".png";
-
-            }
-            else if (i < 100)
-            {
-                imageArray[i] = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "activityindicator_full000" + i + ".png";
-            }
-            else
-            {
-                imageArray[i] = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "activityindicator_full00" + i + ".png";
-            }
+            imageArray[i] = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "activityindicator_full" + i.ToString("00000") + ".png";
         }
 
         loading = new Loading();
-        loading.Size2D = new Size2D(360, 360);
+        loading.Size = new Size(360, 360);
 
         // Set the image array to Images property
         loading.Images = imageArray;
