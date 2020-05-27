@@ -7,6 +7,7 @@
     * [Wearable radio button](./Controls/WearableRadioButton/)
     * [Wearable check box](./Controls/WearableCheckBox/)
     * [Wearable switch](./Controls/WearableSwitch/)
+    * [Wearable list](./Controls/WearableList/)
 * Text
     * [Text label](./Text/TextLabel/)
     * [Text field](./Text/TextField/)
@@ -18,6 +19,8 @@
     * [Toast Notification](./Notification/ToastNotification/)
 * HomeApplication (rotary selector)
     * [Home Application](./HomeApplication/)
+* MessageApplication (WearableList and BlurView)
+    * [Message Application](./MessageApplication/)
 
 
 # Coming Soon
