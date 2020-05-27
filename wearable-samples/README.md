@@ -27,8 +27,8 @@
 
 * List
     * Fisheye List
-    * [Circular Scrollbar - Horizontal](./List/CircularScrollBar(Horizontal)/)
-    * [Circular Scrollbar - Vertical](./List/CircularScrollBar(Vertical)/)
+    * [Circular Scrollbar - Horizontal](./List/CircularScrollbar(Horizontal)/)
+    * [Circular Scrollbar - Vertical](./List/CircularScrollbar(Vertical)/)
 * Indicator
     * [Circular Progress](./Indicator/CircularProgress/)
     * [Activity Indicator - Full](./Indicator/ActivityIndicator(Full)/)

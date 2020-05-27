@@ -23,7 +23,7 @@ public class ComponentExample : NUIApplication
 {
     const float contentLength = 1000;
     float currentPosition = 0;
-    CircularScrollBar scrollbar;
+    CircularScrollbar scrollbar;
 
     public ComponentExample() : base(new Size2D(360, 360), new Position2D(0, 0))
     {
@@ -36,8 +36,7 @@ public class ComponentExample : NUIApplication
         var window = NUIApplication.GetDefaultWindow();
         var screenLength = Math.Min(window.Size.Width, window.Size.Height);
 
-        scrollbar = new CircularScrollBar();
-        scrollbar.Initialize(contentLength, new Size(screenLength, screenLength), currentPosition);
+        scrollbar = new CircularScrollbar(contentLength, new Size(screenLength, screenLength), currentPosition);
 
         window.Add(scrollbar);
         scrollbar.TouchEvent += OnTouch;
