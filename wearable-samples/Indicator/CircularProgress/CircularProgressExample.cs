@@ -21,7 +21,13 @@ using Tizen.NUI.Wearable;
 
 public class CircularProgressExample : NUIApplication
 {
+    Window window;
     CircularProgress circular;
+
+    TextLabel label;
+    TextLabel minusLabel;
+    TextLabel plusLabel;
+    ImageView iconImage;
 
     public CircularProgressExample() : base(new Size2D(360, 360), new Position2D(0, 0))
     {
@@ -31,18 +37,20 @@ public class CircularProgressExample : NUIApplication
     {
         base.OnCreate();
 
-        var window = NUIApplication.GetDefaultWindow();
+        window = NUIApplication.GetDefaultWindow();
 
         circular = new CircularProgress();
-        circular.CurrentValue = 40;
+        circular.CurrentValue = 4;
 
-        // These properties are default values, so they're set to the following values
+        // These properties have default values, so they're set to the following values
         // even if you don't set them separately.
         circular.MinValue = 0;
-        circular.MaxValue = 100;
+        circular.MaxValue = 10;
         circular.Thickness = 6;
 
         window.Add(circular);
+
+        CreateLabelAndIcon();
 
         // Bezel event
         window.WheelEvent += Pagination_WheelEvent;
@@ -50,6 +58,76 @@ public class CircularProgressExample : NUIApplication
         // If you want to change the colors of the track and the progress,
         // use TrackColor and ProgressColor properties.
 
+    }
+
+    void CreateLabelAndIcon()
+    {
+        label = new TextLabel()
+        {
+            Text = circular.CurrentValue.ToString(),
+            TextColor = Color.White,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            PositionUsesPivotPoint = true,
+            ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+            PivotPoint = Tizen.NUI.PivotPoint.Center,
+        };
+        window.Add(label);
+
+        iconImage = new ImageView()
+        {
+            Position = new Position(0, -70),
+            PositionUsesPivotPoint = true,
+            ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+            PivotPoint = Tizen.NUI.PivotPoint.Center,
+            ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "sound_icon.png"
+        };
+        window.Add(iconImage);
+
+        TextLabel fixedLabel = new TextLabel()
+        {
+            Text = "SOUND",
+            TextColor = Color.White,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            Position = new Position(0, 70),
+            PositionUsesPivotPoint = true,
+            ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+            PivotPoint = Tizen.NUI.PivotPoint.Center,
+        };
+        window.Add(fixedLabel);
+
+        minusLabel = new TextLabel()
+        {
+            Text = "-",
+            TextColor = Color.White,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+            HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+            Position = new Position(-50, 0),
+            PositionUsesPivotPoint = true,
+            ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+            PivotPoint = Tizen.NUI.PivotPoint.Center,
+        };
+        minusLabel.TouchEvent += OnMinusTouch;
+        window.Add(minusLabel);
+
+        plusLabel = new TextLabel()
+        {
+            Text = "+",
+            TextColor = Color.White,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+            HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+            Position = new Position(50, 0),
+            PositionUsesPivotPoint = true,
+            ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+            PivotPoint = Tizen.NUI.PivotPoint.Center,
+        };
+        plusLabel.TouchEvent += OnPlusTouch;
+        window.Add(plusLabel);
     }
 
     private void Pagination_WheelEvent(object source, Window.WheelEventArgs e)
@@ -62,17 +140,45 @@ public class CircularProgressExample : NUIApplication
             {
                 if (circular.CurrentValue < circular.MaxValue)
                 {
-                    circular.CurrentValue = circular.CurrentValue + 10;
+                    circular.CurrentValue++;
+                    label.Text = circular.CurrentValue.ToString();
                 }
             }
             else
             {
                 if (circular.CurrentValue > circular.MinValue)
                 {
-                    circular.CurrentValue = circular.CurrentValue - 10;
+                    circular.CurrentValue--;
+                    label.Text = circular.CurrentValue.ToString();
                 }
             }
         }
+    }
+
+    private bool OnMinusTouch(object source, View.TouchEventArgs e)
+    {
+        if (e.Touch.GetState(0) == PointStateType.Down)
+        {
+            if (circular.CurrentValue > 0)
+            {
+                circular.CurrentValue -= 1;
+                label.Text = circular.CurrentValue.ToString();
+            }
+        }
+        return false;
+    }
+
+    private bool OnPlusTouch(object source, View.TouchEventArgs e)
+    {
+        if (e.Touch.GetState(0) == PointStateType.Down)
+        {
+            if (circular.CurrentValue < circular.MaxValue)
+            {
+                circular.CurrentValue += 1;
+                label.Text = circular.CurrentValue.ToString();
+            }
+        }
+        return false;
     }
 
     static void Main(string[] args)
