@@ -7,7 +7,6 @@
     * [Wearable radio button](./Controls/WearableRadioButton/)
     * [Wearable check box](./Controls/WearableCheckBox/)
     * [Wearable switch](./Controls/WearableSwitch/)
-    * [Wearable list](./Controls/WearableList/)
 * Text
     * [Text label](./Text/TextLabel/)
     * [Text field](./Text/TextField/)
@@ -19,17 +18,17 @@
     * [Toast Notification](./Notification/ToastNotification/)
 * HomeApplication (rotary selector)
     * [Home Application](./HomeApplication/)
-* MessageApplication (WearableList and BlurView)
-    * [Message Application](./MessageApplication/)
 
 
 # Coming Soon
 
 * List
-    * Fisheye List
+    * [Wearable list](./List/WearableList/)
     * [Circular Scrollbar - Horizontal](./List/CircularScrollbar(Horizontal)/)
     * [Circular Scrollbar - Vertical](./List/CircularScrollbar(Vertical)/)
 * Indicator
     * [Circular Progress](./Indicator/CircularProgress/)
     * [Activity Indicator - Full](./Indicator/ActivityIndicator(Full)/)
     * [Activity Indicator - Small](./Indicator/ActivityIndicator(Small)/)
+* MessageApplication (WearableList and BlurView)
+    * [Message Application](./MessageApplication/)
