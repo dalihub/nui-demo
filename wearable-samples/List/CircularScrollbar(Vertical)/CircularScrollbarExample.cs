@@ -36,7 +36,7 @@ public class ComponentExample : NUIApplication
         var window = NUIApplication.GetDefaultWindow();
         var screenLength = Math.Min(window.Size.Width, window.Size.Height);
 
-        scrollbar = new CircularScrollbar(contentLength, new Size(screenLength, screenLength), currentPosition);
+        scrollbar = new CircularScrollbar(contentLength, screenLength, currentPosition);
 
         window.Add(scrollbar);
         scrollbar.TouchEvent += OnTouch;
