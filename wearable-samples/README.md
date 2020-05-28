@@ -2,7 +2,7 @@
 
 * Button
     * [Wearable button](./Button/WearableButton/)
-    * [Button with a overlay animation on press](./Button/ButtonWithOverlayAnimation/)
+    * [Button with an overlay animation on press](./Button/ButtonWithOverlayAnimation/)
 * Controls
     * [Wearable radio button](./Controls/WearableRadioButton/)
     * [Wearable check box](./Controls/WearableCheckBox/)

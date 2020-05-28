@@ -1,7 +1,7 @@
 # Bottom with predefined Overlay Animation
 Tizen.NUI provide several predefined styles for components.
 
-This example shows applying a `OverlayAnimationButtonStyle` to a button.
+This example shows applying an `OverlayAnimationButtonStyle` to a button.
 
 ## Notice
 * This example used predefined style provided by Tizen.NUI.Component package. For more detail, see [OverlayAnimationButtonStyle](https://github.com/rabbitfor/TizenFX/blob/master/src/Tizen.NUI.Components/PreloadStyle/OverlayAnimationButtonStyle.cs). You can refer this code to make your own style.
