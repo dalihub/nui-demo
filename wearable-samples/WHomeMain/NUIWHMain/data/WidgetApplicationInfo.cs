@@ -10,7 +10,6 @@ namespace NUIWHMain
         public static string app1 = "org.tizen.apptray-widget";
         public static string app2 = "org.tizen.alarm.widget";
         public static string app3 = "org.tizen.w-contacts.widget";
-        public static string app4 = "org.tizen.example.NUIWidgetSample";
 
         public static List<string> LoadAllParameters()
         {

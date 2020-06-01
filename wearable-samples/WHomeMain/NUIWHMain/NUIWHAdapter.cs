@@ -236,9 +236,6 @@ namespace NUIWHMain
             }
 
             widgetList = WidgetApplicationInfo.LoadAllParameters();
-
-            widgetViewList.Add(WidgetApplicationInfo.app4, CreateWidget(WidgetApplicationInfo.app4));
-            dataList.Add(new FaceData(FaceData.FaceType.WIDGET, WidgetApplicationInfo.app4));
         }
 
         public WidgetView CreateWidget(string res)
