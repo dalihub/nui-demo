@@ -44,11 +44,6 @@ public class CircularPaginationExample : NUIApplication
 
             // Set CircularPagination properties, such as Indicator size, count, and images.
             IndicatorSize = new Size(10, 10),
-            IndicatorImageURL = new Selector<string>()
-            {
-                Normal = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "normal_dot.png",
-                Selected = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "focus_dot.png",
-            },
             IndicatorCount = PAGE_COUNT,
             SelectedIndex = 0,
 
