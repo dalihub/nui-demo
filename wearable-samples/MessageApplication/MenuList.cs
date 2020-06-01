@@ -89,7 +89,7 @@ namespace WearableSample
             MenuData data = Data[item.DataIndex] as MenuData;
 
             target.Title.Text = data.Title;
-            target.Icon.ResourceUrl = data.ResourceUrl;
+            target.Icon.ResourceUrl = NUIApplication.Current.DirectoryInfo.Resource + "/images/" + data.ResourceUrl;
         }
     }
 
@@ -105,9 +105,9 @@ namespace WearableSample
         public MenuList() : base(new MenuListAdapter()
         {
             Data = new List<object>{
-            new MenuData(){Title = "Write", ResourceUrl = "./res/images/send_message.png"},
-            new MenuData(){Title = "Delete", ResourceUrl = "./res/images/delete.png"},
-            new MenuData(){Title = "Settings", ResourceUrl = "./res/images/settings.png"}
+            new MenuData(){Title = "Write", ResourceUrl = "send_message.png"},
+            new MenuData(){Title = "Delete", ResourceUrl = "delete.png"},
+            new MenuData(){Title = "Settings", ResourceUrl = "settings.png"}
         }
         })
         {

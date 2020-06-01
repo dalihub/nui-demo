@@ -54,7 +54,7 @@ namespace WearableSample
 
             buttonImage = new ImageView()
             {
-                ResourceUrl = "./res/images/more_option.png",
+                ResourceUrl = NUIApplication.Current.DirectoryInfo.Resource + "/images/more_option.png",
                 Size = new Size(9, 36),
                 Position = new Position(-16, 0),
                 PositionUsesPivotPoint = true,

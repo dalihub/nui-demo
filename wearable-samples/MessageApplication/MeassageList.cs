@@ -43,6 +43,7 @@ namespace WearableSample
                 Layout = new AbsoluteLayout() { SetPositionByLayout = false },
                 AutoScrollStopMode = AutoScrollStopMode.Immediate,
                 AutoScrollLoopCount = 1,
+                Ellipsis = true,
             };
 
             SubTitle = new TextLabel()
@@ -83,8 +84,6 @@ namespace WearableSample
 
         public override void OnFocusGained()
         {
-            Tizen.Log.Error("NUI", "[" + DataIndex + "] FOCUSE GAIN^ ===== \n");
-
             isFocusGained = true;
             if (mFocusAnimation == null)
             {
@@ -110,16 +109,15 @@ namespace WearableSample
             {
                 if (isFocusGained)
                 {
-                    Title.EnableAutoScroll = true;
+//                    Title.EnableAutoScroll = true;
                 }
             };
         }
 
         public override void OnFocusLost()
         {
-            Tizen.Log.Error("NUI", "[" + DataIndex + "] FOCUSE LOST ===== " + Title.EnableAutoScroll + "\n");
             isFocusGained = false;
-            Title.EnableAutoScroll = false;
+//            Title.EnableAutoScroll = false;
 
             if (mFocusAnimation == null)
             {
@@ -175,7 +173,9 @@ namespace WearableSample
     {
         public MessageList() : base(new MessageListAdaptor() { Data = MessageDummy.Create(100) })
         {
-
+            FlickAnimationSpeed = 0.7f;
+            FlickDistanceMultiplierRange = new Vector2(0.2f, 1.3f);
+            FlickThreshold = 0.1f;
         }
     }
 }
