@@ -1,21 +1,54 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <ItemGroup>
-    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
-    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
-    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI.Wearable/Tizen.NUI.Wearable.csproj" />
-  </ItemGroup>
+<Project Sdk="Tizen.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <DefineConstants>DOT_NET_CORE</DefineConstants>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../../NuiSample.snk</AssemblyOriginatorKeyFile>
-    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="8.0.0.*" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="res\" />
+  </ItemGroup>
+
+  <!--ItemGroup>
+    <Reference Include="Tizen">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Applications.Common">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.Applications.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Applications.ComponentBased">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.Applications.ComponentBased.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.Log">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.NUI">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.NUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.NUI.Components">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.NUI.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.NUI.Wearable">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.NUI.Wearable.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.System.Information">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.System.Information.dll</HintPath>
+    </Reference>
+    <Reference Include="Tizen.System.SystemSettings">
+      <HintPath>..\..\..\..\Desktop\dll\Tizen.System.SystemSettings.dll</HintPath>
+    </Reference>
+  </ItemGroup-->
 
 </Project>
