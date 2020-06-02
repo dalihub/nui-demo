@@ -63,7 +63,7 @@ namespace NUIWHome
             {
                 case Gesture.StateType.Finished:
                     {
-                        if(controller.SelectedItem != null && controller.IsProcessing)
+                        if (controller.SelectedItem == null && controller.IsProcessing)
                         {
                             return;
                         }

@@ -43,6 +43,10 @@ namespace NUIWHome
             {
                 SelectedItem.ClickedItem();
             }
+            else if(IsProcessing)
+            {
+                StopCheckingTimer();
+            }
             return false;
         }
 

@@ -46,12 +46,14 @@ namespace NUIWHome
 
         internal void SelectedItem()
         {
+            Tizen.Log.Error("MYLOG", "Selected Item");
             OnItemSelected(this);
             CallSelect();
         }
 
         internal void ClickedItem()
         {
+            Tizen.Log.Error("MYLOG", "ClickedItem");
             OnItemSelected(this);
             CallSelect();
             CallClick();

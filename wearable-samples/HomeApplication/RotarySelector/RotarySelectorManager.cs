@@ -23,25 +23,25 @@ namespace NUIWHome
         private Size rotarySize;
 
         private bool isEditMode = false;
-        private bool isMotionPaging = false;        
+        private bool isMotionPaging = false;
 
         internal RotarySelectorManager(Size rotarySize)
         {
-         
+
             this.rotarySize = rotarySize;
 
             rotaryTouchController = new RotaryTouchNormalMode();
             wrapperList = new List<RotaryItemWrapper>();
 
             // First Page
-            for(int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
+            for (int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
             {
                 RotaryItemWrapper rotaryItemWrapper = new RotaryItemWrapper(i);
                 wrapperList.Add(rotaryItemWrapper);
             }
 
             // Second Page
-            for(int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
+            for (int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
             {
                 RotaryItemWrapper rotaryItemWrapper = new RotaryItemWrapper(i);
                 wrapperList.Add(rotaryItemWrapper);
@@ -78,7 +78,7 @@ namespace NUIWHome
             {
 
                 //For editing mode
-                rotaryLayerView.CheckEditBG(currentPage+1, lastPage);
+                rotaryLayerView.CheckEditBG(currentPage + 1, lastPage);
                 rotaryLayerView.AnimateBG(true);
 
 
@@ -98,12 +98,12 @@ namespace NUIWHome
             }
             else
             {
-                if(isEditMode)
+                if (isEditMode)
                 {
                     animationManager.IsAnimating = false;
                     return;
                 }
-                if(isEndEffect)
+                if (isEndEffect)
                 {
                     animationManager.AnimateEndEffect(rotaryLayerView.GetContainer());
                     return;
@@ -113,7 +113,11 @@ namespace NUIWHome
             int selIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
             RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
             rotaryLayerView.SetItem(item);
-            rotaryLayerView.SetText(item.MainText, item.SubText);
+
+            if(!isEditMode)
+            {
+                rotaryLayerView.SetText(item.MainText, item.SubText);
+            }
             return;
         }
 
@@ -128,7 +132,7 @@ namespace NUIWHome
             if (currentPage > 0)
             {
                 //For editing mode
-                rotaryLayerView.CheckEditBG(currentPage-1, lastPage);
+                rotaryLayerView.CheckEditBG(currentPage - 1, lastPage);
                 rotaryLayerView.AnimateBG(false);
                 PlayPageAnimation(rotaryLayerView.RotaryItemList, currentPage - 1, true, type);
                 currentPage--;
@@ -150,19 +154,25 @@ namespace NUIWHome
             int selIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
             RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
             rotaryLayerView.SetItem(item);
-            rotaryLayerView.SetText(item.MainText, item.SubText);
+            if(!isEditMode)
+            {
+                rotaryLayerView.SetText(item.MainText, item.SubText);
+            }
         }
 
         internal void SetRotarySelectorMode(bool isEditMode)
         {
             if (isEditMode)
             {
+                Tizen.Log.Error("MYLOG", "Change Edit Mode");
                 rotaryTouchController = new RotaryTouchEditMode();
                 rotaryTouchController.OnNotify += RotaryTouchController_OnNotify;
             }
             else
             {
+                Tizen.Log.Error("MYLOG", "Change Normal Mode");
                 rotaryTouchController = new RotaryTouchNormalMode();
+                IsPaging = false;
             }
             rotaryLayerView.ChangeMode(isEditMode, currentPage, lastPage);
             animationManager.AnimateChangeState(rotaryLayerView, isEditMode);
@@ -172,7 +182,7 @@ namespace NUIWHome
 
         public void TestFunction(bool isTest)
         {
-            if(isTest)
+            if (isTest)
             {
                 NextPage(false);
             }
@@ -184,7 +194,7 @@ namespace NUIWHome
             Window.Instance.TouchEvent -= Instance_TouchEvent;
             rotaryTouchController.SelectedItem = null;
         }
-        
+
         internal void SelectItemByWheel(int direction)
         {
             //Not set 'IsAnimating' to true. Just Block while paging animation.
@@ -193,7 +203,7 @@ namespace NUIWHome
                 return;
             }
 
-            if(isEditMode)
+            if (isEditMode)
             {
                 return;
             }
@@ -227,7 +237,7 @@ namespace NUIWHome
             }
             else
             {
-                if(currentSelectIdx - 1 >= 0)
+                if (currentSelectIdx - 1 >= 0)
                 {
                     currentSelectIdx--;
                     int selIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
@@ -242,17 +252,22 @@ namespace NUIWHome
         }
         private void SelectItem(RotarySelectorItem item = null, bool isAnimating = true)
         {
-            if(item == null)
+            Tizen.Log.Error("MYLOG", "SelectItem");
+            if (item == null)
             {
                 item = wrapperList[currentSelectIdx].RotaryItem;
             }
 
             currentSelectIdx = item.CurrentIndex;
             rotaryLayerView.SetItem(item);
-            rotaryLayerView.SetText(item.MainText, item.SubText);
-            rotaryLayerView.SetRotaryPosition(item.CurrentIndex);
+            if (!isEditMode)
+            {
+                Tizen.Log.Error("MYLOG", "Set Item text");
+                rotaryLayerView.SetText(item.MainText, item.SubText);
+                rotaryLayerView.SetRotaryPosition(item.CurrentIndex);
+            }
 
-            if(isAnimating)
+            if (isAnimating)
             {
                 //for moving indicator
                 animationManager.AnimateChangeState(rotaryLayerView, false, true);
@@ -270,10 +285,12 @@ namespace NUIWHome
 
         private bool Item_TouchEvent(object source, View.TouchEventArgs e)
         {
-            if(isMotionPaging)
+            if (IsPaging)
             {
+                Tizen.Log.Error("MYLOG", "motioning...");
                 return false;
             }
+            Tizen.Log.Error("MYLOG", "Item_TouchEvent");
             return rotaryTouchController.ProcessTouchEvent(source, e);
         }
 
@@ -303,7 +320,7 @@ namespace NUIWHome
             rotaryLayerView.InsertItem(index, item);
             InitItem(item);
             ReWrappingAllItems();
-            
+
         }
 
 
@@ -383,7 +400,7 @@ namespace NUIWHome
         //Needs improvement for performance.
         private void ReWrappingAllItems()
         {
-            if(rotaryLayerView.RotaryItemList.Count == 0)
+            if (rotaryLayerView.RotaryItemList.Count == 0)
             {
                 //Clear
             }
@@ -420,7 +437,7 @@ namespace NUIWHome
             for (int i = sIdx, j = eIdx; i < sIdx + ApplicationConstants.MAX_ITEM_COUNT; i++, j++)
             {
                 //if Not set the item
-                if(wrapperList[i].RotaryItem != null)
+                if (wrapperList[i].RotaryItem != null)
                 {
                     animationManager.AnimateHidePage(wrapperList[i], cw, type);
                 }
@@ -441,52 +458,52 @@ namespace NUIWHome
             switch (opt)
             {
                 case 0:
-                {
-                    if (isEditMode)
                     {
-                        animationManager.InitRotaryPathAnimation();
-
-                        RotarySelectorItem SelectedItem = rotaryTouchController.SelectedItem;
-                        RotarySelectorItem collisionItem = item;
-
-                        int page = (currentPage % 2) * ApplicationConstants.MAX_ITEM_COUNT;
-                        int selIdx = (int)SelectedItem?.CurrentIndex;
-                        int colIdx = (int)collisionItem?.CurrentIndex;
-                        if (selIdx < colIdx)
+                        if (isEditMode)
                         {
-                            for (int i = selIdx; i < colIdx; i++)
-                            {
-                                int idx = page + i;
-                                wrapperList[idx].RotaryItem = wrapperList[idx + 1].RotaryItem;
-                                animationManager.AnimatePathOnEdit(wrapperList[idx]);
-                            }
-                        }
-                        else
-                        {
-                            for (int i = selIdx; i > colIdx; i--)
-                            {
-                                int idx = page + i;
-                                wrapperList[idx].RotaryItem = wrapperList[idx - 1].RotaryItem;
-                                animationManager.AnimatePathOnEdit(wrapperList[idx], false);
-                            }
-                        }
+                            animationManager.InitRotaryPathAnimation();
 
-                        rotaryLayerView.ChagneItemPosition(SelectedItem, collisionItem);
-                        wrapperList[page + colIdx].RotaryItem = SelectedItem;
-                        animationManager.PlayCoreAnimation();
+                            RotarySelectorItem SelectedItem = rotaryTouchController.SelectedItem;
+                            RotarySelectorItem collisionItem = item;
+
+                            int page = (currentPage % 2) * ApplicationConstants.MAX_ITEM_COUNT;
+                            int selIdx = (int)SelectedItem?.CurrentIndex;
+                            int colIdx = (int)collisionItem?.CurrentIndex;
+                            if (selIdx < colIdx)
+                            {
+                                for (int i = selIdx; i < colIdx; i++)
+                                {
+                                    int idx = page + i;
+                                    wrapperList[idx].RotaryItem = wrapperList[idx + 1].RotaryItem;
+                                    animationManager.AnimatePathOnEdit(wrapperList[idx]);
+                                }
+                            }
+                            else
+                            {
+                                for (int i = selIdx; i > colIdx; i--)
+                                {
+                                    int idx = page + i;
+                                    wrapperList[idx].RotaryItem = wrapperList[idx - 1].RotaryItem;
+                                    animationManager.AnimatePathOnEdit(wrapperList[idx], false);
+                                }
+                            }
+
+                            rotaryLayerView.ChagneItemPosition(SelectedItem, collisionItem);
+                            wrapperList[page + colIdx].RotaryItem = SelectedItem;
+                            animationManager.PlayCoreAnimation();
+                        }
+                        break;
                     }
-                    break;
-                }
                 case 1:
-                {
-                    Window.Instance.TouchEvent += Instance_TouchEvent;
-                    break;
-                }
-          
+                    {
+                        Window.Instance.TouchEvent += Instance_TouchEvent;
+                        break;
+                    }
+
             }
         }
 
-        
+
 
         private void Instance_TouchEvent(object sender, Window.TouchEventArgs e)
         {
@@ -515,11 +532,11 @@ namespace NUIWHome
                     }
                     //animationManager.IsAnimating = true;
 
-                    if(mousePosition.X <= 50 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
+                    if (mousePosition.X <= 50 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
                     {
                         rotaryLayerView.AnimateLeftCue();
                     }
-                    else if(mousePosition.X >= 310 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
+                    else if (mousePosition.X >= 310 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
                     {
                         rotaryLayerView.AnimateRightCue();
                     }
