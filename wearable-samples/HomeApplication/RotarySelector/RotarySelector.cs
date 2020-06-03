@@ -50,7 +50,6 @@ namespace NUIWHome
             }
             return false;
         }
-
         private void PanDetector_Detected(object source, PanGestureDetector.DetectedEventArgs e)
         {
             RotaryTouchController controller = rotarySelectorManager.GetRotaryTouchController();
@@ -63,14 +62,23 @@ namespace NUIWHome
             {
                 case Gesture.StateType.Finished:
                     {
-                        if(controller.SelectedItem != null && controller.IsProcessing)
+                        if (controller.IsProcessing)
                         {
                             return;
                         }
+                        if (!rotarySelectorManager.isDetector())
+                        {
+                            panScreenPosition = 0;
+                            rotarySelectorManager.IsPaging = false;
+                            rotarySelectorManager.SetPanDetector();
+                            return;
+                        }
+
                         int mouse_nextX = (int)e.PanGesture.ScreenPosition.X;
                         int distance = mouse_nextX - panScreenPosition;
                         if (distance > DRAG_DISTANCE)
                         {
+                            Tizen.Log.Error("MYLOG", "distance next");
                             rotarySelectorManager.NextPage();
                         }
                         else if (distance < -DRAG_DISTANCE)
@@ -84,6 +92,7 @@ namespace NUIWHome
                     }
 
                 case Gesture.StateType.Continuing:
+
                     break;
                 case Gesture.StateType.Started:
                     {

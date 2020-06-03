@@ -37,6 +37,7 @@ namespace NUIWHome
                 }
                 else if (e.Touch.GetState(0) == PointStateType.Up)
                 {
+                    Tizen.Log.Error("MYLOG", "touch up process");
                     if(ProcessTouchUpEvent(item))
                     {
                     }
@@ -72,6 +73,11 @@ namespace NUIWHome
             processingCheckingTimer.Start();
         }
 
+        protected void StopCheckingTimer()
+        {
+            IsProcessing = false;
+            processingCheckingTimer.Stop();
+        }
         private bool FinishAnimationTick(object source, Timer.TickEventArgs e)
         {
             IsProcessing = false;

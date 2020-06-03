@@ -32,6 +32,8 @@ namespace NUIWHome
 
         internal int CurrentIndex { get; set; }
 
+        public bool IsDeleteAble { get; set; }
+
         /// <summary>
         /// Creates a new instance of a RotarySelectorItem.
         /// </summary>
@@ -39,19 +41,74 @@ namespace NUIWHome
         {
             PivotPoint = Tizen.NUI.PivotPoint.Center;
             PositionUsesPivotPoint = true;
+            IsDeleteAble = true;
+
+
+        }
+        private RotaryDeleteBadege deleteBadge;
+
+        public void AddDeleteIcon(int idx)
+        {
+            if (deleteBadge == null)
+            {
+                deleteBadge = new RotaryDeleteBadege();
+            }
+            //if(idx % Common.ApplicationConstants.MAX_ITEM_COUNT <= 4)
+            {
+                deleteBadge.SetRightSide();
+            }
+            //else
+            {
+               // deleteBadge.SetLeftSide();
+            }
+            deleteBadge.TouchEvent += DeleteBadge_TouchEvent;
+            this.Add(deleteBadge);
         }
 
+
+        public void RemoveDeleteIcon()
+        {
+            if(deleteBadge != null)
+            {
+                deleteBadge.TouchEvent -= DeleteBadge_TouchEvent;
+                deleteBadge.Unparent();
+                deleteBadge.Dispose();
+                deleteBadge = null;
+            }
+        }
+
+        public void ShowDeleteIcon()
+        {
+            deleteBadge?.Show();
+        }
+        public void HideDeleteIcon()
+        {
+            deleteBadge?.Hide();
+        }
+
+        internal event EventHandler<EventArgs> Touch_DeleteBadgeHandler;
+
+        private bool DeleteBadge_TouchEvent(object source, TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Up)
+            {
+                Touch_DeleteBadgeHandler(this, e);
+            }
+            return true;
+        }
         public delegate void ItemSelectedHandler(RotarySelectorItem item);
         public event ItemSelectedHandler OnItemSelected;
 
         internal void SelectedItem()
         {
+            Tizen.Log.Error("MYLOG", "Selected Item");
             OnItemSelected(this);
             CallSelect();
         }
 
         internal void ClickedItem()
         {
+            Tizen.Log.Error("MYLOG", "ClickedItem");
             OnItemSelected(this);
             CallSelect();
             CallClick();

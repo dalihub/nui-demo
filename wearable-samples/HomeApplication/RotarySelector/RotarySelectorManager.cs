@@ -23,25 +23,25 @@ namespace NUIWHome
         private Size rotarySize;
 
         private bool isEditMode = false;
-        private bool isMotionPaging = false;        
+        private bool isMotionPaging = false;
 
         internal RotarySelectorManager(Size rotarySize)
         {
-         
+
             this.rotarySize = rotarySize;
 
             rotaryTouchController = new RotaryTouchNormalMode();
             wrapperList = new List<RotaryItemWrapper>();
 
             // First Page
-            for(int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
+            for (int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
             {
                 RotaryItemWrapper rotaryItemWrapper = new RotaryItemWrapper(i);
                 wrapperList.Add(rotaryItemWrapper);
             }
 
             // Second Page
-            for(int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
+            for (int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
             {
                 RotaryItemWrapper rotaryItemWrapper = new RotaryItemWrapper(i);
                 wrapperList.Add(rotaryItemWrapper);
@@ -78,7 +78,7 @@ namespace NUIWHome
             {
 
                 //For editing mode
-                rotaryLayerView.CheckEditBG(currentPage+1, lastPage);
+                rotaryLayerView.CheckEditBG(currentPage + 1, lastPage);
                 rotaryLayerView.AnimateBG(true);
 
 
@@ -98,12 +98,12 @@ namespace NUIWHome
             }
             else
             {
-                if(isEditMode)
+                if (isEditMode)
                 {
                     animationManager.IsAnimating = false;
                     return;
                 }
-                if(isEndEffect)
+                if (isEndEffect)
                 {
                     animationManager.AnimateEndEffect(rotaryLayerView.GetContainer());
                     return;
@@ -113,7 +113,19 @@ namespace NUIWHome
             int selIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
             RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
             rotaryLayerView.SetItem(item);
-            rotaryLayerView.SetText(item.MainText, item.SubText);
+
+            if(!isEditMode)
+            {
+                rotaryLayerView.SetText(item.MainText, item.SubText);
+            }
+            else
+            {
+                if(rotaryTouchController.SelectedItem != null)
+                {
+                    rotaryLayerView.AddMovingIcon(rotaryTouchController.SelectedItem);
+                    rotaryLayerView.SetRight();
+                }
+            }
             return;
         }
 
@@ -125,10 +137,11 @@ namespace NUIWHome
             }
             animationManager.IsAnimating = true;
 
+            Tizen.Log.Error("MYLOG", "prev page");
             if (currentPage > 0)
             {
                 //For editing mode
-                rotaryLayerView.CheckEditBG(currentPage-1, lastPage);
+                rotaryLayerView.CheckEditBG(currentPage - 1, lastPage);
                 rotaryLayerView.AnimateBG(false);
                 PlayPageAnimation(rotaryLayerView.RotaryItemList, currentPage - 1, true, type);
                 currentPage--;
@@ -150,7 +163,18 @@ namespace NUIWHome
             int selIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
             RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
             rotaryLayerView.SetItem(item);
-            rotaryLayerView.SetText(item.MainText, item.SubText);
+            if(!isEditMode)
+            {
+                rotaryLayerView.SetText(item.MainText, item.SubText);
+            }
+            else
+            {
+                if (rotaryTouchController.SelectedItem != null)
+                {
+                    rotaryLayerView.AddMovingIcon(rotaryTouchController.SelectedItem);
+                    rotaryLayerView.SetLeft();
+                }
+            }
         }
 
         internal void SetRotarySelectorMode(bool isEditMode)
@@ -159,20 +183,38 @@ namespace NUIWHome
             {
                 rotaryTouchController = new RotaryTouchEditMode();
                 rotaryTouchController.OnNotify += RotaryTouchController_OnNotify;
+                int idx = 0;
+                foreach(RotarySelectorItem item in rotaryLayerView.RotaryItemList)
+                {
+                    item.AddDeleteIcon(idx++);
+                    item.Touch_DeleteBadgeHandler += Item_Touch_DeleteBadgeHandler;
+                }
             }
             else
             {
                 rotaryTouchController = new RotaryTouchNormalMode();
+                IsPaging = false;
+                foreach (RotarySelectorItem item in rotaryLayerView.RotaryItemList)
+                {
+                    item.RemoveDeleteIcon();
+                }
             }
             rotaryLayerView.ChangeMode(isEditMode, currentPage, lastPage);
             animationManager.AnimateChangeState(rotaryLayerView, isEditMode);
             this.isEditMode = isEditMode;
-            rotaryLayerView.RegisterTest(TestFunction);
+            rotaryLayerView.RegisterPageMoveOnEdit(MovePageOnEditMode);
         }
 
-        public void TestFunction(bool isTest)
+        private void Item_Touch_DeleteBadgeHandler(object sender, EventArgs e)
         {
-            if(isTest)
+            RotarySelectorItem item = sender as RotarySelectorItem;
+            DeleteItem(item);
+        }
+
+        public void MovePageOnEditMode(bool isRight)
+        {
+            Tizen.Log.Error("MYLOG", "move page");
+            if (isRight)
             {
                 NextPage(false);
             }
@@ -181,10 +223,10 @@ namespace NUIWHome
                 PrevPage(false);
             }
 
-            Window.Instance.TouchEvent -= Instance_TouchEvent;
-            rotaryTouchController.SelectedItem = null;
+            //Window.Instance.TouchEvent -= Instance_TouchEvent;
+            //rotaryTouchController.SelectedItem = null;
         }
-        
+
         internal void SelectItemByWheel(int direction)
         {
             //Not set 'IsAnimating' to true. Just Block while paging animation.
@@ -193,7 +235,7 @@ namespace NUIWHome
                 return;
             }
 
-            if(isEditMode)
+            if (isEditMode)
             {
                 return;
             }
@@ -227,7 +269,7 @@ namespace NUIWHome
             }
             else
             {
-                if(currentSelectIdx - 1 >= 0)
+                if (currentSelectIdx - 1 >= 0)
                 {
                     currentSelectIdx--;
                     int selIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
@@ -242,17 +284,22 @@ namespace NUIWHome
         }
         private void SelectItem(RotarySelectorItem item = null, bool isAnimating = true)
         {
-            if(item == null)
+            Tizen.Log.Error("MYLOG", "SelectItem");
+            if (item == null)
             {
                 item = wrapperList[currentSelectIdx].RotaryItem;
             }
 
             currentSelectIdx = item.CurrentIndex;
             rotaryLayerView.SetItem(item);
-            rotaryLayerView.SetText(item.MainText, item.SubText);
-            rotaryLayerView.SetRotaryPosition(item.CurrentIndex);
+            if (!isEditMode)
+            {
+                Tizen.Log.Error("MYLOG", "Set Item text");
+                rotaryLayerView.SetText(item.MainText, item.SubText);
+                rotaryLayerView.SetRotaryPosition(item.CurrentIndex);
+            }
 
-            if(isAnimating)
+            if (isAnimating)
             {
                 //for moving indicator
                 animationManager.AnimateChangeState(rotaryLayerView, false, true);
@@ -270,7 +317,7 @@ namespace NUIWHome
 
         private bool Item_TouchEvent(object source, View.TouchEventArgs e)
         {
-            if(isMotionPaging)
+            if (IsPaging)
             {
                 return false;
             }
@@ -303,7 +350,7 @@ namespace NUIWHome
             rotaryLayerView.InsertItem(index, item);
             InitItem(item);
             ReWrappingAllItems();
-            
+
         }
 
 
@@ -383,7 +430,7 @@ namespace NUIWHome
         //Needs improvement for performance.
         private void ReWrappingAllItems()
         {
-            if(rotaryLayerView.RotaryItemList.Count == 0)
+            if (rotaryLayerView.RotaryItemList.Count == 0)
             {
                 //Clear
             }
@@ -417,12 +464,21 @@ namespace NUIWHome
             int setIdx = vIdx * ApplicationConstants.MAX_ITEM_COUNT;
             int totalItemCount = rotaryLayerView.GetTotalItemCount();
 
-            for (int i = sIdx, j = eIdx; i < sIdx + ApplicationConstants.MAX_ITEM_COUNT; i++, j++)
+            int mod = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
+            int lastIdx = ApplicationConstants.MAX_ITEM_COUNT + mod;
+            
+
+            Tizen.Log.Error("MYLOG", "last page :" + lastPage);
+            for (int i = sIdx, j = eIdx, s = 0; i < sIdx + ApplicationConstants.MAX_ITEM_COUNT; i++, j++, s++)
             {
+                
                 //if Not set the item
-                if(wrapperList[i].RotaryItem != null)
+                if (wrapperList[i].RotaryItem != null)
                 {
-                    animationManager.AnimateHidePage(wrapperList[i], cw, type);
+                    if(currentPage + 1 == lastPage && s < mod  || currentPage + 1 != lastPage)
+                    {
+                        animationManager.AnimateHidePage(wrapperList[i], cw, type);
+                    }
                 }
 
                 if (setIdx < totalItemCount)
@@ -441,52 +497,72 @@ namespace NUIWHome
             switch (opt)
             {
                 case 0:
-                {
-                    if (isEditMode)
                     {
-                        animationManager.InitRotaryPathAnimation();
-
-                        RotarySelectorItem SelectedItem = rotaryTouchController.SelectedItem;
-                        RotarySelectorItem collisionItem = item;
-
-                        int page = (currentPage % 2) * ApplicationConstants.MAX_ITEM_COUNT;
-                        int selIdx = (int)SelectedItem?.CurrentIndex;
-                        int colIdx = (int)collisionItem?.CurrentIndex;
-                        if (selIdx < colIdx)
+                        if (isEditMode)
                         {
-                            for (int i = selIdx; i < colIdx; i++)
-                            {
-                                int idx = page + i;
-                                wrapperList[idx].RotaryItem = wrapperList[idx + 1].RotaryItem;
-                                animationManager.AnimatePathOnEdit(wrapperList[idx]);
-                            }
-                        }
-                        else
-                        {
-                            for (int i = selIdx; i > colIdx; i--)
-                            {
-                                int idx = page + i;
-                                wrapperList[idx].RotaryItem = wrapperList[idx - 1].RotaryItem;
-                                animationManager.AnimatePathOnEdit(wrapperList[idx], false);
-                            }
-                        }
+                            animationManager.InitRotaryPathAnimation();
 
-                        rotaryLayerView.ChagneItemPosition(SelectedItem, collisionItem);
-                        wrapperList[page + colIdx].RotaryItem = SelectedItem;
-                        animationManager.PlayCoreAnimation();
+                            RotarySelectorItem SelectedItem = rotaryTouchController.SelectedItem;
+                            RotarySelectorItem collisionItem = item;
+
+                            int page = (currentPage % 2) * ApplicationConstants.MAX_ITEM_COUNT;
+                            int selIdx = (int)SelectedItem?.CurrentIndex;
+                            int colIdx = (int)collisionItem?.CurrentIndex;
+
+                            if (rotaryLayerView.GetMovingIcon())
+                            {
+                                selIdx = rotaryLayerView.GetStartIndex();
+                                wrapperList[page + selIdx].RotaryItem.Opacity = 0.0f;
+                                wrapperList[page + selIdx].RotaryItem.Position = new Position(70, 0);
+                                wrapperList[page + selIdx].RotaryItem.Hide();
+                                rotaryLayerView.RemoveMovingIcon();
+                            }
+                            if (selIdx < colIdx)
+                            {
+                                for (int i = selIdx; i < colIdx; i++)
+                                {
+                                    int idx = page + i;
+                                    Tizen.Log.Error("MYLOG", "idx:" + idx);
+                                    wrapperList[idx].RotaryItem = wrapperList[idx + 1].RotaryItem;
+                                    animationManager.AnimatePathOnEdit(wrapperList[idx]);
+                                }
+                            }
+                            else
+                            {
+                                for (int i = selIdx; i > colIdx; i--)
+                                {
+                                    int idx = page + i;
+                                    wrapperList[idx].RotaryItem = wrapperList[idx - 1].RotaryItem;
+                                    animationManager.AnimatePathOnEdit(wrapperList[idx], false);
+                                }
+                            }
+
+                            rotaryLayerView.ChagneItemPosition(SelectedItem, collisionItem);
+                            wrapperList[page + colIdx].RotaryItem = SelectedItem;
+                            animationManager.PlayCoreAnimation();
+                            rotaryTouchController.SelectedItem.Opacity = 1.0f;
+                            rotaryTouchController.SelectedItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
+                        }
+                        break;
                     }
-                    break;
-                }
                 case 1:
-                {
-                    Window.Instance.TouchEvent += Instance_TouchEvent;
-                    break;
-                }
-          
+                    {
+                        Window.Instance.TouchEvent += Instance_TouchEvent;
+                        break;
+                    }
+
             }
         }
 
-        
+        private bool isPanDetector = true;
+        internal void SetPanDetector()
+        {
+            isPanDetector = true;
+        }
+        internal bool isDetector()
+        {
+            return isPanDetector;
+        }
 
         private void Instance_TouchEvent(object sender, Window.TouchEventArgs e)
         {
@@ -494,32 +570,45 @@ namespace NUIWHome
             {
                 if ((e.Touch.GetState(0) == PointStateType.Up))
                 {
+                    if (rotaryLayerView.GetMovingIcon())
+                    {
+                        rotaryLayerView.RemoveMovingIcon();
+                    }
                     rotaryTouchController.SelectedItem.RaiseToTop();
+                    rotaryTouchController.SelectedItem.Opacity = 1.0f;
                     rotaryTouchController.SelectedItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
                     Window.Instance.TouchEvent -= Instance_TouchEvent;
 
                     int wrapperIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT;
                     wrapperList[wrapperIdx + (int)rotaryTouchController.SelectedItem.CurrentIndex].RotaryItem = rotaryTouchController.SelectedItem;
 
+                    rotaryTouchController.SelectedItem.ShowDeleteIcon();
                     rotaryTouchController.SelectedItem = null;
                 }
                 else if ((e.Touch.GetState(0) == PointStateType.Motion))
                 {
                     Position mousePosition = new Position(e.Touch.GetScreenPosition(0).X, e.Touch.GetScreenPosition(0).Y);
-                    rotaryTouchController.SelectedItem.Position = mousePosition;
+                    if(rotaryLayerView.GetMovingIcon())
+                    {
+                        rotaryLayerView.GetMovingIcon().Position = mousePosition;
+                    }
+                    else
+                    {
+                        rotaryTouchController.SelectedItem.Position = mousePosition;
+                        rotaryTouchController.SelectedItem.HideDeleteIcon();
 
+                    }
 
                     if (animationManager.IsAnimating)
                     {
                         return;
                     }
-                    //animationManager.IsAnimating = true;
 
-                    if(mousePosition.X <= 50 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
+                    if (mousePosition.X <= 50 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
                     {
                         rotaryLayerView.AnimateLeftCue();
                     }
-                    else if(mousePosition.X >= 310 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
+                    else if (mousePosition.X >= 310 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
                     {
                         rotaryLayerView.AnimateRightCue();
                     }
@@ -527,14 +616,7 @@ namespace NUIWHome
                     {
                         rotaryLayerView.AnimateReturn();
                     }
-                    /*
-                    else
-                    {
-                        ImageView view = rotaryLayerView.GetMovingIcon();
-                        view.ResourceUrl = rotaryTouchController.SelectedItem.ResourceUrl;
-                        view.Position = mousePosition;
-                    }
-                    */
+                    isPanDetector = false;
                 }
 
             }

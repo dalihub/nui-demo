@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <!-- Need to update Tizen.NET version after release -->
-    <PackageReference Include="Tizen.NET" Version="8.0.0.15184" />
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15253" />
     <PackageReference Include="Tizen.NET.SDK" Version="1.0.1" />
   </ItemGroup>
 

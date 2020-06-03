@@ -34,6 +34,7 @@ namespace NUIWHome
             Timer StartAnimationDelayTimer = new Timer(300);
             StartAnimationDelayTimer.Tick += DelayTimer_Tick;
             StartAnimationDelayTimer.Start();
+
         }
 
         private bool DelayTimer_Tick(object source, Timer.TickEventArgs e)
