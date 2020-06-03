@@ -19,8 +19,8 @@ namespace NUIWHome
 
         private bool isAleadyScaled = false;
 
-        public delegate void testDele(bool right);
-        public testDele OnTest;
+        public delegate void PageMoveDelegate(bool isRight);
+        public PageMoveDelegate OnMovePageEditMode;
 
         private Timer checkingEnterTimer;
 
@@ -132,7 +132,7 @@ namespace NUIWHome
                 AlphaFunction alpha = new AlphaFunction(new Vector2(0.26f, 0.46f), new Vector2(0.45f, 1.0f));
 
                 Animation ani = new Animation(333);
-                ani.AnimateTo(this.editRightSelectView, "Position", new Position(-13, 0), alpha);
+                ani.AnimateTo(this.editRightSelectView, "Position", new Position(-03, 0), alpha);
                 ani.Play();
                 isAleadyScaled = true;
 
@@ -151,7 +151,7 @@ namespace NUIWHome
                 AlphaFunction alpha = new AlphaFunction(new Vector2(0.26f, 0.46f), new Vector2(0.45f, 1.0f));
 
                 Animation ani = new Animation(333);
-                ani.AnimateTo(this.editLeftSelectView, "Position", new Position(13, 0), alpha);
+                ani.AnimateTo(this.editLeftSelectView, "Position", new Position(10, 0), alpha);
                 ani.Play();
                 isAleadyScaled = true;
 
@@ -185,7 +185,7 @@ namespace NUIWHome
         private bool Timer_Tick(object source, Timer.TickEventArgs e)
         {
             AnimateReturn();
-            OnTest(isRight);
+            OnMovePageEditMode(isRight);
             return false;
         }
 

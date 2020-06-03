@@ -23,7 +23,7 @@ namespace NUIWHome
         private View container;
 
         //for editing
-        private ImageView movingIcon;
+        private View temporaryMovingIcon;
 
         private RotarySelectorItem item;
         private bool isEditMode;
@@ -84,6 +84,7 @@ namespace NUIWHome
             rotaryIndicator = new RotaryIndicator();
             rotaryIndicator.Opacity = 0.0f;
             container.Add(rotaryIndicator);
+
         }
 
         private bool MainText_TouchEvent(object source, TouchEventArgs e)
@@ -180,14 +181,6 @@ namespace NUIWHome
                 this.Add(editBGView);
                 editBGView.LowerToBottom();
 
-                movingIcon = new ImageView()
-                {
-                    Size = new Size(60, 60),
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    PositionUsesPivotPoint = true,
-                };
-                this.Add(movingIcon);
-
 
                 this.mainText.Text = "Edit mode";
                 this.mainText.Opacity = 0.0f;
@@ -223,9 +216,54 @@ namespace NUIWHome
             rotaryIndicator.SetCurrentPosition();
         }
 
-        internal ImageView GetMovingIcon()
+        internal void AddMovingIcon(RotarySelectorItem item)
         {
-            return movingIcon;
+            if(temporaryMovingIcon == null)
+            {
+                Tizen.Log.Error("MYLOG", "res :" + item.BackgroundImage);
+                temporaryMovingIcon = new View()
+                {
+                    Size = new Size(60, 60),
+                    //BackgroundColor = Color.Red,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    PositionUsesPivotPoint = true,
+                    BackgroundImage = item.ResourceUrl,
+                };
+
+                this.Add(temporaryMovingIcon);
+            }
+        }
+
+
+        internal void RemoveMovingIcon()
+        {
+            if (temporaryMovingIcon != null)
+            {
+                temporaryMovingIcon.Unparent();
+                temporaryMovingIcon.Dispose();
+                temporaryMovingIcon = null;
+            }
+        }
+
+        private bool isRight = true;
+        internal void SetRight()
+        {
+            isRight = true;
+        }
+
+        internal void SetLeft()
+        {
+            isRight = false;
+        }
+
+        internal int GetStartIndex()
+        {
+            return (isRight ? 0 : Common.ApplicationConstants.MAX_ITEM_COUNT - 1);
+        }
+
+        internal View GetMovingIcon()
+        {
+            return temporaryMovingIcon;
         }
         internal View GetContainer()
         {
@@ -260,11 +298,11 @@ namespace NUIWHome
             editBGView.AnimateReturn();
         }
 
-        internal void RegisterTest(EditBGView.testDele test)
+        internal void RegisterPageMoveOnEdit(EditBGView.PageMoveDelegate delegateFunction)
         {
             if(editBGView != null)
             {
-                editBGView.OnTest += test;
+                editBGView.OnMovePageEditMode += delegateFunction;
             }
         }
     }
