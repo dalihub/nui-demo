@@ -17,9 +17,38 @@ namespace Example
         public string Price { get; set; }
     }
 
+    class MenuTap
+    {
+        public MenuTap(string name)
+        {
+            Name = name;
+        }
+
+        public string Name {get; set;}
+    }
+
     class DummyData
     {
-        public static List<object> CreateDummyData(int amount)
+        public static List<object> CreateDummyMenuTap(int amount)
+        {
+            string[] namePool = {
+                "Caffe",
+                "Tea",
+                "Slush",
+                "Cake",
+                "Food",
+            };
+
+            List<object> result = new List<object>();
+            for (int i = 0; i < amount; i++)
+            {
+                result.Add(new MenuTap(namePool[i%5]));
+            }
+
+            return result;
+        }
+
+        public static List<object> CreateDummyMenu(int amount)
         {
             string[] namePool = {
                 "Café exprés",

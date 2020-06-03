@@ -24,9 +24,49 @@ namespace Example
 {
     class RecyclerViewExample : NUIApplication
     {
-        class SampleItem : RecycleItem
+        class MenuTapItem : RecycleItem
         {
-            public SampleItem()
+            public MenuTapItem()
+            {
+                WidthSpecification = 180;
+                HeightSpecification = 60;
+
+                Name = new TextLabel()
+                {
+                    WidthSpecification = LayoutParamPolicies.MatchParent,
+                    HeightSpecification = LayoutParamPolicies.MatchParent,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    PixelSize = 16,
+                    TextColor = Color.White,
+                };
+                BackgroundColor = new Color("#141414");
+
+                Add(Name);
+            }
+            public TextLabel Name { get; set; }
+        }
+
+        class SampleMenuTapAdapter : RecycleAdapter
+        {
+            public override RecycleItem CreateRecycleItem()
+            {
+                return new MenuTapItem();
+            }
+
+            public override void BindData(RecycleItem item)
+            {
+                MenuTapItem target = item as MenuTapItem;
+                MenuTap menuTap = Data[target.DataIndex] as MenuTap;
+
+                target.Name.Text = menuTap.Name;
+            }
+        };
+
+
+        class MenuItem : RecycleItem
+        {
+            public MenuItem()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent;
                 HeightSpecification = 120;
@@ -85,16 +125,16 @@ namespace Example
             public TextLabel Price { get; set; }
         }
 
-        class SampleAdapter : RecycleAdapter
+        class SampleMenuAdapter : RecycleAdapter
         {
             public override RecycleItem CreateRecycleItem()
             {
-                return new SampleItem();
+                return new MenuItem();
             }
 
             public override void BindData(RecycleItem item)
             {
-                SampleItem target = item as SampleItem;
+                MenuItem target = item as MenuItem;
                 Menu menu = Data[target.DataIndex] as Menu;
 
                 target.Picture.ResourceUrl = "./res/"+menu.SubName+".jpg";
@@ -121,22 +161,41 @@ namespace Example
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
 
-            SampleAdapter sampleAdapter = new SampleAdapter();
-            sampleAdapter.Data = DummyData.CreateDummyData(50);
+            View root = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                },
+            };
+            window.Add(root);
 
-            recyclerView = new RecyclerView(sampleAdapter, new LinearListLayoutManager())
+            SampleMenuTapAdapter sampleMenuTapAdapter = new SampleMenuTapAdapter();
+            sampleMenuTapAdapter.Data = DummyData.CreateDummyMenuTap(20);
+
+            RecyclerView menuTapList = new RecyclerView(sampleMenuTapAdapter, new LinearListLayoutManager(){LayoutOrientation=LayoutManager.Orientation.Horizontal})
+            {
+                ScrollingDirection = ScrollableBase.Direction.Horizontal,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = 60,
+            };
+            root.Add(menuTapList);
+
+            SampleMenuAdapter sampleMenuAdapter = new SampleMenuAdapter();
+            sampleMenuAdapter.Data = DummyData.CreateDummyMenu(50);
+
+            RecyclerView menuList = new RecyclerView(sampleMenuAdapter, new LinearListLayoutManager())
             {
                 // Size = new Size(480, 800),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.MatchParent,
+                Weight = 1,
             };
-
-            window.Add(recyclerView);
+            root.Add(menuList);
 
             window.KeyEvent += OnKeyEvent;
         }
-
-        private RecyclerView recyclerView;
 
         /// <summary>
         /// Called when any key event is received.
@@ -150,7 +209,6 @@ namespace Example
                 {
                     case "Up":
                     {
-                        recyclerView.ScrollTo(50000,false);
                         break;
                     }
                     case "Escape":
