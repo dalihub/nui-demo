@@ -10,6 +10,12 @@
 * Text
     * [Text label](./Text/TextLabel/)
     * [Text field](./Text/TextField/)
+* List
+    * [Wearable list](./List/WearableList/)
+* Indicator
+    * [Circular Progress](./Indicator/CircularProgress/)
+    * [Activity Indicator - Full](./Indicator/ActivityIndicator(Full)/) (using Loading component with images)
+    * [Activity Indicator - Small](./Indicator/ActivityIndicator(Small)/) (using Loading component with images)
 * Pagination
     * [Linear Pagination](./Pagination/LinearPagination/)
     * [Circular Pagination](./Pagination/CircularPagination/)
@@ -23,12 +29,7 @@
 # Coming Soon
 
 * List
-    * [Wearable list](./List/WearableList/)
     * [Circular Scrollbar - Horizontal](./List/CircularScrollbar(Horizontal)/)
     * [Circular Scrollbar - Vertical](./List/CircularScrollbar(Vertical)/)
-* Indicator
-    * [Circular Progress](./Indicator/CircularProgress/)
-    * [Activity Indicator - Full](./Indicator/ActivityIndicator(Full)/)
-    * [Activity Indicator - Small](./Indicator/ActivityIndicator(Small)/)
 * MessageApplication (WearableList and BlurView)
     * [Message Application](./MessageApplication/)
