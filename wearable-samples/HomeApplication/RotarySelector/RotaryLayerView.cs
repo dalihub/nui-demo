@@ -40,7 +40,7 @@ namespace NUIWHome
 
             container = new View()
             {
-                Size = new Size(360, 360), 
+                Size = new Size(360, 360),
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center,
                 PositionUsesPivotPoint = true,
@@ -89,7 +89,7 @@ namespace NUIWHome
 
         private bool MainText_TouchEvent(object source, TouchEventArgs e)
         {
-            if(!this.isEditMode && e.Touch.GetState(0) == PointStateType.Up)
+            if (!this.isEditMode && e.Touch.GetState(0) == PointStateType.Up)
             {
                 item?.ClickedItem();
             }
@@ -128,7 +128,7 @@ namespace NUIWHome
         internal void AppendItem(RotarySelectorItem item)
         {
             item.SetCurrentParent(container);
-            itemList.Add(item);  
+            itemList.Add(item);
         }
 
         internal void PrependItem(RotarySelectorItem item)
@@ -171,13 +171,13 @@ namespace NUIWHome
 
         internal void ChangeMode(bool isEditMode, int currentPage, int lastPage)
         {
-            
+
             if (isEditMode)
             {
                 BackgroundImage = CommonResource.GetResourcePath() + "/b_home_screen_container.png";
                 //container.BackgroundColor = Color.Black;
                 editBGView = new EditBGView(currentPage, lastPage);
-                
+
                 this.Add(editBGView);
                 editBGView.LowerToBottom();
 
@@ -218,7 +218,7 @@ namespace NUIWHome
 
         internal void AddMovingIcon(RotarySelectorItem item)
         {
-            if(temporaryMovingIcon == null)
+            if (temporaryMovingIcon == null)
             {
                 Tizen.Log.Error("MYLOG", "res :" + item.BackgroundImage);
                 temporaryMovingIcon = new View()
@@ -300,7 +300,7 @@ namespace NUIWHome
 
         internal void RegisterPageMoveOnEdit(EditBGView.PageMoveDelegate delegateFunction)
         {
-            if(editBGView != null)
+            if (editBGView != null)
             {
                 editBGView.OnMovePageEditMode += delegateFunction;
             }

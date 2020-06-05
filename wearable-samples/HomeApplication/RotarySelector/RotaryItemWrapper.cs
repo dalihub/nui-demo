@@ -57,10 +57,10 @@ namespace NUIWHome
         /// </summary>
         public Position GetRotaryPosition(float idx, bool cw = true, int rad = 139)
         {
-            float rot = ((float) Math.Cos((float)idx / ApplicationConstants.MAX_TRAY_COUNT * 2 * Math.PI - Math.PI / 2)) * (cw ? 1 : -1);
+            float rot = ((float)Math.Cos((float)idx / ApplicationConstants.MAX_TRAY_COUNT * 2 * Math.PI - Math.PI / 2)) * (cw ? 1 : -1);
 
             float x = (float)(ApplicationConstants.SCREEN_SIZE_RADIUS + rad * rot);
-            float y = (float)(ApplicationConstants.SCREEN_SIZE_RADIUS + rad * Math.Sin((float)idx  / ApplicationConstants.MAX_TRAY_COUNT * 2 * Math.PI - Math.PI / 2));
+            float y = (float)(ApplicationConstants.SCREEN_SIZE_RADIUS + rad * Math.Sin((float)idx / ApplicationConstants.MAX_TRAY_COUNT * 2 * Math.PI - Math.PI / 2));
             return new Position(x, y);
         }
     }

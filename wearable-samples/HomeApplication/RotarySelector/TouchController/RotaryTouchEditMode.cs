@@ -13,7 +13,7 @@ namespace NUIWHome
 
         public override bool ProcessTouchDownEvent(RotarySelectorItem item)
         {
-            if(SelectedItem == null)
+            if (SelectedItem == null)
             {
                 SelectedItem = item;
                 SelectedItem.LowerToBottom();
@@ -24,7 +24,7 @@ namespace NUIWHome
         }
         public override bool ProcessMotionEvent(RotarySelectorItem item)
         {
-            if(item == SelectedItem)
+            if (item == SelectedItem)
             {
                 return false;
             }
@@ -41,9 +41,9 @@ namespace NUIWHome
         {
             if (SelectedItem != null && !IsProcessing)
             {
-                SelectedItem.ClickedItem();
+                //SelectedItem.ClickedItem();
             }
-            else if(IsProcessing)
+            else if (IsProcessing)
             {
                 StopCheckingTimer();
             }
