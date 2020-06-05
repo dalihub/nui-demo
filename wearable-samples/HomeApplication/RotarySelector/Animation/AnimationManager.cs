@@ -29,7 +29,7 @@ namespace NUIWHome
 
             animationCore = new Animation();
             animationCore.Finished += AnimationCore_Finished;
-            
+
             stateAnimation = new Animation();
             //stateAnimation.Finished += AnimationCore_Finished;
         }
@@ -42,7 +42,7 @@ namespace NUIWHome
         //Need to fix -> Change function name
         internal void AnimateChangeState(RotaryLayerView layer, bool isEditMode, bool onlyIndicatorMoving = false)
         {
-            stateAnimation.Clear();            
+            stateAnimation.Clear();
             stateAnimation.Duration = 350;
 
             if (isEditMode)
@@ -52,15 +52,15 @@ namespace NUIWHome
             }
             else
             {
-                if(!onlyIndicatorMoving)
+                if (!onlyIndicatorMoving)
                 {
                     stateAnimation.AnimateTo(layer.GetContainer(), "Scale", new Vector3(1.0f, 1.0f, 1.0f), 0, 333, alphaGlideOut);
                     stateAnimation.AnimateTo(layer.GetMainText(), "Opacity", 1.0f, 0, 333, alphaGlideOut);
                 }
 
-                
+
                 RotaryIndicator indicator = layer.GetIndicator();
-                if(!indicator.isNotMoving())
+                if (!indicator.isNotMoving())
                 {
                     stateAnimation.AnimatePath(indicator, mAniUtil.GetIndicatorRotaryPath(indicator), Vector3.Zero, 0, 200, alphaSineOut33);
                     stateAnimation.AnimateTo(indicator, "Scale", new Vector3(1.1f, 1.1f, 1.1f), 0, 200, alphaSineOut33);
@@ -97,7 +97,7 @@ namespace NUIWHome
             for (int i = 0; i < wrapperList.Count; i++)
             {
                 RotarySelectorItem item = wrapperList[i]?.RotaryItem;
-                if(item != null)
+                if (item != null)
                 {
                     item.Opacity = 0.0f;
                     item.Position = wrapperList[i].GetRotaryPosition(wrapperList[i].CurrentIndex + 1, true, 170);
@@ -110,7 +110,7 @@ namespace NUIWHome
             animationCore.Play();
         }
 
-        
+
         internal void AnimateEndEffect(View container)
         {
             animationCore.Duration = 999;
