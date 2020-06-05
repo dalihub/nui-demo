@@ -9,23 +9,23 @@
 * Text
     * [Text label](./Text/TextLabel/)
     * [Text field](./Text/TextField/)
-    * [Circular text](./Text/CircularText/) <span style="border-radius:2px;background:red;color:white;">new</span>
+    * [Circular text](./Text/CircularText/)
 * List
-    * [Wearable list](./List/WearableList/) <span style="border-radius:2px;background:red;color:white;">new</span>
+    * [Wearable list](./List/WearableList/)
 * Indicator
-    * [Circular Progress](./Indicator/CircularProgress/) <span style="border-radius:2px;background:red;color:white;">new</span>
-    * [Activity Indicator - Full](./Indicator/ActivityIndicator(Full)/) (Loading component with images) <span style="border-radius:2px;background:red;color:white;">new</span>
-    * [Activity Indicator - Small](./Indicator/ActivityIndicator(Small)/) (Loading component with images) <span style="border-radius:2px;background:red;color:white;">new</span>
+    * [Circular Progress](./Indicator/CircularProgress/)
+    * [Activity Indicator - Full](./Indicator/ActivityIndicator(Full)/) (Loading component with images)
+    * [Activity Indicator - Small](./Indicator/ActivityIndicator(Small)/) (Loading component with images)
 * Pagination
     * [Linear Pagination](./Pagination/LinearPagination/)
     * [Circular Pagination](./Pagination/CircularPagination/)
 * Notification
-    * [Fullsize Notification](./Notification/FullsizeNotification/) <span style="border-radius:2px;background:red;color:white;">new</span>
-    * [Toast Notification](./Notification/ToastNotification/) <span style="border-radius:2px;background:red;color:white;">new</span>
+    * [Fullsize Notification](./Notification/FullsizeNotification/)
+    * [Toast Notification](./Notification/ToastNotification/)
 * Reference Application
     * [WApps](./ReferenceApplication/WApps)
-    * [WGallery](./ReferenceApplication/WGallery) <span style="border-radius:2px;background:red;color:white;">new</span>
-    * [WMessage](./ReferenceApplication/WMessage) (WearableList and BlurView) <span style="border-radius:2px;background:red;color:white;">new</span>
+    * [WGallery](./ReferenceApplication/WGallery)
+    * [WMessage](./ReferenceApplication/WMessage) (WearableList and BlurView)
 
 # Coming Soon
 
