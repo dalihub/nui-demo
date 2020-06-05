@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.CircularTextExample" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.CircularTextExample"
+					exec="CircularTextExample.dll"
+					type="dotnet"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single"
+					api-version="6">
+    <label>WearableBasicButton</label>
+    <icon>WearableBasicButton.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </ui-application>
+</manifest>
