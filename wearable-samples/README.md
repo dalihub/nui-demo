@@ -26,16 +26,17 @@
     * [Toast Notification](./Notification/ToastNotification/)
 * Popup
     * [Wearable Popup](./Popup/WearablePopup/)
+<br/><br/>
 * Reference Application
 
 
-<table>
+<table style="text-align:center;">
   <tr>
     <th><img src="./res/wapps.png"/></th>
     <th><img src="./res/wgallery.png"/></th>
     <th><img src="./res/wmessege.png"/></th>
   </tr>
-  <tr style="text-align:center;">
+  <tr>
     <td><a href="./ReferenceApplication/WApps/README.md">WApps</a></td>
     <td><a href="./ReferenceApplication/WGallery/README.md">WGallery</a></td>
     <td><a href="./ReferenceApplication/WMessage/README.md">WMessage</a></td>
