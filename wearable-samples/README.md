@@ -22,6 +22,8 @@
 * Notification
     * [Fullsize Notification](./Notification/FullsizeNotification/)
     * [Toast Notification](./Notification/ToastNotification/)
+* Popup
+    * [Popup](./Popup/WearablePopup/)
 * Reference Application
     * [WApps](./ReferenceApplication/WApps)
     * [WGallery](./ReferenceApplication/WGallery)
@@ -32,5 +34,7 @@
 * List
     * [Circular Scrollbar - Horizontal](./List/CircularScrollbar(Horizontal)/)
     * [Circular Scrollbar - Vertical](./List/CircularScrollbar(Vertical)/)
+* Slider
+    * [Circular Slider](./Slider/CircularSlider)
 * Reference Application
     * WHome
