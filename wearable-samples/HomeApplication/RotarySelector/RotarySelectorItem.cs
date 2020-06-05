@@ -211,13 +211,12 @@ namespace NUIWHome
         //Need to add, "item,reordered": When the user reordered an item.
         private event EventHandler<EventArgs> reorderedHandler;
 
-        private void CallReordered()
+        internal void CallReordered()
         {
-            EventArgs e = new EventArgs();
-
             if (reorderedHandler != null)
             {
-                reorderedHandler(this, e);
+                
+                reorderedHandler(this, new EventArgs());
             }
         }
 
