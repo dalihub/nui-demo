@@ -55,30 +55,27 @@ namespace NUIWHome
             RotaryTouchController controller = rotarySelectorManager.GetRotaryTouchController();
             if (mode == Mode.EditMode && controller.SelectedItem != null)
             {
+                panScreenPosition = 0;
+                rotarySelectorManager.IsPaging = false;
                 return;
             }
 
+            if (controller.IsProcessing || rotarySelectorManager.isAnimating() || !rotarySelectorManager.isDetector())
+            {
+                panScreenPosition = 0;
+                rotarySelectorManager.IsPaging = false;
+                rotarySelectorManager.SetPanDetector();
+                return;
+            }
             switch (e.PanGesture.State)
             {
                 case Gesture.StateType.Finished:
                     {
-                        if (controller.IsProcessing)
-                        {
-                            return;
-                        }
-                        if (!rotarySelectorManager.isDetector())
-                        {
-                            panScreenPosition = 0;
-                            rotarySelectorManager.IsPaging = false;
-                            rotarySelectorManager.SetPanDetector();
-                            return;
-                        }
 
                         int mouse_nextX = (int)e.PanGesture.ScreenPosition.X;
                         int distance = mouse_nextX - panScreenPosition;
                         if (distance > DRAG_DISTANCE)
                         {
-                            Tizen.Log.Error("MYLOG", "distance next");
                             rotarySelectorManager.NextPage();
                         }
                         else if (distance < -DRAG_DISTANCE)

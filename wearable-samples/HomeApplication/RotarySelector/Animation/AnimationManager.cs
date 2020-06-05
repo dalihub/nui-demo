@@ -10,6 +10,7 @@ namespace NUIWHome
     class AnimationManager
     {
         private Animation animationCore;
+        private Animation stateAnimation = new Animation();
 
         private AlphaFunction alphaGlideOut;
         private AlphaFunction alphaSineOut33;
@@ -28,6 +29,9 @@ namespace NUIWHome
 
             animationCore = new Animation();
             animationCore.Finished += AnimationCore_Finished;
+            
+            stateAnimation = new Animation();
+            //stateAnimation.Finished += AnimationCore_Finished;
         }
 
         private void AnimationCore_Finished(object sender, EventArgs e)
@@ -38,32 +42,32 @@ namespace NUIWHome
         //Need to fix -> Change function name
         internal void AnimateChangeState(RotaryLayerView layer, bool isEditMode, bool onlyIndicatorMoving = false)
         {
-            animationCore.Clear();
-            animationCore.Duration = 350;
+            stateAnimation.Clear();            
+            stateAnimation.Duration = 350;
 
             if (isEditMode)
             {
-                animationCore.AnimateTo(layer.GetContainer(), "Scale", new Vector3(0.9f, 0.9f, 1.0f), 0, 333, alphaGlideOut);
-                animationCore.AnimateTo(layer.GetMainText(), "Opacity", 1.0f, 0, 333, alphaGlideOut);
+                stateAnimation.AnimateTo(layer.GetContainer(), "Scale", new Vector3(0.9f, 0.9f, 1.0f), 0, 333, alphaGlideOut);
+                stateAnimation.AnimateTo(layer.GetMainText(), "Opacity", 1.0f, 0, 333, alphaGlideOut);
             }
             else
             {
                 if(!onlyIndicatorMoving)
                 {
-                    animationCore.AnimateTo(layer.GetContainer(), "Scale", new Vector3(1.0f, 1.0f, 1.0f), 0, 333, alphaGlideOut);
-                    animationCore.AnimateTo(layer.GetMainText(), "Opacity", 1.0f, 0, 333, alphaGlideOut);
+                    stateAnimation.AnimateTo(layer.GetContainer(), "Scale", new Vector3(1.0f, 1.0f, 1.0f), 0, 333, alphaGlideOut);
+                    stateAnimation.AnimateTo(layer.GetMainText(), "Opacity", 1.0f, 0, 333, alphaGlideOut);
                 }
 
                 
                 RotaryIndicator indicator = layer.GetIndicator();
                 if(!indicator.isNotMoving())
                 {
-                    animationCore.AnimatePath(indicator, mAniUtil.GetIndicatorRotaryPath(indicator), Vector3.Zero, 0, 200, alphaSineOut33);
-                    animationCore.AnimateTo(indicator, "Scale", new Vector3(1.1f, 1.1f, 1.1f), 0, 200, alphaSineOut33);
-                    animationCore.AnimateTo(indicator, "Scale", new Vector3(1.0f, 1.0f, 1.0f), 200, 350, alphaSineOut33);
+                    stateAnimation.AnimatePath(indicator, mAniUtil.GetIndicatorRotaryPath(indicator), Vector3.Zero, 0, 200, alphaSineOut33);
+                    stateAnimation.AnimateTo(indicator, "Scale", new Vector3(1.1f, 1.1f, 1.1f), 0, 200, alphaSineOut33);
+                    stateAnimation.AnimateTo(indicator, "Scale", new Vector3(1.0f, 1.0f, 1.0f), 200, 350, alphaSineOut33);
                 }
             }
-            animationCore.Play();
+            stateAnimation.Play();
         }
 
         internal void AnimateStarting(RotaryLayerView layer, List<RotaryItemWrapper> wrapperList)
@@ -90,14 +94,17 @@ namespace NUIWHome
             animationCore.AnimateTo(mainText, "Opacity", 1.0f, alphaSineInOut80);
 
             // Second Page -> hide
-            for (int i = 0; i < ApplicationConstants.MAX_ITEM_COUNT; i++)
+            for (int i = 0; i < wrapperList.Count; i++)
             {
-                RotarySelectorItem item = wrapperList[i].RotaryItem;
-                item.Opacity = 0.0f;
-                item.Position = wrapperList[i].GetRotaryPosition(wrapperList[i].CurrentIndex + 1, true, 170);
+                RotarySelectorItem item = wrapperList[i]?.RotaryItem;
+                if(item != null)
+                {
+                    item.Opacity = 0.0f;
+                    item.Position = wrapperList[i].GetRotaryPosition(wrapperList[i].CurrentIndex + 1, true, 170);
 
-                animationCore.AnimateTo(item, "Position", wrapperList[i].GetRotaryPosition(wrapperList[i].CurrentIndex + 1, true, 139), alphaSineInOut80);
-                animationCore.AnimateTo(item, "Opacity", 1.0f, alphaSineInOut80);
+                    animationCore.AnimateTo(item, "Position", wrapperList[i].GetRotaryPosition(wrapperList[i].CurrentIndex + 1, true, 139), alphaSineInOut80);
+                    animationCore.AnimateTo(item, "Opacity", 1.0f, alphaSineInOut80);
+                }
             }
 
             animationCore.Play();

@@ -117,6 +117,7 @@ namespace NUIWHome
             if (!isEditMode)
             {
                 rotaryLayerView.SetText(item.MainText, item.SubText);
+                rotaryLayerView.SetIndicatorPosition();
             }
             else
             {
@@ -165,6 +166,7 @@ namespace NUIWHome
             if (!isEditMode)
             {
                 rotaryLayerView.SetText(item.MainText, item.SubText);
+                rotaryLayerView.SetIndicatorPosition();
             }
             else
             {
@@ -206,7 +208,7 @@ namespace NUIWHome
         private void Item_Touch_DeleteBadgeHandler(object sender, EventArgs e)
         {
             //
-            if(!isDetector())
+            if (!isDetector() || !animationManager.IsAnimating)
             {
                 RotarySelectorItem item = sender as RotarySelectorItem;
                 DeleteItem(item);
@@ -247,7 +249,7 @@ namespace NUIWHome
                 if (currentSelectIdx + 1 < ApplicationConstants.MAX_TRAY_COUNT - 1)
                 {
 
-                    if (currentPage + 1 < lastPage)
+                    if (currentPage + 1 <= lastPage)
                     {
                         currentSelectIdx++;
                     }
@@ -591,8 +593,17 @@ namespace NUIWHome
             return isPanDetector;
         }
 
+        internal bool isAnimating()
+        {
+            return animationManager.IsAnimating;
+        }
+
         private void Instance_TouchEvent(object sender, Window.TouchEventArgs e)
         {
+            if (isAnimating())
+            {
+                return;
+            }
             if (isEditMode && rotaryTouchController.SelectedItem != null)
             {
                 if ((e.Touch.GetState(0) == PointStateType.Up))
@@ -624,11 +635,6 @@ namespace NUIWHome
                         rotaryTouchController.SelectedItem.Position = mousePosition;
                         rotaryTouchController.SelectedItem.HideDeleteIcon();
 
-                    }
-
-                    if (animationManager.IsAnimating)
-                    {
-                        return;
                     }
 
                     if (mousePosition.X <= 50 && mousePosition.Y >= 100 && mousePosition.Y <= 260)

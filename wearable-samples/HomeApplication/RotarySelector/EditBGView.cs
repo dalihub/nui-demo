@@ -132,7 +132,7 @@ namespace NUIWHome
                 AlphaFunction alpha = new AlphaFunction(new Vector2(0.26f, 0.46f), new Vector2(0.45f, 1.0f));
 
                 Animation ani = new Animation(333);
-                ani.AnimateTo(this.editRightSelectView, "Position", new Position(-03, 0), alpha);
+                ani.AnimateTo(this.editRightSelectView, "Position", new Position(-10, 0), alpha);
                 ani.Play();
                 isAleadyScaled = true;
 
