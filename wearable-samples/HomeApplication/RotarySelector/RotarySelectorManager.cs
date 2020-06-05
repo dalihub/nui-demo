@@ -199,11 +199,19 @@ namespace NUIWHome
                 {
                     item.RemoveDeleteIcon();
                 }
+
+                int page = currentPage * ApplicationConstants.MAX_ITEM_COUNT;
+                RotarySelectorItem selectItem = rotaryLayerView.RotaryItemList[page + currentSelectIdx];
+
+                rotaryLayerView.SetText(selectItem.MainText, selectItem.SubText);
+                rotaryLayerView.SetRotaryPosition(currentSelectIdx);
             }
+
             rotaryLayerView.ChangeMode(isEditMode, currentPage, lastPage);
             animationManager.AnimateChangeState(rotaryLayerView, isEditMode);
-            this.isEditMode = isEditMode;
             rotaryLayerView.RegisterPageMoveOnEdit(MovePageOnEditMode);
+
+            this.isEditMode = isEditMode;
         }
         private void Item_Touch_DeleteBadgeHandler(object sender, EventArgs e)
         {
@@ -246,7 +254,13 @@ namespace NUIWHome
             //direction 1 - cw, 2 - ccw
             if (direction == 1)
             {
-                if (currentSelectIdx + 1 < ApplicationConstants.MAX_TRAY_COUNT - 1)
+                int itemCount = ApplicationConstants.MAX_TRAY_COUNT - 1;
+                int mod = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
+                if (currentPage + 1 == lastPage)
+                {
+                    itemCount = mod;
+                }
+                if (currentSelectIdx + 1 < itemCount)
                 {
 
                     if (currentPage + 1 <= lastPage)
@@ -255,20 +269,19 @@ namespace NUIWHome
                     }
                     else
                     {
-                        int mod = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
                         if (currentSelectIdx + 1 < mod)
                         {
                             currentSelectIdx++;
                         }
                     }
-
-                    int selIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
-                    wrapperList[selIdx].RotaryItem.SelectedItem();
                 }
                 else
                 {
                     NextPage(true, AnimationManager.PageAnimationType.Rotary);
                 }
+
+                int selIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
+                wrapperList[selIdx].RotaryItem.SelectedItem();
             }
             else
             {
@@ -289,7 +302,8 @@ namespace NUIWHome
         {
             if (item == null)
             {
-                item = wrapperList[currentSelectIdx].RotaryItem;
+                int page = currentPage * ApplicationConstants.MAX_ITEM_COUNT;
+                item = wrapperList[page + currentSelectIdx].RotaryItem;
             }
 
             currentSelectIdx = item.CurrentIndex;
@@ -398,6 +412,14 @@ namespace NUIWHome
             pagination.SetCurrentPage(currentPage);
             SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1], false);
 
+
+            if (currentPage + 1 == lastPage && item.CurrentIndex == currentSelectIdx + 1)
+            {
+                if (currentSelectIdx - 1 >= 0)
+                {
+                    rotaryLayerView.SetRotaryPosition(currentSelectIdx - 1);
+                }
+            }
         }
 
 

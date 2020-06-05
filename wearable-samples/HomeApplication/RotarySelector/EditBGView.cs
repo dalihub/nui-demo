@@ -86,7 +86,10 @@ namespace NUIWHome
 
         public void CheckNextPrevPage(int currentPage, int lastPage)
         {
-            Tizen.Log.Error("MYLOG", "c : " + currentPage + ", l:" + lastPage);
+            if (editRightSelectView == null && editLeftSelectView == null)
+            {
+                return;
+            }
             if (currentPage == 0)
             {
                 editRightSelectView.Hide();
@@ -110,9 +113,6 @@ namespace NUIWHome
 
         public void AnimateBG(bool isRight)
         {
-            //editRightSelectView.Hide();
-            //editLeftSelectView.Hide();
-
             Animation ani = new Animation(370);
             ani.AnimateTo(this, "Position", new Position(isRight ? 15 : -15, 0), 0, 200, new AlphaFunction(new Vector2(0.17f, 0.17f), new Vector2(0.2f, 1.0f)));
             ani.AnimateTo(this, "Opacity", 0.0f, 0, 200, new AlphaFunction(new Vector2(0.17f, 0.17f), new Vector2(0.2f, 1.0f)));
@@ -167,17 +167,15 @@ namespace NUIWHome
                 return;
             }
 
-            AlphaFunction alpha = new AlphaFunction(new Vector2(0.26f, 0.46f), new Vector2(0.45f, 1.0f));
-            //if (this.editRightSelectView.Visibility)
+            if (editLeftSelectView != null && editRightSelectView != null)
             {
                 Animation ani = new Animation(333);
-                ani.AnimateTo(this.editLeftSelectView, "Position", new Position(0, 0), alpha);
-                ani.AnimateTo(this.editRightSelectView, "Position", new Position(0, 0), alpha);
+                ani.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.26f, 0.46f), new Vector2(0.45f, 1.0f));
+                ani.AnimateTo(editLeftSelectView, "Position", new Position(0, 0));
+                ani.AnimateTo(editRightSelectView, "Position", new Position(0, 0));
                 ani.Play();
-
-                checkingEnterTimer.Stop();
             }
-
+            checkingEnterTimer.Stop();
 
             isAleadyScaled = false;
         }
@@ -218,7 +216,5 @@ namespace NUIWHome
             editRightSelectView = null;
             editLeftSelectView = null;
         }
-
-
     }
 }

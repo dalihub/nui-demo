@@ -2,7 +2,7 @@
 using Tizen.NUI;
 
 namespace NUIWHome.Common
-{ 
+{
     class ApplicationConstants
     {
         public static int SCREEN_SIZE_RADIUS = 360 / 2;

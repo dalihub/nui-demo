@@ -54,8 +54,11 @@ namespace NUIWHome
 
         public void DeletePage(int idx)
         {
-            pageNavigatorList[idx].Unparent();
-            pageNavigatorList.RemoveAt(idx);
+            if (idx >= 0 && idx < pageNavigatorList.Count)
+            {
+                pageNavigatorList[idx]?.Unparent();
+                pageNavigatorList.RemoveAt(idx);
+            }
         }
 
         public void SetCurrentPage(int currentPage)

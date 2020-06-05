@@ -147,6 +147,8 @@ namespace NUIWHome
         {
             itemList.Remove(item);
             item.Unparent();
+            item.Dispose();
+            item = null;
         }
 
         internal void DeleteItemIndex(int index)
@@ -175,7 +177,6 @@ namespace NUIWHome
             if (isEditMode)
             {
                 BackgroundImage = CommonResource.GetResourcePath() + "/b_home_screen_container.png";
-                //container.BackgroundColor = Color.Black;
                 editBGView = new EditBGView(currentPage, lastPage);
 
                 this.Add(editBGView);
@@ -196,8 +197,6 @@ namespace NUIWHome
                 editBGView = null;
 
                 this.BackgroundColor = Color.Black;
-                this.mainText.Text = itemList[0].MainText;
-                this.subText.Text = itemList[0].SubText;
                 this.mainText.Opacity = 0.0f;
 
                 //rotaryIndicator.SetRotaryPosition(0);
@@ -220,7 +219,6 @@ namespace NUIWHome
         {
             if (temporaryMovingIcon == null)
             {
-                Tizen.Log.Error("MYLOG", "res :" + item.BackgroundImage);
                 temporaryMovingIcon = new View()
                 {
                     Size = new Size(60, 60),
