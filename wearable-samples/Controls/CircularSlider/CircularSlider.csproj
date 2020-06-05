@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>CircularSliderExample</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--PackageReference Include="Tizen.NET" Version="8.0.0.*" /-->
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../../TizenFX/src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../../../TizenFX/src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="../../../../TizenFX/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
+    <ProjectReference Include="../../../../TizenFX/src/Tizen.Log/Tizen.Log.csproj" />
+    <ProjectReference Include="../../../../TizenFX/src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
+    <ProjectReference Include="../../../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="../../../../TizenFX/src/Tizen.NUI.Wearable/Tizen.NUI.Wearable.csproj" />
+  </ItemGroup>
+
+</Project>
+
