@@ -86,7 +86,7 @@ namespace NUIWHome
 
         public void CheckNextPrevPage(int currentPage, int lastPage)
         {
-            Tizen.Log.Error("MYLOG", "c : " + currentPage +", l:" + lastPage);
+            Tizen.Log.Error("MYLOG", "c : " + currentPage + ", l:" + lastPage);
             if (currentPage == 0)
             {
                 editRightSelectView.Hide();
@@ -114,7 +114,7 @@ namespace NUIWHome
             //editLeftSelectView.Hide();
 
             Animation ani = new Animation(370);
-            ani.AnimateTo(this, "Position", new Position(isRight ? 15:-15, 0),0, 200, new AlphaFunction(new Vector2(0.17f, 0.17f), new Vector2(0.2f, 1.0f)));
+            ani.AnimateTo(this, "Position", new Position(isRight ? 15 : -15, 0), 0, 200, new AlphaFunction(new Vector2(0.17f, 0.17f), new Vector2(0.2f, 1.0f)));
             ani.AnimateTo(this, "Opacity", 0.0f, 0, 200, new AlphaFunction(new Vector2(0.17f, 0.17f), new Vector2(0.2f, 1.0f)));
 
             ani.AnimateTo(this, "Position", new Position(isRight ? -20 : 20, 0), 200, 201, new AlphaFunction(new Vector2(0.17f, 0.17f), new Vector2(0.2f, 1.0f)));
@@ -127,7 +127,7 @@ namespace NUIWHome
 
         internal void AnimateRightCue()
         {
-            if(!isAleadyScaled)
+            if (!isAleadyScaled)
             {
                 AlphaFunction alpha = new AlphaFunction(new Vector2(0.26f, 0.46f), new Vector2(0.45f, 1.0f));
 
@@ -162,7 +162,7 @@ namespace NUIWHome
 
         internal void AnimateReturn()
         {
-            if(!isAleadyScaled)
+            if (!isAleadyScaled)
             {
                 return;
             }
@@ -196,13 +196,11 @@ namespace NUIWHome
 
         private bool EditRightSelectView_TouchEvent(object source, TouchEventArgs e)
         {
-            Tizen.Log.Error("MYLOG", "right touch");
             return false;
         }
 
         private bool EditLeftSelectView_TouchEvent(object source, TouchEventArgs e)
         {
-            Tizen.Log.Error("MYLOG", "left touch");
             return false;
         }
 

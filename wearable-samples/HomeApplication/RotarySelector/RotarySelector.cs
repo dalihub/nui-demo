@@ -147,7 +147,7 @@ namespace NUIWHome
         {
             rotarySelectorManager.ClearItem();
         }
-        
+
         public Mode GetCurrentMode()
         {
             return mode;

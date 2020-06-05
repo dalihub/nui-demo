@@ -28,15 +28,13 @@ namespace NUIWHome
 
         public void CreatePagination(int pageCount)
         {
-            Tizen.Log.Error("MYLOG", "p1 : " + pageNavigatorList.Count);
-            Tizen.Log.Error("MYLOG", "p2 : " + pageCount);
             if (pageNavigatorList.Count >= pageCount)
             {
                 return;
             }
 
-            
-            if(pageNavigatorList.Count > 0)
+
+            if (pageNavigatorList.Count > 0)
             {
                 UnSelectNavi(pageNavigatorList[pageNavigatorList.Count - 1]);
             }
@@ -63,7 +61,7 @@ namespace NUIWHome
         public void SetCurrentPage(int currentPage)
         {
             int count = pageNavigatorList.Count;
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 int idx = count - i - 1;
                 if (idx == count - currentPage - 1)
@@ -76,7 +74,7 @@ namespace NUIWHome
                 }
             }
         }
-         
+
         private void UnSelectNavi(View navi)
         {
             navi.Scale = new Vector3(1.0f, 1.0f, 1.0f);

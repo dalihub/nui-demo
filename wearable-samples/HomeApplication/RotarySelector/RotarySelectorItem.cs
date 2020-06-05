@@ -14,21 +14,21 @@ namespace NUIWHome
         /// <summary>
         /// Get/Set Main Text
         /// </summary>
-        public string MainText {get; set;}
+        public string MainText { get; set; }
 
         /// <summary>
         /// Get/Set Sub Text
         /// </summary>
-        public string SubText {get; set;}
+        public string SubText { get; set; }
 
         /// <summary>
         /// Get/Set Color of MainText
         /// </summary>
-        public Color MainTextColor{get; set; }
+        public Color MainTextColor { get; set; }
         /// <summary>
         /// Get/Set Color of SubText
         /// </summary>
-        public Color subTextColor{get; set;}
+        public Color subTextColor { get; set; }
 
         internal int CurrentIndex { get; set; }
 
@@ -59,7 +59,7 @@ namespace NUIWHome
             }
             //else
             {
-               // deleteBadge.SetLeftSide();
+                // deleteBadge.SetLeftSide();
             }
             deleteBadge.TouchEvent += DeleteBadge_TouchEvent;
             this.Add(deleteBadge);
@@ -68,7 +68,7 @@ namespace NUIWHome
 
         public void RemoveDeleteIcon()
         {
-            if(deleteBadge != null)
+            if (deleteBadge != null)
             {
                 deleteBadge.TouchEvent -= DeleteBadge_TouchEvent;
                 deleteBadge.Unparent();
@@ -123,7 +123,7 @@ namespace NUIWHome
 
         internal void AddToParent()
         {
-            if(!currentParent.Children.Contains(this))
+            if (!currentParent.Children.Contains(this))
             {
                 currentParent.Add(this);
             }

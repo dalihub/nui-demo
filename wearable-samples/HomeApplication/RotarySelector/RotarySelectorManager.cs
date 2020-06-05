@@ -114,13 +114,13 @@ namespace NUIWHome
             RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
             rotaryLayerView.SetItem(item);
 
-            if(!isEditMode)
+            if (!isEditMode)
             {
                 rotaryLayerView.SetText(item.MainText, item.SubText);
             }
             else
             {
-                if(rotaryTouchController.SelectedItem != null)
+                if (rotaryTouchController.SelectedItem != null)
                 {
                     rotaryLayerView.AddMovingIcon(rotaryTouchController.SelectedItem);
                     rotaryLayerView.SetRight();
@@ -137,7 +137,6 @@ namespace NUIWHome
             }
             animationManager.IsAnimating = true;
 
-            Tizen.Log.Error("MYLOG", "prev page");
             if (currentPage > 0)
             {
                 //For editing mode
@@ -163,7 +162,7 @@ namespace NUIWHome
             int selIdx = currentPage * ApplicationConstants.MAX_ITEM_COUNT + currentSelectIdx;
             RotarySelectorItem item = rotaryLayerView.RotaryItemList[selIdx];
             rotaryLayerView.SetItem(item);
-            if(!isEditMode)
+            if (!isEditMode)
             {
                 rotaryLayerView.SetText(item.MainText, item.SubText);
             }
@@ -184,7 +183,7 @@ namespace NUIWHome
                 rotaryTouchController = new RotaryTouchEditMode();
                 rotaryTouchController.OnNotify += RotaryTouchController_OnNotify;
                 int idx = 0;
-                foreach(RotarySelectorItem item in rotaryLayerView.RotaryItemList)
+                foreach (RotarySelectorItem item in rotaryLayerView.RotaryItemList)
                 {
                     item.AddDeleteIcon(idx++);
                     item.Touch_DeleteBadgeHandler += Item_Touch_DeleteBadgeHandler;
@@ -213,7 +212,6 @@ namespace NUIWHome
 
         public void MovePageOnEditMode(bool isRight)
         {
-            Tizen.Log.Error("MYLOG", "move page");
             if (isRight)
             {
                 NextPage(false);
@@ -284,7 +282,6 @@ namespace NUIWHome
         }
         private void SelectItem(RotarySelectorItem item = null, bool isAnimating = true)
         {
-            Tizen.Log.Error("MYLOG", "SelectItem");
             if (item == null)
             {
                 item = wrapperList[currentSelectIdx].RotaryItem;
@@ -294,7 +291,6 @@ namespace NUIWHome
             rotaryLayerView.SetItem(item);
             if (!isEditMode)
             {
-                Tizen.Log.Error("MYLOG", "Set Item text");
                 rotaryLayerView.SetText(item.MainText, item.SubText);
                 rotaryLayerView.SetRotaryPosition(item.CurrentIndex);
             }
@@ -312,7 +308,10 @@ namespace NUIWHome
 
         private void OnItemSelected(RotarySelectorItem item)
         {
-            SelectItem(item);
+            if (!isEditMode)
+            {
+                SelectItem(item);
+            }
         }
 
         private bool Item_TouchEvent(object source, View.TouchEventArgs e)
@@ -370,6 +369,7 @@ namespace NUIWHome
                     SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1]);
                     return;
                 }
+                //If delete last item on last page, move prev page & delete last page
                 if (item.CurrentIndex == 0 && pageIdx == 1)
                 {
                     PrevPage();
@@ -377,6 +377,15 @@ namespace NUIWHome
                     return;
                 }
             }
+            else
+            {
+                //If delete Last Item, delete page
+                if (pageIdx == 1)
+                {
+                    pagination.DeletePage();
+                }
+            }
+
             SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1], false);
 
         }
@@ -405,10 +414,14 @@ namespace NUIWHome
         private void GeneratePage()
         {
             int remainder = 0;
-            lastPage = Math.DivRem(rotaryLayerView.GetTotalItemCount(), ApplicationConstants.MAX_ITEM_COUNT, out remainder);
-            lastPage += (remainder > 0) ? 1 : 0;
+            int pageCnt = Math.DivRem(rotaryLayerView.GetTotalItemCount(), ApplicationConstants.MAX_ITEM_COUNT, out remainder);
+            pageCnt += (remainder > 0) ? 1 : 0;
 
-            pagination.CreatePagination(lastPage);
+            if (lastPage <= pageCnt)
+            {
+                pagination.CreatePagination(pageCnt);
+            }
+            lastPage = pageCnt;
 
         }
 
@@ -466,16 +479,15 @@ namespace NUIWHome
 
             int mod = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
             int lastIdx = ApplicationConstants.MAX_ITEM_COUNT + mod;
-            
 
-            Tizen.Log.Error("MYLOG", "last page :" + lastPage);
+
             for (int i = sIdx, j = eIdx, s = 0; i < sIdx + ApplicationConstants.MAX_ITEM_COUNT; i++, j++, s++)
             {
-                
+
                 //if Not set the item
                 if (wrapperList[i].RotaryItem != null)
                 {
-                    if(currentPage + 1 == lastPage && s < mod  || currentPage + 1 != lastPage)
+                    if (currentPage + 1 == lastPage && s < mod || currentPage + 1 != lastPage)
                     {
                         animationManager.AnimateHidePage(wrapperList[i], cw, type);
                     }
@@ -500,6 +512,10 @@ namespace NUIWHome
                     {
                         if (isEditMode)
                         {
+                            if (animationManager.IsAnimating)
+                            {
+                                return;
+                            }
                             animationManager.InitRotaryPathAnimation();
 
                             RotarySelectorItem SelectedItem = rotaryTouchController.SelectedItem;
@@ -522,7 +538,6 @@ namespace NUIWHome
                                 for (int i = selIdx; i < colIdx; i++)
                                 {
                                     int idx = page + i;
-                                    Tizen.Log.Error("MYLOG", "idx:" + idx);
                                     wrapperList[idx].RotaryItem = wrapperList[idx + 1].RotaryItem;
                                     animationManager.AnimatePathOnEdit(wrapperList[idx]);
                                 }
@@ -588,7 +603,7 @@ namespace NUIWHome
                 else if ((e.Touch.GetState(0) == PointStateType.Motion))
                 {
                     Position mousePosition = new Position(e.Touch.GetScreenPosition(0).X, e.Touch.GetScreenPosition(0).Y);
-                    if(rotaryLayerView.GetMovingIcon())
+                    if (rotaryLayerView.GetMovingIcon())
                     {
                         rotaryLayerView.GetMovingIcon().Position = mousePosition;
                     }

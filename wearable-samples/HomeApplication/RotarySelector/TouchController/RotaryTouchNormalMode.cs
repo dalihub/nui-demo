@@ -15,7 +15,6 @@ namespace NUIWHome
         }
         public override bool ProcessTouchUpEvent(RotarySelectorItem item)
         {
-            Tizen.Log.Error("MYLOG", "ProcessTouchUpEvent");
             if (!IsProcessing)
             {
                 IsProcessing = true;
@@ -32,7 +31,6 @@ namespace NUIWHome
 
                 if (SelectedItem == null)
                 {
-                    Tizen.Log.Error("MYLOG", "Touch up - 1");
                     ani.AnimateTo(item, "Scale", new Vector3(1.17f, 1.17f, 1.17f));
                     ani.Play();
                     SelectedItem = item;
@@ -42,7 +40,6 @@ namespace NUIWHome
                 }
                 else
                 {
-                    Tizen.Log.Error("MYLOG", "Touch up - 2");
                     ani.AnimateTo(SelectedItem, "Scale", new Vector3(1.0f, 1.0f, 1.0f));
                     ani.AnimateTo(item, "Scale", new Vector3(1.17f, 1.17f, 1.17f));
                     ani.Play();

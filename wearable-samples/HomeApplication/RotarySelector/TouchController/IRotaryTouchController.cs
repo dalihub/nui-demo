@@ -7,7 +7,7 @@ using Tizen.NUI.BaseComponents;
 namespace NUIWHome
 {
     public class RotaryTouchController
-    { 
+    {
         public bool IsProcessing { get; set; }
 
         public RotarySelectorItem SelectedItem { get; set; }
@@ -37,14 +37,13 @@ namespace NUIWHome
                 }
                 else if (e.Touch.GetState(0) == PointStateType.Up)
                 {
-                    Tizen.Log.Error("MYLOG", "touch up process");
-                    if(ProcessTouchUpEvent(item))
+                    if (ProcessTouchUpEvent(item))
                     {
                     }
                 }
                 else if ((e.Touch.GetState(0) == PointStateType.Motion))
                 {
-                    if(ProcessMotionEvent(item))
+                    if (ProcessMotionEvent(item))
                     {
                         CallOnNotify(item, 0);
                     }
@@ -86,7 +85,7 @@ namespace NUIWHome
 
         protected void CallOnNotify(RotarySelectorItem item, int opt)
         {
-            if(OnNotify != null)
+            if (OnNotify != null)
             {
                 OnNotify(item, opt);
             }
