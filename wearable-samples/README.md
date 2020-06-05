@@ -25,6 +25,8 @@
 * Popup
     * [Wearable Popup](./Popup/WearablePopup/)
 * Reference Application
+    <div style="text-align:center;width:100%;"><img src="./res/referenceApps.png" /></div>
+    
     * [WApps](./ReferenceApplication/WApps)
     * [WGallery](./ReferenceApplication/WGallery)
     * [WMessage](./ReferenceApplication/WMessage) (WearableList and BlurView)
