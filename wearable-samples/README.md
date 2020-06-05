@@ -23,7 +23,7 @@
     * [Fullsize Notification](./Notification/FullsizeNotification/)
     * [Toast Notification](./Notification/ToastNotification/)
 * Popup
-    * [Popup](./Popup/WearablePopup/)
+    * [Wearable Popup](./Popup/WearablePopup/)
 * Reference Application
     * [WApps](./ReferenceApplication/WApps)
     * [WGallery](./ReferenceApplication/WGallery)
