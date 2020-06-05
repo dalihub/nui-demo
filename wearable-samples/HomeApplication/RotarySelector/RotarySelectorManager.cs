@@ -203,7 +203,6 @@ namespace NUIWHome
             this.isEditMode = isEditMode;
             rotaryLayerView.RegisterPageMoveOnEdit(MovePageOnEditMode);
         }
-
         private void Item_Touch_DeleteBadgeHandler(object sender, EventArgs e)
         {
             RotarySelectorItem item = sender as RotarySelectorItem;
@@ -540,6 +539,7 @@ namespace NUIWHome
                                     int idx = page + i;
                                     wrapperList[idx].RotaryItem = wrapperList[idx + 1].RotaryItem;
                                     animationManager.AnimatePathOnEdit(wrapperList[idx]);
+                                    wrapperList[idx].RotaryItem.CallReordered();
                                 }
                             }
                             else
@@ -549,11 +549,14 @@ namespace NUIWHome
                                     int idx = page + i;
                                     wrapperList[idx].RotaryItem = wrapperList[idx - 1].RotaryItem;
                                     animationManager.AnimatePathOnEdit(wrapperList[idx], false);
+                                    wrapperList[idx].RotaryItem.CallReordered();
                                 }
                             }
 
                             rotaryLayerView.ChagneItemPosition(SelectedItem, collisionItem);
                             wrapperList[page + colIdx].RotaryItem = SelectedItem;
+                            wrapperList[page + colIdx].RotaryItem.CallReordered();
+
                             animationManager.PlayCoreAnimation();
                             rotaryTouchController.SelectedItem.Opacity = 1.0f;
                             rotaryTouchController.SelectedItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
