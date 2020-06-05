@@ -52,10 +52,10 @@ namespace NUIWHome
             this.Add(pageNavi);
         }
 
-        public void DeletePage()
+        public void DeletePage(int idx)
         {
-            pageNavigatorList[0].Unparent();
-            pageNavigatorList.RemoveAt(0);
+            pageNavigatorList[idx].Unparent();
+            pageNavigatorList.RemoveAt(idx);
         }
 
         public void SetCurrentPage(int currentPage)

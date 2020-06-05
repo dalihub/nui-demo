@@ -205,8 +205,12 @@ namespace NUIWHome
         }
         private void Item_Touch_DeleteBadgeHandler(object sender, EventArgs e)
         {
-            RotarySelectorItem item = sender as RotarySelectorItem;
-            DeleteItem(item);
+            //
+            if(!isDetector())
+            {
+                RotarySelectorItem item = sender as RotarySelectorItem;
+                DeleteItem(item);
+            }
         }
 
         public void MovePageOnEditMode(bool isRight)
@@ -355,11 +359,16 @@ namespace NUIWHome
         //Need to add function
         internal void DeleteItem(RotarySelectorItem item)
         {
+            if (rotaryLayerView.RotaryItemList.Count == 1)
+            {
+                Tizen.Log.Error("MYLOG", "Last Item");
+                return;
+            }
             int page = currentPage * ApplicationConstants.MAX_ITEM_COUNT;
             int pageIdx = rotaryLayerView.RotaryItemList.Count % ApplicationConstants.MAX_ITEM_COUNT;
             rotaryLayerView.DeleteItem(item);
-            ReWrappingAllItems();
 
+            ReWrappingAllItems();
             if (lastPage == currentPage)
             {
                 //Delete Last Item
@@ -371,8 +380,8 @@ namespace NUIWHome
                 //If delete last item on last page, move prev page & delete last page
                 if (item.CurrentIndex == 0 && pageIdx == 1)
                 {
+                    pagination.DeletePage(currentPage);
                     PrevPage();
-                    pagination.DeletePage();
                     return;
                 }
             }
@@ -381,10 +390,10 @@ namespace NUIWHome
                 //If delete Last Item, delete page
                 if (pageIdx == 1)
                 {
-                    pagination.DeletePage();
+                    pagination.DeletePage(currentPage);
                 }
             }
-
+            pagination.SetCurrentPage(currentPage);
             SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1], false);
 
         }
@@ -486,7 +495,7 @@ namespace NUIWHome
                 //if Not set the item
                 if (wrapperList[i].RotaryItem != null)
                 {
-                    if (currentPage + 1 == lastPage && s < mod || currentPage + 1 != lastPage)
+                    if (currentPage + 1 == lastPage && (s < mod || mod == 0) || currentPage + 1 != lastPage)
                     {
                         animationManager.AnimateHidePage(wrapperList[i], cw, type);
                     }
