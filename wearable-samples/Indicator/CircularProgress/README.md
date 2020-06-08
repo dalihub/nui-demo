@@ -43,14 +43,14 @@ public class CircularProgressExample : NUIApplication
         window.Add(circular);
 
         // Bezel event
-        window.WheelEvent += Pagination_WheelEvent;
+        window.WheelEvent += Progress_WheelEvent;
 
         // If you want to change the colors of the track and the progress,
         // use TrackColor and ProgressColor properties.
 
     }
 
-    private void Pagination_WheelEvent(object source, Window.WheelEventArgs e)
+    private void Progress_WheelEvent(object source, Window.WheelEventArgs e)
     {
         // CustomWheel means Bezel in wearable device.
         if (e.Wheel.Type == Wheel.WheelType.CustomWheel)
