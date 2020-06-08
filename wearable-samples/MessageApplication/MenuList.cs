@@ -102,15 +102,16 @@ namespace WearableSample
 
     class MenuList : WearableList
     {
-        public MenuList() : base(new MenuListAdapter()
+        public MenuList()
         {
-            Data = new List<object>{
-            new MenuData(){Title = "Write", ResourceUrl = "send_message.png"},
-            new MenuData(){Title = "Delete", ResourceUrl = "delete.png"},
-            new MenuData(){Title = "Settings", ResourceUrl = "settings.png"}
-        }
-        })
-        {
+            Adapter = new MenuListAdapter()
+            {
+                Data = new List<object>{
+                    new MenuData(){Title = "Write", ResourceUrl = "send_message.png"},
+                    new MenuData(){Title = "Delete", ResourceUrl = "delete.png"},
+                    new MenuData(){Title = "Settings", ResourceUrl = "settings.png"}
+                }   
+            };
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
-    <ProjectReference Include="../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -13,7 +13,7 @@
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>../NuiSample.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>../../NuiSample.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
   </PropertyGroup>
 

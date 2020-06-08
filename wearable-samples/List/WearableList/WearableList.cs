@@ -24,21 +24,19 @@ using Tizen.NUI.Wearable;
 
 class WearableListExample : NUIApplication
 {
-
     class ListData
+    {
+        public string Text { get; set; } = "";
+        public ListItem.ItemType Type { get; set; } = ListItem.ItemType.Normal;
+    }
+
+    class ListItem : RecycleItem
     {
         public enum ItemType
         {
             Normal,
             Header,
         };
-
-        public string Text { get; set; } = "";
-        public ItemType Type { get; set; } = ItemType.Normal;
-    }
-
-    class ListItem : RecycleItem
-    {
 
         public override void OnFocusLost()
         {
@@ -47,7 +45,7 @@ class WearableListExample : NUIApplication
 
         public override void OnFocusGained()
         {
-            BackgroundColor = new Color("#333333A3");
+            BackgroundColor = Type == ItemType.Normal? new Color("#333333A3"): Color.Transparent;
         }
 
         public ListItem()
@@ -80,6 +78,7 @@ class WearableListExample : NUIApplication
 
         public TextLabel Text { get; set; }
         public TextLabel Header { get; set; }
+        public ItemType Type { get; set; } = ItemType.Normal;
     }
 
     class ListAdapter : RecycleAdapter
@@ -95,11 +94,12 @@ class WearableListExample : NUIApplication
             ListItem target = item as ListItem;
             ListData data = Data[target.DataIndex] as ListData;
 
-            if (data.Type == ListData.ItemType.Header)
+            if (data.Type == ListItem.ItemType.Header)
             {
                 target.Text.Hide();
                 target.Header.Show();
                 target.Header.Text = data.Text;
+                target.Type = ListItem.ItemType.Header;
             }
             else
             {
@@ -107,6 +107,7 @@ class WearableListExample : NUIApplication
                 target.Text.Show();
                 target.Text.Text = data.Text;
                 target.BackgroundColor = Color.Transparent;
+                target.Type = ListItem.ItemType.Normal;
             }
         }
     }
@@ -123,7 +124,7 @@ class WearableListExample : NUIApplication
         data.Add(new ListData()
         {
             Text = "LIST HEADER",
-            Type = ListData.ItemType.Header,
+            Type = ListItem.ItemType.Header,
         });
 
         for (int i = 0; i < 30; i++)
@@ -139,9 +140,6 @@ class WearableListExample : NUIApplication
 
         WearableList wearableList = new WearableList(adapter);
         wearableList.Size = new Size(360, 360);
-        wearableList.ScrollAvailableArea = new Vector2(
-            wearableList.ListLayoutManager.StepSize,
-            wearableList.ListLayoutManager.StepSize * (data.Count - 1));
         wearableList.SetFocus(1, false);
 
         NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(wearableList);

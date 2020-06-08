@@ -172,23 +172,28 @@ namespace Example
             };
             window.Add(root);
 
-            SampleMenuTapAdapter sampleMenuTapAdapter = new SampleMenuTapAdapter();
-            sampleMenuTapAdapter.Data = DummyData.CreateDummyMenuTap(20);
-
-            RecyclerView menuTapList = new RecyclerView(sampleMenuTapAdapter, new LinearListLayoutManager(){LayoutOrientation=LayoutManager.Orientation.Horizontal})
+            RecyclerView menuTapList = new RecyclerView()
             {
+                Adapter = new SampleMenuTapAdapter()
+                {
+                    Data = DummyData.CreateDummyMenuTap(20)
+                },
+                LayoutManager = new LinearRecycleLayoutManager(){
+                    LayoutOrientation = RecycleLayoutManager.Orientation.Horizontal
+                },
                 ScrollingDirection = ScrollableBase.Direction.Horizontal,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = 60,
             };
             root.Add(menuTapList);
 
-            SampleMenuAdapter sampleMenuAdapter = new SampleMenuAdapter();
-            sampleMenuAdapter.Data = DummyData.CreateDummyMenu(50);
-
-            RecyclerView menuList = new RecyclerView(sampleMenuAdapter, new LinearListLayoutManager())
+            RecyclerView menuList = new RecyclerView()
             {
-                // Size = new Size(480, 800),
+                Adapter = new SampleMenuAdapter()
+                {
+                    Data = DummyData.CreateDummyMenu(50),
+                },
+                LayoutManager = new LinearRecycleLayoutManager(),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 Weight = 1,
             };
