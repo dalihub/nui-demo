@@ -109,7 +109,7 @@ namespace WearableSample
             {
                 if (isFocusGained)
                 {
-//                    Title.EnableAutoScroll = true;
+                   Title.EnableAutoScroll = true;
                 }
             };
         }
@@ -117,7 +117,7 @@ namespace WearableSample
         public override void OnFocusLost()
         {
             isFocusGained = false;
-//            Title.EnableAutoScroll = false;
+            Title.EnableAutoScroll = false;
 
             if (mFocusAnimation == null)
             {
@@ -171,8 +171,9 @@ namespace WearableSample
 
     class MessageList : WearableList
     {
-        public MessageList() : base(new MessageListAdaptor() { Data = MessageDummy.Create(100) })
+        public MessageList()
         {
+            Adapter = new MessageListAdaptor() { Data = MessageDummy.Create(100) };
             FlickAnimationSpeed = 0.7f;
             FlickDistanceMultiplierRange = new Vector2(0.2f, 1.3f);
             FlickThreshold = 0.1f;

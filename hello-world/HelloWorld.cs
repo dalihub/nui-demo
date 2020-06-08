@@ -1,87 +1,104 @@
-/*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 using System;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Constants;
+using Tizen.NUI.Components;
 
-class HelloWorldExample : NUIApplication
+namespace ScrollableBaseIssue
 {
-    /// <summary>
-    /// Override to create the required scene
-    /// </summary>
-    protected override void OnCreate()
+    class Program : Tizen.NUI.NUIApplication
     {
-        // Up call to the Base class first
-        base.OnCreate();
-
-        // Get the window instance and change background color
-        Window window = Window.Instance;
-        window.BackgroundColor = Color.White;
-
-        // Create a simple TextLabel
-        TextLabel title = new TextLabel("Hello World");
-
-        // Ensure TextLabel matches its parent's size (i.e. Window size)
-        // By default, a TextLabel's natural size is the size of the text within it
-        title.Size2D = new Size2D(window.Size.Width, window.Size.Height);
-
-        // By default, text is aligned to the top-left within the TextLabel
-        // Align it to the center of the TextLabel
-        title.HorizontalAlignment = HorizontalAlignment.Center;
-        title.VerticalAlignment = VerticalAlignment.Center;
-
-        // Add the text to the window
-        window.Add(title);
-
-        // Respond to key events
-        window.KeyEvent += OnKeyEvent;
-    }
-
-    /// <summary>
-    /// Called when any key event is received.
-    /// Will use this to exit the application if the Back or Escape key is pressed
-    /// </summary>
-    private void OnKeyEvent( object sender, Window.KeyEventArgs eventArgs )
-    {
-        if( eventArgs.Key.State == Key.StateType.Down )
+        protected override void OnCreate()
         {
-            switch( eventArgs.Key.KeyPressedName )
+            base.OnCreate();
+
+            Initialize();
+        }
+
+        void Initialize()
+        {
+            Window.Instance.KeyEvent += OnKeyEvent;
+            Window.Instance.GetDefaultLayer().Add(CreateView());
+        }
+
+        private static View CreateView()
+        {
+            var view = new IssuePreviewView();
+
+            view.ScrollTo(720,false); // it does not work
+
+            return view;
+        }
+
+        public void OnKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
             {
-                case "Escape":
-                case "Back":
-                {
-                    Exit();
-                }
-                break;
+                Exit();
             }
         }
-    }
 
-    /// <summary>
-    /// The main entry point for the application.
-    /// </summary>
-    [STAThread] // Forces app to use one thread to access NUI
-    static void Main(string[] args)
-    {
-        HelloWorldExample example = new HelloWorldExample();
-        example.Run(args);
+        static void Main(string[] args)
+        {
+            var app = new Program();
+            app.Run(args);
+        }
+
+        public class IssuePreviewView : ScrollableBase
+        {
+            private View viewContainer; 
+
+            public IssuePreviewView() : base()
+            {
+                SetViewLayoutSettings();
+                CreatePages(5);
+
+            }
+
+            private void SetViewLayoutSettings()
+            {
+                SizeHeight = 360;
+                SizeWidth = 480;
+                SnapToPage = true;
+                ScrollingDirection = ScrollableBase.Direction.Horizontal;
+
+                viewContainer = new View()
+                {
+                    WidthSpecification = LayoutParamPolicies.WrapContent,
+                    HeightSpecification = 360,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    Layout = new LinearLayout()
+                    {
+                        LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    },
+                };
+
+                Add(viewContainer);
+            }
+
+            private void CreatePages(int n)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    var view = new View()
+                    {
+                        SizeHeight = 360,
+                        SizeWidth = 480,
+                        BackgroundColor = i%2 == 0 ? Color.Cyan:Color.Magenta,
+                    };
+
+                    view.Add(new TextLabel(i.ToString())
+                    {
+                        PointSize = 25,
+                        HeightResizePolicy = ResizePolicyType.FillToParent,
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        TextColor = Color.Yellow,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    });
+
+                    viewContainer.Add(view);
+                }
+            }
+         }
     }
 }
-
