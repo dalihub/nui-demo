@@ -34,7 +34,6 @@ public class ActivityIndicatorExample : NUIApplication
         var window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-
         string[] imageArray = new string[120];
         for (int i = 0; i < 120; i++)
         {
