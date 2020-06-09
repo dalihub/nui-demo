@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUIWidgetSample", "NUIWidgetSample\NUIWidgetSample.csproj", "{740358C7-0325-4FF2-BC75-98888948CAF4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUIWHMain", "NUIWHMain\NUIWHMain.csproj", "{08737E9C-603A-43CB-BCAC-0173E084C063}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WHome", "NUIWHMain\WHome.csproj", "{08737E9C-603A-43CB-BCAC-0173E084C063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
