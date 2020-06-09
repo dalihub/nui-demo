@@ -235,6 +235,10 @@ namespace WearableGallerySample
                 extraItemIdx++;
                 layoutManager.OrderByIndex(this);
             }
+            else
+            {
+                layoutManager.CancelPage(this);
+            }
         }
 
         private void PrevPageProcess()
@@ -263,6 +267,10 @@ namespace WearableGallerySample
             {
                 extraItemIdx--;
                 layoutManager.OrderByIndex(this);
+            }
+            else
+            {
+                layoutManager.CancelPage(this);
             }
         }
 

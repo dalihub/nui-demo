@@ -53,8 +53,19 @@ namespace NUIWHMain
 
             public TextLabel sampleTitle;
 
+            private View blockView;
             public ViewHolder(View view) : base(view)
             {
+                blockView = new View()
+                {
+                    Size = new Size(360, 360),
+                    CornerRadius = 180,
+                    ParentOrigin = ParentOrigin.Center,
+                    PivotPoint = PivotPoint.Center,
+                    PositionUsesPivotPoint = true,
+                };
+                blockView.TouchEvent += BlockView_TouchEvent;
+
                 mainView = new View()
                 {
                     Size = new Size(360, 360),
@@ -149,10 +160,17 @@ namespace NUIWHMain
                 fontStyle.Add("weight", new PropertyValue("bold"));
                 notifyTitle.FontStyle = fontStyle;
                 notifyView.Add(notifyTitle);
+
+            }
+
+            private bool BlockView_TouchEvent(object source, View.TouchEventArgs e)
+            {
+                return true;
             }
 
             public void SetWatchFace()
             {
+                blockView.Unparent();
                 widgetContainerView.Unparent();
                 ResetWidgetContainer();
 
@@ -165,6 +183,7 @@ namespace NUIWHMain
 
             public void SetNotifyView(string notifyTtext)
             {
+                blockView.Unparent();
                 widgetContainerView.Unparent();
                 ResetWidgetContainer();
                 textView.Hide();
@@ -175,6 +194,7 @@ namespace NUIWHMain
 
             public void SetWidgetView(WidgetView wv)
             {
+
                 ResetWidgetContainer();
                 textView.Hide();
                 sampleTitle.Hide();
@@ -182,18 +202,27 @@ namespace NUIWHMain
 
                 widgetContainerView.Add(wv);
                 mainView.Add(widgetContainerView);
+                mainView.Add(blockView);
             }
-            public void SetSampleView(SampleCreator sampleCreator, string title)
+            public void SetSampleView(Dictionary<string, View> sampleViewList, string title)
             {
+                blockView.Unparent();
                 ResetWidgetContainer();
                 sampleTitle.Show();
                 textView.Hide();
                 mainView.BackgroundColor = Color.Black;
 
                 sampleTitle.Text = title;
-
-                View view = sampleCreator.CallCreatorFunction(title);
-                view.Position = new Position(0, 30);
+                if(title == "WearableList" || title == "Message")
+                {
+                    sampleTitle.Hide();
+                }
+                else
+                {
+                    sampleTitle.Show();
+                }
+                View view = sampleViewList[title];
+                view.Position = new Position(0, 0);
                 widgetContainerView.Add(view);
                 mainView.Add(widgetContainerView);
             }
@@ -221,10 +250,13 @@ namespace NUIWHMain
             dataList.Add(faceData);
         }
         private SampleCreator sampleCreator;
+        private Dictionary<string, View> sampleViewList;
 
         public NUIWHAdapter(WidgetViewManager manager)
         {
             _viewManager = manager;
+            sampleViewList = new Dictionary<string, View>();
+
             dataList = new List<FaceData>();
             dataList.Add(new FaceData(FaceData.FaceType.WATCH, ""));
             sampleCreator = new SampleCreator();
@@ -232,7 +264,9 @@ namespace NUIWHMain
 
             for (int i = 0; i < count; i++)
             {
-                dataList.Add(new FaceData(FaceData.FaceType.SAMPLE, sampleCreator.GetDictString(i)));
+                string res = sampleCreator.GetDictString(i);
+                dataList.Add(new FaceData(FaceData.FaceType.SAMPLE, res));
+                sampleViewList.Add(res, sampleCreator.CallCreatorFunction(res));
             }
 
             widgetList = WidgetApplicationInfo.LoadAllParameters();
@@ -294,7 +328,7 @@ namespace NUIWHMain
                     Tizen.Log.Error("MYLOG", "Draw Notify");
                     break;
                 case FaceData.FaceType.SAMPLE:
-                    vHolder.SetSampleView(sampleCreator, faceDate.res);
+                    vHolder.SetSampleView(sampleViewList, faceDate.res);
                     Tizen.Log.Error("MYLOG", "Draw Sample");
                     break;
             }

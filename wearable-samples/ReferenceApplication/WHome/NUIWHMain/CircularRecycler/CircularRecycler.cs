@@ -103,6 +103,7 @@ namespace WearableGallerySample
             {
                 Size = new Size(360, 360),
                 CornerRadius = 180.0f,
+                BackgroundColor = Color.Black,
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center,
                 PositionUsesPivotPoint = true,
@@ -129,6 +130,7 @@ namespace WearableGallerySample
             {
                 Size = new Size(360, 360),
                 CornerRadius = 180.0f,
+                BackgroundColor = Color.Black,
             };
 
             ImageView icon = new ImageView()
