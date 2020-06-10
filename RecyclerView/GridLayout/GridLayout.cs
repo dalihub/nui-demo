@@ -117,7 +117,7 @@ namespace Example
                 LayoutManager = new GridRecycleLayoutManager()
                 {
                     LayoutOrientation = RecycleLayoutManager.Orientation.Horizontal,
-                    Row = 2,
+                    Rows = 2,
                 },
                 ScrollingDirection = ScrollableBase.Direction.Horizontal,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -146,7 +146,7 @@ namespace Example
                 LayoutManager = new GridRecycleLayoutManager()
                 {
                     LayoutOrientation = RecycleLayoutManager.Orientation.Vertical,
-                    Column = 4,
+                    Columns = 4,
                 },
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 Weight = 1,
