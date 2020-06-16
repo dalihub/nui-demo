@@ -43,8 +43,8 @@ public class ActivityIndicatorExample : NUIApplication
         loading = new Loading();
         loading.Size = new Size(76, 76);
 
-        // Set the image array to Images property
-        loading.Images = imageArray;
+        // Set the image array to ImageArray property
+        loading.ImageArray = imageArray;
 
         // Positioning it to the center
         loading.ParentOrigin = ParentOrigin.Center;
