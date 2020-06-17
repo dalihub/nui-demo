@@ -90,8 +90,9 @@ namespace NUIWHome
 
         private bool DeleteBadge_TouchEvent(object source, TouchEventArgs e)
         {
-            if (e.Touch.GetState(0) == PointStateType.Up)
+            if (e.Touch.GetState(0) == PointStateType.Up && Touch_DeleteBadgeHandler != null)
             {
+                CallDelete();
                 Touch_DeleteBadgeHandler(this, e);
             }
             return true;
