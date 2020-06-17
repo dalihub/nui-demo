@@ -410,7 +410,14 @@ namespace NUIWHome
                 }
             }
             pagination.SetCurrentPage(currentPage);
-            SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1], false);
+            if(page + item.CurrentIndex < rotaryLayerView.RotaryItemList.Count)
+            {
+                SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex], false);
+            }
+            else
+            {
+                SelectItem(rotaryLayerView.RotaryItemList[page + item.CurrentIndex - 1], false);
+            }
 
 
             if (currentPage + 1 == lastPage && item.CurrentIndex == currentSelectIdx + 1)
