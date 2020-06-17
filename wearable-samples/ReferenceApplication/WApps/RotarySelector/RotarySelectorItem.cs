@@ -49,6 +49,10 @@ namespace NUIWHome
 
         public void AddDeleteIcon(int idx)
         {
+            if(!IsDeleteAble)
+            {
+                return;
+            }
             if (deleteBadge == null)
             {
                 deleteBadge = new RotaryDeleteBadege();
