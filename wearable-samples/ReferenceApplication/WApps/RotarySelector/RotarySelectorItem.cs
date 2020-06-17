@@ -212,20 +212,29 @@ namespace NUIWHome
             }
         }
 
+        public class ReoderEventArgs : EventArgs 
+        {
+            public int PreIndex { get; set; }
+            public int CurrentIndex { get; set; }
+        }
 
         //Need to add, "item,reordered": When the user reordered an item.
-        private event EventHandler<EventArgs> reorderedHandler;
+        private event EventHandler<ReoderEventArgs> reorderedHandler;
 
-        internal void CallReordered()
+        internal void CallReordered(int preIdx, int currentIdx)
         {
             if (reorderedHandler != null)
             {
-                
-                reorderedHandler(this, new EventArgs());
+                ReoderEventArgs args = new ReoderEventArgs()
+                {
+                    PreIndex = preIdx,
+                    CurrentIndex = currentIdx,
+                };
+                reorderedHandler(this, args);
             }
         }
 
-        public event EventHandler<EventArgs> Reordered
+        public event EventHandler<ReoderEventArgs> Reordered
         {
             add
             {

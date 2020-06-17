@@ -579,7 +579,7 @@ namespace NUIWHome
                                     int idx = page + i;
                                     wrapperList[idx].RotaryItem = wrapperList[idx + 1].RotaryItem;
                                     animationManager.AnimatePathOnEdit(wrapperList[idx]);
-                                    wrapperList[idx].RotaryItem.CallReordered();
+                                    //wrapperList[idx].RotaryItem.CallReordered();
                                 }
                             }
                             else
@@ -589,13 +589,15 @@ namespace NUIWHome
                                     int idx = page + i;
                                     wrapperList[idx].RotaryItem = wrapperList[idx - 1].RotaryItem;
                                     animationManager.AnimatePathOnEdit(wrapperList[idx], false);
-                                    wrapperList[idx].RotaryItem.CallReordered();
+                                    //wrapperList[idx].RotaryItem.CallReordered();
                                 }
                             }
 
                             rotaryLayerView.ChagneItemPosition(SelectedItem, collisionItem);
                             wrapperList[page + colIdx].RotaryItem = SelectedItem;
-                            wrapperList[page + colIdx].RotaryItem.CallReordered();
+                            //wrapperList[page + colIdx].RotaryItem.CallReordered();
+
+                            wrapperList[page + selIdx].RotaryItem.CallReordered(page + selIdx, page + colIdx);
 
                             animationManager.PlayCoreAnimation();
                             rotaryTouchController.SelectedItem.Opacity = 1.0f;
