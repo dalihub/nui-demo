@@ -561,12 +561,23 @@ namespace NUIWHome
                             RotarySelectorItem collisionItem = item;
 
                             int page = (currentPage % 2) * ApplicationConstants.MAX_ITEM_COUNT;
+                            int prevPage = page;
                             int selIdx = (int)SelectedItem?.CurrentIndex;
+                            int prevSelIdx = selIdx;
                             int colIdx = (int)collisionItem?.CurrentIndex;
 
                             if (rotaryLayerView.GetMovingIcon())
                             {
                                 selIdx = rotaryLayerView.GetStartIndex();
+                                if (selIdx == (Common.ApplicationConstants.MAX_ITEM_COUNT - 1))
+                                {
+                                    prevPage += ApplicationConstants.MAX_ITEM_COUNT;
+                                }
+                                else if (selIdx == 0)
+                                {
+                                    prevPage -= ApplicationConstants.MAX_ITEM_COUNT;
+                                }
+
                                 wrapperList[page + selIdx].RotaryItem.Opacity = 0.0f;
                                 wrapperList[page + selIdx].RotaryItem.Position = new Position(70, 0);
                                 wrapperList[page + selIdx].RotaryItem.Hide();
@@ -597,7 +608,7 @@ namespace NUIWHome
                             wrapperList[page + colIdx].RotaryItem = SelectedItem;
                             //wrapperList[page + colIdx].RotaryItem.CallReordered();
 
-                            wrapperList[page + colIdx].RotaryItem.CallReordered(page + selIdx, page + colIdx);
+                            wrapperList[page + colIdx].RotaryItem.CallReordered(prevPage + prevSelIdx, page + colIdx);
 
                             animationManager.PlayCoreAnimation();
                             rotaryTouchController.SelectedItem.Opacity = 1.0f;
