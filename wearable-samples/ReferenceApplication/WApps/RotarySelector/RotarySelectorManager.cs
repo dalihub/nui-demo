@@ -597,7 +597,7 @@ namespace NUIWHome
                             wrapperList[page + colIdx].RotaryItem = SelectedItem;
                             //wrapperList[page + colIdx].RotaryItem.CallReordered();
 
-                            wrapperList[page + selIdx].RotaryItem.CallReordered(page + selIdx, page + colIdx);
+                            wrapperList[page + colIdx].RotaryItem.CallReordered(page + selIdx, page + colIdx);
 
                             animationManager.PlayCoreAnimation();
                             rotaryTouchController.SelectedItem.Opacity = 1.0f;
