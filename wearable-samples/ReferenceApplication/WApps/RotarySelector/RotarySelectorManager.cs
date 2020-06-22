@@ -350,6 +350,10 @@ namespace NUIWHome
 
         internal void AppendItem(RotarySelectorItem item)
         {
+            if (isEditMode)
+            {
+                item.AddDeleteIcon(-1);
+            }
             rotaryLayerView.AppendItem(item);
             InitItem(item);
             ReWrappingAllItems();
@@ -358,6 +362,10 @@ namespace NUIWHome
 
         internal void PrependItem(RotarySelectorItem item)
         {
+            if (isEditMode)
+            {
+                item.AddDeleteIcon(-1);
+            }
             rotaryLayerView.PrependItem(item);
             InitItem(item);
             ReWrappingAllItems();
@@ -365,6 +373,10 @@ namespace NUIWHome
 
         internal void InsertItem(int index, RotarySelectorItem item)
         {
+            if(isEditMode)
+            {
+                item.AddDeleteIcon(-1);
+            }
             rotaryLayerView.InsertItem(index, item);
             InitItem(item);
             ReWrappingAllItems();
