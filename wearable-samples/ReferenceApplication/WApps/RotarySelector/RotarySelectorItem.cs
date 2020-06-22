@@ -32,6 +32,11 @@ namespace NUIWHome
 
         internal int CurrentIndex { get; set; }
 
+
+        private RotaryBadege itemBadge;
+        public int Badge { get; set; }
+
+        private RotaryBadege deleteBadge;
         public bool IsDeleteAble { get; set; }
 
         /// <summary>
@@ -42,12 +47,33 @@ namespace NUIWHome
             PivotPoint = Tizen.NUI.PivotPoint.Center;
             PositionUsesPivotPoint = true;
             IsDeleteAble = true;
-
-
         }
-        private RotaryDeleteBadege deleteBadge;
 
-        public void AddDeleteIcon(int idx)
+        internal void EnableBadge()
+        {
+            if (Badge <= 0)
+            {
+                return;
+            }
+            if (itemBadge == null)
+            {
+                itemBadge = new RotaryBadege(1);
+                itemBadge.SetRightSide();
+                itemBadge.SetBadgeNumber(Badge);
+            }
+            this.Add(itemBadge);
+        }
+        internal void RemoveBadgeIcon()
+        {
+            if (itemBadge != null)
+            {
+                itemBadge.Unparent();
+                itemBadge.Dispose();
+                itemBadge = null;
+            }
+        }
+
+        internal void AddDeleteIcon(int idx)
         {
             if(!IsDeleteAble)
             {
@@ -55,22 +81,14 @@ namespace NUIWHome
             }
             if (deleteBadge == null)
             {
-                deleteBadge = new RotaryDeleteBadege();
-            }
-            //if(idx % Common.ApplicationConstants.MAX_ITEM_COUNT <= 4)
-            {
+                deleteBadge = new RotaryBadege(0);
                 deleteBadge.SetRightSide();
+                deleteBadge.TouchEvent += DeleteBadge_TouchEvent;
             }
-            //else
-            {
-                // deleteBadge.SetLeftSide();
-            }
-            deleteBadge.TouchEvent += DeleteBadge_TouchEvent;
             this.Add(deleteBadge);
         }
 
-
-        public void RemoveDeleteIcon()
+        internal void RemoveDeleteIcon()
         {
             if (deleteBadge != null)
             {
