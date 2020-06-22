@@ -187,6 +187,7 @@ namespace NUIWHome
                 int idx = 0;
                 foreach (RotarySelectorItem item in rotaryLayerView.RotaryItemList)
                 {
+                    item.RemoveBadgeIcon();
                     item.AddDeleteIcon(idx++);
                     item.Touch_DeleteBadgeHandler += Item_Touch_DeleteBadgeHandler;
                 }
@@ -197,6 +198,7 @@ namespace NUIWHome
                 IsPaging = false;
                 foreach (RotarySelectorItem item in rotaryLayerView.RotaryItemList)
                 {
+                    item.EnableBadge();
                     item.RemoveDeleteIcon();
                 }
 
@@ -347,13 +349,21 @@ namespace NUIWHome
             item.OnItemSelected += OnItemSelected;
             item.TouchEvent += Item_TouchEvent;
         }
-
-        internal void AppendItem(RotarySelectorItem item)
+        private void SetBadge(RotarySelectorItem item)
         {
             if (isEditMode)
             {
                 item.AddDeleteIcon(-1);
             }
+            else
+            {
+                item.EnableBadge();
+            }
+        }
+
+        internal void AppendItem(RotarySelectorItem item)
+        {
+            SetBadge(item);
             rotaryLayerView.AppendItem(item);
             InitItem(item);
             ReWrappingAllItems();
@@ -362,10 +372,7 @@ namespace NUIWHome
 
         internal void PrependItem(RotarySelectorItem item)
         {
-            if (isEditMode)
-            {
-                item.AddDeleteIcon(-1);
-            }
+            SetBadge(item);
             rotaryLayerView.PrependItem(item);
             InitItem(item);
             ReWrappingAllItems();
@@ -373,10 +380,7 @@ namespace NUIWHome
 
         internal void InsertItem(int index, RotarySelectorItem item)
         {
-            if(isEditMode)
-            {
-                item.AddDeleteIcon(-1);
-            }
+            SetBadge(item);
             rotaryLayerView.InsertItem(index, item);
             InitItem(item);
             ReWrappingAllItems();

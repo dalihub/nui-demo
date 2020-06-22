@@ -26,22 +26,50 @@ namespace NUIWHome
     /// <summary>
     /// RotarySelector delete badge
     /// </summary>
-    public class RotaryDeleteBadege : View
+    public class RotaryBadege : View
     {
         /// <summary>
         /// </summary>
         public int CurrentIndex { get; set; }
         public int PrevIndex { get; set; }
+        public TextLabel number;
 
         /// <summary>
         /// Creates a new instance of a RotaryDeleteBadege.
         /// </summary>
-        public RotaryDeleteBadege()
+        public RotaryBadege(int res)
         {
             Size = new Size(30, 30);
-            //BackgroundColor = Color.Red;
-            BackgroundImage = CommonResource.GetResourcePath() + "b_home_badge_delete_icon.png";
+            ParentOrigin = Tizen.NUI.ParentOrigin.Center;
+            PivotPoint = Tizen.NUI.PivotPoint.Center;
             PositionUsesPivotPoint = true;
+            //BackgroundColor = Color.Red;
+            if (res == 0)
+            {
+                BackgroundImage = CommonResource.GetResourcePath() + "b_home_badge_delete_icon.png";
+            }
+            else if(res == 1)
+            {
+                BackgroundImage = CommonResource.GetResourcePath() + "b_home_screen_badge.png";
+                number = new TextLabel()
+                {
+                    Size = new Size(30, 30),
+                    TextColor = Color.White,
+                    PointSize = 4.0f,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    PositionUsesPivotPoint = true,
+                };
+                this.Add(number);
+            }
+            PositionUsesPivotPoint = true;
+        }
+
+        public void SetBadgeNumber(int i)
+        {
+            number.Text = "" + i;
         }
 
         public void SetRightSide()
