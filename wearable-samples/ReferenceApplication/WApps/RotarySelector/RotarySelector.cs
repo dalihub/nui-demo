@@ -123,11 +123,13 @@ namespace NUIWHome
         public void PrependItem(RotarySelectorItem item)
         {
             rotarySelectorManager.PrependItem(item);
+            longPressDetector.Attach(item);
         }
 
         public void InsertItem(int index, RotarySelectorItem item)
         {
             rotarySelectorManager.InsertItem(index, item);
+            longPressDetector.Attach(item);
         }
 
         public void DeleteItem(RotarySelectorItem item)
