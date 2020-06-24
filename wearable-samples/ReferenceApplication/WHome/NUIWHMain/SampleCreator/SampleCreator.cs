@@ -298,11 +298,11 @@ namespace NUIWHMain
             view.Add(pagination);
             
             // Screen Touch Event
-            scrollable.ScrollAnimationEndEvent += Scroll_AnimationEnd;
+            scrollable.ScrollAnimationEnded += Scroll_AnimationEnded;
             return view;
         }
 
-        void Scroll_AnimationEnd(object source, ScrollableBase.ScrollEventArgs e)
+        void Scroll_AnimationEnded(object source, ScrollableBase.ScrollEventArgs e)
         {
             int index = scrollable.CurrentPage;
 
