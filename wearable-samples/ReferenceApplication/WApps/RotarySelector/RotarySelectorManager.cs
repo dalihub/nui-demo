@@ -217,6 +217,10 @@ namespace NUIWHome
         }
         private void Item_Touch_DeleteBadgeHandler(object sender, EventArgs e)
         {
+            if(rotaryTouchController.SelectedItem)
+            {
+                return;
+            }
             //
             if (!isDetector() || !animationManager.IsAnimating)
             {
@@ -393,7 +397,6 @@ namespace NUIWHome
         {
             if (rotaryLayerView.RotaryItemList.Count == 1)
             {
-                Tizen.Log.Error("MYLOG", "Last Item");
                 return;
             }
             int page = currentPage * ApplicationConstants.MAX_ITEM_COUNT;
@@ -673,13 +676,13 @@ namespace NUIWHome
                     rotaryTouchController.SelectedItem.RaiseToTop();
                     rotaryTouchController.SelectedItem.Opacity = 1.0f;
                     rotaryTouchController.SelectedItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
-                    Window.Instance.TouchEvent -= Instance_TouchEvent;
 
                     int wrapperIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT;
                     wrapperList[wrapperIdx + (int)rotaryTouchController.SelectedItem.CurrentIndex].RotaryItem = rotaryTouchController.SelectedItem;
 
                     rotaryTouchController.SelectedItem.ShowDeleteIcon();
                     rotaryTouchController.SelectedItem = null;
+                    Window.Instance.TouchEvent -= Instance_TouchEvent;
                 }
                 else if ((e.Touch.GetState(0) == PointStateType.Motion))
                 {

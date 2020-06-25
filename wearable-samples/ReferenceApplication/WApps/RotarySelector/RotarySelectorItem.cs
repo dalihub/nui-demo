@@ -117,21 +117,19 @@ namespace NUIWHome
                 CallDelete();
                 Touch_DeleteBadgeHandler(this, e);
             }
-            return true;
+            return false;
         }
         public delegate void ItemSelectedHandler(RotarySelectorItem item);
         public event ItemSelectedHandler OnItemSelected;
 
         internal void SelectedItem()
         {
-            Tizen.Log.Error("MYLOG", "Selected Item");
             OnItemSelected(this);
             CallSelect();
         }
 
         internal void ClickedItem()
         {
-            Tizen.Log.Error("MYLOG", "ClickedItem");
             OnItemSelected(this);
             CallSelect();
             CallClick();
@@ -188,7 +186,6 @@ namespace NUIWHome
 
             if (clickedHandler != null)
             {
-                Tizen.Log.Error("MYLOG", "clicked");
                 clickedHandler(this, e);
             }
         }
