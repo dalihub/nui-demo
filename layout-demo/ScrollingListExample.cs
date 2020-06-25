@@ -110,8 +110,8 @@ namespace LayoutDemo
             };
 
             scrollable.Add(listViewContainer);
-            scrollable.ScrollAnimationEndEvent += OnScrollEnded;
-            scrollable.ScrollDragStartEvent += OnScrollStarted;
+            scrollable.ScrollAnimationEnded += OnScrollEnded;
+            scrollable.ScrollDragStarted += OnScrollStarted;
 
             root.Add(scrollable);
         }

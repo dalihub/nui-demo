@@ -98,7 +98,7 @@ public class CircularPaginationExample : NUIApplication
         window.WheelEvent += Pagination_WheelEvent;
 
         // Screen Touch Event
-        scrollable.ScrollAnimationEndEvent  += Scroll_AnimationEnd;
+        scrollable.ScrollAnimationEnded  += Scroll_AnimationEnded;
     }
 
     private void Pagination_WheelEvent(object source, Window.WheelEventArgs e)
@@ -127,7 +127,7 @@ public class CircularPaginationExample : NUIApplication
     }
 
     // There are two ways to set the current selected index using ScrollableBase event.
-    void Scroll_AnimationEnd(object source, ScrollableBase.ScrollEventArgs e)
+    void Scroll_AnimationEnded(object source, ScrollableBase.ScrollEventArgs e)
     {
         ///////////////////// 1. Using the parameter of the event /////////////////////
         // e.Position.X means the top-left position of ScrollableBase and Container.
