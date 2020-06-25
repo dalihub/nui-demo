@@ -232,6 +232,11 @@ namespace NUIWHome
             }
         }
 
+        internal string GetMovingIconRes()
+        {
+            return temporaryMovingIcon.BackgroundImage;
+        }
+
 
         internal void RemoveMovingIcon()
         {

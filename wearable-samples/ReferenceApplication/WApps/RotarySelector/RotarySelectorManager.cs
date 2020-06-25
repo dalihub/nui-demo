@@ -123,8 +123,15 @@ namespace NUIWHome
             {
                 if (rotaryTouchController.SelectedItem != null)
                 {
-                    rotaryLayerView.AddMovingIcon(rotaryTouchController.SelectedItem);
-                    rotaryLayerView.SetRight();
+                    if((rotaryLayerView.GetMovingIcon() != null) && (rotaryLayerView.GetMovingIconRes() == rotaryTouchController.SelectedItem.ResourceUrl))
+                    {
+                        rotaryLayerView.RemoveMovingIcon();
+                    }
+                    else
+                    {
+                        rotaryLayerView.AddMovingIcon(rotaryTouchController.SelectedItem);
+                        rotaryLayerView.SetRight();
+                    }
                 }
             }
             return;
@@ -172,8 +179,15 @@ namespace NUIWHome
             {
                 if (rotaryTouchController.SelectedItem != null)
                 {
-                    rotaryLayerView.AddMovingIcon(rotaryTouchController.SelectedItem);
-                    rotaryLayerView.SetLeft();
+                    if ((rotaryLayerView.GetMovingIcon() != null) && (rotaryLayerView.GetMovingIconRes() == rotaryTouchController.SelectedItem.ResourceUrl))
+                    {
+                        rotaryLayerView.RemoveMovingIcon();
+                    }
+                    else
+                    {
+                        rotaryLayerView.AddMovingIcon(rotaryTouchController.SelectedItem);
+                        rotaryLayerView.SetLeft();
+                    }
                 }
             }
         }
@@ -678,8 +692,15 @@ namespace NUIWHome
                     rotaryTouchController.SelectedItem.Scale = new Vector3(1.0f, 1.0f, 1.0f);
 
                     int wrapperIdx = GetViewIndex(currentPage) * ApplicationConstants.MAX_ITEM_COUNT;
-                    wrapperList[wrapperIdx + (int)rotaryTouchController.SelectedItem.CurrentIndex].RotaryItem = rotaryTouchController.SelectedItem;
-
+                    int moveIdx = wrapperIdx + (int)rotaryTouchController.SelectedItem.CurrentIndex;
+                    if(wrapperList[moveIdx].RotaryItem != null)
+                    {
+                        wrapperList[moveIdx].RotaryItem = rotaryTouchController.SelectedItem;
+                    }
+                    else
+                    {
+                        rotaryTouchController.SelectedItem.Hide();
+                    }
                     rotaryTouchController.SelectedItem.ShowDeleteIcon();
                     rotaryTouchController.SelectedItem = null;
                     Window.Instance.TouchEvent -= Instance_TouchEvent;
@@ -695,7 +716,6 @@ namespace NUIWHome
                     {
                         rotaryTouchController.SelectedItem.Position = mousePosition;
                         rotaryTouchController.SelectedItem.HideDeleteIcon();
-
                     }
 
                     if (mousePosition.X <= 50 && mousePosition.Y >= 100 && mousePosition.Y <= 260)
