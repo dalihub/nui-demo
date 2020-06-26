@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI;
 using NUIWHome.Common;
+using Tizen.NUI.Wearable;
 
 namespace NUIWHome
 {
@@ -34,7 +35,7 @@ namespace NUIWHome
         /// </summary>
         internal RotaryLayerView()
         {
-            this.BackgroundColor = Color.Black;
+            //this.BackgroundColor = Color.Black;
 
             itemList = new List<RotarySelectorItem>();
 
@@ -171,6 +172,18 @@ namespace NUIWHome
             editBGView?.AnimateBG(isRight);
         }
 
+        internal void ChangePaginationParent(CircularPagination pagination)
+        {
+            pagination.Unparent();
+            if(editBGView == null)
+            {
+                this.Add(pagination);
+            }
+            else
+            {
+                editBGView.Add(pagination);
+            }
+        }
         internal void ChangeMode(bool isEditMode, int currentPage, int lastPage)
         {
 

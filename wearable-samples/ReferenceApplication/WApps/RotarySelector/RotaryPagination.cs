@@ -3,79 +3,37 @@ using System.Collections.Generic;
 using System.Text;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Wearable;
 
 namespace NUIWHome
 {
-    public class RotaryPagination : View
+    public class RotaryPagination : CircularPagination
     {
-        private List<View> pageNavigatorList;
+        //private List<View> pageNavigatorList;
 
         public RotaryPagination()
         {
-            var layout = new LinearLayout();
-            layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-            Layout = layout;
-            pageNavigatorList = new List<View>();
+            Size = new Size(360, 360);
 
-            Position = new Position(0, 5);
-            WidthResizePolicy = ResizePolicyType.FitToChildren;
-            HeightResizePolicy = ResizePolicyType.FitToChildren;
-            ParentOrigin = Tizen.NUI.ParentOrigin.TopCenter;
-            PivotPoint = Tizen.NUI.PivotPoint.TopCenter;
+            // Set CircularPagination properties, such as Indicator size, count, and images.
+            IndicatorSize = new Size(10, 10);
+            IndicatorCount = 0;
+            SelectedIndex = 0;
+
+            // Positioning it to the center
+            ParentOrigin = Tizen.NUI.ParentOrigin.Center;
+            PivotPoint = Tizen.NUI.PivotPoint.Center;
             PositionUsesPivotPoint = true;
-
         }
-
-        public void CreatePagination(int pageCount)
+        
+        public void SetIndicatorCount(int pageCount)
         {
-            if (pageNavigatorList.Count >= pageCount)
-            {
-                return;
-            }
-
-
-            if (pageNavigatorList.Count > 0)
-            {
-                UnSelectNavi(pageNavigatorList[pageNavigatorList.Count - 1]);
-            }
-
-            View pageNavi = new View()
-            {
-                Size = new Size(6, 6),
-                CornerRadius = 3.0f,
-                BackgroundColor = Color.White,
-                Margin = new Extents(5, 5, 0, 0),
-            };
-            SelectNavi(pageNavi);
-
-            pageNavigatorList.Add(pageNavi);
-            this.Add(pageNavi);
+            IndicatorCount = pageCount;
         }
-
-        public void DeletePage(int idx)
-        {
-            if (idx >= 0 && idx < pageNavigatorList.Count)
-            {
-                pageNavigatorList[idx]?.Unparent();
-                pageNavigatorList.RemoveAt(idx);
-            }
-        }
-
+        
         public void SetCurrentPage(int currentPage)
         {
-            int count = pageNavigatorList.Count;
-            for (int i = 0; i < count; i++)
-            {
-                int idx = count - i - 1;
-                if (idx == count - currentPage - 1)
-                {
-                    SelectNavi(pageNavigatorList[idx]);
-                }
-                else
-                {
-                    UnSelectNavi(pageNavigatorList[idx]);
-                }
-            }
+            SelectedIndex = IndicatorCount - currentPage - 1;
         }
 
         private void UnSelectNavi(View navi)
