@@ -116,8 +116,13 @@ namespace NUIWHome
             {
                 CallDelete();
                 Touch_DeleteBadgeHandler(this, e);
+                return false;
             }
-            return false;
+            if (e.Touch.GetState(0) == PointStateType.Motion)
+            {
+                return false;
+            }
+            return true;
         }
         public delegate void ItemSelectedHandler(RotarySelectorItem item);
         public event ItemSelectedHandler OnItemSelected;
