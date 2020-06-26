@@ -224,6 +224,8 @@ namespace NUIWHome
             }
 
             rotaryLayerView.ChangeMode(isEditMode, currentPage, lastPage);
+            rotaryLayerView.ChangePaginationParent(GetRotaryPagination());
+
             animationManager.AnimateChangeState(rotaryLayerView, isEditMode);
             rotaryLayerView.RegisterPageMoveOnEdit(MovePageOnEditMode);
 
@@ -429,7 +431,7 @@ namespace NUIWHome
                 //If delete last item on last page, move prev page & delete last page
                 if (item.CurrentIndex == 0 && pageIdx == 1)
                 {
-                    pagination.DeletePage(currentPage);
+                    pagination.SetIndicatorCount(currentPage);
                     PrevPage();
                     return;
                 }
@@ -439,7 +441,7 @@ namespace NUIWHome
                 //If delete Last Item, delete page
                 if (pageIdx == 1)
                 {
-                    pagination.DeletePage(currentPage);
+                    pagination.SetIndicatorCount(currentPage);
                 }
             }
             pagination.SetCurrentPage(currentPage);
@@ -491,7 +493,8 @@ namespace NUIWHome
 
             if (lastPage <= pageCnt)
             {
-                pagination.CreatePagination(pageCnt);
+                pagination.SetIndicatorCount(pageCnt);
+                pagination.SetCurrentPage(currentPage);
             }
             lastPage = pageCnt;
 

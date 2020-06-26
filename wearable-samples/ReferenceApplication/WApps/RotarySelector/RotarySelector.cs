@@ -27,6 +27,7 @@ namespace NUIWHome
         {
 
             rotarySelectorManager = new RotarySelectorManager(new Size(360, 360));
+            this.Add(rotarySelectorManager.GetRotaryPagination());
             this.Add(rotarySelectorManager.GetRotaryLayerView());
 
             longPressDetector = new LongPressGestureDetector();
@@ -39,7 +40,6 @@ namespace NUIWHome
 
             this.WheelEvent += RotarySelector_WheelEvent;
 
-            this.Add(rotarySelectorManager.GetRotaryPagination());
         }
 
         private bool RotarySelector_WheelEvent(object source, WheelEventArgs e)
