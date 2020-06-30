@@ -178,6 +178,7 @@ namespace NUIWHome
             if(editBGView == null)
             {
                 this.Add(pagination);
+                pagination.LowerToBottom();
             }
             else
             {
