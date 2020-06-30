@@ -79,6 +79,7 @@ namespace NUIWHome
             {
                 return;
             }
+            RemoveDeleteIcon();
             if (deleteBadge == null)
             {
                 deleteBadge = new RotaryBadege(0);
