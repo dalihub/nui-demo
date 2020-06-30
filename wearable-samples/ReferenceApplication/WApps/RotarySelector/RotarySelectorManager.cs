@@ -374,6 +374,7 @@ namespace NUIWHome
             if (isEditMode)
             {
                 item.AddDeleteIcon(-1);
+                item.Touch_DeleteBadgeHandler += Item_Touch_DeleteBadgeHandler;
             }
             else
             {
