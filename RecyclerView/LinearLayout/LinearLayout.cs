@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,7 +106,7 @@ namespace Example
                 SubName = new TextLabel()
                 {
                     PixelSize = 14,
-                    Margin = new Extents(0,0,5,0),
+                    Margin = new Extents(0, 0, 5, 0),
                     TextColor = new Color("#d47b3f"),
                 };
                 infoContainer.Add(SubName);
@@ -114,7 +114,7 @@ namespace Example
                 Price = new TextLabel()
                 {
                     PixelSize = 14,
-                    Margin = new Extents(0,0,5,0),
+                    Margin = new Extents(0, 0, 5, 0),
                 };
                 infoContainer.Add(Price);
             }
@@ -137,10 +137,10 @@ namespace Example
                 MenuItem target = item as MenuItem;
                 Menu menu = Data[target.DataIndex] as Menu;
 
-                target.Picture.ResourceUrl = "./res/"+menu.SubName+".jpg";
+                target.Picture.ResourceUrl = "./res/" + menu.SubName + ".jpg";
                 target.Picture.FittingMode = FittingModeType.ScaleToFill;
 
-                target.Name.Text = "["+(target.DataIndex+1)+"] "+menu.Name;
+                target.Name.Text = "[" + (target.DataIndex + 1) + "] " + menu.Name;
                 target.SubName.Text = menu.SubName;
                 target.Price.Text = menu.Price;
 
@@ -178,7 +178,8 @@ namespace Example
                 {
                     Data = DummyData.CreateDummyMenuTap(20)
                 },
-                LayoutManager = new LinearRecycleLayoutManager(){
+                LayoutManager = new LinearRecycleLayoutManager()
+                {
                     LayoutOrientation = RecycleLayoutManager.Orientation.Horizontal
                 },
                 ScrollingDirection = ScrollableBase.Direction.Horizontal,
@@ -213,9 +214,9 @@ namespace Example
                 switch (eventArgs.Key.KeyPressedName)
                 {
                     case "Up":
-                    {
-                        break;
-                    }
+                        {
+                            break;
+                        }
                     case "Escape":
                     case "Back":
                         {

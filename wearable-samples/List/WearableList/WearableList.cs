@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -135,11 +135,14 @@ class WearableListExample : NUIApplication
             });
         }
 
-        ListAdapter adapter = new ListAdapter();
-        adapter.Data = data;
-
-        WearableList wearableList = new WearableList(adapter);
-        wearableList.Size = new Size(360, 360);
+        WearableList wearableList = new WearableList()
+        {
+            Size = new Size(360, 360),
+            Adapter = new ListAdapter()
+            {
+                Data = data
+            }
+        };
         wearableList.SetFocus(1, false);
 
         NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(wearableList);

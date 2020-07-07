@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -108,16 +108,16 @@ namespace Example
             };
             root.Add(horizontalLabel);
 
-            SampleAdapter horizontalAdapter = new SampleAdapter();
-            horizontalAdapter.Data = DummyData.CreateDummyPictureData(73);
-
             RecyclerView horizontalGrid = new RecyclerView()
             {
-                Adapter = horizontalAdapter,
+                Adapter = new SampleAdapter()
+                {
+                    Data = DummyData.CreateDummyPictureData(73)
+                },
                 LayoutManager = new GridRecycleLayoutManager()
                 {
-                    LayoutOrientation = RecycleLayoutManager.Orientation.Horizontal,
-                    Row = 2,
+                    LayoutOrientation = RecycleLayoutManager.Orientation.Vertical,
+                    Rows = 2,
                 },
                 ScrollingDirection = ScrollableBase.Direction.Horizontal,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -137,18 +137,19 @@ namespace Example
             };
             root.Add(verticalLabel);
 
-            SampleAdapter verticalAdapter = new SampleAdapter();
-            verticalAdapter.Data = DummyData.CreateDummyPictureData(132);
-
             RecyclerView verticalGrid = new RecyclerView()
             {
-                Adapter = verticalAdapter,
+                Adapter = new SampleAdapter()
+                {
+                    Data = DummyData.CreateDummyPictureData(132)
+                },
                 LayoutManager = new GridRecycleLayoutManager()
                 {
-                    LayoutOrientation = RecycleLayoutManager.Orientation.Vertical,
-                    Column = 4,
+                    LayoutOrientation = RecycleLayoutManager.Orientation.Horizontal,
+                    Columns = 4,
                 },
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
                 Weight = 1,
                 TotalItemCount = 40,
             };
