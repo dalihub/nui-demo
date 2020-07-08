@@ -171,11 +171,11 @@ namespace WearableSample
 
     class MessageList : WearableList
     {
-        public MessageList(MessageListAdaptor adapter): base(adapter)
+        public MessageList(MessageListAdaptor adapter): base()
         {
-            FlickAnimationSpeed = 0.7f;
-            FlickDistanceMultiplierRange = new Vector2(0.2f, 1.3f);
-            FlickThreshold = 0.1f;
+            //FlickAnimationSpeed = 0.7f;
+            //FlickDistanceMultiplierRange = new Vector2(0.2f, 1.3f);
+            //FlickThreshold = 0.1f;
         }
     }
 }
