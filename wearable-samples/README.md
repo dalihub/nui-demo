@@ -26,6 +26,8 @@
     * [Toast Notification](./Notification/ToastNotification/)
 * Popup
     * [Wearable Popup](./Popup/WearablePopup/)
+* Slider
+    * [Circular Slider](./Slider/CircularSlider)
 <br/><br/>
 * Reference Application
 
@@ -35,18 +37,12 @@
     <th><img src="./res/wapps.png"/></th>
     <th><img src="./res/wgallery.png"/></th>
     <th><img src="./res/wmessege.png"/></th>
+    <th></th>
   </tr>
   <tr>
     <td><a href="./ReferenceApplication/WApps/README.md">WApps</a></td>
     <td><a href="./ReferenceApplication/WGallery/README.md">WGallery</a></td>
     <td><a href="./ReferenceApplication/WMessage/README.md">WMessage</a></td>
+    <td><a href="./ReferenceApplication/WHome">WHome</a></td>
   </tr>
 </table>
-
-
-# Coming Soon
-
-* Slider
-    * [Circular Slider](./Slider/CircularSlider)
-* Reference Application
-    * WHome
