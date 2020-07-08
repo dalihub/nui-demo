@@ -296,13 +296,13 @@ namespace NUIWHMain
             }
             view.Add(scrollable);
             view.Add(pagination);
-            
+
             // Screen Touch Event
-            scrollable.ScrollAnimationEnded += Scroll_AnimationEnded;
+            scrollable.ScrollAnimationEnded += Scrollable_ScrollAnimationEnded;
             return view;
         }
 
-        void Scroll_AnimationEnded(object source, ScrollableBase.ScrollEventArgs e)
+        private void Scrollable_ScrollAnimationEnded(object sender, ScrollEventArgs e)
         {
             int index = scrollable.CurrentPage;
 
@@ -311,7 +311,6 @@ namespace NUIWHMain
                 pagination.SelectedIndex = index;
             }
         }
-
 
         class ListData
         {
@@ -422,7 +421,8 @@ namespace NUIWHMain
             ListAdapter adapter = new ListAdapter();
             adapter.Data = data;
 
-            WearableList wearableList = new WearableList(adapter);
+            WearableList wearableList = new WearableList();
+            wearableList.Adapter = adapter;
             wearableList.Size = new Size(360, 360);
             wearableList.SetFocus(1, false);
             return wearableList;

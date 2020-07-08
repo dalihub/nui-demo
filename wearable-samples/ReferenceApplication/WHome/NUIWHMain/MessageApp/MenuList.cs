@@ -102,7 +102,7 @@ namespace WearableSample
 
     class MenuList : WearableList
     {
-        public MenuList(MenuListAdapter adapter) : base(adapter)
+        public MenuList(MenuListAdapter adapter) : base()
         {
         }
     }
