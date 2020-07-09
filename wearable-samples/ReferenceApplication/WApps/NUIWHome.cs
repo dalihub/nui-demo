@@ -53,7 +53,7 @@ namespace NUIWHome
             };
 
             List<CommonResource.ResourceData> imageFileList = SaveImageIconList();
-            for (int i = 0; i < imageFileList.Count; i++)
+            for (int i = 0; i < 12/*imageFileList.Count*/; i++)
             {
                 RotarySelectorItem item = new RotarySelectorItem()
                 {
@@ -76,6 +76,10 @@ namespace NUIWHome
         {
             RotarySelectorItem item = sender as RotarySelectorItem;
             Tizen.Log.Error("MYLOG", "clicked item text :" + item.MainText);
+            var items = rotarySelector.GetRotarySelectorItems();
+            RotarySelectorItem last = items[items.Count - 1];
+            float opacity = last.Opacity != 0.5f ? 0.5f : 1.0f;
+            last.Opacity = opacity;
         }
 
         private void Item_Selected(object sender, EventArgs e)
