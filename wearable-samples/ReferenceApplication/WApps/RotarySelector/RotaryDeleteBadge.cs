@@ -26,7 +26,7 @@ namespace NUIWHome
     /// <summary>
     /// RotarySelector delete badge
     /// </summary>
-    public class RotaryBadege : View
+    public class RotaryBadege : ImageView
     {
         /// <summary>
         /// </summary>
@@ -39,18 +39,16 @@ namespace NUIWHome
         /// </summary>
         public RotaryBadege(int res)
         {
-            Size = new Size(30, 30);
             ParentOrigin = Tizen.NUI.ParentOrigin.Center;
             PivotPoint = Tizen.NUI.PivotPoint.Center;
             PositionUsesPivotPoint = true;
-            //BackgroundColor = Color.Red;
             if (res == 0)
             {
-                BackgroundImage = CommonResource.GetResourcePath() + "b_home_badge_delete_icon.png";
+                ResourceUrl = CommonResource.GetResourcePath() + "b_home_badge_delete_icon.png";
             }
             else if(res == 1)
             {
-                BackgroundImage = CommonResource.GetResourcePath() + "b_home_screen_badge.png";
+                ResourceUrl = CommonResource.GetResourcePath() + "Rectangle_12.svg";
                 number = new TextLabel()
                 {
                     Size = new Size(30, 30),
@@ -69,7 +67,28 @@ namespace NUIWHome
 
         public void SetBadgeNumber(int i)
         {
-            number.Text = "" + i;
+            if(i > 999)
+            {
+                number.Text = "999+";
+            }
+            else
+            {
+                number.Text = "" + i;
+            }
+
+            if(i < 10)
+            {
+                ResourceUrl = CommonResource.GetResourcePath() + "bg_2.9.png";
+            }
+            else if(i < 99)
+            {
+                ResourceUrl = CommonResource.GetResourcePath() + "bg_2.9.png";
+            }
+            else
+            {
+                ResourceUrl = CommonResource.GetResourcePath() + "bg_3.9.png";
+            }
+            Color = new Color(1.0f, 0.4f, 0.0f, 1.0f);
         }
 
         public void SetRightSide()
