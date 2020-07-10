@@ -152,12 +152,12 @@ namespace NUIWHome
                 rotaryItem.Position = new Position(pos.X + (isReverse ? 70 : -70), pos.Y); ;
 
                 animationCore.AnimateTo(rotaryItem, "Position", pos, 167 + sTime, 84 + sTime + 334, alphaSineOut33);
-                animationCore.AnimateTo(rotaryItem, "Opacity", 1.0f, 167 + sTime, 84 + sTime + 334, alphaSineOut33);
+                animationCore.AnimateTo(rotaryItem, "Opacity", rotaryItem.ItemOpacity, 167 + sTime, 84 + sTime + 334, alphaSineOut33);
             }
             else
             {
                 animationCore.AnimatePath(rotaryItem, mAniUtil.GetItemRotaryPath(wrapper, isReverse), Vector3.Zero, 200, 699, alphaGlideOut);
-                animationCore.AnimateTo(rotaryItem, "Opacity", 1.0f, 200, 300, alphaGlideOut);
+                animationCore.AnimateTo(rotaryItem, "Opacity", rotaryItem.ItemOpacity, 200, 300, alphaGlideOut);
             }
         }
 
@@ -167,7 +167,8 @@ namespace NUIWHome
         internal void AnimateHidePage(RotaryItemWrapper wrapper, bool isReverse = true, PageAnimationType type = PageAnimationType.Slide)
         {
             RotarySelectorItem rotaryItem = wrapper.RotaryItem;
-            rotaryItem.Opacity = 1.0f;
+            rotaryItem.ItemOpacity = rotaryItem.Opacity;
+            //rotaryItem.Opacity = 1.0f;
             hideItemList.Add(rotaryItem);
 
             if (type == PageAnimationType.Slide)

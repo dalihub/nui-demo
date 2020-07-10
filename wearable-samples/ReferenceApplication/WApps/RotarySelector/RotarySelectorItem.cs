@@ -39,6 +39,19 @@ namespace NUIWHome
         private RotaryBadege deleteBadge;
         public bool IsDeleteAble { get; set; }
 
+        private float itemOpacity = 1.0f;
+        public float ItemOpacity
+        {
+            get
+            {
+                return itemOpacity;
+            }
+            set
+            {
+                itemOpacity = value;
+            }
+        }
+
         /// <summary>
         /// Creates a new instance of a RotarySelectorItem.
         /// </summary>
