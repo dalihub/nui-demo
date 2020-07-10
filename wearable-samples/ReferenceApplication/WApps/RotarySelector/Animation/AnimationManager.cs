@@ -20,8 +20,11 @@ namespace NUIWHome
 
         internal bool IsAnimating = false;
 
+        private List<RotarySelectorItem> hideItemList;
+
         public AnimationManager()
         {
+            hideItemList = new List<RotarySelectorItem>();
             mAniUtil = new AnimationUtil();
             alphaGlideOut = mAniUtil.GetGlideOut();
             alphaSineOut33 = mAniUtil.GetSineOut33();
@@ -37,6 +40,11 @@ namespace NUIWHome
         private void AnimationCore_Finished(object sender, EventArgs e)
         {
             IsAnimating = false;
+            foreach(RotarySelectorItem item in hideItemList)
+            {
+                item.Hide();
+            }
+            hideItemList.Clear();
         }
 
         //Need to fix -> Change function name
@@ -131,6 +139,8 @@ namespace NUIWHome
         internal void AnimateShowPage(RotaryItemWrapper wrapper, bool isReverse = true, PageAnimationType type = PageAnimationType.Slide)
         {
             RotarySelectorItem rotaryItem = wrapper.RotaryItem;
+            rotaryItem.Show();
+            rotaryItem.Opacity = 0.0f;
             int wrapperIndex = wrapper.CurrentIndex;
 
             if (type == PageAnimationType.Slide)
@@ -157,8 +167,8 @@ namespace NUIWHome
         internal void AnimateHidePage(RotaryItemWrapper wrapper, bool isReverse = true, PageAnimationType type = PageAnimationType.Slide)
         {
             RotarySelectorItem rotaryItem = wrapper.RotaryItem;
-
             rotaryItem.Opacity = 1.0f;
+            hideItemList.Add(rotaryItem);
 
             if (type == PageAnimationType.Slide)
             {
@@ -167,6 +177,7 @@ namespace NUIWHome
 
                 animationCore.AnimateTo(rotaryItem, "Position", movePos, 0, 250, alphaGlideOut);
                 animationCore.AnimateTo(rotaryItem, "Opacity", 0.0f, 0, 250, alphaGlideOut);
+                animationCore.AnimateTo(rotaryItem, "Position", pos, 250, 250, alphaGlideOut);
             }
             else
             {
