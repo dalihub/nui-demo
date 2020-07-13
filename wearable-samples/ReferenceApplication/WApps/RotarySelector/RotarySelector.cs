@@ -39,7 +39,13 @@ namespace NUIWHome
             panDetector.Detected += PanDetector_Detected;
 
             this.WheelEvent += RotarySelector_WheelEvent;
+            Window.Instance.TouchEvent += Instance_TouchEvent;
 
+        }
+
+        private void Instance_TouchEvent(object sender, Window.TouchEventArgs e)
+        {
+            FocusManager.Instance.SetCurrentFocusView(this);
         }
 
         private bool RotarySelector_WheelEvent(object source, WheelEventArgs e)
@@ -107,6 +113,7 @@ namespace NUIWHome
             {
                 SetEditMode();
             }
+            FocusManager.Instance.SetCurrentFocusView(this);
         }
 
         public List<RotarySelectorItem> GetRotarySelectorItems()
