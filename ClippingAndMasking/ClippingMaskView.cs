@@ -50,7 +50,7 @@ namespace NUISample
              // Apply alpha masking
         "    gl_FragColor.a *= texture2D( sMaskTexture, vTexCoord ).a;\n" +
         "}\n";
-        
+
 
         /// <summary>
         /// View which is clipping image and applying mask
@@ -61,7 +61,7 @@ namespace NUISample
         {
             // Load mask image file and make PixelData
             PixelData pixelData = PixelBuffer.Convert(
-                ImageLoading.LoadImageFromFile( 
+                ImageLoading.LoadImageFromFile(
                     maskImageUrl,
                     new Size2D(),
                     FittingModeType.ScaleToFill
