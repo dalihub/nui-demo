@@ -26,7 +26,7 @@ namespace WearableSample
 
             contentBlurView = new GaussianBlurView(40, 3.0f, PixelFormat.RGBA8888, 1.0f, 1.0f, false)
             {
-                Size = new Size(360, 360),
+                Size2D = new Size2D(360, 360),
             };
             root.Add(contentBlurView);
 
