@@ -31,6 +31,8 @@ public class ComponentExample : NUIApplication
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
+        Tizen.NUI.Components.StyleManager.Instance.Theme = "wearable";
+
         var button1 = new CheckBox()
         {
             Size = new Size(100, 100),
