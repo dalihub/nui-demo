@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.ComponentExample" version="1.0.0">
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.NotificationToast" version="1.0.0">
   <profile name="common" />
-  <ui-application appid="org.tizen.example.ComponentExample"
-					exec="ComponentExample.dll"
+  <ui-application appid="org.tizen.example.NotificationToast"
+					exec="NotificationToast.dll"
 					type="dotnet"
 					multiple="false"
 					taskmanage="true"
