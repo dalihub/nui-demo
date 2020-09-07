@@ -31,7 +31,7 @@ public class ComponentExample : NUIApplication
         Window window = NUIApplication.GetDefaultWindow();
         window.BackgroundColor = Color.Black;
 
-        var button = new Switch()
+        var button = new Button()
         {
             Text = "Hello World!",
             IconURL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "icon.png",
