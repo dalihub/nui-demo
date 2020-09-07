@@ -7,7 +7,7 @@ The wearable CheckBox uses Lottie to express touch animation.
 
 The Lottie image would look like,
 
-<div style="text-align:center;width:100%;"><img src="./res/icon.gif" /></div>
+<div style="text-align:center;width:100%;"><img src="./preview/icon.gif" /></div>
 
 * Selection  :  0 ~ 18 frames
 * Unselection: 19 ~ 36 frames

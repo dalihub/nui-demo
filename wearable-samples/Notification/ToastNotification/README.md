@@ -16,7 +16,7 @@ This example shows how to use Notification and apply animation on post/dismiss.
 * It needs privilege `http://tizen.org/privilege/window.priority.set`.
 
 ## Sample Application
-<div style="text-align:center;width:100%;"><img src="./res/preview.gif" /></div>
+<div style="text-align:center;width:100%;"><img src="./preview/preview.gif" /></div>
 
 Please refer full application code [here](./ComponentExample.cs).
 

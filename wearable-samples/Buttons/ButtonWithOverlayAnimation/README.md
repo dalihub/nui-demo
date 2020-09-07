@@ -7,7 +7,7 @@ This example shows applying an `OverlayAnimationButtonStyle` to a button.
 * This example used predefined style provided by Tizen.NUI.Component package. For more detail, see [OverlayAnimationButtonStyle](https://github.com/rabbitfor/TizenFX/blob/master/src/Tizen.NUI.Components/PreloadStyle/OverlayAnimationButtonStyle.cs). You can refer this code to make your own style.
 
 ## Sample Application
-<div style="text-align:center;width:100%;"><img src="./res/screen-shot.gif" /></div>
+<div style="text-align:center;width:100%;"><img src="./preview/screen-shot.gif" /></div>
 
 ```C#
 public class ComponentExample : NUIApplication

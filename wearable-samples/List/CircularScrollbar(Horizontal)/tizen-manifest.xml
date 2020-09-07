@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.CircularScrollBarExample" version="1.0.0">
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.CircularScrollBarH" version="1.0.0">
   <profile name="common" />
-  <ui-application appid="org.tizen.example.CircularScrollBarExample"
-					exec="CircularScrollBarExample.dll"
+  <ui-application appid="org.tizen.example.CircularScrollBarH"
+					exec="CircularScrollBarH.dll"
 					type="dotnet"
 					multiple="false"
 					taskmanage="true"
 					nodisplay="false"
 					launch_mode="single"
 					api-version="6">
-    <label>CircularScrollBarExample</label>
+    <label>CircularScrollBarH</label>
     <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
   </ui-application>
 </manifest>

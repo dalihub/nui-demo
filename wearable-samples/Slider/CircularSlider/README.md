@@ -9,7 +9,7 @@ This example shows how to use CircularSlider.
 * Available only in wearable devices
 
 ## Sample Application
-<div style="text-align:center;width:100%;"><img src="./res/circularSlider.gif" /></div>
+<div style="text-align:center;width:100%;"><img src="./preview/circularSlider.gif" /></div>
 
 ```C#
 

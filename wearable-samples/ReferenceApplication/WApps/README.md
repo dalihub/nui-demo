@@ -13,5 +13,5 @@ You can see the implementation images and a example on its usage.
 * Available only in wearable devices
 
 ## Sample Application
-<div style="text-align:center;width:100%;"><img src="./res/screenshot.png" /></div>
+<div style="text-align:center;width:100%;"><img src="./preview/screenshot.png" /></div>
 

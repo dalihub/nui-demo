@@ -11,7 +11,7 @@ This example shows how to use CircularProgress.
 * Available only in wearable devices
 
 ## Sample Application
-<div style="text-align:center;width:100%;"><img src="./res/circularprogress.gif" /></div>
+<div style="text-align:center;width:100%;"><img src="./preview/circularprogress.gif" /></div>
 
 
 ```C#

@@ -10,4 +10,4 @@ This example shows how to use CircularScrollbar.
 * Available only in wearable devices
 
 ## Sample Application
-<div style="text-align:center;width:100%;"><img src="./res/preview.gif" /></div>
+<div style="text-align:center;width:100%;"><img src="./preview/preview.gif" /></div>
