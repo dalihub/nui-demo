@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Theme
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  Id="CommonTheme"
+  BasedOn="Tizen.NUI.Theme.Common">
+
+  <TextLabelStyle x:Key="Title" TextColor="Black" FontFamily="RobotoSlab"/>
+
+  <ViewStyle x:Key="Background" BackgroundColor="#d6d4d4" CornerRadius="10"/>
+
+  <TextFieldStyle x:Key="InputField" BackgroundColor="White" CornerRadius="6" TextColor="#424242" FontFamily="Grandstander"/>
+
+  <c:ButtonStyle x:Key="AddButton" CornerRadius="6">
+    <c:ButtonStyle.BackgroundColor>
+      <Selector x:TypeArguments="Color" Other="#5D5D5D" Pressed="#353535" Disabled="#8C8C8C"/>
+    </c:ButtonStyle.BackgroundColor>
+    <c:ButtonStyle.Text>
+      <TextLabelStyle TextColor="#DEDEDE" FontFamily="RobotoSlab" />
+    </c:ButtonStyle.Text>
+  </c:ButtonStyle>
+
+  <c:ButtonStyle x:Key="ItemCheckBox" TextPadding="10, 10, 0, 0">
+    <c:ButtonStyle.Icon>
+      <ImageViewStyle CornerRadius="8" Size="30, 30">
+        <ImageViewStyle.BackgroundColor>
+          <Selector x:TypeArguments="Color" Other="White" Selected="#383838" Pressed="#888888" Disabled="#BDBDBD"/>
+        </ImageViewStyle.BackgroundColor>
+      </ImageViewStyle>
+    </c:ButtonStyle.Icon>
+    <c:ButtonStyle.Text>
+      <TextLabelStyle FontFamily="Grandstander" HorizontalAlignment="Begin">
+        <TextLabelStyle.TextColor>
+          <Selector x:TypeArguments="Color" Other="Black" Selected="#707070"/>
+        </TextLabelStyle.TextColor>
+      </TextLabelStyle>
+    </c:ButtonStyle.Text>
+  </c:ButtonStyle>
+
+</Theme>
