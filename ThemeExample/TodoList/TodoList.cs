@@ -21,6 +21,9 @@ using Tizen.NUI.Components;
 
 public class NUISampleApplication : NUIApplication
 {
+    public NUISampleApplication() : base(new Size2D(480, 800), new Position2D(0, 0))
+    {}
+
     protected override void OnCreate()
     {
         base.OnCreate();
@@ -53,35 +56,32 @@ public class NUISampleApplication : NUIApplication
         root.Add(themeChangeButton);
         root.BackgroundColor = Color.White;
 
-        root.Add(new TextLabel
+        root.Add(new TextLabel()
         {
-            Text = "TODO List",
             StyleName = "Title",
-            Position = new Position(30, 120)
+            Position = new Position(30, 120),
+            Text = "TODO List",
         });
 
-        itemContainer = new View
+        itemContainer = new View()
         {
             StyleName = "Background",
-            Size = new Size(410, 500),
-            Position = new Position(30, 170),
-            Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Vertical
-            },
+            Position = new Position(25, 170),
+            Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical },
         };
         root.Add(itemContainer);
 
         var inputs = new View()
         {
             Margin = new Extents(20),
+            Layout = new LinearLayout() { CellPadding = new Size2D(10, 0) },
         };
         itemContainer.Add(inputs);
 
         inputField = new TextField
         {
             StyleName = "InputField",
-            Size = new Size(280, 40),
+            Size = new Size(300, 40),
             PlaceholderText = " Next to do...",
             VerticalAlignment = VerticalAlignment.Center,
         };
@@ -92,7 +92,6 @@ public class NUISampleApplication : NUIApplication
             StyleName = "AddButton",
             Size = new Size(80, 40),
             Text = "Add",
-            PositionX = 290,
         };
         addButton.Clicked += OnClickedAdd;
         inputs.Add(addButton);
@@ -147,7 +146,6 @@ public class NUISampleApplication : NUIApplication
             Exit();
         }
     }
-
 
     static void Main(string[] args)
     {

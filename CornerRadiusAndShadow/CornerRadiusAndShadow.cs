@@ -22,6 +22,11 @@ using Tizen.NUI.Components;
 public class NUISampleApplication : NUIApplication
 {
     View root;
+    static readonly Size sampleBoxSize = new Size(80, 80);
+    static readonly Color sampleBoxColor = new Color(0.537f, 0.725f, 0.78f, 1.0f);
+
+    public NUISampleApplication() : base(new Size2D(480, 800), new Position2D(0, 0))
+    {}
 
     protected override void OnCreate()
     {
@@ -35,50 +40,77 @@ public class NUISampleApplication : NUIApplication
         NUIApplication.GetDefaultWindow().BackgroundColor = new Color(0.678f, 0.655f, 0.576f, 1.0f);
         root = new View()
         {
-            Layout = new GridLayout()
-            {
-                Columns = 3,
-                // ColumnSpacing = 16,
-                // RowSpacing = 16,
-            },
-            Padding = new Extents(8),
+            Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, CellPadding = new Size2D(0, 20) },
+            Padding = new Extents(20),
         };
         NUIApplication.GetDefaultWindow().Add(root);
 
-        AddRow(new Size(100, 100), 20);
-        AddRow(new Size(100, 100), 50);
-        AddRow(new Size(100, 60), 20);
-        AddRow(new Size(100, 60), 30);
-
+        AddCornerRadiusExample(20);
+        AddCornerRadiusExample(40);
+        AddShadowExample(15, new Vector2(10, 10));
+        AddShadowExample(5, new Vector2(10, 10));
+        AddShadowExample(5, new Vector2(-10, -10));
     }
 
-    void AddRow(Size size, float cornerRadius)
+    void AddCornerRadiusExample(float cornerRadius)
     {
-        AddItem(size, cornerRadius, null);
-        AddItem(size, cornerRadius, null);
-        AddItem(size, cornerRadius, null);
+        AddItem(new View()
+        {
+            Size = sampleBoxSize,
+            BackgroundColor = sampleBoxColor,
+            CornerRadius = cornerRadius,
+        }, $"view.CornerRadius = {cornerRadius};");
     }
 
-    void AddItem(Size size, float cornerRadius, Shadow shadow)
+
+    void AddShadowExample(float blurRadius, Vector2 offset)
     {
+        AddItem(new View()
+        {
+            Size = sampleBoxSize,
+            BackgroundColor = sampleBoxColor,
+            BoxShadow = new Shadow(blurRadius, offset, null, null),
+        }, $"view.BoxShadow = new Shadow() {{\n    BlurRadius = {blurRadius},\n    Offset = new Vector({offset.Width}, {offset.Height}),\n}};");
+    }
+
+    void AddItem(View view, string desc)
+    {
+        view.ParentOrigin = ParentOrigin.CenterLeft;
+        view.PivotPoint = PivotPoint.CenterLeft;
+        view.PositionUsesPivotPoint = true;
+
         var item = new View()
         {
-            Size = new Size(140, 140),
+            Size = new Size(440, 130),
             BackgroundColor = Color.White,
-            Margin = new Extents(8),
+            Padding = new Extents(20, 20, 0, 0),
+            CornerRadius = 6,
+            Layout = new LinearLayout() { CellPadding = new Size2D(30, 0) },
         };
+        item.Add(view);
 
-        item.Add(new View()
+        var textArea = new View()
         {
-            Size = size,
-            CornerRadius = cornerRadius,
-            BackgroundColor = new Color(0.537f, 0.725f, 0.78f, 1.0f),
-            ParentOrigin = ParentOrigin.Center,
-            PivotPoint = PivotPoint.Center,
-            PositionUsesPivotPoint = true
-            // BoxShadow = shadow,
-        });
+            BackgroundColor = new Color(0, 0, 0, 0.8f),
+            Size = new Size(290, 90),
+            ParentOrigin = ParentOrigin.CenterLeft,
+            PivotPoint = PivotPoint.CenterLeft,
+            PositionUsesPivotPoint = true,
+            CornerRadius = 4,
+        };
+        item.Add(textArea);
 
+        textArea.Add(new TextLabel()
+        {
+            ParentOrigin = ParentOrigin.CenterLeft,
+            PivotPoint = PivotPoint.CenterLeft,
+            PositionUsesPivotPoint = true,
+            MultiLine = true,
+            PointSize = 10,
+            TextColor = Color.White,
+            Text = $"view.Size = new Size({sampleBoxSize.Width}, {sampleBoxSize.Height});\n" + desc,
+            Padding = new Extents(10, 10, 0, 0),
+        });
         root.Add(item);
     }
 

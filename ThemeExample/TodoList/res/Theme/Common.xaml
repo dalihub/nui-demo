@@ -21,7 +21,7 @@
     </c:ButtonStyle.Text>
   </c:ButtonStyle>
 
-  <c:ButtonStyle x:Key="ItemCheckBox" TextPadding="10, 10, 0, 0">
+  <c:ButtonStyle x:Key="ItemCheckBox" TextPadding="10, 10, 0, 0" IconRelativeOrientation="Left">
     <c:ButtonStyle.Icon>
       <ImageViewStyle CornerRadius="8" Size="30, 30">
         <ImageViewStyle.BackgroundColor>
