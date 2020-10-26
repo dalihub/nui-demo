@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <!--PackageReference Include="Tizen.NET" Version="8.0.0.*" /-->
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
     <ProjectReference Include="../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
   </ItemGroup>
@@ -9,6 +14,7 @@
     <OutputType>Exe</OutputType>
     <DefineConstants>DOT_NET_CORE</DefineConstants>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>ScrollingTransition</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>
