@@ -3,19 +3,19 @@
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  Id="BlackTheme"
+  Id="GreenTheme"
   BasedOn="Tizen.NUI.Theme.Common">
 
-  <!--TextLabelTypeA-->
-  <TextLabelStyle x:Key="TextLabelTypeA" TextColor="Black" />
+  <!--ColorText-->
+  <TextLabelStyle x:Key="ColorText" TextColor="0.36, 0.45, 0.31, 0.8" PointSize="16" />
 
   <!--ButtonDefault-->
   <c:ButtonStyle x:Key="ButtonDefault" Size="100, 60" CornerRadius="10">
     <c:ButtonStyle.BackgroundColor>
-      <Selector x:TypeArguments="Color" Other="#5D5D5D" Pressed="#353535" Disabled="#8C8C8C"/>
+      <Selector x:TypeArguments="Color" Other="#6B9900" Pressed="#476600" Disabled="#8C8C8C"/>
     </c:ButtonStyle.BackgroundColor>
     <c:ButtonStyle.Text>  <!--Button Text-->
-      <TextLabelStyle>
+      <TextLabelStyle PointSize="16">
         <TextLabelStyle.TextColor>
           <Selector x:TypeArguments="Color" All="#FFFFFF"/>
         </TextLabelStyle.TextColor>
@@ -28,31 +28,17 @@
     <c:Switch.Track> <!--Switch Track-->
       <ImageViewStyle ResourceUrl="" Size="96, 58" CornerRadius="29">
         <ImageViewStyle.BackgroundColor>
-          <Selector x:TypeArguments="Color" Normal="#CCCCCC" Selected="#555555" Disabled="#CCCCCC"/>
+          <Selector x:TypeArguments="Color" Normal="#C7E8B7" Selected="#6B9900" Disabled="#b8bdb7"/>
         </ImageViewStyle.BackgroundColor>
       </ImageViewStyle>
     </c:Switch.Track>
     <c:Switch.Thumb> <!--Switch Thumb-->
       <ImageViewStyle ResourceUrl="" Size="60, 60" CornerRadius="30">
         <ImageViewStyle.BackgroundColor>
-          <Selector x:TypeArguments="Color" Other="#5D5D5D" Selected="#888888" Disabled="#AAAAAA"/>
+          <Selector x:TypeArguments="Color" Other="#6B9900" Selected="#C7E8B7" Disabled="#8b9189"/>
         </ImageViewStyle.BackgroundColor>
       </ImageViewStyle>
     </c:Switch.Thumb>
   </c:SwitchStyle>
-
-  <!--CheckBox-->
-  <c:ButtonStyle x:Key="Tizen.NUI.Components.CheckBox" CornerRadius="8" Size="60, 60">
-    <c:ButtonStyle.BackgroundColor>
-      <Selector x:TypeArguments="Color" Other="#5D5D5D" Pressed="#707070" Selected="#888888" Disabled="#8C8C8C"/>
-    </c:ButtonStyle.BackgroundColor>
-    <c:ButtonStyle.Icon> <!--CheckBox Icon-->
-      <ImageViewStyle CornerRadius="6" WidthResizePolicy="SizeRelativeToParent" HeightResizePolicy="SizeRelativeToParent" SizeModeFactor="0.8, 0.8, 0.8">
-        <ImageViewStyle.BackgroundColor>
-          <Selector x:TypeArguments="Color" Other="#CCCCCC" Selected="#383838" Disabled="#BDBDBD"/>
-        </ImageViewStyle.BackgroundColor>
-      </ImageViewStyle>
-    </c:ButtonStyle.Icon>
-  </c:ButtonStyle>
 
 </Theme>

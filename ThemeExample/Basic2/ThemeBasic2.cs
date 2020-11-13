@@ -55,25 +55,36 @@ public class NUISampleApplication : NUIApplication
         // [Sample 1]
         // Set style name you want to apply.
         root.Add(new TextLabel() {
-            StyleName = "TextLabelTypeA",
+            StyleName = "ColorText",
             Position = new Position(30, 120),
             Text = "Hello World!",
         });
 
         // [Sample 2]
-        // You can also set style name using constructor.
-        // Note that, BaseComponents(e.g. TextLabel) does not provide this way.
-        root.Add(new Button("ButtonDefault") {
+        root.Add(new Button() {
+            StyleName = "ButtonDefault",
             Position = new Position(30, 180),
-            Text = "Button",
+            Text = "ButtonA",
         });
 
-        // [Sample 3-1]
+        // [Sample 3]
+        // You can also set style name using constructor.
+        // But the BaseComponents(e.g. TextLabel) does not provide this way.
+        //
+        // Note that, this is not exactly same as Sample2.
+        // Sample2 sets default style first to the button and overwrite it with specified style.
+        // On the other hand, Sample3 starts with specified style without setting default style.
+        root.Add(new Button("ButtonDefault") {
+            Position = new Position(200, 180),
+            Text = "ButtonB",
+        });
+
+        // [Sample 4-1]
         root.Add(new Switch("SwitchFancy") {
             Position = new Position(30, 280),
         });
 
-        // [Sample 3-2]
+        // [Sample 4-2]
         // Set ThemeChangedSensitive to false if you don't want this view to be affected by theme changes.
         // Note that the ThemeChangedSensitive is "false" by default, but turned to true when setting StyleName explitcitly.
         // (Either by setting StyleName property or by using constructor with style name)

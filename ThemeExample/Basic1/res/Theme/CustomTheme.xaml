@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Theme
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  BasedOn="Tizen.NUI.Theme.Common">
+
+  <TextLabelStyle x:Key="TextA" BackgroundColor="#662000" PointSize="20" >
+    <TextLabelStyle.TextColor>Blue</TextLabelStyle.TextColor>
+  </TextLabelStyle>
+
+  <TextLabelStyle x:Key="TextB" BackgroundColor="#476600" PointSize="30" TextColor="White"/>
+
+  <TextLabelStyle x:Key="TextC" BackgroundColor="#002066" PointSize="40" TextColor="White"/>
+
+</Theme>
