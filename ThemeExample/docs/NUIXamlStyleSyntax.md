@@ -18,7 +18,7 @@ One xaml file represents one theme. Therefore, the most basic outer class is a `
 ```
 
 ### Namespace
-As in C# code, the namespace of classes used in the file must be specified at the beginning of it. Without proper namespace, the application throws xaml parsing errors.
+As in C# code, the namespace of classes used in the file must be specified. Without proper namespace, the application throws xaml parsing errors.
 
 Here are mandatory namespaces.
 
@@ -43,14 +43,14 @@ Here's an example that uses all namespaces introduced here.
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components">
 
-  <!-- Can list style items here -->
+  <!-- Can list styles here -->
 
 </Theme>
 ```
 
-### Style Item
+### Styles
 
-You can define multiple style items with unique key in the `Theme` tag.
+You can define multiple styles, each with a unique key in the `Theme` tag.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -69,7 +69,7 @@ You can define multiple style items with unique key in the `Theme` tag.
   <TextLabelStyle x:Key="largeText" PointSize="30" />
 
   <!-- blueButton -->
-  <!-- Since ButtonStyle is in Tizen.NUI.Components namespace, prefix c: is needed-->
+  <!-- ButtonStyle is in Tizen.NUI.Components namespace, prefix c: is needed-->
   <c:ButtonStyle x:Key="blueButton" BackgroundColor="Blue" />
 
 </Theme>
