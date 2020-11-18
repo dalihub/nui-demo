@@ -99,6 +99,8 @@ public class NUISampleApplication : NUIApplication
         AddItem("Grocery order");
         AddItem("Get tickets for Friday graduation", true);
         AddItem("Call about summer camp enrollment");
+
+        root.KeyEvent += OnKeyEvent;
     }
 
     private void OnClicked(object target, ClickedEventArgs args)

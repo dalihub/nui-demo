@@ -49,6 +49,8 @@ public class NUISampleApplication : NUIApplication
             Text = "TextC",
             Position = new Position(10, 170)
         });
+
+        root.KeyEvent += OnKeyEvent;
     }
 
     public void OnKeyEvent(object sender, Window.KeyEventArgs e)

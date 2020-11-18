@@ -92,6 +92,8 @@ public class NUISampleApplication : NUIApplication
             Position = new Position(200, 280),
             ThemeChangeSensitive = false,
         });
+
+        root.KeyEvent += OnKeyEvent;
     }
 
     private void OnClicked(object target, ClickedEventArgs args)
