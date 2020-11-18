@@ -4,9 +4,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   BasedOn="Tizen.NUI.Theme.Common">
 
-  <TextLabelStyle x:Key="TextA" BackgroundColor="#662000" PointSize="20" >
-    <TextLabelStyle.TextColor>Blue</TextLabelStyle.TextColor>
-  </TextLabelStyle>
+  <TextLabelStyle x:Key="TextA" BackgroundColor="#662000" PointSize="20" TextColor="White"/>
 
   <TextLabelStyle x:Key="TextB" BackgroundColor="#476600" PointSize="30" TextColor="White"/>
 
