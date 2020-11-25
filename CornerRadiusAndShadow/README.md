@@ -1,49 +1,17 @@
-# CornerRadius and BoxShadow property in View
-This example shows how to use CornerRadius and BoxShadow property in View.
+# Corner radius and shadow property
 
-## Preview
-<img src="./preview/preview.png"/></th>
+Tizen 6.0 NUI introduced new properties for `View`,
+* CornerRadius
+* Shadow
 
-## CornerRadius
-
-The `CornerRadius` is a float type property that make a `View` has rounded corners.
-If the value is larger than a half length of one side of the square, it will look like a circle.
-
-Here's a simple example.
-```C#
-var view = new View()
-{
-  Size = new Size(100, 100),
-  BackgroundColor = Color.Blue,
-  CornerRadius = 20,
-};
-```
-
-## BoxShadow
-
-The `BoxShadow` is a `Shadow` type property. And the `Shadow` has 4 properties : `BlurRadius`, `Offset`, `Color` and `Extents`.
-
-The `BlurRadius` indicates the degree of blurness.
-Larger values are more blurry.
-
-The `Offset` means the shadow's left-top position from the left-top corner of the View.
-
-The `Color` indicates the color of the shadow. It is rgba(0, 0, 0, 0.5f) by default.
-
-The `Extents` is a `Vector2` type property that can expand or shrink the size of the shadow.
-For example, when the View's size is (100, 100) and the Shadow's Extents is (5, -5), the output shadow will have size (105, 95).
-
-
-Here's a simple example.
-```C#
-var view = new View()
-{
-  Size = new Size(100, 100),
-  BackgroundColor = Color.Blue,
-  BoxShadow = new Shadow()
-  {
-    BlurRadius = 10,
-    Offset = new Vector2(5, 5)
-  },
-};
-```
+Here are two examples to show how to use it.
+<table style="text-align:center;">
+  <tr>
+    <td><a href="./CornerRadiusAndShadow/README.md">1. Corner radius and shadow</a><br/>Shows simple usage</td>
+    <td><a href="./ScrollingTransition/README.md">2. Scrolling transition</a><br/>Shows chaging corner radius</td>
+  </tr>
+  <tr>
+    <th><img src="./CornerRadiusAndShadow/preview/preview.png"/></th>
+    <th><img src="./ScrollingTransition/preview/preview.gif"/></th>
+  </tr>
+</table>
