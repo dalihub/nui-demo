@@ -2,7 +2,7 @@
 
 Tizen 6.0 NUI introduced new properties for `View`,
 * CornerRadius
-* Shadow
+* BoxShadow
 
 Here are two examples to show how to use it.
 <table style="text-align:center;">
