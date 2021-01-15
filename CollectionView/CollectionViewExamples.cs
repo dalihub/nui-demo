@@ -119,7 +119,7 @@ namespace Example
         {
             base.OnCreate();
 
-			int ItemCount = 400;
+			int ItemCount = 2;
 
             // Get the window instance and change background color
             Window window = Window.Instance;
@@ -186,8 +186,8 @@ namespace Example
 			ButtonBox.Add(EndButton);
 
 
-            var Data = Example.DummyData.CreateDummyMenu(ItemCount);
-            targetItem = Data[50];
+            var Data = Example.DummyData.CreateDummyMenuGroup(ItemCount);
+            targetItem = Data[3];
 
             var titleStyle = new ViewItemStyle()
             {
@@ -217,12 +217,12 @@ namespace Example
                         item.Label.SetBinding(TextLabel.TextProperty, "IndexName");
                         item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
                         item.LabelPadding = new Extents(10, 10, 10, 10);
-
-                        item.Icon.SetBinding(ImageView.ResourceUrlProperty, "SubNameUrl");
+/*
+                        item.Icon.SetBinding(ImageView.ResourceUrlProperty, "Url");
                         item.Icon.WidthSpecification = 50;
                         item.Icon.HeightSpecification = 50;
                         item.IconPadding = new Extents(10, 10, 10, 10);
-
+*/
                         var radio = new RadioButton();
                         item.Extra = radio;
                         radio.SetBinding(RadioButton.IsSelectedProperty, "Selected");
@@ -265,7 +265,7 @@ namespace Example
                         item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
                         item.Label.PointSize = 10;
                         item.LabelPadding = new Extents(5, 5, 5, 5);
-                        item.Image.SetBinding(ImageView.ResourceUrlProperty, "SubNameUrl");
+                        item.Image.SetBinding(ImageView.ResourceUrlProperty, "Url");
                         item.Image.WidthSpecification = 110;
                         item.Image.HeightSpecification = 110;
                         item.ImagePadding = new Extents(5, 5, 5, 5);
