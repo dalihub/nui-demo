@@ -33,6 +33,8 @@ namespace Example
         }
     
         public string Price { get; set; }
+
+        public bool Selected { get; set; }
     }
 
     class MenuTap

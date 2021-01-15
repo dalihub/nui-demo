@@ -28,12 +28,13 @@ namespace Example
     {
 	    private CollectionView colView;
         object targetItem;
+        private ItemSelectionMode selectionMode;
         class MyItem : OneLineLinearItem
         {
             public MyItem() : base()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent;
-                HeightSpecification = 35;
+                HeightSpecification = 80;
             }
         }
 			
@@ -64,35 +65,52 @@ namespace Example
 
         public void SelectionEvt(object sender, SelectionChangedEventArgs ev)
         {
-            Console.WriteLine("SelectionChanged!");
-            foreach (object item in ev.CurrentSelection)
+            Console.WriteLine("SelectionChanged! {0}", selectionMode);
+            if (selectionMode is ItemSelectionMode.SingleSelection)
             {
-                Console.WriteLine("Selected: {0}", (item as Menu)?.IndexName);
+                foreach (object item in ev.PreviousSelection)
+                {
+                    Menu menuItem = item as Menu;
+                    if (menuItem == null) return;
+                    Console.WriteLine("Unselected: {0}", menuItem.IndexName);
+                    menuItem.Selected = false;
+                }
+                foreach (object item in ev.CurrentSelection)
+                {
+                    Menu menuItem = item as Menu;
+                    if (menuItem == null) return;
+                    Console.WriteLine("Selected: {0}", menuItem.IndexName);
+                    menuItem.Selected = true;
+                }
+            }
+            else
+            {
+
             }
         }
 
         public void NearestClickedEvt(object sender, ClickedEventArgs ev)
         {
             Console.WriteLine("Nearestbutton Clicked {0}!", colView);
-            colView.ScrollTo(targetItem, true);
+            colView.ScrollTo(targetItem, false);
         }
 
-        public void FrontClickedEvt(object sender, ClickedEventArgs ev)
+        public void StartClickedEvt(object sender, ClickedEventArgs ev)
         {
-            Console.WriteLine("Frontbutton Clicked {0}!", colView);
-            colView.ScrollTo(targetItem, true, ItemsView.ItemScrollTo.Front);
+            Console.WriteLine("Startbutton Clicked {0}!", colView);
+            colView.ScrollTo(targetItem, false, CollectionView.ItemScrollTo.Start);
         }
 
         public void CenterClickedEvt(object sender, ClickedEventArgs ev)
         {
             Console.WriteLine("Centerbutton Clicked {0}!", colView);
-            colView.ScrollTo(targetItem, true, ItemsView.ItemScrollTo.Center);
+            colView.ScrollTo(targetItem, false, CollectionView.ItemScrollTo.Center);
         }
 
         public void EndClickedEvt(object sender, ClickedEventArgs ev)
         {
             Console.WriteLine("Endbutton Clicked {0}!", colView);
-            colView.ScrollTo(targetItem, true, ItemsView.ItemScrollTo.End);
+            colView.ScrollTo(targetItem, false, CollectionView.ItemScrollTo.End);
         }
         /// <summary>
         /// Override to create the required scene
@@ -139,15 +157,15 @@ namespace Example
             NearestButton.Clicked += NearestClickedEvt;
 			ButtonBox.Add(NearestButton);
 
-			Button FrontButton = new Button()
+			Button StartButton = new Button()
 			{
                 WidthSpecification = 0,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
 				Weight = 1,
-				Text = "Front"
+				Text = "Start"
 			};
-            FrontButton.Clicked += FrontClickedEvt;
-			ButtonBox.Add(FrontButton);
+            StartButton.Clicked += StartClickedEvt;
+			ButtonBox.Add(StartButton);
 			Button CenterButton = new Button()
 			{
                 WidthSpecification = 0,
@@ -169,7 +187,6 @@ namespace Example
 
 
             var Data = Example.DummyData.CreateDummyMenu(ItemCount);
-
             targetItem = Data[50];
 
             var titleStyle = new ViewItemStyle()
@@ -183,88 +200,110 @@ namespace Example
                     Selected = new Color(0.701F, 0.898F, 0.937F, 1)
                 }
             };
-            /*
-            CollectionView listView = colView = new CollectionView()
-            {
-				SizingStrategy = ItemSizingStrategy.MeasureFirst,
-                ItemsSource = Data,
-                ItemTemplate = new DataTemplate (() => {
-						MyItem item = new MyItem();
-						item.Label.SetBinding(TextLabel.TextProperty, "IndexName");
-						item.Label.HorizontalAlignment=HorizontalAlignment.Begin;
-						item.LabelPadding = new Extents(5, 5, 5, 5);
-						item.Icon.SetBinding(ImageView.ResourceUrlProperty, "SubNameUrl");
-						item.Icon.WidthSpecification = 25;
-						item.Icon.HeightSpecification = 25;
-						item.IconPadding = new Extents(4, 4, 4, 4);
-					    return item;
-				}),
-				ItemsLayouter = new LinearLayouter(),
-                Header = new OneLineLinearItem(titleStyle)
-                {
-                    WidthSpecification = LayoutParamPolicies.MatchParent,
-                    HeightSpecification = 50,
-                    Text = "Header!"
-                },
-                Footer = new OneLineLinearItem()
-                {
-                    WidthSpecification = LayoutParamPolicies.MatchParent,
-                    HeightSpecification = 50,
-                    Text = "Count:["+Data.Count+"]"
 
-                },
-                ScrollingDirection = ScrollableBase.Direction.Vertical,
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = 0,
-                Weight = 0.5F,
-				SelectionMode = ItemSelectionMode.MultipleSelections,
-				BackgroundColor = Color.Cyan
-            };
-			Box.Add(listView);
-*/
-            CollectionView gridView = new CollectionView()
+            ItemsLayouter viewLayouter = new LinearLayouter(); // GridLayouter();
+            RadioButtonGroup group = new RadioButtonGroup();
+            selectionMode = ItemSelectionMode.SingleSelection;
+
+            if (viewLayouter is LinearLayouter)
             {
-				SizingStrategy = ItemSizingStrategy.MeasureFirst,
-                ItemTemplate = new DataTemplate (() => {
-						MyItem2 item = new MyItem2();
-						item.Label.SetBinding(TextLabel.TextProperty, "IndexName");
-						item.Label.HorizontalAlignment=HorizontalAlignment.Begin;
+                colView = new CollectionView()
+                {
+                    SizingStrategy = ItemSizingStrategy.MeasureFirst,
+                    ItemsSource = Data,
+                    ItemTemplate = new DataTemplate(() =>
+                    {
+                        MyItem item = new MyItem();
+                        item.Label.SetBinding(TextLabel.TextProperty, "IndexName");
+                        item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
+                        item.LabelPadding = new Extents(10, 10, 10, 10);
+
+                        item.Icon.SetBinding(ImageView.ResourceUrlProperty, "SubNameUrl");
+                        item.Icon.WidthSpecification = 50;
+                        item.Icon.HeightSpecification = 50;
+                        item.IconPadding = new Extents(10, 10, 10, 10);
+
+                        var radio = new RadioButton();
+                        item.Extra = radio;
+                        radio.SetBinding(RadioButton.IsSelectedProperty, "Selected");
+                        item.Extra.WidthSpecification = 50;
+                        item.Extra.HeightSpecification = 50;
+                        item.ExtraPadding = new Extents(10, 10, 10, 10);
+                        return item;
+                    }),
+                    ItemsLayouter = viewLayouter,
+                    Header = new OneLineLinearItem(titleStyle)
+                    {
+                        WidthSpecification = LayoutParamPolicies.MatchParent,
+                        HeightSpecification = 50,
+                        Text = "Header!"
+                    },
+                    Footer = new OneLineLinearItem()
+                    {
+                        WidthSpecification = LayoutParamPolicies.MatchParent,
+                        HeightSpecification = 50,
+                        Text = "Count:[" + Data.Count + "]"
+
+                    },
+                    ScrollingDirection = ScrollableBase.Direction.Vertical,
+                    WidthSpecification = LayoutParamPolicies.MatchParent,
+                    HeightSpecification = 0,
+                    Weight = 0.5F,
+                    SelectionMode = selectionMode,
+                    BackgroundColor = Color.Cyan
+                };
+            }
+            else if (viewLayouter is GridLayouter)
+            {
+                colView = new CollectionView()
+                {
+                    SizingStrategy = ItemSizingStrategy.MeasureFirst,
+                    ItemTemplate = new DataTemplate(() =>
+                    {
+                        MyItem2 item = new MyItem2();
+                        item.Label.SetBinding(TextLabel.TextProperty, "IndexName");
+                        item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
                         item.Label.PointSize = 10;
-						item.LabelPadding = new Extents(5, 5, 5, 5);
-						item.Icon.SetBinding(ImageView.ResourceUrlProperty, "SubNameUrl");
-						item.Icon.WidthSpecification = 110;
-						item.Icon.HeightSpecification = 110;
-						item.IconPadding = new Extents(5, 5, 5, 5);
-                        
-					    return item;
-				}),
-                ItemsSource = Data,
-				ItemsLayouter = new GridLayouter(),
-                Header = new OneLineLinearItem(titleStyle)
-                {
+                        item.LabelPadding = new Extents(5, 5, 5, 5);
+                        item.Image.SetBinding(ImageView.ResourceUrlProperty, "SubNameUrl");
+                        item.Image.WidthSpecification = 110;
+                        item.Image.HeightSpecification = 110;
+                        item.ImagePadding = new Extents(5, 5, 5, 5);
+                        item.Badge = new CheckBox();
+                        item.Badge.WidthSpecification = 20;
+                        item.Badge.HeightSpecification = 20;
+                        item.BadgePadding = new Extents(2, 2, 2, 2);
+                        return item;
+                    }),
+                    ItemsSource = Data,
+                    ItemsLayouter = viewLayouter,
+                    Header = new OneLineLinearItem(titleStyle)
+                    {
+                        WidthSpecification = LayoutParamPolicies.MatchParent,
+                        HeightSpecification = 80,
+                        //WidthSpecification = 100,
+                        //HeightSpecification = LayoutParamPolicies.MatchParent,
+                        Text = "Header!"
+                    },
+                    Footer = new OneLineLinearItem()
+                    {
+                        WidthSpecification = LayoutParamPolicies.MatchParent,
+                        HeightSpecification = 80,
+                        //WidthSpecification = 200,
+                        //HeightSpecification = LayoutParamPolicies.MatchParent,
+                        Text = "Count:[" + Data.Count + "]"
+                    },
+                    ScrollingDirection = ScrollableBase.Direction.Vertical,
                     WidthSpecification = LayoutParamPolicies.MatchParent,
-                    HeightSpecification = 80,
-				    //WidthSpecification = 100,
-                    //HeightSpecification = LayoutParamPolicies.MatchParent,
-                    Text = "Header!"
-                },
-                Footer = new OneLineLinearItem()
-                {
-                    WidthSpecification = LayoutParamPolicies.MatchParent,
-                    HeightSpecification = 80,
-                    //WidthSpecification = 200,
-                    //HeightSpecification = LayoutParamPolicies.MatchParent,
-                    Text = "Count:["+Data.Count+"]"
-                },
-                ScrollingDirection = ScrollableBase.Direction.Vertical,
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = 0,
-                Weight = 0.4F,
-				SelectionMode = ItemSelectionMode.MultipleSelections,
-				BackgroundColor = Color.Blue
-            };
-            gridView.SelectionChanged += SelectionEvt;
-			Box.Add(gridView);
+                    HeightSpecification = 0,
+                    Weight = 0.4F,
+                    SelectionMode = selectionMode,
+                    BackgroundColor = Color.Blue
+                };
+            }
+            colView.SelectionChanged += SelectionEvt;
+			Box.Add(colView);
+
             window.KeyEvent += OnKeyEvent;
         }
 
