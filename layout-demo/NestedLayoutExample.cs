@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -27,9 +27,9 @@ namespace LayoutDemo
 
         private View contentBackgroundShadow;
         private ImageView helpImageView;
-        PushButton helpButton;
+        Button helpButton;
         bool helpShowing = false;
-        private List<PushButton> buttons = new List<PushButton>();
+        private List<Button> buttons = new List<Button>();
 
         public LinearLayout createVbox()
         {
@@ -183,8 +183,8 @@ namespace LayoutDemo
         // Shows a thumbnail of the expected output
         private void CreateHelpButton()
         {
-            helpButton = new PushButton();
-            helpButton.LabelText = "Help";
+            helpButton = new Button();
+            helpButton.Text = "Help";
             helpButton.Name = "help-button";
             helpButton.Clicked += (sender, e) =>
             {
@@ -201,7 +201,6 @@ namespace LayoutDemo
                     window.Remove(  helpImageView );
                     helpShowing = false;
                 }
-                return true;
             };
         }
 

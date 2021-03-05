@@ -19,10 +19,11 @@ using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using Tizen.NUI.Wearable;
 
 namespace Example
 {
-    class RecyclerViewExample : NUIApplication
+    class RecyclerViewExample3 : NUIApplication
     {
         class MenuTapItem : RecycleItem
         {
@@ -135,7 +136,7 @@ namespace Example
             public override void BindData(RecycleItem item)
             {
                 MenuItem target = item as MenuItem;
-                Menu menu = Data[target.DataIndex] as Menu;
+                MenuLinearLayout menu = Data[target.DataIndex] as MenuLinearLayout;
 
                 target.Picture.ResourceUrl = "./res/" + menu.SubName + ".jpg";
                 target.Picture.FittingMode = FittingModeType.ScaleToFill;
@@ -172,11 +173,11 @@ namespace Example
             };
             window.Add(root);
 
-            RecyclerView menuTapList = new RecyclerView()
+            var menuTapList = new Tizen.NUI.Wearable.RecyclerView()
             {
                 Adapter = new SampleMenuTapAdapter()
                 {
-                    Data = DummyData.CreateDummyMenuTap(20)
+                    Data = DummyDataLinearLayout.CreateDummyMenuTap(20)
                 },
                 LayoutManager = new LinearRecycleLayoutManager()
                 {
@@ -188,11 +189,11 @@ namespace Example
             };
             root.Add(menuTapList);
 
-            RecyclerView menuList = new RecyclerView()
+            var menuList = new Tizen.NUI.Wearable.RecyclerView()
             {
                 Adapter = new SampleMenuAdapter()
                 {
-                    Data = DummyData.CreateDummyMenu(50),
+                    Data = DummyDataLinearLayout.CreateDummyMenu(50),
                 },
                 LayoutManager = new LinearRecycleLayoutManager(),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -233,8 +234,7 @@ namespace Example
         [STAThread] // Forces app to use one thread to access NUI
         static void Main(string[] args)
         {
-            RecyclerViewExample example = new RecyclerViewExample();
-            example.Run(args);
+            new RecyclerViewExample3().Run(args);
         }
     }
 }

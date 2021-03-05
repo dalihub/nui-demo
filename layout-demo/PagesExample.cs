@@ -96,8 +96,8 @@ namespace LayoutDemo
             scrollable = new Tizen.NUI.Components.ScrollableBase()
             {
                 Name = "ScrollableBase",
-                FlickAnimationSpeed = 0.8f,
-                FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
+                // FlickAnimationSpeed = 0.8f,
+                // FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
                 ScrollingDirection = Tizen.NUI.Components.ScrollableBase.Direction.Horizontal,
                 SnapToPage = true,
             };
@@ -162,8 +162,8 @@ namespace LayoutDemo
             Tizen.NUI.Components.ScrollableBase scrollingView = new Tizen.NUI.Components.ScrollableBase()
             {
                 Name = "LayoutScroller",
-                FlickAnimationSpeed = 0.8f,
-                FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
+                // FlickAnimationSpeed = 0.8f,
+                // FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = (int)(Window.Instance.WindowSize.Height * 0.75),
             };

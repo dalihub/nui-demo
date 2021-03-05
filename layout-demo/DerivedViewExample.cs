@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -27,9 +27,9 @@ namespace LayoutDemo
 
         private View _derivedView;
         private ImageView helpImageView;
-        PushButton helpButton;
+        Button helpButton;
         bool helpShowing = false;
-        private PushButton nextFeatureButton;
+        private Button nextFeatureButton;
 
         // Class derived from a View
         class DerivedView : View
@@ -96,8 +96,8 @@ namespace LayoutDemo
 	      // Shows a thumbnail of the expected output
         private void CreateHelpButton()
         {
-            helpButton = new PushButton();
-            helpButton.LabelText = "Help";
+            helpButton = new Button();
+            helpButton.Text = "Help";
             helpButton.Clicked += (sender, e) =>
             {
                 if ( ! helpShowing )
@@ -114,20 +114,18 @@ namespace LayoutDemo
                     window.Remove(  helpImageView );
                     helpShowing = false;
                 }
-                return true;
             };
         }
         void CreateNextFeatureButton()
         {
-            nextFeatureButton = new PushButton();
+            nextFeatureButton = new Button();
             nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
             nextFeatureButton.PivotPoint = PivotPoint.BottomCenter;
             nextFeatureButton.PositionUsesPivotPoint = true;
-            nextFeatureButton.LabelText = "Add Horizontal Layout";
+            nextFeatureButton.Text = "Add Horizontal Layout";
             nextFeatureButton.Clicked += (sender, e) =>
             {
                 NextFeature();
-                return true;
             };
         }
 

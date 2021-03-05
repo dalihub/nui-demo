@@ -1,7 +1,6 @@
 ﻿using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace FoodShopper
 {

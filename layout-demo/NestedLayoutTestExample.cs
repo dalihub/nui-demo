@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -37,12 +37,12 @@ namespace LayoutDemo
         View _parentContainer;
         View _childView;
         View _imageViewContainer2;
-        private PushButton nextFeatureButton;
+        private Button nextFeatureButton;
         ExampleFeature featureIndex = ExampleFeature.SET_PARENT_HORIZONTAL_LAYOUT;
         private ImageView helpImageView;
-        PushButton helpButton;
+        Button helpButton;
         bool helpShowing = false;
-        private List<PushButton> buttons = new List<PushButton>();
+        private List<Button> buttons = new List<Button>();
         uint imageViewTally = 0;
 
         public LinearLayout createVbox()
@@ -156,15 +156,14 @@ namespace LayoutDemo
         void CreateNextFeatureButton()
         {
             featureIndex = ExampleFeature.SET_PARENT_HORIZONTAL_LAYOUT;
-            nextFeatureButton = new PushButton();
+            nextFeatureButton = new Button();
             nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
             nextFeatureButton.PivotPoint = PivotPoint.BottomCenter;
             nextFeatureButton.PositionUsesPivotPoint = true;
-            nextFeatureButton.LabelText = "Set Horizontal Layout";
+            nextFeatureButton.Text = "Set Horizontal Layout";
             nextFeatureButton.Clicked += (sender, e) =>
             {
                 NextFeature();
-                return true;
             };
         }
 
@@ -178,7 +177,7 @@ namespace LayoutDemo
                 case ExampleFeature.SET_PARENT_HORIZONTAL_LAYOUT :
                 {
                     _parentContainer.Layout = createHbox();
-                    nextFeatureButton.LabelText = "Add child with no layout";
+                    nextFeatureButton.Text = "Add child with no layout";
                     featureIndex = ExampleFeature.ADD_CHILD_VIEW_WITH_NO_LAYOUT;
                     break;
                 }
@@ -192,7 +191,7 @@ namespace LayoutDemo
                         _childView.Add(CreateImageView("3rdSet"));
                     }
                     _imageViewContainer2.Add(_childView);
-                    nextFeatureButton.LabelText = "Add linear layout to last added child";
+                    nextFeatureButton.Text = "Add linear layout to last added child";
                     featureIndex = ExampleFeature.ADD_LINEAR_LAYOUT_TO_LAST_ADDED_CHILD;
                     break;
                 }
@@ -235,8 +234,8 @@ namespace LayoutDemo
 	    // Shows a thumbnail of the expected output
         private void CreateHelpButton()
         {
-            helpButton = new PushButton();
-            helpButton.LabelText = "Help";
+            helpButton = new Button();
+            helpButton.Text = "Help";
             helpButton.Name = "help-button";
             helpButton.Clicked += (sender, e) =>
             {
@@ -253,7 +252,6 @@ namespace LayoutDemo
                     window.Remove(  helpImageView );
                     helpShowing = false;
                 }
-                return true;
             };
         }
 

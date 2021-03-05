@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -26,7 +26,7 @@ namespace LayoutDemo
         }
 
         private View view;
-        private List<PushButton> buttons = new List<PushButton>();
+        private List<Button> buttons = new List<Button>();
 
         private bool addedItem = false;
 
@@ -148,7 +148,7 @@ namespace LayoutDemo
 
             LayoutingExample.GetWindow().Add(view);
 
-            PushButton directionButton = new PushButton();
+            Button directionButton = new Button();
             LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
             LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
             directionButton.Name = "directionButton";
@@ -170,12 +170,11 @@ namespace LayoutDemo
                     LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
                     LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
                 }
-                return true;
             };
             LayoutingExample.GetWindow().Add(directionButton);
             buttons.Add(directionButton);
 
-            PushButton rotateButton = new PushButton();
+            Button rotateButton = new Button();
             LayoutingExample.SetUnselectedIcon(rotateButton, "./res/images/icon-reset.png");
             LayoutingExample.SetSelectedIcon(rotateButton, "./res/images/icon-reset-selected.png");
             rotateButton.Name = "rotateButton";
@@ -194,13 +193,12 @@ namespace LayoutDemo
                 {
                     linearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
                 }
-                return true;
             };
 
             LayoutingExample.GetWindow().Add(rotateButton);
             buttons.Add(rotateButton);
 
-            PushButton addItemButton = new PushButton();
+            Button addItemButton = new Button();
             LayoutingExample.SetUnselectedIcon(addItemButton, "./res/images/icon-plus.png");
             LayoutingExample.SetSelectedIcon(addItemButton, "./res/images/icon-plus.png");
             addItemButton.Name = "addItemButton";
@@ -241,7 +239,6 @@ namespace LayoutDemo
                         }
                     }
                 }
-                return true;
             };
 
             LayoutingExample.GetWindow().Add(addItemButton);
@@ -253,7 +250,7 @@ namespace LayoutDemo
             LayoutingExample.GetWindow().Remove(view);
 
             view = null;
-            foreach (PushButton button in buttons)
+            foreach (Button button in buttons)
             {
                 LayoutingExample.GetWindow().Remove(button);
             }

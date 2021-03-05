@@ -19,10 +19,11 @@ using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using Tizen.NUI.Wearable;
 
 namespace Example
 {
-    class RecyclerViewExample : NUIApplication
+    class RecyclerViewExample2 : NUIApplication
     {
         class PictureItem : RecycleItem
         {
@@ -108,11 +109,11 @@ namespace Example
             };
             root.Add(horizontalLabel);
 
-            RecyclerView horizontalGrid = new RecyclerView()
+            var horizontalGrid = new Tizen.NUI.Wearable.RecyclerView()
             {
                 Adapter = new SampleAdapter()
                 {
-                    Data = DummyData.CreateDummyPictureData(73)
+                    Data = DummyDataGridLayout.CreateDummyPictureData(73)
                 },
                 LayoutManager = new GridRecycleLayoutManager()
                 {
@@ -137,11 +138,11 @@ namespace Example
             };
             root.Add(verticalLabel);
 
-            RecyclerView verticalGrid = new RecyclerView()
+            var verticalGrid = new Tizen.NUI.Wearable.RecyclerView()
             {
                 Adapter = new SampleAdapter()
                 {
-                    Data = DummyData.CreateDummyPictureData(132)
+                    Data = DummyDataGridLayout.CreateDummyPictureData(132)
                 },
                 LayoutManager = new GridRecycleLayoutManager()
                 {
@@ -188,8 +189,7 @@ namespace Example
         [STAThread] // Forces app to use one thread to access NUI
         static void Main(string[] args)
         {
-            RecyclerViewExample example = new RecyclerViewExample();
-            example.Run(args);
+            new RecyclerViewExample2().Run(args);
         }
     }
 }

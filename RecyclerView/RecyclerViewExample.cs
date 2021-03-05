@@ -19,6 +19,7 @@ using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using Tizen.NUI.Wearable;
 
 namespace Example
 {
@@ -124,7 +125,7 @@ namespace Example
             SampleAdapter sampleAdapter = new SampleAdapter();
             sampleAdapter.Data = DummyData.CreateDummyData(50);
 
-            recyclerView = new RecyclerView(sampleAdapter, new LinearListLayoutManager())
+            recyclerView = new Tizen.NUI.Wearable.RecyclerView(sampleAdapter, new LinearListLayoutManager())
             {
                 // Size = new Size(480, 800),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -136,7 +137,7 @@ namespace Example
             window.KeyEvent += OnKeyEvent;
         }
 
-        private RecyclerView recyclerView;
+        private Tizen.NUI.Wearable.RecyclerView recyclerView;
 
         /// <summary>
         /// Called when any key event is received.

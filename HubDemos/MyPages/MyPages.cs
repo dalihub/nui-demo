@@ -80,8 +80,8 @@ namespace MyPages
             scrollable = new Scrollable()
             {
                 Name = "Scrollable",
-                FlickAnimationSpeed = 0.8f,
-                FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
+                // FlickAnimationSpeed = 0.8f,
+                // FlickDistanceMultiplierRange = new Vector2(0.2f, 0.5f),
                 ScrollingDirection = Tizen.NUI.Components.Scrollable.Direction.Horizontal,
                 SnapToPage = true,
             };

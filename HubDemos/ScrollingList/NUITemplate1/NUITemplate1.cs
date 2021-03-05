@@ -85,8 +85,8 @@ namespace NUITemplate1
             scrollable = new Scrollable()
             {
                 Name = "Scrollable",
-                FlickAnimationSpeed = 0.8f,
-                FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
+                // FlickAnimationSpeed = 0.8f,
+                // FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
             };
             scrollable.Add(listViewContainer);
 

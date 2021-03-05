@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -52,7 +52,7 @@ namespace LayoutDemo
             {
                 contentContainer.WidthSpecification = 60;
                 contentContainer.HeightSpecification = 60;
-                return true;
+                //return true;
             };
 
 
@@ -61,7 +61,7 @@ namespace LayoutDemo
             parentButton160.Clicked += (sender, e) =>
             {
                 contentContainer.Size2D = new Size2D(160,160);
-                return true;
+                //return true;
             };
 
             RadioButton parentButtonWrap = new RadioButton("Wrap");
@@ -70,7 +70,7 @@ namespace LayoutDemo
             {
                 contentContainer.WidthSpecification = LayoutParamPolicies.WrapContent;
                 contentContainer.HeightSpecification = LayoutParamPolicies.WrapContent;
-                return true;
+                //return true;
             };
         }
 
@@ -81,7 +81,7 @@ namespace LayoutDemo
             button70.Clicked += (sender, e) =>
             {
                 children[0].Size2D = new Size2D(70,70);
-                return true;
+                //return true;
             };
 
 
@@ -91,7 +91,7 @@ namespace LayoutDemo
             {
                 children[0].WidthSpecification = 90;
                 children[0].HeightSpecification = 90;
-                return true;
+                //return true;
             };
 
             RadioButton buttonWrap = new RadioButton("Wrap");
@@ -100,7 +100,7 @@ namespace LayoutDemo
             {
                 children[0].WidthSpecification = LayoutParamPolicies.WrapContent;
                 children[0].HeightSpecification = LayoutParamPolicies.WrapContent;
-                return true;
+                //return true;
             };
 
             RadioButton buttonMatch = new RadioButton("Match");
@@ -109,7 +109,7 @@ namespace LayoutDemo
             {
                 children[0].WidthSpecification = LayoutParamPolicies.MatchParent;
                 children[0].HeightSpecification = LayoutParamPolicies.MatchParent;
-                return true;
+                //return true;
             };
         }
 

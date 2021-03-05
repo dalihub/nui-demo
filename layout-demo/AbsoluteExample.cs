@@ -1,7 +1,7 @@
 using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -23,7 +23,7 @@ namespace LayoutDemo
 
         private View view;
         private bool fullSize = false;
-        private PushButton sizeButton;
+        private Button sizeButton;
 
         public override void Create()
         {
@@ -54,12 +54,12 @@ namespace LayoutDemo
 
             this.view = view;
 
-            sizeButton = new PushButton();
+            sizeButton = new Button();
             sizeButton.Name = "absolute-size-change-button";
             sizeButton.ParentOrigin = ParentOrigin.BottomCenter;
             sizeButton.PivotPoint = PivotPoint.BottomCenter;
             sizeButton.PositionUsesPivotPoint = true;
-            sizeButton.LabelText = "change size";
+            sizeButton.Text = "change size";
             sizeButton.Clicked += (sender, e) =>
             {
                 if (!fullSize)
@@ -73,7 +73,6 @@ namespace LayoutDemo
                     this.view.HeightSpecification = LayoutParamPolicies.WrapContent;
                 }
                 fullSize = !fullSize;
-                return true;
             };
 
             window.Add(view);

@@ -74,12 +74,12 @@ namespace LayoutDemo
             window.Remove(root);
         }
 
-        private void OnScrollEnded(object sender, Tizen.NUI.Components.ScrollableBase.ScrollEventArgs e)
+        private void OnScrollEnded(object sender, Tizen.NUI.Components.ScrollEventArgs e)
         {
             Console.WriteLine("OnScrollEnded");
         }
 
-        private void OnScrollStarted(object sender, Tizen.NUI.Components.ScrollableBase.ScrollEventArgs e)
+        private void OnScrollStarted(object sender, Tizen.NUI.Components.ScrollEventArgs e)
         {
             Console.WriteLine("OnScrollStart");
         }
@@ -103,8 +103,6 @@ namespace LayoutDemo
             scrollable = new Tizen.NUI.Components.ScrollableBase()
             {
                 Name = "LayoutScroller",
-                FlickAnimationSpeed = 0.8f,
-                FlickDistanceMultiplierRange = new Vector2(0.3f,0.6f),
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
             };

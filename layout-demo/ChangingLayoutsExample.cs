@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -29,7 +29,7 @@ namespace LayoutDemo
         }
 
         private View view;
-        private List<PushButton> buttons = new List<PushButton>();
+        private List<Button> buttons = new List<Button>();
 
         private bool gridLayout = true;
 
@@ -60,7 +60,7 @@ namespace LayoutDemo
             LayoutingExample.GetWindow().Add(view);
 
             // Setup button to switch layouts.
-            PushButton changeLayoutButton = new PushButton();
+            Button changeLayoutButton = new Button();
             changeLayoutButton.Name = "changeLayout-button";
             LayoutingExample.SetUnselectedIcon(changeLayoutButton, "./res/images/iconLinear.png");
             LayoutingExample.SetSelectedIcon(changeLayoutButton, "./res/images/iconLinearSelected.png");
@@ -82,8 +82,6 @@ namespace LayoutDemo
                     LayoutingExample.SetUnselectedIcon(changeLayoutButton, "./res/images/iconLinear.png");
                     LayoutingExample.SetSelectedIcon(changeLayoutButton, "./res/images/iconLinearSelected.png");
                 }
-
-                return true;
             };
 
             LayoutingExample.GetWindow().Add(changeLayoutButton);
@@ -95,7 +93,7 @@ namespace LayoutDemo
             LayoutingExample.GetWindow().Remove(view);
 
             view = null;
-            foreach (PushButton button in buttons)
+            foreach (Button button in buttons)
             {
                 LayoutingExample.GetWindow().Remove(button);
             }

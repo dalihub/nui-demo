@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tizen.System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -35,7 +35,7 @@ namespace LayoutDemo
     {
         private List<Example> layoutingExamples = new List<Example>();
         private int layoutIndex = 0;
-        private PushButton nextLayout;
+        private Button nextLayout;
         private TextLabel exampleTitle;
 
         static private View toolbar;
@@ -109,11 +109,11 @@ namespace LayoutDemo
             InitializeToolbar();
 
             // Setup change layout button
-            nextLayout = new PushButton();
+            nextLayout = new Button();
             nextLayout.Name = "next-layout-button";
             nextLayout.WidthSpecification = LayoutParamPolicies.WrapContent;
             nextLayout.HeightSpecification = LayoutParamPolicies.WrapContent;
-            nextLayout.LabelText = "change layout";
+            nextLayout.Text = "change layout";
             toolbar.Add(nextLayout);
 
             // Initialize title and add to toolbar.
@@ -159,7 +159,6 @@ namespace LayoutDemo
                     exampleTitle.Text = currentExampleLabel;
                     exampleTitle.EnableAutoScroll = true;
                 }
-                return true;
             };
 
             // Set initial title
@@ -222,14 +221,14 @@ namespace LayoutDemo
         {
             var imageVisual = new ImageVisual();
             imageVisual.URL = url;
-            button.SelectedBackgroundVisual = imageVisual.OutputVisualMap;
+            //button.SelectedBackgroundVisual = imageVisual.OutputVisualMap;
         }
 
         public static void SetUnselectedIcon(Button button, string url)
         {
             var imageVisual = new ImageVisual();
             imageVisual.URL = url;
-            button.UnselectedBackgroundVisual = imageVisual.OutputVisualMap;
+            //button.UnselectedBackgroundVisual = imageVisual.OutputVisualMap;
         }
 
         static void Main(string[] args)

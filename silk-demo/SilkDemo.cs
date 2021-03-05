@@ -3,7 +3,6 @@ using System.IO;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Silk
 {

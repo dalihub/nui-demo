@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Example
 {
-    class Menu
+    class MenuLinearLayout
     {
-        public Menu(string name, string subName, string price)
+        public MenuLinearLayout(string name, string subName, string price)
         {
             Name = name;
             SubName = subName;
@@ -27,7 +27,7 @@ namespace Example
         public string Name {get; set;}
     }
 
-    class DummyData
+    class DummyDataLinearLayout
     {
         public static List<object> CreateDummyMenuTap(int amount)
         {
@@ -77,7 +77,7 @@ namespace Example
             List<object> result = new List<object>();
             for (int i = 0; i < amount; i++)
             {
-                result.Add(new Menu(namePool[i%5], subNamePool[i%5], pricePool[i%5]));
+                result.Add(new MenuLinearLayout(namePool[i%5], subNamePool[i%5], pricePool[i%5]));
             }
 
             return result;
