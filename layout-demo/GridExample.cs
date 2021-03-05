@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -39,7 +39,7 @@ namespace LayoutDemo
         };
 
         private View view;
-        private PushButton nextFeatureButton;
+        private Button nextFeatureButton;
         ExampleFeature featureIndex;
         List<ImageView> childItems;
 
@@ -71,15 +71,14 @@ namespace LayoutDemo
 
             Window window = LayoutingExample.GetWindow();
 
-            nextFeatureButton = new PushButton();
+            nextFeatureButton = new Button();
             nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
             nextFeatureButton.PivotPoint = PivotPoint.BottomCenter;
             nextFeatureButton.PositionUsesPivotPoint = true;
-            nextFeatureButton.LabelText = " Set exact width to Grid ";
+            nextFeatureButton.Text = " Set exact width to Grid ";
             nextFeatureButton.Clicked += (sender, e) =>
             {
                 NextGridFeature();
-                return true;
             };
 
             window.Add(view);
@@ -94,7 +93,7 @@ namespace LayoutDemo
                 case ExampleFeature.GRID_EXACT_WIDTH :
                 {
                     SetExactWidth();
-                    nextFeatureButton.LabelText = "Set Child Margin";
+                    nextFeatureButton.Text = "Set Child Margin";
                     featureIndex = ExampleFeature.ITEMS_WITH_MARGINS;
                     break;
                 }
@@ -102,21 +101,21 @@ namespace LayoutDemo
                 {
                     AddMarginToItems();
                     featureIndex = ExampleFeature.GRID_MATCH_PARENT;
-                    nextFeatureButton.LabelText = "Set width MATCH_PARENT";
+                    nextFeatureButton.Text = "Set width MATCH_PARENT";
                     break;
                 }
                 case ExampleFeature.GRID_MATCH_PARENT :
                 {
                     RemoveMarginsFromItems();
                     MatchParentOnWidth();
-                    nextFeatureButton.LabelText = "Set width WRAP_CONTENT";
+                    nextFeatureButton.Text = "Set width WRAP_CONTENT";
                     featureIndex = ExampleFeature.GRID_WRAP_CONTENT;
                     break;
                 }
                 case ExampleFeature.GRID_WRAP_CONTENT :
                 {
                     WrapContentOnWidth();
-                    nextFeatureButton.LabelText = "Add item";
+                    nextFeatureButton.Text = "Add item";
                     featureIndex = ExampleFeature.ADD_ITEMS;
                     break;
                 }
@@ -131,7 +130,7 @@ namespace LayoutDemo
                     {
                         // Remove button when no more items to add
                         featureIndex = ExampleFeature.CHANGE_TO_3_COLUMNS;
-                        nextFeatureButton.LabelText = "Change Columns";
+                        nextFeatureButton.Text = "Change Columns";
                     }
                     break;
                 }
@@ -191,7 +190,7 @@ namespace LayoutDemo
                 string buttonLabel = "Add item[" + ( numberOfAdditonalImageViews - remainingImageViews ).ToString() +"/"
                                                  + ( numberOfAdditonalImageViews).ToString() + "]";
 
-                nextFeatureButton.LabelText = buttonLabel;
+                nextFeatureButton.Text = buttonLabel;
             }
         }
 

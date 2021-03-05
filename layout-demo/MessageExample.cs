@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -54,31 +54,31 @@ namespace LayoutDemo
             toolbarItems.Add(composeLabel);
 
             // Create attachment button
-            PushButton attachmentButton = new PushButton();
+            Button attachmentButton = new Button();
             attachmentButton.Name = "attachmentButton";
             attachmentButton.HeightSpecification = LayoutParamPolicies.MatchParent;
             attachmentButton.WidthSpecification = 80;  // Could instead set the Weight to 1 along with sendButton
 
             var imageVisualAttachmentUnSelected = new ImageVisual();
             imageVisualAttachmentUnSelected.URL = "./res/images/paper-clip.png";
-            attachmentButton.UnselectedBackgroundVisual = imageVisualAttachmentUnSelected.OutputVisualMap;
+            //attachmentButton.UnselectedBackgroundVisual = imageVisualAttachmentUnSelected.OutputVisualMap;
             var imageVisualAttachmentSelected = new ImageVisual();
             imageVisualAttachmentSelected.URL = "./res/images/paper-clip-selected.png";
-            attachmentButton.SelectedBackgroundVisual = imageVisualAttachmentSelected.OutputVisualMap;
+            //attachmentButton.SelectedBackgroundVisual = imageVisualAttachmentSelected.OutputVisualMap;
             toolbarItems.Add(attachmentButton);
 
             // Create send button
-            PushButton sendButton = new PushButton();
+            Button sendButton = new Button();
             sendButton.Name = "sendButton";
             sendButton.HeightSpecification = LayoutParamPolicies.MatchParent;
             sendButton.WidthSpecification = 120; // Could instead set the Weight to 2 along with attachmentButton
 
             var imageVisualSendSelected = new ImageVisual();
             imageVisualSendSelected.URL = "./res/images/send-email-selected.png";
-            sendButton.SelectedBackgroundVisual = imageVisualSendSelected.OutputVisualMap;
+            //sendButton.SelectedBackgroundVisual = imageVisualSendSelected.OutputVisualMap;
             var imageVisualSendUnselected = new ImageVisual();
             imageVisualSendUnselected.URL = "./res/images/send-email.png";
-            sendButton.UnselectedBackgroundVisual = imageVisualSendUnselected.OutputVisualMap;
+            //sendButton.UnselectedBackgroundVisual = imageVisualSendUnselected.OutputVisualMap;
             toolbarItems.Add(sendButton);
 
             View titleToolbar = CreateTitleToolbar("Compose", toolbarItems);

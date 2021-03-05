@@ -18,9 +18,9 @@
 using System;
 using System.Collections.Generic;
 using Tizen.NUI;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
+using Tizen.NUI.Components;
 
 class MultipleWindowExample : NUIApplication
 {
@@ -352,10 +352,10 @@ class MultipleWindowExample : NUIApplication
 
           _textButton[1]._window.Add(view);
 
-          PushButton resizeButton = new PushButton()
+          Button resizeButton = new Button()
           {
               Name = "resize-button",
-              LabelText = "Click me to resize this window",
+              Text = "Click me to resize this window",
           };
 
           resizeButton.Clicked += (sender, e) =>
@@ -370,15 +370,14 @@ class MultipleWindowExample : NUIApplication
                   windowSize.Width *= 2;
               }
               _textButton[1]._window.WindowSize = windowSize;
-              return true;
           };
 
           view.Add(resizeButton);
 
-          PushButton moveButton = new PushButton()
+          Button moveButton = new Button()
           {
               Name = "move-button",
-              LabelText = "Click me to move this window right",
+              Text = "Click me to move this window right",
           };
 
           moveButton.Clicked += (sender, e) =>
@@ -386,8 +385,6 @@ class MultipleWindowExample : NUIApplication
               Position2D windowPosition = _textButton[1]._window.WindowPosition;
               windowPosition.X += 100;
               _textButton[1]._window.WindowPosition = windowPosition;
-
-              return true;
           };
 
             view.Add(moveButton);

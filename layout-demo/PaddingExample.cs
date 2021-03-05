@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -25,7 +25,7 @@ namespace LayoutDemo
             };
         }
         private View _view;
-        private PushButton _nextFeatureButton;
+        private Button _nextFeatureButton;
 
         private int _featureIndex = 0;
         GradientVisual CreateGradientVisual()
@@ -114,15 +114,15 @@ namespace LayoutDemo
             Window window = LayoutingExample.GetWindow();
             window.Add(_view);
 
-            _nextFeatureButton = new PushButton();
+            _nextFeatureButton = new Button();
             _nextFeatureButton.ParentOrigin = ParentOrigin.BottomCenter;
             _nextFeatureButton.PivotPoint = PivotPoint.BottomCenter;
             _nextFeatureButton.PositionUsesPivotPoint = true;
-            _nextFeatureButton.LabelText = featureArray[_featureIndex].featureName;
+            _nextFeatureButton.Text = featureArray[_featureIndex].featureName;
             _nextFeatureButton.Clicked += (sender, e) =>
             {
                 ExampleFeature();
-                return true;
+                return ;
             };
 
             window.Add(_nextFeatureButton);
@@ -167,7 +167,7 @@ namespace LayoutDemo
                 _featureIndex = 0;
             }
 
-            _nextFeatureButton.LabelText = featureArray[_featureIndex].featureName;
+            _nextFeatureButton.Text = featureArray[_featureIndex].featureName;
         }
 
         // Remove the LinearLayout by setting an AbsoluteLayout

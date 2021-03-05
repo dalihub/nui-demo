@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace LayoutDemo
 {
@@ -34,7 +34,7 @@ namespace LayoutDemo
         }
 
         private View view;
-        private List<PushButton> buttons = new List<PushButton>();
+        private List<Button> buttons = new List<Button>();
 
         public override void Create()
         {
@@ -70,7 +70,7 @@ namespace LayoutDemo
 
             window.Add(view);
 
-            PushButton directionButton = new PushButton();
+            Button directionButton = new Button();
             LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
             LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
             directionButton.ParentOrigin = new Vector3(0.2f, 1.0f, 0.5f);
@@ -92,7 +92,7 @@ namespace LayoutDemo
                     LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
 
                 }
-                return true;
+                return ;
 
             };
 
@@ -100,7 +100,7 @@ namespace LayoutDemo
             buttons.Add(directionButton);
 
 
-            PushButton wrapButton = new PushButton();
+            Button wrapButton = new Button();
             LayoutingExample.SetUnselectedIcon(wrapButton, "./res/images/icon-w.png");
             LayoutingExample.SetSelectedIcon(wrapButton, "./res/images/icon-w-selected.png");
             wrapButton.ParentOrigin = new Vector3(0.4f, 1.0f, 0.5f);
@@ -124,13 +124,13 @@ namespace LayoutDemo
                     flexLayout.Alignment = FlexLayout.AlignmentType.FlexStart;
                     flexLayout.ItemsAlignment = FlexLayout.AlignmentType.FlexStart;
                 }
-                return true;
+                //return true;
             };
 
             window.Add(wrapButton);
             buttons.Add(wrapButton);
 
-            PushButton justifyButton = new PushButton();
+            Button justifyButton = new Button();
 
             LayoutingExample.SetUnselectedIcon(justifyButton, "./res/images/icon-item-view-layout-grid.png");
             LayoutingExample.SetSelectedIcon(justifyButton, "./res/images/icon-item-view-layout-grid-selected.png");
@@ -152,14 +152,14 @@ namespace LayoutDemo
                     flexLayout.Justification = FlexLayout.FlexJustification.FlexStart;
                 }
 
-                return true;
+                //return true;
 
             };
             window.Add(justifyButton);
             buttons.Add(justifyButton);
 
 
-            PushButton rotateButton = new PushButton();
+            Button rotateButton = new Button();
             LayoutingExample.SetUnselectedIcon(rotateButton, "./res/images/icon-reset.png");
             LayoutingExample.SetSelectedIcon(rotateButton, "./res/images/icon-reset-selected.png");
             rotateButton.ParentOrigin = new Vector3(0.8f, 1.0f, 0.5f);
@@ -179,7 +179,7 @@ namespace LayoutDemo
                 {
                     flexLayout.Direction = FlexLayout.FlexDirection.Row;
                 }
-                return true;
+                //return true;
             };
             window.Add(rotateButton);
             buttons.Add(rotateButton);
@@ -191,7 +191,7 @@ namespace LayoutDemo
             Window window = Window.Instance;
             window.Remove(view);
             view = null;
-            foreach (PushButton button in buttons)
+            foreach (Button button in buttons)
             {
                 window.Remove(button);
             }

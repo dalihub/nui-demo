@@ -13,7 +13,7 @@ namespace Example
         public string FilePath { get; set; }
     }
 
-    class DummyData
+    class DummyDataGridLayout
     {
         public static List<object> CreateDummyPictureData(int amount)
         {
