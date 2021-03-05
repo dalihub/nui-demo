@@ -125,7 +125,7 @@ namespace Example
             SampleAdapter sampleAdapter = new SampleAdapter();
             sampleAdapter.Data = DummyData.CreateDummyData(50);
 
-            recyclerView = new Tizen.NUI.Wearable.RecyclerView(sampleAdapter, new LinearListLayoutManager())
+            recyclerView = new Tizen.NUI.Wearable.RecyclerView(sampleAdapter, new RecycleLayoutManager())
             {
                 // Size = new Size(480, 800),
                 WidthSpecification = LayoutParamPolicies.MatchParent,

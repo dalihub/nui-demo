@@ -231,10 +231,10 @@ namespace Example
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread] // Forces app to use one thread to access NUI
-        static void Main(string[] args)
-        {
-            new RecyclerViewExample3().Run(args);
-        }
+        // [STAThread] // Forces app to use one thread to access NUI
+        // static void Main(string[] args)
+        // {
+        //     new RecyclerViewExample3().Run(args);
+        // }
     }
 }
