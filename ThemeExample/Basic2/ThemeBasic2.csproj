@@ -14,14 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="8.0.0.*" />
+    
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.8" />
   </ItemGroup>
 
-  <!--ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="../../../TizenFX/src/Tizen.NUI/Tizen.NUI.csproj" />
     <ProjectReference Include="../../../TizenFX/src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
-  </ItemGroup-->
+  </ItemGroup>
 
 </Project>
 

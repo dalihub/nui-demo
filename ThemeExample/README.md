@@ -15,6 +15,13 @@ It is supported limitedly according to the device profile.
 <br/>
 
 
+## Samples
+* Sample: [Basic1](./Basic1)
+* Sample: [Basic2](./Basic2)
+
+<br/>
+<br/>
+
 ## Basic Styling
 The NUI `View` and the derived classes can be decorated with a corresponding `ViewStyle` class.
 For example,
@@ -32,7 +39,8 @@ TextLabelStyle testStyle = new TextLabelStyle()
   PointSize = 20,
 };
 
-TextLabel textLabel = new TextLabel(testStyle);
+TextLabel textLabel = new TextLabel();
+textLabel.ApplyStyle(teststyle);
 ```
 <br/>
 <br/>
@@ -83,38 +91,8 @@ For more xaml information, please visit [NUI Xaml style syntax](./docs/NUIXamlSt
 
 ## Event and Callback
 
-Since applying a new theme may reset properties set by user in View to the new properties, users may want to be notified when the theme changed.
-
-For example, suppose a user defines a TextLabel in `blue` and then applies an xaml theme to set point size.
-
-```C#
-// TextSample.cs
-var textLabel = new TextLabel()
-{
-  StyleName = "largeText",
-  TextColor = Color.Blue,
-};
-window.Add(textLabel);
-
-ThemeManager.ApplyTheme(new Theme(res + "TextSizeTheme.xaml"));
-```
-
-```xml
-<!-- TextSizeTheme.xaml -->
-<?xml version="1.0" encoding="UTF-8"?>
-<Theme
-  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
-  <TextLabelStyle x:Key="largeText" PointSize="100" TextColor="Black" />
-  <TextLabelStyle x:Key="smallText" PointSize="20" TextColor="Black" />
-
-</Theme>
-```
-Since the xaml defined text color to `black`, applying theme will change text color from `blue` to `black`.
-<br/>
-
-For the users who want to re-reset unintentionally overwritten properties, the theme system provides two ways to get notified of theme change.
+Since applying a new theme may reset properties set by user, so users may want to be notified when the theme changed.
+For the users who want to control unintentionally overwritten properties, the theme system provides two ways to get notified of theme change.
 
 * `ThemeManager.ThemeChanged`
 * `View.OnThemeChanged`
@@ -124,10 +102,7 @@ For the users who want to re-reset unintentionally overwritten properties, the t
 `ThemeManager` provides an event that is raised after theme changed.
 
 ```C#
-ThemeManager.ThemeChanged += OnThemeChangedHandler;
-```
-```C#
-void OnThemeChangedHandler(object sender, ThemeChangedEventArgs args)
+ThemeManager.ThemeChanged += (s, e)
 {
   // Theme has changed!
   // Set text color to blue again.
@@ -156,25 +131,6 @@ class AlwaysBlueTextLabel : TextLabel
   }
 }
 ```
-<br/>
-<br/>
-
-## Default Theme
-
-NUI components such as Button, Switch and CheckBox need basic style by default.
-For that, the default theme is defined in NUI framework and it may vary depending on device profile.
-
-The common part of the default theme is called `Tizen.NUI.Theme.Common`, you can check the xaml code [Here](https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/res/Theme/Tizen.NUI.Components_Tizen.NUI.Theme.Common.xaml).
-
-In case of fhub, there are additional styles written in C#.
-Please refer [here](https://github.sec.samsung.net/Tizen-DA/fhub-nui/tree/tizen_6.0_da_fhub_int/Tizen.FH.NUI/src/PreloadStyle) and note that they will be replaced to the xaml code in the near future.
-<br/>
-<br/>
-
-## Samples
-* Sample: [Basic1](./Basic1)
-* Sample: [Basic2](./Basic2)
-* Sample: [TodoList](./TodoList)
 <br/>
 <br/>
 
