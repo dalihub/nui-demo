@@ -61,11 +61,12 @@ namespace LayoutDemo
             view.LayoutDirection = ViewLayoutDirectionType.LTR;
 
             // Add child image-views to the created view
-
+            ImageView lastImageView = null;
             foreach (String image in TestImages.s_images)
             {
                 ImageView imageView = LayoutingExample.CreateChildImageView(image, new Size2D(100, 100));
                 view.Add(imageView);
+                lastImageView = imageView;
             }
 
             window.Add(view);
@@ -73,7 +74,7 @@ namespace LayoutDemo
             Button directionButton = new Button();
             LayoutingExample.SetUnselectedIcon(directionButton, "./res/images/icon-reverse.png");
             LayoutingExample.SetSelectedIcon(directionButton, "./res/images/icon-reverse-selected.png");
-            directionButton.ParentOrigin = new Vector3(0.2f, 1.0f, 0.5f);
+            directionButton.ParentOrigin = new Vector3(0.2f, 0.9f, 0.5f);
             directionButton.PivotPoint = PivotPoint.BottomCenter;
             directionButton.PositionUsesPivotPoint = true;
             directionButton.MinimumSize = new Vector2(75, 75);
@@ -103,7 +104,7 @@ namespace LayoutDemo
             Button wrapButton = new Button();
             LayoutingExample.SetUnselectedIcon(wrapButton, "./res/images/icon-w.png");
             LayoutingExample.SetSelectedIcon(wrapButton, "./res/images/icon-w-selected.png");
-            wrapButton.ParentOrigin = new Vector3(0.4f, 1.0f, 0.5f);
+            wrapButton.ParentOrigin = new Vector3(0.4f, 0.9f, 0.5f);
             wrapButton.PivotPoint = PivotPoint.BottomCenter;
             wrapButton.PositionUsesPivotPoint = true;
             wrapButton.MinimumSize = new Vector2(75, 75);
@@ -134,7 +135,7 @@ namespace LayoutDemo
 
             LayoutingExample.SetUnselectedIcon(justifyButton, "./res/images/icon-item-view-layout-grid.png");
             LayoutingExample.SetSelectedIcon(justifyButton, "./res/images/icon-item-view-layout-grid-selected.png");
-            justifyButton.ParentOrigin = new Vector3(0.6f, 1.0f, 0.5f);
+            justifyButton.ParentOrigin = new Vector3(0.6f, 0.9f, 0.5f);
             justifyButton.PivotPoint = PivotPoint.BottomCenter;
             justifyButton.PositionUsesPivotPoint = true;
             justifyButton.MinimumSize = new Vector2(75, 75);
@@ -162,7 +163,7 @@ namespace LayoutDemo
             Button rotateButton = new Button();
             LayoutingExample.SetUnselectedIcon(rotateButton, "./res/images/icon-reset.png");
             LayoutingExample.SetSelectedIcon(rotateButton, "./res/images/icon-reset-selected.png");
-            rotateButton.ParentOrigin = new Vector3(0.8f, 1.0f, 0.5f);
+            rotateButton.ParentOrigin = new Vector3(0.8f, 0.9f, 0.5f);
             rotateButton.PivotPoint = PivotPoint.BottomCenter;
             rotateButton.PositionUsesPivotPoint = true;
             rotateButton.MinimumSize = new Vector2(75, 75);
@@ -183,6 +184,97 @@ namespace LayoutDemo
             };
             window.Add(rotateButton);
             buttons.Add(rotateButton);
+
+            PushButton alignmentSelfButton = new PushButton();
+            LayoutingExample.SetUnselectedIcon(alignmentSelfButton, "./res/images/iconLinear.png");
+            LayoutingExample.SetSelectedIcon(alignmentSelfButton, "./res/images/iconLinearSelected.png");
+            alignmentSelfButton.ParentOrigin = new Vector3(0.2f, 1.0f, 0.5f);
+            alignmentSelfButton.PivotPoint = PivotPoint.BottomCenter;
+            alignmentSelfButton.PositionUsesPivotPoint = true;
+            alignmentSelfButton.MinimumSize = new Vector2(75, 75);
+            alignmentSelfButton.Clicked += (sender, e) =>
+            {
+                if (FlexLayout.GetFlexAlignmentSelf(lastImageView) != FlexLayout.AlignmentType.Auto)
+                {
+                    FlexLayout.SetFlexAlignmentSelf(lastImageView, FlexLayout.AlignmentType.Auto);
+                }
+                else
+                {
+                    FlexLayout.SetFlexAlignmentSelf(lastImageView, FlexLayout.AlignmentType.FlexEnd);
+                }
+                return true;
+            };
+
+            window.Add(alignmentSelfButton);
+            buttons.Add(alignmentSelfButton);
+
+            PushButton aspectRatioButton = new PushButton();
+            LayoutingExample.SetUnselectedIcon(aspectRatioButton, "./res/images/icon-plus.png");
+            LayoutingExample.SetSelectedIcon(aspectRatioButton, "./res/images/icon-minus.png");
+            aspectRatioButton.ParentOrigin = new Vector3(0.4f, 1.0f, 0.5f);
+            aspectRatioButton.PivotPoint = PivotPoint.BottomCenter;
+            aspectRatioButton.PositionUsesPivotPoint = true;
+            aspectRatioButton.MinimumSize = new Vector2(75, 75);
+            aspectRatioButton.Clicked += (sender, e) =>
+            {
+                if (FlexLayout.GetFlexAspectRatio(lastImageView) != 1.0f)
+                {
+                    FlexLayout.SetFlexAspectRatio(lastImageView, 1.0f);
+                }
+                else
+                {
+                    FlexLayout.SetFlexAspectRatio(lastImageView, 0.5f);
+                }
+                return true;
+            };
+
+            window.Add(aspectRatioButton);
+            buttons.Add(aspectRatioButton);
+
+            PushButton flexShrinkButton = new PushButton();
+            //LayoutingExample.SetUnselectedIcon(flexShrinkButton, "./res/images/list_ic_dropdown.png");
+            flexShrinkButton.ParentOrigin = new Vector3(0.6f, 1.0f, 0.5f);
+            flexShrinkButton.PivotPoint = PivotPoint.BottomCenter;
+            flexShrinkButton.PositionUsesPivotPoint = true;
+            flexShrinkButton.MinimumSize = new Vector2(75, 75);
+            flexShrinkButton.Clicked += (sender, e) =>
+            {
+                if (FlexLayout.GetFlexShrink(lastImageView) != 1.0f)
+                {
+                    FlexLayout.SetFlexShrink(lastImageView, 1.0f);
+                }
+                else
+                {
+                    FlexLayout.SetFlexShrink(lastImageView, 0.0f);
+                }
+                return true;
+            };
+
+            window.Add(flexShrinkButton);
+            buttons.Add(flexShrinkButton);
+
+            PushButton flexGrowButton = new PushButton();
+            LayoutingExample.SetUnselectedIcon(flexGrowButton, "./res/images/icon-play.png");
+            LayoutingExample.SetSelectedIcon(flexGrowButton, "./res/images/icon-play-selected.png");
+            flexGrowButton.ParentOrigin = new Vector3(0.8f, 1.0f, 0.5f);
+            flexGrowButton.PivotPoint = PivotPoint.BottomCenter;
+            flexGrowButton.PositionUsesPivotPoint = true;
+            flexGrowButton.MinimumSize = new Vector2(75, 75);
+            flexGrowButton.Clicked += (sender, e) =>
+            {
+                if (FlexLayout.GetFlexGrow(lastImageView) != 1.0f)
+                {
+                    FlexLayout.SetFlexGrow(lastImageView, 1.0f);
+                }
+                else
+                {
+                    FlexLayout.SetFlexGrow(lastImageView, 0.0f);
+                }
+                return true;
+            };
+
+            window.Add(flexGrowButton);
+            buttons.Add(flexGrowButton);
         }
 
 
